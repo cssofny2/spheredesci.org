@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project S.P.H.E.R.E. | DeSci Locational Variable Experiment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepspace: '#05070a',
+                        cardbg: '#0f141e',
+                        copper: {
+                            400: '#e49b73',
+                            500: '#c86b3c',
+                            600: '#a35025',
+                            700: '#8b401a',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20zM20 0h20v20H20V0z' fill='%231e293b' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Animations and Utilities */
+        .glass-panel {
+            background: rgba(15, 20, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(200, 107, 60, 0.2);
+        }
+        
+        .copper-glow {
+            box-shadow: 0 0 15px rgba(200, 107, 60, 0.4);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(200, 107, 60, 0.5);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Form styling */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(200, 107, 60, 0.5);
+            border-color: #c86b3c;
+        }
+    </style>
+</head>
+<body class="bg-deepspace text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-copper-500 selection:text-white">
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="hero-canvas" class="fixed top-0 left-0 w-full h-screen z-0 pointer-events-none opacity-40"></canvas>
+    
+    <!-- Grid Overlay -->
+    <div class="fixed top-0 left-0 w-full h-full bg-grid-pattern z-0 pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 sm:px-12 flex justify-between items-center glass-panel border-b-0 border-t-0 border-l-0 border-r-0">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-full border-2 border-copper-500 flex items-center justify-center copper-glow">
+                <i class="fa-solid fa-atom text-copper-400 text-sm"></i>
+            </div>
+            <span class="font-bold text-xl tracking-wider text-white">S.P.H.E.R.E.</span>
+            <span class="hidden sm:inline-block text-xs font-mono text-copper-500 border border-copper-700 rounded px-2 py-0.5 ml-2">DeSci</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+            <a href="#science" class="hover:text-copper-400 transition">The Science</a>
+            <a href="#experiment" class="hover:text-copper-400 transition">The Experiment</a>
+            <a href="#equipment" class="hover:text-copper-400 transition">Metrology</a>
+            <a href="#dao" class="hover:text-copper-400 transition">Funding / DAO</a>
+        </div>
+        <div>
+            <a href="#join" class="bg-copper-600 hover:bg-copper-500 text-white px-5 py-2 rounded text-sm font-bold shadow-[0_0_15px_rgba(200,107,60,0.4)] transition">Join the Genesis Block</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 min-h-screen flex items-center justify-center pt-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="inline-block mb-4 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-mono uppercase tracking-widest fade-in-up">
+                Open-Source Falsification Protocol
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight fade-in-up" style="transition-delay: 0.1s;">
+                Measuring the <span class="text-transparent bg-clip-text bg-gradient-to-r from-copper-400 to-copper-600 text-glow">Locational Variable</span>
+            </h1>
+            <p class="mt-6 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed fade-in-up" style="transition-delay: 0.2s;">
+                Project <strong>S.P.H.E.R.E.</strong> (Spatial Positioning Harmonic Empirical Resonance Experiment) is a Decentralized Science (DeSci) initiative building the world's first publication-grade metrology lab to test if spatial coordinates are an intrinsic frequency variable embedded in matter.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 fade-in-up" style="transition-delay: 0.3s;">
+                <a href="#join" class="bg-copper-600 hover:bg-copper-500 text-white px-8 py-3.5 rounded font-bold text-lg transition shadow-lg flex items-center justify-center gap-2">
+                    Become a Founding Member <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#science" class="bg-transparent border border-slate-600 hover:border-slate-400 text-slate-300 px-8 py-3.5 rounded font-bold text-lg transition flex items-center justify-center gap-2">
+                    Read the Whitepaper <i class="fa-solid fa-file-pdf"></i>
+                </a>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center border-t border-slate-800 pt-8 fade-in-up" style="transition-delay: 0.4s;">
+                <div>
+                    <div class="text-2xl font-bold text-white">>$1.75M</div>
+                    <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Funding Target</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-white">>230 kHz</div>
+                    <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Target Frequency</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-white">0.001 K</div>
+                    <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Thermal Isolation</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-white">Q3 2027</div>
+                    <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Est. Genesis Run</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Science Section -->
+    <section id="science" class="relative z-10 py-24 bg-cardbg/50 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 text-center max-w-3xl mx-auto fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">A Paradigm Shift in Physics</h2>
+                <p class="text-slate-400">Classical physics treats space as a container. Quantum field theory struggles with localizability (Malament's Theorem). Project S.P.H.E.R.E. tests a radical ontological inversion.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-xl fade-in-up">
+                    <div class="w-12 h-12 bg-slate-800 rounded flex items-center justify-center text-copper-500 mb-6">
+                        <i class="fa-solid fa-cube text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Location is Intrinsic</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Objects do not exist <em>in</em> space; space exists <em>within</em> objects as an emergent property. An object's physical coordinate is a fundamental vibrational state variable—an intrinsic frequency signature embedded in its energy equation.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-xl fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 bg-slate-800 rounded flex items-center justify-center text-cyan-500 mb-6">
+                        <i class="fa-solid fa-wave-square text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">The >230 kHz Threshold</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Macroscopic matter masks this variable at low frequencies. To detect the locational frequency delta ($\Delta f$) between Coordinate A and Coordinate B, diagnostics must scan linear oscillations operating strictly above 230,000 cycles per second.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-xl fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 bg-slate-800 rounded flex items-center justify-center text-copper-500 mb-6">
+                        <i class="fa-solid fa-bolt text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Non-Kinetic Shifting</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        If the spatial variable is merely a frequency, it can be overwritten. By establishing an electromagnetic isolation field ("Zero Template"), an object can superimpose a target location's frequency, traversing space-time instantly without kinetic thrust.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Experiment & Equipment -->
+    <section id="experiment" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">The Falsification Protocol</h2>
+                    <p class="text-slate-400 mb-6">
+                        Testing the Locational Variable requires eliminating all environmental noise. Mainstream science attributes minute frequency shifts to thermal expansion or RF leakage. Our protocol ensures absolute identicalness of all extrinsic variables.
+                    </p>
+                    
+                    <ul class="space-y-6 mt-8">
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-copper-600 flex items-center justify-center text-white font-bold mt-1 text-sm">1</span>
+                            <div class="ml-4">
+                                <h4 class="text-white font-bold">Baseline at Location A</h4>
+                                <p class="text-sm text-slate-400 mt-1">Two identical, thin-shelled ultra-pure (99.999%) hollow copper spheres are scanned in the same chamber to prove identical resonance.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-copper-600 flex items-center justify-center text-white font-bold mt-1 text-sm">2</span>
+                            <div class="ml-4">
+                                <h4 class="text-white font-bold">Double-Blind Displacement</h4>
+                                <p class="text-sm text-slate-400 mt-1">Sphere 2 is moved to Location B. All environmental variables (Temp, pressure, RF) are locked to match Location A perfectly.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-copper-600 flex items-center justify-center text-white font-bold mt-1 text-sm">3</span>
+                            <div class="ml-4">
+                                <h4 class="text-white font-bold">High-Frequency Delta Extraction</h4>
+                                <p class="text-sm text-slate-400 mt-1">Subtract the frequencies: $\Delta f = f_B - f_A$. If a non-zero standing frequency delta scales with distance above 230 kHz, the variable is isolated.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="equipment" class="glass-panel p-8 rounded-xl fade-in-up">
+                    <h3 class="text-xl font-bold text-copper-400 mb-6 uppercase tracking-widest text-sm border-b border-slate-700 pb-4">Required Metrology Infrastructure</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-white font-bold">3D Scanning Laser Doppler Vibrometer</h4>
+                                <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">~$400k</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Zero mass-loading. Uses HeNe laser interferometry to measure surface acoustic vibrations up to 24 MHz with sub-picometer resolution.</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-white font-bold">Millikelvin Thermal Vacuum Chamber</h4>
+                                <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">~$150k</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Prevents false positives from copper thermal expansion. Controls environment to $\pm 0.001\text{ K}$ drift.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-white font-bold">Walk-in Faraday RF Shielding</h4>
+                                <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">~$120k</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Blocks ambient >230 kHz radio noise. Provides >100 dB attenuation from 100 kHz to 10 GHz.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-white font-bold">Rubidium Atomic Master Clock</h4>
+                                <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">~$10k</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Ensures timing drift in diagnostic equipment does not masquerade as a spatial frequency shift.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DeSci DAO & Funding -->
+    <section id="dao" class="relative z-10 py-24 bg-cardbg/80 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 fade-in-up">The SPHERE DeSci DAO</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-12 fade-in-up">
+                Traditional grant funding will not support fringe metaphysical hypotheses. Project S.P.H.E.R.E. leverages Decentralized Science (DeSci) primitives to crowdfund, govern, and execute the experiment transparently on-chain.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12 fade-in-up">
+                <div class="bg-slate-900/50 p-6 rounded-lg border border-slate-800">
+                    <i class="fa-solid fa-coins text-3xl text-cyan-500 mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">$SPHERE Token</h4>
+                    <p class="text-xs text-slate-400">Governance token allowing holders to vote on equipment procurement, lab locations, and experimental parameters.</p>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded-lg border border-slate-800">
+                    <i class="fa-solid fa-vault text-3xl text-copper-500 mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Transparent Treasury</h4>
+                    <p class="text-xs text-slate-400">Funds are held in a multi-sig smart contract, released strictly based on achieved milestones (Lab lease, equipment delivery).</p>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded-lg border border-slate-800">
+                    <i class="fa-solid fa-database text-3xl text-cyan-500 mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Open-Source Data</h4>
+                    <p class="text-xs text-slate-400">All SLDV scans, VNA datasets, and environmental logs will be uploaded directly to IPFS/Arweave for global peer review.</p>
+                </div>
+            </div>
+
+            <!-- Funding Progress -->
+            <div class="max-w-3xl mx-auto bg-slate-900 p-8 rounded-xl border border-slate-700 fade-in-up">
+                <div class="flex justify-between text-sm mb-2 font-mono">
+                    <span class="text-slate-400">Treasury Goal: Tier 2 Lab Setup</span>
+                    <span class="text-copper-400">$1,750,000 USD</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-4 mb-4 overflow-hidden border border-slate-700">
+                    <div class="bg-gradient-to-r from-copper-600 to-copper-400 h-4 rounded-full" style="width: 5%"></div>
+                </div>
+                <div class="flex justify-between text-xs text-slate-500">
+                    <span>Pre-Seed: $87,500 Raised</span>
+                    <span>1,100 Whitelisted Wallets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section (Interested Parties) -->
+    <section id="join" class="relative z-10 py-24">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="glass-panel p-8 md:p-12 rounded-2xl fade-in-up">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-3">Join the Genesis Block</h2>
+                    <p class="text-sm text-slate-400">Register your interest to participate in the DAO launch, contribute funding, or offer scientific/engineering expertise.</p>
+                </div>
+
+                <form id="interestForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Full Name / Alias</label>
+                            <input type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
+                            <input type="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none" placeholder="john@example.com">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Primary Interest Role</label>
+                        <select required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none appearance-none">
+                            <option value="" disabled selected>Select your role...</option>
+                            <option value="funder">Funder / Investor / Token Buyer</option>
+                            <option value="scientist">Scientist / Metrologist / Engineer</option>
+                            <option value="dao">DAO Operations / Web3 Developer</option>
+                            <option value="enthusiast">General Enthusiast / Observer</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Web3 Wallet (Optional for Whitelist)</label>
+                        <input type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none font-mono text-sm" placeholder="0x...">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Brief Message (Optional)</label>
+                        <textarea rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none resize-none" placeholder="How would you like to contribute?"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-copper-600 hover:bg-copper-500 text-white font-bold text-lg py-4 rounded-lg transition shadow-[0_0_15px_rgba(200,107,60,0.4)]">
+                        Register Interest
+                    </button>
+                    
+                    <div id="formSuccess" class="hidden mt-4 p-4 bg-emerald-900/30 border border-emerald-500/50 rounded-lg text-emerald-400 text-sm text-center">
+                        <i class="fa-solid fa-check-circle mr-2"></i> Registration successful! Welcome to Project S.P.H.E.R.E. We will be in touch soon.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-800 bg-deepspace py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-atom text-copper-500"></i>
+                <span class="font-bold text-white tracking-wider">spheredesci.org</span>
+            </div>
+            <div class="text-xs text-slate-500 text-center md:text-left">
+                <p>This project is inspired by theoretical metaphysical models. Testing will be conducted under rigorous mainstream falsification protocols.</p>
+                <p class="mt-1">&copy; 2026 Project S.P.H.E.R.E. DeSci DAO. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-slate-400 hover:text-copper-400 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-copper-400 transition"><i class="fa-brands fa-discord text-xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-copper-400 transition"><i class="fa-brands fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Navigation Scroll Effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-deepspace/90');
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('bg-deepspace/90');
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // --- Fade-in Animation Observer ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // --- Form Handling ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            // Simulate network request
+            setTimeout(() => {
+                btn.classList.add('hidden');
+                document.getElementById('formSuccess').classList.remove('hidden');
+                e.target.reset();
+            }, 1500);
+        }
+
+        // --- Interactive 3D Sphere Canvas Animation ---
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let points = [];
+        const radius = 250;
+        const totalPoints = 400; // Simulating atoms in a sphere
+        let angleX = 0;
+        let angleY = 0;
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Generate points on a sphere (Fibonacci lattice approach for even distribution)
+        for (let i = 0; i < totalPoints; i++) {
+            const phi = Math.acos(1 - 2 * (i + 0.5) / totalPoints);
+            const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+            
+            const x = Math.cos(theta) * Math.sin(phi);
+            const y = Math.cos(phi);
+            const z = Math.sin(theta) * Math.sin(phi);
+            
+            points.push({x, y, z});
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Center of screen
+            const cx = width / 2;
+            const cy = height / 2;
+            
+            // Rotation speeds
+            angleX += 0.002;
+            angleY += 0.003;
+            
+            const cosX = Math.cos(angleX);
+            const sinX = Math.sin(angleX);
+            const cosY = Math.cos(angleY);
+            const sinY = Math.sin(angleY);
+
+            // Time variable for resonance pulse effect (>230kHz concept)
+            const time = Date.now() * 0.001;
+            const resonance = 1 + (Math.sin(time * 5) * 0.05);
+
+            ctx.lineWidth = 1;
+            
+            const projectedPoints = [];
+
+            // Rotate and project points
+            for (let i = 0; i < points.length; i++) {
+                const p = points[i];
+                
+                // Rotate Y
+                const x1 = p.x * cosY - p.z * sinY;
+                const z1 = p.z * cosY + p.x * sinY;
+                
+                // Rotate X
+                const y2 = p.y * cosX - z1 * sinX;
+                const z2 = z1 * cosX + p.y * sinX;
+                
+                // Project 3D to 2D
+                const scale = 400 / (400 - z2); // Perspective
+                const xProjected = cx + (x1 * radius * scale * resonance);
+                const yProjected = cy + (y2 * radius * scale * resonance);
+                
+                // Calculate opacity based on Z depth (fade out points in back)
+                const depth = (z2 + 1) / 2; // 0 to 1
+                const alpha = Math.max(0.1, 0.8 - (depth * 0.7));
+                
+                projectedPoints.push({x: xProjected, y: yProjected, z: z2, alpha: alpha, scale: scale});
+            }
+
+            // Draw connecting lines to form wireframe (connect nearby points)
+            ctx.strokeStyle = 'rgba(200, 107, 60, 0.15)'; // Copper color
+            ctx.beginPath();
+            for(let i=0; i<projectedPoints.length; i++) {
+                for(let j=i+1; j<projectedPoints.length; j++) {
+                    const p1 = projectedPoints[i];
+                    const p2 = projectedPoints[j];
+                    // If points are close in 3D space, draw line
+                    const d = Math.sqrt(Math.pow(points[i].x - points[j].x, 2) + Math.pow(points[i].y - points[j].y, 2) + Math.pow(points[i].z - points[j].z, 2));
+                    if (d < 0.25) {
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                    }
+                }
+            }
+            ctx.stroke();
+
+            // Draw nodes
+            for(let i=0; i<projectedPoints.length; i++) {
+                const p = projectedPoints[i];
+                
+                // Occasionally flash points cyan to simulate the high frequency delta
+                const isFlashing = Math.random() > 0.99;
+                
+                if (isFlashing) {
+                    ctx.fillStyle = `rgba(34, 211, 238, ${p.alpha + 0.2})`; // Cyan
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 2 * p.scale, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Add glow to flashing points
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = '#22d3ee';
+                } else {
+                    ctx.fillStyle = `rgba(200, 107, 60, ${p.alpha})`; // Copper
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 1.5 * p.scale, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+            
+            requestAnimationFrame(draw);
+        }
+
+        // Start animation
+        draw();
+    </script>
+</body>
+</html>
