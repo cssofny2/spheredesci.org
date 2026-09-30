@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 136" width="136" height="136" role="img" aria-label="Project S.P.H.E.R.E."><title>Project S.P.H.E.R.E.</title><defs>
+  <radialGradient id="sph-i" cx="38%" cy="34%" r="70%">
+    <stop offset="0" stop-color="#f5c7a9"/><stop offset=".35" stop-color="#e49b73"/>
+    <stop offset=".75" stop-color="#a35025"/><stop offset="1" stop-color="#5c2a10"/>
+  </radialGradient>
+  <radialGradient id="sphm-i" cx="38%" cy="34%" r="70%">
+    <stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#e2e8f0"/><stop offset="1" stop-color="#94a3b8"/>
+  </radialGradient>
+  <radialGradient id="glow-i" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#c86b3c" stop-opacity=".45"/>
+    <stop offset="1" stop-color="#c86b3c" stop-opacity="0"/>
+  </radialGradient>
+</defs><g transform="translate(8 0) scale(1)">
+  <circle cx="60" cy="80" r="34" fill="url(#glow-i)"/>
+  <circle cx="60" cy="80" r="38" fill="none" stroke="#e2e8f0" stroke-opacity=".14" stroke-width=".8"/>
+  <polygon points="60.00,53.00 83.38,66.50 83.38,93.50 60.00,107.00 36.62,93.50 36.62,66.50" fill="none" stroke="#22d3ee" stroke-opacity=".75" stroke-width="1" stroke-dasharray="3 2.4"/>
+  <g stroke="#e2e8f0" stroke-width="1.8" stroke-linecap="round"><line x1="60" y1="80" x2="60.00" y2="30.00"/><line x1="60" y1="80" x2="103.30" y2="55.00"/><line x1="60" y1="80" x2="103.30" y2="105.00"/><line x1="60" y1="80" x2="60.00" y2="130.00"/><line x1="60" y1="80" x2="16.70" y2="105.00"/><line x1="60" y1="80" x2="16.70" y2="55.00"/></g>
+  <polygon points="60.00,30.00 103.30,55.00 103.30,105.00 60.00,130.00 16.70,105.00 16.70,55.00" fill="none" stroke="#e2e8f0" stroke-width="2.4" stroke-linejoin="round"/>
+  <g fill="#22d3ee"><circle cx="60.00" cy="53.00" r="1.7"/><circle cx="83.38" cy="66.50" r="1.7"/><circle cx="83.38" cy="93.50" r="1.7"/><circle cx="60.00" cy="107.00" r="1.7"/><circle cx="36.62" cy="93.50" r="1.7"/><circle cx="36.62" cy="66.50" r="1.7"/></g>
+  <circle cx="60" cy="80" r="16.5" fill="url(#sph-i)"/>
+  <circle cx="60" cy="80" r="16.5" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width=".8"/>
+  <circle cx="60" cy="80" r="3.3" fill="#05070a"/>
+  <g fill="#22d3ee" transform="translate(60 26) scale(.78) translate(-60 -26)">
+    <path d="M54.6 5.5h10.8v2.2h-1.9l1.2 7.1h2.1v2.3H53.2v-2.3h2.1l1.2-7.1h-1.9z"/>
+    <path d="M59.2 17.1h1.6l-.8 9.4z"/>
+  </g>
+</g></svg>

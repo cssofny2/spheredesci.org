@@ -22,6 +22,23 @@ Current work focuses on:
 - Building a public landing page and collaboration pathway
 - Preparing materials for future independent review and replication
 
+## Brand assets
+
+Official logo files live in [`assets/brand/`](assets/brand/). All lockups are
+vector SVG with text converted to outlines (typeface: Saira), plus 4x PNG exports.
+
+| File | Use |
+| --- | --- |
+| `sphere-lockup-horizontal.svg` | Primary horizontal wordmark (dark backgrounds) |
+| `sphere-lockup-horizontal-mono.svg` | Single-colour white version |
+| `sphere-lockup-stacked.svg` | Stacked lockup for narrow / mobile layouts |
+| `sphere-lockup-compact.svg` | Icon + wordmark for navigation bars |
+| `sphere-icon.svg` / `sphere-icon-mono.svg` | Standalone mark, avatars, favicons |
+| `og-image.png` | 1200x630 social share image |
+
+Palette: Deep Space `#05070a`, Copper `#c86b3c` / `#e49b73`, Signal Cyan `#22d3ee`,
+Frost `#e2e8f0`.
+
 ## Research integrity
 
 This repository distinguishes between:
