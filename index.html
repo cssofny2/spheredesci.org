@@ -353,7 +353,14 @@
                     <p class="text-sm text-slate-400">Register your interest to participate in the DAO launch, contribute funding, or offer scientific/engineering expertise.</p>
                 </div>
 
-                <form id="interestForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                <form id="interestForm" action="https://formsubmit.co/michael@michaelpgoodman.com" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <!-- Form delivery via FormSubmit: sends the submission to michael@michaelpgoodman.com
+                         and an autoresponse with a copy of the submission to the person who filled it out. -->
+                    <input type="hidden" name="_subject" value="New S.P.H.E.R.E. Genesis Block registration">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_autoresponse" value="Thank you for registering your interest in Project S.P.H.E.R.E. (spheredesci.org). A copy of your submission is included below. We will follow up with DAO launch, funding, and participation updates.">
+                    <input type="hidden" name="_next" value="https://spheredesci.org/?registered=1#join">
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Full Name / Alias</label>
@@ -369,10 +376,10 @@
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Primary Interest Role</label>
                         <select name="role" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none appearance-none">
                             <option value="" disabled selected>Select your role...</option>
-                            <option value="funder">Funder / Investor / Token Buyer</option>
-                            <option value="scientist">Scientist / Metrologist / Engineer</option>
-                            <option value="dao">DAO Operations / Web3 Developer</option>
-                            <option value="enthusiast">General Enthusiast / Observer</option>
+                            <option value="Funder / Investor / Token Buyer">Funder / Investor / Token Buyer</option>
+                            <option value="Scientist / Metrologist / Engineer">Scientist / Metrologist / Engineer</option>
+                            <option value="DAO Operations / Web3 Developer">DAO Operations / Web3 Developer</option>
+                            <option value="General Enthusiast / Observer">General Enthusiast / Observer</option>
                         </select>
                     </div>
 
@@ -451,49 +458,50 @@
         });
 
         // --- Form Handling ---
+        // The form posts natively to FormSubmit (no fake/simulated sending). FormSubmit emails the
+        // submission to michael@michaelpgoodman.com, sends the registrant an autoresponse containing
+        // a copy of their submission, then redirects back here with ?registered=1.
         function handleFormSubmit(e) {
-            e.preventDefault();
+            const form = e.target;
+            if (!form.checkValidity()) return;
+            const btn = document.getElementById('submitBtn');
+            try { sessionStorage.setItem('sphereRegEmail', form.querySelector('input[name="email"]').value); } catch (_) {}
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting Registration...';
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            // Disable after the browser has started the submission so the POST is not blocked
+            setTimeout(() => { btn.disabled = true; }, 0);
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        (function showRegistrationResult() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('registered') !== '1') return;
             const btn = document.getElementById('submitBtn');
             const successDiv = document.getElementById('formSuccess');
-            const emailInput = e.target.querySelector('input[type="email"]').value;
-            
-            // 1. Initial Processing State
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Registration...';
-            btn.classList.add('opacity-75', 'cursor-not-allowed');
-            btn.disabled = true;
-            
-            // 2. Simulate Network Request & Email Dispatch
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fa-solid fa-envelope-circle-check"></i> Dispatching Confirmation Email...';
-                
-                setTimeout(() => {
-                    // 3. Success State
-                    btn.classList.add('hidden');
-                    successDiv.classList.remove('hidden');
-                    
-                    // Dynamically insert the user's email to confirm it was "sent"
-                    successDiv.innerHTML = `
-                        <div class="flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-check-circle text-3xl mr-3 text-emerald-400"></i>
-                            <span class="font-bold text-xl text-white">Registration Successful!</span>
-                        </div>
-                        <p class="text-slate-300 mb-2">Welcome to the Project S.P.H.E.R.E. Genesis Block.</p>
-                        <div class="bg-emerald-950/50 border border-emerald-800/50 rounded p-3 mt-3 inline-block text-left">
-                            <p class="text-emerald-300 font-mono text-xs mb-1">
-                                <i class="fa-solid fa-paper-plane mr-1"></i> 
-                                A confirmation email has been successfully sent to:
-                            </p>
-                            <p class="text-white text-sm font-bold ml-5">${emailInput}</p>
-                        </div>
-                        <!-- PRODUCTION NOTE: To send actual real-world emails from this static frontend, 
-                             integrate a service like EmailJS (https://www.emailjs.com/) or 
-                             Formspree (https://formspree.io/) inside this function using the fetch API. -->
-                    `;
-                    
-                    e.target.reset();
-                }, 1800); // Time to "send email"
-            }, 1200); // Time to "process form"
-        }
+            let email = '';
+            try { email = sessionStorage.getItem('sphereRegEmail') || ''; sessionStorage.removeItem('sphereRegEmail'); } catch (_) {}
+            btn.classList.add('hidden');
+            successDiv.classList.remove('hidden');
+            successDiv.innerHTML = `
+                <div class="flex items-center justify-center mb-3">
+                    <i class="fa-solid fa-check-circle text-3xl mr-3 text-emerald-400"></i>
+                    <span class="font-bold text-xl text-white">Registration Received</span>
+                </div>
+                <p class="text-slate-300 mb-2">Welcome to the Project S.P.H.E.R.E. Genesis Block.</p>
+                <div class="bg-emerald-950/50 border border-emerald-800/50 rounded p-3 mt-3 inline-block text-left">
+                    <p class="text-emerald-300 font-mono text-xs mb-1">
+                        <i class="fa-solid fa-paper-plane mr-1"></i>
+                        A confirmation email with a copy of your submission is on its way${email ? ' to:' : '.'}
+                    </p>
+                    ${email ? `<p class="text-white text-sm font-bold ml-5">${escapeHtml(email)}</p>` : ''}
+                    <p class="text-slate-400 text-xs mt-2">If you don't see it within a few minutes, check your spam folder.</p>
+                </div>`;
+            history.replaceState(null, '', window.location.pathname + '#join');
+            document.getElementById('join').scrollIntoView();
+        })();
 
         // --- Interactive 3D Sphere Canvas Animation ---
         const canvas = document.getElementById('hero-canvas');
