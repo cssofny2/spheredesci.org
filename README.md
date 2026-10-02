@@ -73,3 +73,30 @@ Do not report security vulnerabilities through public issues. See
 Website code is licensed under the MIT License unless otherwise stated.
 Research documents, datasets, graphics, and third-party materials may have
 separate licensing terms.
+
+## Public research pages
+
+The site includes the draft LOC-1 protocol, budget and transparency page,
+research resource library, FAQ, collaboration guidance, update log, privacy
+notice, About page, and research charter. Documents are explicitly labeled as
+drafts or plans where appropriate. No data, funding total, or preregistration
+is represented as existing unless a real record is available.
+
+## Building and checking
+
+The site is static HTML. Tailwind is compiled into a local CSS asset; its runtime
+CDN is no longer required to display content.
+
+```sh
+npx --yes tailwindcss@3.4.17 -c tailwind.config.cjs -i styles.input.css -o assets/tailwind.css --minify
+serve . -l 3000 --no-clipboard
+```
+
+`tools/build-content.py` contains the authored content and shared-page templates.
+It was used for the initial expansion. Existing-page augmentation steps are
+one-time migrations: do not rerun that script blindly over an already-expanded
+homepage. Edit the generated HTML directly or adapt the generator before a
+later content rebuild. Development files are excluded by `.assetsignore`.
+
+The QA inventory is in `tools/QA.md`. Sitemap and canonical URLs target the
+production domain at https://spheredesci.org/.

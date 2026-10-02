@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://spheredesci.org/</loc>
-  </url>
-  <url>
-    <loc>https://spheredesci.org/about/</loc>
-  </url>
-  <url>
-    <loc>https://spheredesci.org/charter/</loc>
-  </url>
+<url><loc>https://spheredesci.org/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/about/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/charter/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/protocol/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/transparency/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/resources/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/faq/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/collaborate/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/updates/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/privacy/</loc><lastmod>2026-10-02</lastmod></url>
 </urlset>

@@ -23,37 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Saira:wdth,wght@100..125,400..600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        deepspace: '#05070a',
-                        cardbg: '#0f141e',
-                        copper: {
-                            400: '#e49b73',
-                            500: '#c86b3c',
-                            600: '#a35025',
-                            700: '#8b401a',
-                        },
-                        cyan: {
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        brand: ['Saira', 'Inter', 'system-ui', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20zM20 0h20v20H20V0z' fill='%231e293b' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="/assets/tailwind.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Custom Animations and Utilities */
@@ -90,7 +60,7 @@
             border-color: #c86b3c;
         }
     </style>
-</head>
+<link href="/assets/site.css" rel="stylesheet"><script src="/assets/site.js" defer></script><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://spheredesci.org/#website", "url": "https://spheredesci.org/", "name": "Project S.P.H.E.R.E.", "description": "Spatial Positioning Harmonic Empirical Resonance Experiment"}, {"@type": "WebPage", "@id": "https://spheredesci.org/#webpage", "url": "https://spheredesci.org/", "name": "Project S.P.H.E.R.E. | An Open Test of the Locational Variable Hypothesis", "description": "Project S.P.H.E.R.E. (Spatial Positioning Harmonic Empirical Resonance Experiment) is an open, independent research project testing whether location alone changes the measured resonance of a controlled copper sphere. Proposal stage; no results yet.", "isPartOf": {"@id": "https://spheredesci.org/#website"}, "inLanguage": "en", "dateModified": "2026-10-02"}]}</script></head>
 <body class="bg-deepspace text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-copper-500 selection:text-white">
 
     <!-- Interactive Canvas Background -->
@@ -100,25 +70,17 @@
     <div class="fixed top-0 left-0 w-full h-full bg-grid-pattern z-0 pointer-events-none"></div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-3 px-6 sm:px-12 flex justify-between items-center glass-panel border-b-0 border-t-0 border-l-0 border-r-0">
-        <a href="#top" class="flex items-center gap-3" aria-label="Project S.P.H.E.R.E. home">
-            <img src="/assets/brand/sphere-lockup-compact.svg" alt="S.P.H.E.R.E." class="h-9 sm:h-10 lg:h-11 w-auto" width="435" height="136">
-            <span class="hidden sm:inline-block text-xs font-mono text-cyan-400 border border-cyan-700 bg-cyan-900/30 rounded px-2 py-0.5">DeSci</span>
-        </a>
-        <div class="hidden md:flex space-x-8 text-sm font-medium">
-            <a href="#science" class="hover:text-copper-400 transition">The Science</a>
-            <a href="#experiment" class="hover:text-copper-400 transition">The Experiment</a>
-            <a href="#equipment" class="hover:text-copper-400 transition">Metrology</a>
-            <a href="#dao" class="hover:text-copper-400 transition">Funding</a>
-            <a href="/about/" class="hover:text-copper-400 transition">About</a>
-            <a href="/charter/" class="hover:text-copper-400 transition">Charter</a>
-        </div>
-        <div>
-            <a href="#join" class="bg-copper-600 hover:bg-copper-500 text-white px-5 py-2 rounded text-sm font-bold shadow-[0_0_15px_rgba(200,107,60,0.4)] transition">Register Interest</a>
-        </div>
-    </nav>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="/" aria-label="Project S.P.H.E.R.E. home"><img class="nav-logo" src="/assets/brand/sphere-lockup-compact.svg" alt="S.P.H.E.R.E." width="435" height="136"></a>
+<div class="nav-links"><a href="/about/">About</a><a href="/protocol/">Protocol</a><a href="/transparency/">Transparency</a><a href="/resources/">Resources</a><a href="/faq/">FAQ</a>
+<details class="site-menu"><summary>More</summary><div class="menu-panel"><a href="/charter/">Research charter</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Project updates</a><a href="/privacy/">Privacy notice</a></div></details>
+<a class="nav-join" href="/#join">Get involved</a></div>
+<details class="site-menu mobile-only"><summary>Menu</summary><div class="menu-panel"><a href="/">Home</a><a href="/about/">About</a><a href="/protocol/">Protocol</a><a href="/transparency/">Transparency</a><a href="/resources/">Resources</a><a href="/faq/">FAQ</a><a href="/charter/">Research charter</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Project updates</a><a href="/privacy/">Privacy notice</a><a href="/#join">Register interest</a></div></details>
+</nav>
 
-    <!-- Hero Section -->
+    <main id="main-content">
+<!-- Hero Section -->
     <section id="top" class="relative z-10 min-h-screen flex items-center justify-center pt-28 pb-16">
         <div class="max-w-5xl mx-auto px-6 text-center">
             <!-- Primary brand lockup: horizontal on tablet/desktop, stacked on mobile -->
@@ -240,7 +202,7 @@
                             <span class="flex-shrink-0 w-8 h-8 rounded-full bg-copper-600 flex items-center justify-center text-white font-bold mt-1 text-sm">3</span>
                             <div class="ml-4">
                                 <h4 class="text-white font-bold">Preregistered Analysis</h4>
-                                <p class="text-sm text-slate-400 mt-1">The analysis rules for <span class="font-mono text-slate-300">&Delta;f = f<sub>B</sub> &minus; f<sub>A</sub></span>, including the smallest effect of interest, &alpha; = 0.01, and an equivalence test for a null result, are frozen on OSF before data collection. Any positive signal must be independently replicated before it is claimed.</p>
+                                <p class="text-sm text-slate-400 mt-1">The primary outcome compares the test-to-reference frequency ratio at A and B. Its analysis rules, including the smallest effect of interest, &alpha; = 0.01, and an equivalence test for a bounded null result, will be frozen on OSF before confirmatory data collection. No preregistration has been issued yet. Any candidate signal requires artifact checks and independent replication.</p>
                             </div>
                         </li>
                     </ul>
@@ -345,7 +307,21 @@
         </div>
     </section>
 
-    <!-- Join Section (Interested Parties) -->
+    <section id="research-library" class="home-extra"><div class="inner">
+<div class="eyebrow">Read before you support</div><h2>The open research foundation</h2>
+<p class="intro">Explore the design, challenge the controls, and see what still needs to be done. These are planning documents, not evidence of a completed experiment.</p>
+<div class="home-resource-grid">
+<a href="/protocol/"><span class="label">01 / Method</span><h3>Inside LOC-1</h3><p>How the copper sphere, stationary reference, blinding, and null tests fit together.</p></a>
+<a href="/transparency/"><span class="label">02 / Stewardship</span><h3>The first-year plan</h3><p>Budget assumptions, funding readiness, and safeguards before a campaign opens.</p></a>
+<a href="/collaborate/"><span class="label">03 / Participation</span><h3>Help improve the test</h3><p>Independent review, instrument access, and documentation contributions.</p></a>
+</div></div></section>
+<section id="questions" class="home-extra"><div class="inner"><div class="eyebrow">A careful starting point</div>
+<h2>What has been demonstrated?</h2><p class="intro">Nothing yet. The project's value depends on a test that can report “nothing found” as honestly as a candidate signal.</p>
+<details class="faq-item"><summary>Is this established physics?</summary><p>The locational-variable idea is an unverified, source-inspired hypothesis. S.P.H.E.R.E. is preparing a controlled measurement, not announcing a discovery.</p></details>
+<details class="faq-item"><summary>Does supporting the project buy a token or ownership?</summary><p>No. The founding phase has no token sale or financial-return promise, and the interest form collects no payments.</p></details>
+<p style="margin-top:1.5rem"><a class="related-link" href="/faq/">Read all project questions</a> · <a class="related-link" href="/updates/">Follow the roadmap</a></p>
+</div></section>
+<!-- Join Section (Interested Parties) -->
     <section id="join" class="relative z-10 py-24">
         <div class="max-w-3xl mx-auto px-6">
             <div class="glass-panel p-8 md:p-12 rounded-2xl fade-in-up">
@@ -354,7 +330,7 @@
                     <p class="text-sm text-slate-400">Get updates on the protocol, independent review, and funding launch, or offer scientific and engineering expertise. Registering is not a financial commitment.</p>
                 </div>
 
-                <form id="interestForm" action="https://formsubmit.co/michael@michaelpgoodman.com" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                <form id="interestForm" aria-describedby="privacy-form-note" action="https://formsubmit.co/michael@michaelpgoodman.com" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6">
                     <!-- Form delivery via FormSubmit: sends the submission to michael@michaelpgoodman.com
                          and an autoresponse with a copy of the submission to the person who filled it out. -->
                     <input type="hidden" name="_subject" value="New S.P.H.E.R.E. interest registration">
@@ -364,18 +340,18 @@
                     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Full Name / Alias</label>
-                            <input type="text" name="name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none" placeholder="John Doe">
+                            <label for="contact-name" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Full Name / Alias</label>
+                            <input id="contact-name" type="text" name="name" autocomplete="name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none" placeholder="John Doe">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
-                            <input type="email" name="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none" placeholder="john@example.com">
+                            <label for="contact-email" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
+                            <input id="contact-email" type="email" name="email" autocomplete="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none" placeholder="john@example.com">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Primary Interest Role</label>
-                        <select name="role" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none appearance-none">
+                        <label for="contact-role" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Primary Interest Role</label>
+                        <select id="contact-role" name="role" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none appearance-none">
                             <option value="" disabled selected>Select your role...</option>
                             <option value="Supporter / Potential Donor">Supporter / Potential Donor</option>
                             <option value="Scientist / Metrologist / Engineer">Scientist / Metrologist / Engineer</option>
@@ -386,15 +362,16 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Brief Message (Optional)</label>
-                        <textarea name="message" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none resize-none" placeholder="How would you like to contribute?"></textarea>
+                        <label for="contact-message" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Brief Message (Optional)</label>
+                        <textarea id="contact-message" name="message" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-600 focus:outline-none resize-none" placeholder="How would you like to contribute?"></textarea>
                     </div>
 
+                    <p id="privacy-form-note" class="text-sm text-slate-400">This form sends your inquiry through FormSubmit to the project contact. <a href="/privacy/" class="text-copper-400 underline">Read the privacy notice</a>. Please do not include sensitive or confidential information.</p>
                     <button type="submit" id="submitBtn" class="w-full bg-copper-600 hover:bg-copper-500 text-white font-bold text-lg py-4 rounded-lg transition shadow-[0_0_15px_rgba(200,107,60,0.4)]">
                         Register Interest
                     </button>
                     
-                    <div id="formSuccess" class="hidden mt-4 p-6 bg-emerald-900/30 border border-emerald-500/50 rounded-lg text-emerald-400 text-sm text-center shadow-lg">
+                    <div id="formSuccess" role="status" aria-live="polite" class="hidden mt-4 p-6 bg-emerald-900/30 border border-emerald-500/50 rounded-lg text-emerald-400 text-sm text-center shadow-lg">
                         <!-- Success content injected via JS -->
                     </div>
                 </form>
@@ -402,23 +379,15 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="relative z-10 border-t border-slate-800 bg-deepspace py-10 mt-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-                <img src="/assets/brand/sphere-icon.svg" alt="" aria-hidden="true" class="w-9 h-9 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" width="136" height="136" loading="lazy">
-                <span class="font-bold text-white tracking-wider">spheredesci.org</span>
-            </div>
-            <div class="text-xs text-slate-500 text-center md:text-left">
-                <p>This project is inspired by the Bashar material. The locational-variable idea is an unverified hypothesis, tested here under preregistered, mainstream falsification standards.</p>
-                <p class="mt-1"><a href="/about/" class="underline hover:text-copper-400">About the project</a> · <a href="/charter/" class="underline hover:text-copper-400">Research Charter</a></p>
-                <p class="mt-1">&copy; 2026 Project S.P.H.E.R.E. All rights reserved.</p>
-            </div>
-            <div class="flex space-x-4">
-                <a href="https://github.com/cssofny2/spheredesci.org" class="text-slate-400 hover:text-copper-400 transition" aria-label="Source on GitHub"><i class="fa-brands fa-github text-xl"></i></a>
-            </div>
-        </div>
-    </footer>
+    </main>
+<!-- Footer -->
+    <footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
+<div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
+<p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p></div>
+<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a></div>
+<div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
+</div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
+<p>&copy; 2026 Project S.P.H.E.R.E. Research-page text is offered under CC BY 4.0; third-party materials retain their own terms.</p></div></footer>
 
     <script>
         // --- Navigation Scroll Effect ---
@@ -532,6 +501,10 @@
             points.push({x, y, z});
         }
 
+        const connections = [];
+        for (let i=0; i<points.length; i++) for (let j=i+1; j<points.length; j++) {
+            if (Math.hypot(points[i].x-points[j].x, points[i].y-points[j].y, points[i].z-points[j].z)<0.25) connections.push([i,j]);
+        }
         function draw() {
             ctx.clearRect(0, 0, width, height);
             
@@ -583,17 +556,9 @@
             // Draw connecting lines to form wireframe (connect nearby points)
             ctx.strokeStyle = 'rgba(200, 107, 60, 0.15)'; // Copper color
             ctx.beginPath();
-            for(let i=0; i<projectedPoints.length; i++) {
-                for(let j=i+1; j<projectedPoints.length; j++) {
-                    const p1 = projectedPoints[i];
-                    const p2 = projectedPoints[j];
-                    // If points are close in 3D space, draw line
-                    const d = Math.sqrt(Math.pow(points[i].x - points[j].x, 2) + Math.pow(points[i].y - points[j].y, 2) + Math.pow(points[i].z - points[j].z, 2));
-                    if (d < 0.25) {
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                    }
-                }
+            for (const [i,j] of connections) {
+                ctx.moveTo(projectedPoints[i].x, projectedPoints[i].y);
+                ctx.lineTo(projectedPoints[j].x, projectedPoints[j].y);
             }
             ctx.stroke();
 
@@ -622,11 +587,14 @@
                 }
             }
             
-            requestAnimationFrame(draw);
+            if (!document.hidden) requestAnimationFrame(draw);
         }
 
-        // Start animation
-        draw();
+        // Respect reduced-motion settings and pause canvas work in hidden tabs.
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
+        });
     </script>
 </body>
 </html>
