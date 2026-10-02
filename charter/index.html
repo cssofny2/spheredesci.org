@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Charter | Project S.P.H.E.R.E.</title>
+    <meta name="description" content="The mission, scope, standards, stage gates, and publication commitment governing Project S.P.H.E.R.E.">
+    <meta name="theme-color" content="#05070a">
+    <link rel="canonical" href="https://spheredesci.org/charter/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Project S.P.H.E.R.E.">
+    <meta property="og:title" content="Research Charter | Project S.P.H.E.R.E.">
+    <meta property="og:description" content="The mission, scope, standards, stage gates, and publication commitment governing Project S.P.H.E.R.E.">
+    <meta property="og:url" content="https://spheredesci.org/charter/">
+    <meta property="og:image" content="https://spheredesci.org/assets/brand/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { deepspace: '#05070a', cardbg: '#0f141e',
+                copper: { 400: '#e49b73', 500: '#c86b3c', 600: '#a35025' },
+                cyan: { 400: '#22d3ee', 500: '#06b6d4' } },
+            fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] }
+        } } };
+    </script>
+    <style>
+        .glass-panel { background: rgba(15,20,30,0.7); border: 1px solid rgba(200,107,60,0.2); }
+        .prose-s h2 { color:#fff; font-size:1.5rem; font-weight:700; margin:2.5rem 0 1rem; }
+        .prose-s h3 { color:#e2e8f0; font-size:1.1rem; font-weight:600; margin:1.75rem 0 .5rem; }
+        .prose-s p { margin:0 0 1rem; line-height:1.75; }
+        .prose-s ul { list-style:disc; padding-left:1.4rem; margin:0 0 1rem; }
+        .prose-s li { margin:.35rem 0; line-height:1.65; }
+        .prose-s strong { color:#e2e8f0; }
+        .prose-s a { color:#e49b73; text-decoration:underline; text-underline-offset:3px; }
+        .prose-s table { width:100%; border-collapse:collapse; margin:0 0 1.5rem; font-size:.95rem; }
+        .prose-s th, .prose-s td { border:1px solid #1e293b; padding:.65rem .8rem; text-align:left; vertical-align:top; }
+        .prose-s th { background:#0f141e; color:#e2e8f0; font-weight:600; }
+    </style>
+</head>
+<body class="bg-deepspace text-slate-300 font-sans antialiased">
+    <nav class="sticky top-0 w-full z-50 py-3 px-6 sm:px-12 flex justify-between items-center glass-panel border-x-0 border-t-0">
+        <a href="/" class="flex items-center gap-3" aria-label="Project S.P.H.E.R.E. home">
+            <img src="/assets/brand/sphere-lockup-compact.svg" alt="S.P.H.E.R.E." class="h-9 sm:h-10 w-auto" width="435" height="136">
+        </a>
+        <div class="flex gap-6 text-sm font-medium">
+            <a href="/" class="hover:text-copper-400 transition">Home</a>
+            <a href="/about/" class="hover:text-copper-400 transition ">About</a>
+            <a href="/charter/" class="hover:text-copper-400 transition text-copper-400">Research Charter</a>
+        </div>
+    </nav>
+    <main class="max-w-3xl mx-auto px-6 py-16">
+
+        <div class="text-xs font-mono uppercase tracking-widest text-copper-400 mb-3">Governance document · Version 0.2 draft</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-8">Research Charter</h1>
+
+        <div class="glass-panel rounded-xl p-5 mb-10">
+            <div class="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-3">Project status</div>
+            <ol class="flex flex-wrap gap-2 text-xs font-mono">
+                <li class="px-2.5 py-1 rounded bg-copper-600 text-white">1 · Proposal (current)</li>
+                <li class="px-2.5 py-1 rounded border border-slate-700 text-slate-400">2 · Protocol review</li>
+                <li class="px-2.5 py-1 rounded border border-slate-700 text-slate-400">3 · Calibration</li>
+                <li class="px-2.5 py-1 rounded border border-slate-700 text-slate-400">4 · Pilot</li>
+                <li class="px-2.5 py-1 rounded border border-slate-700 text-slate-400">5 · Main study</li>
+                <li class="px-2.5 py-1 rounded border border-slate-700 text-slate-400">6 · Replication</li>
+            </ol>
+            <p class="text-sm text-slate-400 mt-3 mb-0">No measurements have been taken yet. There are no results.</p>
+        </div>
+
+        <article class="prose-s">
+            <h2>Mission</h2>
+            <p>To test, openly and rigorously, whether location alone affects the measured resonance of a controlled physical object, and to publish the outcome whatever it is.</p>
+
+            <h2>Scope (founding phase)</h2>
+            <p>Precision resonance metrology of passive copper artifacts at fixed positions.</p>
+            <p><strong>Out of scope:</strong> teleportation claims, human-subject studies, medical applications, and token or financial products.</p>
+
+            <h2>Standards</h2>
+            <ul>
+                <li><strong>Preregistration</strong> of the protocol and analysis plan before any confirmatory data is collected.</li>
+                <li><strong>Blinding and randomization</strong> of measurement positions.</li>
+                <li><strong>Controls and null tests</strong>, including sham moves, label swaps, rotations, and dummy objects.</li>
+                <li><strong>Independent review</strong> of the protocol before data collection.</li>
+                <li><strong>Open data and code</strong>: raw data is kept unaltered, and every result can be reproduced from raw data plus published code.</li>
+                <li><strong>Independent replication</strong> before any positive claim is made.</li>
+            </ul>
+
+            <h2>Stage gates</h2>
+            <table>
+                <thead><tr><th>Gate</th><th>Requirement to pass</th></tr></thead>
+                <tbody>
+                    <tr><td>G0 — Packet adopted</td><td>Founding packet reviewed, signed, and published</td></tr>
+                    <tr><td>G1 — Protocol reviewed</td><td>At least 2 independent reviewers plus a statistician sign off on the first experiment protocol</td></tr>
+                    <tr><td>G2 — Instrument qualified</td><td>Calibration shows the noise floor and thermal coefficient are good enough to detect the smallest effect of interest</td></tr>
+                    <tr><td>G3 — Preregistered</td><td>Protocol and analysis plan frozen on the Open Science Framework (OSF)</td></tr>
+                    <tr><td>G4 — Pilot complete</td><td>Blinded runs complete, analysis run exactly as preregistered, results published</td></tr>
+                    <tr><td>G5 — Replicated</td><td>An independent team repeats the protocol; combined results published</td></tr>
+                </tbody>
+            </table>
+
+            <h2>Publication commitment</h2>
+            <p>Results are posted on spheredesci.org and an open preprint server within <strong>60 days of unblinding</strong>, whatever the outcome. Null and inconclusive results are published with the same prominence as positive ones.</p>
+
+            <h2>Research integrity</h2>
+            <ul>
+                <li>Every protocol deviation is logged publicly with a date and reason.</li>
+                <li>Conflicts of interest and funding sources are disclosed.</li>
+                <li>Funders and sponsors have no say over results or publication.</li>
+                <li>No medical, wellness, or financial claims are made.</li>
+            </ul>
+
+            <h2>Amendment</h2>
+            <p>Changes to this charter are versioned in the project's <a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a> and noted in the public changelog.</p>
+        </article>
+
+    </main>
+    <footer class="border-t border-slate-800 py-10 mt-12">
+        <div class="max-w-3xl mx-auto px-6 text-xs text-slate-500 space-y-2">
+            <p>Project S.P.H.E.R.E. is an independent research project. Nothing on this site is a scientific finding until it has been measured, reviewed, and reproduced.</p>
+            <p>Text on this page is licensed under <a class="underline hover:text-copper-400" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Version 0.2 draft, October 2026.</p>
+            <p><a class="underline hover:text-copper-400" href="/">spheredesci.org</a> · <a class="underline hover:text-copper-400" href="https://github.com/cssofny2/spheredesci.org">Source on GitHub</a></p>
+        </div>
+    </footer>
+</body>
+</html>
