@@ -1,9 +1,9 @@
 # Project S.P.H.E.R.E.
 
-**Spatial Positioning Harmonic Energy Resonance Experiment**
+**Spatial Positioning Harmonic Empirical Resonance Experiment**
 
 Project S.P.H.E.R.E. is an open, documented experimental research initiative
-exploring spatial positioning, harmonic energy resonance, controlled measurement,
+exploring spatial positioning, harmonic resonance, empirical and controlled measurement,
 and reproducible research practices.
 
 ## Website
