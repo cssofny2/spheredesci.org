@@ -430,7 +430,6 @@
             const form = e.target;
             if (!form.checkValidity()) return;
             const btn = document.getElementById('submitBtn');
-            try { sessionStorage.setItem('sphereRegEmail', form.querySelector('input[name="email"]').value); } catch (_) {}
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting Registration...';
             btn.classList.add('opacity-75', 'cursor-not-allowed');
             // Disable after the browser has started the submission so the POST is not blocked
@@ -447,7 +446,6 @@
             const btn = document.getElementById('submitBtn');
             const successDiv = document.getElementById('formSuccess');
             let email = '';
-            try { email = sessionStorage.getItem('sphereRegEmail') || ''; sessionStorage.removeItem('sphereRegEmail'); } catch (_) {}
             btn.classList.add('hidden');
             successDiv.classList.remove('hidden');
             successDiv.innerHTML = `
