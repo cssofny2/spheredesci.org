@@ -1,0 +1,43 @@
+name: Deploy S.P.H.E.R.E. DeSci Preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+  pull-requests: write
+  deployments: write
+
+concurrency:
+  group: spheredesci-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Deploy PR Preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: preview
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Create Cloudflare preview
+        id: preview
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.136.3"
+          command: preview --name pr-${{ github.event.pull_request.number }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show preview link
+        run: |
+          echo "Preview URL: ${{ steps.preview.outputs.preview-url }}"
+          echo "Deployment URL: ${{ steps.preview.outputs.preview-deployment-url }}"
