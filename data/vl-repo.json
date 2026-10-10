@@ -1,0 +1,207 @@
+{
+ "repo": "cssofny2/sphere-control-room-v2",
+ "branch": "main",
+ "head": "7c988260dae0277c553b0d484345801a198acd3d",
+ "head_short": "7c98826",
+ "head_date": "2026-10-08",
+ "commit_total": 26,
+ "merge_commits": 7,
+ "first_commit": "2026-10-03",
+ "last_commit": "2026-10-08",
+ "pr_numbers": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13
+ ],
+ "authors": {
+  "Michael P Goodman": 24,
+  "vercel[bot]": 1,
+  "cssofny2": 1
+ },
+ "claude_coauthored": 9,
+ "tracked_files": 41,
+ "loc": {
+  "app_v3": 3459,
+  "app_legacy": 2343,
+  "src_other": 618,
+  "css": 138,
+  "tests": 702,
+  "workflows": 150,
+  "all": 8309
+ },
+ "node": "24",
+ "scripts": {
+  "test": "node scripts/plan-contract.test.mjs && node scripts/simulator-regression.mjs && node scripts/cancellation.test.mjs && node scripts/sweep-race.test.mjs",
+  "dev": "vite",
+  "build": "tsc -p tsconfig.domain.json && tsc -b && vite build",
+  "preview": "vite preview",
+  "clean": "rm -rf dist"
+ },
+ "dependencies": {
+  "@tailwindcss/vite": "^4.3.3",
+  "@vercel/analytics": "^2.0.1",
+  "@vitejs/plugin-react": "^6.1.1",
+  "lucide-react": "^1.51.0",
+  "react": "^19.3.0",
+  "react-dom": "^19.3.0",
+  "recharts": "^3.10.1",
+  "tailwindcss": "^4.3.3"
+ },
+ "devDependencies": {
+  "@types/react": "^19.3.0",
+  "@types/react-dom": "^19.3.0",
+  "typescript": "^7.0.2",
+  "vite": "^8.3.2"
+ },
+ "workflows": [
+  "foundation-validation.yml",
+  "pr6-sweep-publisher.yml"
+ ],
+ "license_file": false,
+ "has_vercel_json": true,
+ "has_wrangler": true,
+ "readme_limits": true,
+ "commits": [
+  {
+   "sha": "9e1c19133639fe61446c49a000e390aba47a9ea6",
+   "date": "2026-10-08",
+   "time": "23:33",
+   "author": "Michael P Goodman",
+   "subject": "Split react and charts into separate vendor chunks"
+  },
+  {
+   "sha": "9356ce58550fe1c91734aa679b167cbdf6e51101",
+   "date": "2026-10-08",
+   "time": "23:32",
+   "author": "Michael P Goodman",
+   "subject": "Pin 'latest' dependencies to caret ranges of locked versions"
+  },
+  {
+   "sha": "a84fafb24df7f75cf968a81be716011a20945141",
+   "date": "2026-10-08",
+   "time": "23:31",
+   "author": "Michael P Goodman",
+   "subject": "Upgrade to Tailwind CSS 4 via @tailwindcss/vite"
+  },
+  {
+   "sha": "f86c8e7b49fa701fd866c0b4f1f983ed737c237e",
+   "date": "2026-10-08",
+   "time": "23:29",
+   "author": "Michael P Goodman",
+   "subject": "Remove unreferenced legacy root tsx and zip bundle"
+  },
+  {
+   "sha": "a039f75e7a19962cc395934e4a1c63e043cf7e62",
+   "date": "2026-10-08",
+   "time": "23:29",
+   "author": "Michael P Goodman",
+   "subject": "Run foundation validation on pushes to main"
+  },
+  {
+   "sha": "3832d3025b4e0abeece3d5f6088ff6f074f0e0a1",
+   "date": "2026-10-08",
+   "time": "23:29",
+   "author": "Michael P Goodman",
+   "subject": "Stop tracking build output in dist/ (already in .gitignore)"
+  },
+  {
+   "sha": "fb95364e8e88f5d62af473d859db247a7c8d2cfd",
+   "date": "2026-10-08",
+   "time": "23:23",
+   "author": "Michael P Goodman",
+   "subject": "Feature/cr 102 cancellable runner (#9)"
+  },
+  {
+   "sha": "5a35d1415393a4810041f33b44ea6be6e482ba3c",
+   "date": "2026-10-08",
+   "time": "23:07",
+   "author": "Michael P Goodman",
+   "subject": "Feature/cr 102 cancellable runner (#8)"
+  },
+  {
+   "sha": "ebd80ae315412056621fc93f5180c2c261bde8f9",
+   "date": "2026-10-07",
+   "time": "13:58",
+   "author": "Michael P Goodman",
+   "subject": "CR-101: Validated scan plans and typed run contract (#5)"
+  },
+  {
+   "sha": "77664fb10250fd5f510dac23d17ff1dd891241cc",
+   "date": "2026-10-07",
+   "time": "00:43",
+   "author": "Michael P Goodman",
+   "subject": "docs: standardize SphereVL addresses and add lab crawler files"
+  },
+  {
+   "sha": "0a6ab32ed2009bc3202e3ac4e2f9fd5c2e96b362",
+   "date": "2026-10-05",
+   "time": "12:36",
+   "author": "Michael P Goodman",
+   "subject": "Compact workspace with resizable journal and instrument focus (#4)"
+  },
+  {
+   "sha": "ecd7dbfd7dc05ac45c3c76f294007555b2985c0d",
+   "date": "2026-10-05",
+   "time": "10:49",
+   "author": "Michael P Goodman",
+   "subject": "Integrate updated simulator with scan automation, faults, and notebook (#3)"
+  },
+  {
+   "sha": "f046b988b70f8b1a51ab81438237ec3abdc21997",
+   "date": "2026-10-05",
+   "time": "10:33",
+   "author": "vercel[bot]",
+   "subject": "Install and configure Vercel Web Analytics (#2)"
+  },
+  {
+   "sha": "589bd9f1265650b2b92b251840a600e6d362c543",
+   "date": "2026-10-05",
+   "time": "10:15",
+   "author": "Michael P Goodman",
+   "subject": "sphere control room v3.0 (#1)"
+  },
+  {
+   "sha": "f868d1b32ce72d70c7b1d1dac8b4da98c1faec88",
+   "date": "2026-10-05",
+   "time": "14:05",
+   "author": "cssofny2",
+   "subject": "Configure reproducible Vercel builds and repository ignores"
+  },
+  {
+   "sha": "8f7bd2a73dbc335503ff597716d834da63a05c1d",
+   "date": "2026-10-03",
+   "time": "18:59",
+   "author": "Michael P Goodman",
+   "subject": "Add files via upload"
+  },
+  {
+   "sha": "efc7c2fd0ed58ebccf4323ccb05b974285a4b008",
+   "date": "2026-10-03",
+   "time": "18:57",
+   "author": "Michael P Goodman",
+   "subject": "Add files via upload"
+  },
+  {
+   "sha": "8753cffe2a8f60c6078f0712f2b7941b42728052",
+   "date": "2026-10-03",
+   "time": "16:51",
+   "author": "Michael P Goodman",
+   "subject": "Add files via upload"
+  },
+  {
+   "sha": "53f44b278c954fb9ab8180abca84e185f75536af",
+   "date": "2026-10-03",
+   "time": "16:38",
+   "author": "Michael P Goodman",
+   "subject": "Initial commit"
+  }
+ ]
+}
