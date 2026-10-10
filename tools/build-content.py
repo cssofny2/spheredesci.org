@@ -324,6 +324,6 @@ sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitem
 sitemap+=''.join(f'<url><loc>{BASE}/{slug+"/" if slug else ""}</loc><lastmod>{DATE}</lastmod></url>\n' for slug in slugs)
 sitemap+='</urlset>\n'
 (ROOT/"sitemap.xml").write_text(sitemap)
-(ROOT/"robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
+(ROOT/"robots.txt").write_text(f"# Public website crawl rules. Cloudflare may prepend managed content signals.\nUser-agent: *\nAllow: /\nDisallow: /404.html\n\nSitemap: {BASE}/sitemap.xml\n")
 (ROOT/"404.html").write_text(head("404",{"title":"Page Not Found | S.P.H.E.R.E.","description":"Return to the S.P.H.E.R.E. research pages."}).replace('</head>','<meta name="robots" content="noindex"></head>')+nav()+'''<main id="main-content" class="content-shell"><div class="eyebrow">404 / Not found</div><h1 class="page-title">That page is not in the research record.</h1><p class="page-lede">The address may have changed. Start with the resource library or return to the homepage.</p><a class="related-link" href="/resources/">Open the research library</a></main>'''+footer()+'</body></html>')
 print("Built",len(slugs),"public pages, sitemap, and shared navigation.")
