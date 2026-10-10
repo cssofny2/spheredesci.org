@@ -17,7 +17,9 @@ const fm = {};
 for (const m of src.matchAll(/^(title|description|version|date|status|subtitle): "(.*)"$/gm)) fm[m[1]] = m[2];
 
 // Bare numeric citation tokens like [2][3] have no reference list in the source; drop them.
-const cleaned = body.replace(/[ \t]*(\[\d+\])+(?=[\s.,;:)<|]|$)/gm, "");
+// Citations to the private founding packet are expiring presigned S3 URLs (pplxfilegitgateway...); they cannot work publicly.
+const noPrivate = body.replace(/[ \t]*\[pplxfilegitgateway[^\]]*\]\(https:\/\/pplxfilegitgateway[^)]*\)/g, '');
+const cleaned = noPrivate.replace(/[ \t]*(\[\d+\])+(?=[\s.,;:)<|]|$)/gm, "");
 
 const renderer = new marked.Renderer();
 renderer.code = (code, lang) => lang === 'math'
