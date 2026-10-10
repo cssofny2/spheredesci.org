@@ -1,5 +1,6 @@
 # Public website crawl rules. Cloudflare may prepend managed content signals.
 User-agent: *
 Allow: /
+Disallow: /404.html
 
 Sitemap: https://spheredesci.org/sitemap.xml

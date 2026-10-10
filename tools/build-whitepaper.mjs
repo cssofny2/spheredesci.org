@@ -49,6 +49,11 @@ const pre = tpl.slice(0, tpl.indexOf('<main'));
 const post = tpl.slice(tpl.lastIndexOf('</main>') + '</main>'.length);
 const title = 'DeSci Whitepaper: Open Resonance Metrology | S.P.H.E.R.E.';
 const desc = fm.description || 'S.P.H.E.R.E. DeSci whitepaper.';
+const ld = {'@context': 'https://schema.org', '@graph': [
+  {'@type': 'WebSite', '@id': 'https://spheredesci.org/#website', url: 'https://spheredesci.org/', name: 'Project S.P.H.E.R.E.'},
+  {'@type': 'WebPage', '@id': URL + '#webpage', url: URL, name: title, description: desc, isPartOf: {'@id': 'https://spheredesci.org/#website'}, inLanguage: 'en', dateModified: fm.date || '2026-10-10'},
+  {'@type': 'TechArticle', '@id': URL + '#article', headline: 'Project S.P.H.E.R.E. DeSci Whitepaper', alternativeHeadline: fm.subtitle, description: desc, url: URL, mainEntityOfPage: {'@id': URL + '#webpage'}, inLanguage: 'en', version: fm.version, datePublished: fm.date || '2026-10-10', dateModified: fm.date || '2026-10-10', publisher: {'@type': 'Organization', name: 'Project S.P.H.E.R.E.', url: 'https://spheredesci.org/'}},
+  {'@type': 'BreadcrumbList', itemListElement: [{'@type': 'ListItem', position: 1, name: 'Home', item: 'https://spheredesci.org/'}, {'@type': 'ListItem', position: 2, name: 'Whitepaper', item: URL}]}]};
 let head = pre
   .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
   .replace(/(<meta name="description" content=")[^"]*"/, `$1${esc(desc)}"`)
@@ -58,7 +63,7 @@ let head = pre
   .replace(/(<meta property="og:url" content=")[^"]*"/, `$1${URL}"`)
   .replace(/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`)
   .replace(/(<meta name="twitter:description" content=")[^"]*"/, `$1${esc(desc)}"`)
-  .replace(/<script type="application\/ld\+json">.*?<\/script>/s, '')
+  .replace(/<script type="application\/ld\+json">.*?<\/script>/s, `<script type="application/ld+json">${JSON.stringify(ld)}</script>`)
   .replace(/ aria-current="page"/g, '')
   .replace('<a href="/protocol/">Protocol</a>', '<a href="/protocol/">Protocol</a>')
   .replace('<link href="/assets/site.css" rel="stylesheet">', '<link href="/assets/vendor/katex/katex.min.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">');
