@@ -1,0 +1,26 @@
+{
+  "updated": "2026-10-09",
+  "note": "Only list a person or organization with their written permission. \"consent\" must be true for an entry to be published. Do not add personal phone numbers or home addresses.",
+  "entries": [
+    {
+      "id": "michael-goodman",
+      "consent": true,
+      "name": "Michael Goodman",
+      "role": "Founder, CEO & Executive Technical Director",
+      "organization": "Project S.P.H.E.R.E.",
+      "status": "Active",
+      "location": "Rochester, New York",
+      "summary": "Leads strategy, fundraising, website and cloud infrastructure, cybersecurity, open-data systems and contractor coordination. Does not hold scientific sign-off, which belongs to the Principal Investigator.",
+      "professional": [
+        "Approximately 28 years of IT and systems-administration experience",
+        "20+ years as a business owner; President of Computer Service Specialists of New York since 2016 (a separate business)",
+        "Credentials: ITIL, MCSE+I, A+, Net+, CCIM",
+        "Strengths: advanced networking, virtualization, Windows Server, SEO, web design, Python automation"
+      ],
+      "contact": [
+        {"label": "Email", "value": "contact@spheredesci.org", "url": "mailto:contact@spheredesci.org"},
+        {"label": "Website", "value": "michaelpgoodman.com", "url": "https://michaelpgoodman.com"}
+      ]
+    }
+  ]
+}

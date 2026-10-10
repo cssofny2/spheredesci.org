@@ -12,3 +12,4 @@ LICENSE
 tools
 styles.input.css
 tailwind.config.cjs
+data
