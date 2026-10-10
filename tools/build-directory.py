@@ -41,7 +41,7 @@ def nav(current):
         cur = ' aria-current="page"' if key and key == current else ""
         return f'<a href="{href}"{cur}>{text}</a>'
     top = "".join([a("/about/", "About"), a("/protocol/", "Protocol"), a("/transparency/", "Transparency"),
-                   a("/resources/", "Resources"), a("/faq/", "FAQ")])
+                   a("/resources/", "Resources"), '<a class="nav-vl" href="/vl/"' + (' aria-current="page"' if current == "vl" else "") + '>Visual Lab</a>', a("/faq/", "FAQ")])
     more = "".join(a(h, t, k) for h, t, k in NAV_MORE)
     mob = a("/", "Home") + top + more + a("/#join", "Register interest")
     return f'''<a class="skip-link" href="#main-content">Skip to content</a>
@@ -57,14 +57,14 @@ def nav(current):
 FOOTER = '''<footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
 <div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
 <p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p></div>
-<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/research/">Measurement research</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a></div>
+<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/research/">Measurement research</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a><a href="/vl/">Visual Lab (SPHEREVL)</a></div>
 <div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
 <div><h3>Connect</h3><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/careers/apply/">Apply</a></div>
 </div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
 <p>&copy; 2026 Project S.P.H.E.R.E. Research-page text is offered under CC BY 4.0; third-party materials retain their own terms.</p></div></footer>'''
 
 
-def page(path, title, desc, h1, lede, body, toc, *, eyebrow, parent, navkey, updated=None, extra_ld=None, extra_script="", og_type="website", crumb=None):
+def page(path, title, desc, h1, lede, body, toc, *, eyebrow, parent, navkey, updated=None, extra_ld=None, extra_script="", og_type="website", crumb=None, added=None, image=None):
     url = SITE + path
     t = title if len(title) + 16 > 70 else f"{title} | S.P.H.E.R.E."
     crumbs, items = '<a href="/">Home</a>', [("Home", SITE + "/")]
@@ -73,17 +73,19 @@ def page(path, title, desc, h1, lede, body, toc, *, eyebrow, parent, navkey, upd
         items.append((re.sub("<[^>]+>|&amp;", lambda m: "&" if m.group(0) == "&amp;" else "", name), SITE + href))
     crumbs += f" / {esc(crumb or h1)}"
     items.append((title, url))
-    modified = updated or PUBLISHED
+    added = added or PUBLISHED
+    img = image or OG
+    modified = updated or added
     ld_page = {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "description": desc,
-               "isPartOf": {"@id": SITE + "/#website"}, "inLanguage": "en", "datePublished": PUBLISHED, "dateModified": modified}
+               "isPartOf": {"@id": SITE + "/#website"}, "inLanguage": "en", "datePublished": added, "dateModified": modified}
     if extra_ld: ld_page.update(extra_ld)
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Project S.P.H.E.R.E.",
          "description": "Spatial Positioning Harmonic Empirical Resonance Experiment"}, ld_page,
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u}
                                                          for i, (n, u) in enumerate(items)]}]}
-    meta = f'Added <time datetime="{PUBLISHED}">{human(PUBLISHED)}</time>'
-    if modified != PUBLISHED: meta += f' &middot; Updated <time datetime="{modified}">{human(modified)}</time>'
+    meta = f'Added <time datetime="{added}">{human(added)}</time>'
+    if modified != added: meta += f' &middot; Updated <time datetime="{modified}">{human(modified)}</time>'
     meta += " &middot; Proposal stage"
     aside = "".join(f'<a href="#{i}">{n}</a>' for i, n in toc)
     return f'''<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
@@ -93,9 +95,9 @@ def page(path, title, desc, h1, lede, body, toc, *, eyebrow, parent, navkey, upd
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="{og_type}"><meta property="og:site_name" content="Project S.P.H.E.R.E.">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
-<meta property="og:url" content="{url}"><meta property="og:image" content="{OG}">
+<meta property="og:url" content="{url}"><meta property="og:image" content="{img}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{esc(title)}">
-<meta name="twitter:description" content="{esc(desc)}"><meta name="twitter:image" content="{OG}">
+<meta name="twitter:description" content="{esc(desc)}"><meta name="twitter:image" content="{img}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link href="/assets/tailwind.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">
