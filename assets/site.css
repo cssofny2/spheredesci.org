@@ -87,3 +87,26 @@ body{background:var(--paper);color:var(--ink)}
 @media(max-width:639px){#top{min-height:0;padding-top:2rem;padding-bottom:3rem}#top picture img{width:180px}#top .mb-10{margin-bottom:1.5rem}#top h1{font-size:2rem;line-height:1.15}#top>div>p{font-size:1rem;line-height:1.6;margin-top:1rem}#top .mt-10{margin-top:1.5rem}#top .mt-16{margin-top:2rem}}
 @media(max-width:900px){.nav-links{display:none}.mobile-only{display:block}.article-layout{grid-template-columns:1fr;gap:2rem}.article-aside{position:static;grid-row:1;padding:1rem;border:1px solid var(--line);border-radius:.4rem}.article-aside a{display:inline-block;margin:.3rem .9rem .3rem 0}.article-aside h2{margin-bottom:.5rem}.home-resource-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1 / -1}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}#hero-canvas{display:none}}
+/* Added 2026-10-09: synchronized-measurement research pages */
+.new-tag{display:inline-block;font:500 .65rem "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:#05070a;background:var(--signal);padding:.15rem .5rem;border-radius:.2rem;margin-left:.6rem;vertical-align:middle;white-space:nowrap}
+.home-resource-grid .label .new-tag{margin-left:.5rem}
+.article-body .source-link{display:block;font-size:.85rem;line-height:1.5;margin:.1rem 0 1.4rem;word-break:break-word}
+.fourgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:1.2rem 0}
+.fourgrid-cell{padding:1.1rem .8rem;background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--signal);text-align:center;border-radius:.3rem}
+.fourgrid-cell strong{display:block;font:500 1rem "JetBrains Mono",monospace;color:var(--signal)}
+.fourgrid-cell span{color:var(--muted);font-size:.9rem}
+.hub-grid{margin:1.5rem 0 2rem}
+.hub-grid a{text-decoration:none!important;color:inherit!important}
+.hub-grid h3{margin-top:.8rem!important}
+.latest-update{margin-top:1.6rem;color:var(--muted);font-size:.95rem;line-height:1.7;max-width:760px}
+.latest-update .new-tag{margin:0 .6rem 0 0}
+.home-callout{margin-top:2rem;padding:1.2rem 1.4rem;background:var(--panel);border-left:3px solid var(--signal);border-radius:.2rem;font-size:.9rem;line-height:1.7;color:var(--muted)}
+.home-callout strong{color:white}
+.home-callout a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.review-form label{display:block;margin:1.2rem 0;font-weight:600;color:var(--ink);font-size:.95rem}
+.review-form input,.review-form textarea{display:block;width:100%;margin-top:.4rem;padding:.8rem 1rem;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:.3rem;font:inherit;font-weight:400}
+.review-form textarea{min-height:7rem}
+.review-btn{padding:.8rem 1.4rem;background:#a35025;color:white;border:0;border-radius:.3rem;font-weight:600;cursor:pointer}
+.review-btn:hover{background:#b8602f}
+#reviewStatus{color:var(--signal);font-size:.9rem;min-height:1.4rem;margin-top:.8rem}
+@media(max-width:700px){.fourgrid{grid-template-columns:1fr 1fr}}

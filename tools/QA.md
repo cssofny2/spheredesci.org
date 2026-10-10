@@ -14,7 +14,7 @@ submitted during QA because it would send an external email.
   Do not submit or verify actual email delivery.
 - Verify reduced-motion mode hides the animated canvas, and readable content
   remains available without JavaScript.
-- Verify sitemap lists all ten public content pages; robots.txt references it.
+- Verify sitemap lists every public content page (19 URLs as of 2026-10-09, including the synchronized-measurement research pages); robots.txt references it.
 - Verify no horizontal page overflow on mobile; budget tables scroll inside
   their own region rather than clipping.
 - Check local asset and internal-document links for missing destinations.
@@ -23,3 +23,10 @@ submitted during QA because it would send an external email.
 - Intentional exclusions: actual FormSubmit/email delivery, independent research
   review, instrument specifications, formal SEO indexing/ranking, legal-policy
   validation, and any payment processing.
+
+## Added 2026-10-09: synchronized-measurement research pages
+
+- /research/ hub plus seven pages under /research/, /protocol/, /resources/ and /community/. Verify each has one H1, a canonical URL, parseable JSON-LD with datePublished/dateModified, and links back to the hub.
+- Verify no third-party hotlinked images and no `noindex`/crawl-blocking directives were introduced.
+- Verify the community review form only downloads a local JSON draft and sends nothing.
+- Verify the new-content tags ("New · Oct 9, 2026") on the homepage, protocol, resources, collaborate and FAQ pages.

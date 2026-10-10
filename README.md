@@ -82,6 +82,8 @@ notice, About page, and research charter. Documents are explicitly labeled as
 drafts or plans where appropriate. No data, funding total, or preregistration
 is represented as existing unless a real record is available.
 
+Since 2026-10-09 the site also carries proposal-stage synchronized-measurement research (hub at `/research/`): a proposed four-object protocol amendment, an error-budget article, related-research commentary, a hardware guide and a community design-review page. These do not amend the LOC-1 draft. Third-party product images are intentionally not used until rights are cleared.
+
 ## Building and checking
 
 The site is static HTML. Tailwind is compiled into a local CSS asset; its runtime
