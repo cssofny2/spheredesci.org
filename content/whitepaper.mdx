@@ -1,0 +1,536 @@
+---
+title: "Project S.P.H.E.R.E. DeSci Whitepaper"
+description: "Spatial Positioning Harmonic Energy Resonance Experiment Whitepaper & Technical Metrology Specification"
+date: "2026-10-10"
+version: "1.0.0"
+domain: "spheredesci.org"
+---
+
+<!-- Paste Perplexity Output Here -->
+
+---
+title: "Project S.P.H.E.R.E."
+subtitle: "Spatial Positioning Harmonic Empirical Resonance Experiment"
+description: "DeSci Whitepaper: Open Resonance Metrology, Digital-Twin Validation, and Accountable Research Funding"
+version: "1.0"
+date: "2026-10-10"
+status: "Technical and governance draft"
+---
+
+# Project S.P.H.E.R.E.
+Spatial Positioning Harmonic Empirical Resonance Experiment
+
+DeSci Whitepaper: Open Resonance Metrology, Digital-Twin Validation, and Accountable Research Funding
+
+Version: 1.0 — Technical and governance draft  
+Date: October 10, 2026  
+Project domain: spheredesci.org  
+Document classification: Proposed research infrastructure and experimental protocol; not a report of experimental findings.
+
+## 1. EXECUTIVE SUMMARY
+
+### 1.1 Problem Statement
+
+Project S.P.H.E.R.E. proposes an open experimental program to determine whether the resonance of a controlled copper artifact exhibits a reproducible location-associated change after measured environmental, mechanical, and instrumental effects have been accounted for.
+
+The project addresses three interdependent problems:
+
+1. Replicability and research transparency. Scientific reproducibility requires accessible methods, adequate statistical power, documented calibration, and publication of negative results. The broader reproducibility problem is documented in the scientific literature; it does not, by itself, establish the validity of any particular unconventional hypothesis. S.P.H.E.R.E. therefore makes preregistration, open data, and independent replication foundational requirements rather than optional dissemination activities. [europepmc](https://europepmc.org/article/MED/27225100)
+
+2. Funding bottlenecks. The proposed experiment requires specialist optical instrumentation, controlled environmental infrastructure, and independent technical review before a scientifically interpretable result can be obtained. The project’s financial plans distinguish a small founding pilot from a substantially more expensive dedicated laboratory. Public funding must therefore follow verified technical milestones rather than promises of anomalous outcomes.[2][3]
+
+3. Metrology limitations. A resonance measurement above 230 kHz can be affected by temperature-dependent elastic properties, mounting stress, mode identification errors, excitation amplitude, electromagnetic coupling, and timebase drift. Instrument bandwidth alone does not establish sub-hertz measurement accuracy. The relevant quantity is the uncertainty of the complete measurement procedure, including environmental corrections and repeatability.[2][4][5]
+
+The central research question is:
+
+> Does moving a controlled copper sphere between specified positions produce a repeatable change in its selected resonance, relative to a stationary reference sphere, that exceeds a preregistered effect threshold and survives independent replication?
+
+The October 2, 2026 founding packet identifies the project as pre-entity, pre-funding, and without collected experimental data. This whitepaper retains that status as its documentary baseline; it does not treat illustrative website figures, proposed instruments, or simulated outputs as evidence of funds raised, equipment installed, or discoveries made.[2]
+
+### 1.2 Solution Overview
+
+S.P.H.E.R.E. integrates three proposed infrastructure layers:
+
+| Layer | Function | Required evidence |
+|---|---|---|
+| Open-science funding and governance | Finance instruments, calibration, research labor, and independent replication | Public budgets, expenditure records, review decisions, and milestone acceptance |
+| S.P.H.E.R.E. Simulator | Model conventional physical responses, investigate confounds, and train users in experimental design | Versioned equations, reproducible simulation inputs, numerical verification, and comparison with measured data |
+| Empirical hardware verification | Measure optical vibration, electromagnetic response, and environmental conditions | Raw instrument records, calibration artifacts, uncertainty budgets, and blinded analysis |
+
+The simulator is a planning and interpretation system, not an independent source of physical confirmation. Funding is a means of obtaining interpretable measurements, not a mechanism for deciding whether a hypothesis is true.
+
+### 1.3 Scientific Position and Hypotheses
+
+The project’s locational-variable hypothesis was inspired by the Bashar material presented by Darryl Anka. That source is not established physical evidence. The founding packet explicitly treats it as inspiration for a testable question and excludes claims of teleportation, medical benefit, or financial return.[2]
+
+The confirmatory framework comprises:
+
+- Null hypothesis, `H_0`: after preregistered corrections, the location-associated difference lies within the predefined equivalence bounds.
+- Alternative hypothesis, `H_1`: a difference exceeding the smallest effect of interest persists across randomized returns, survives control experiments, and is independently replicated.
+- Inconclusive outcome: the experiment establishes neither equivalence nor a sufficiently robust difference.
+
+The designation **Speculative** applies to an intrinsic locational-frequency variable and to any assertion that 230 kHz represents a fundamental physical threshold. In this program, `>230\ \text{kHz}` is an experimental selection criterion inherited from the hypothesis, not an independently demonstrated boundary in established physics.[2][6]
+
+## 2. PHYSICAL METROLOGY & EXPERIMENTAL LAB ARCHITECTURE
+
+### 2.1 Measurement Definition and Artifact Design
+
+The primary artifact is a thin-walled hollow copper sphere. A matched stationary reference sphere provides a differential measurement channel; a spare and a dummy artifact support reproducibility and null tests. The laboratory cost analysis specifies four high-purity spheres and proposes 99.999% copper. Procurement must separately document chemical purity, oxygen content, fabrication process, wall thickness, surface treatment, and residual stress; these properties must not be inferred from a purity label alone. [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0)
+
+The primary measurand is the resonance-frequency ratio:
+
+```math
+r(t)=\frac{f_T(t)}{f_R(t)},
+```
+
+where `f_T` is the selected test-sphere resonance and `f_R` is the stationary reference resonance.
+
+For matched artifacts, the founding protocol expresses the location contrast as:
+
+```math
+\Delta_{\mathrm{ppb}}
+=
+10^9\left(\bar r_A-\bar r_B\right).
+```
+
+The analysis must retain the actual baseline ratio rather than assume exact equality between the fabricated spheres. Matching reduces common-mode sensitivity; it does not guarantee identical modal frequencies or thermal coefficients.[2]
+
+The founding packet uses the thin-shell approximation:
+
+```math
+f_{\mathrm{breathing}}
+\approx
+\frac{1}{2\pi R}
+\sqrt{\frac{2E}{\rho(1-\nu)}}.
+```
+
+With the packet’s approximate copper properties—`E=130\ \text{GPa}`, `\rho=8960\ \text{kg m}^{-3}`, and `\nu=0.34`—a breathing-mode frequency near 230 kHz implies a radius of approximately 4.6 mm. Larger artifacts may instead provide higher-order modes above 230 kHz. This approximation is a design estimate; finite-element modeling and measured mode shapes must determine the final artifact geometry and selected mode.[2]
+
+### 2.2 Core Diagnostic Hardware
+
+The following stack combines equipment identified in the uploaded planning documents with manufacturer-verified specifications. Model selection remains provisional until written quotations, configuration details, and acceptance tests are obtained.
+
+| Subsystem | Core Concept | Technical Specifications | Cost/Complexity Impact | Pros | Cons |
+|---|---|---|---|---|---|
+| 3D scanning laser Doppler vibrometer | Non-contact modal identification and surface-velocity measurement | Project baseline: Polytec PSV-500-3D-HV; manufacturer documentation describes configuration-dependent scanning capabilities up to 25 MHz. Current alternative: VibroScan QTec Xtra 3D, with acquisition and signal generation up to 32 MHz.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | Planning allowance: $320,000–$450,000 new; $150,000–$220,000 refurbished or leased.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | Avoids attached sensor mass; provides mode-shape discrimination | Optical return, viewing geometry, window effects, and scan duration require qualification |
+| Multi-mode VNA | Complex scattering measurements and probe-response characterization | Keysight E5080B, 2- or 4-port configuration. Select a low-frequency-capable option: 9 kHz to 4.5 GHz is available; other configurations start at 100 kHz. Measure `S_{11}`, and use `S_{21}` where the coupling arrangement supports transmission.  [bipm](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) | Planning allowance: $55,000–$95,000 new; $25,000–$45,000 refurbished or leased.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | Records magnitude and phase; supports background and coupling tests | Probe and fixture resonances can dominate the measured response |
+| Near-field probes | Non-contact electric- and magnetic-field coupling | Project candidates: Langer EMV or ETS-Lindgren probe families; exact probe transfer functions must cover the selected experimental band.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | $8,000–$15,000 new; $4,000–$8,000 refurbished.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | Enables independent electromagnetic diagnostics | Position, orientation, and loading must remain controlled |
+| Rubidium frequency reference | Shared frequency reference for compatible instruments | Stanford Research Systems FS725; 10 MHz reference distribution. Manufacturer warmup: less than 6 minutes to lock and less than 7 minutes to `1\times10^{-9}`. Optional external 1 PPS disciplining. [10][11] | Project allowance: $6,000–$14,000 new; $3,000–$6,000 refurbished.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | Reduces relative timebase drift | Lock indication does not establish full-system thermal stability |
+| Four-channel oscilloscope | Excitation verification, transient recording, and channel-coherence checks | Proposed concrete implementation: Teledyne LeCroy WaveSurfer 4104HD; 1 GHz bandwidth, 12-bit acquisition, four channels, 5 GS/s on two channels or 2.5 GS/s on four channels. [12][13] | Original project scope allowance: $30,000–$55,000 new; revise against the selected model and options.  [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0) | Simultaneously observes drive and diagnostic signals | Record length, reference-input compatibility, and spectral estimation require verification |
+
+A vibrometer’s displacement sensitivity is not a guarantee of resonance-frequency uncertainty. Similarly, a VNA’s displayed numerical precision is not equivalent to calibrated accuracy. The complete system must be evaluated through a measurement model and uncertainty budget.[4][5]
+
+### 2.3 Excitation and Measurement Channels
+
+The proposed excitation system comprises:
+
+- A programmable signal generator or qualified integrated vibrometer source.
+- A non-contact excitation mechanism, such as an appropriately designed EMAT or electromagnetic actuator.
+- Drive monitoring through the oscilloscope.
+- A low-noise acquisition or lock-in channel for repeated frequency estimation.
+- Power, amplitude, and duty-cycle controls to limit heating and nonlinear response.
+
+The founding pilot also identifies air-coupled ultrasonic excitation as an option. That method cannot operate through an evacuated propagation path; a vacuum implementation therefore requires a different excitation arrangement or an explicitly separated atmospheric measurement phase.[2]
+
+The optical channel measures mechanical motion. The VNA channel measures the electromagnetic response of the complete sphere–probe–fixture system. Agreement between their fitted features must be demonstrated rather than presumed.
+
+Before assigning a VNA feature to the sphere:
+
+1. Measure the empty fixture and probe background.
+2. Repeat the measurement with the dummy artifact.
+3. Vary probe separation and orientation.
+4. Compare optical mode shapes and electromagnetic response where a coupling mechanism is physically supported.
+5. Reject features attributable to cables, probes, drive electronics, or environmental interference.
+
+### 2.4 VNA Calibration and `S_{11}` Fitting
+
+The proposed VNA workflow is:
+
+1. Define the calibration reference plane and selected frequency band.
+2. Perform an appropriate calibrated reflection or multiport measurement using characterized standards.
+3. Record cables, adapters, port settings, source power, IF bandwidth, averaging, and calibration identifiers.
+4. Characterize the probe and fixture response separately from the connector-plane calibration.
+5. Fit complex `S_{11}`, not only its magnitude minimum.
+6. Estimate resonance frequency, quality factor, coupling parameters, background terms, and parameter covariance.
+7. Inspect residuals and compare plausible alternative fit models.
+8. Repeat calibration or verification after cable movement, fixture changes, or significant temperature changes.
+
+These requirements extend the project’s proposed near-field VNA measurement into an auditable measurement procedure. Reporting follows the GUM principle that the measurand, measurement model, and associated uncertainty must be explicitly defined.[4][5][14]
+
+Neither `Q=f_0/\Delta f` nor a narrow spectral peak alone establishes sub-hertz accuracy. Frequency uncertainty also depends on signal-to-noise ratio, model adequacy, sweep sampling, drift, and repeatability.
+
+### 2.5 Rubidium Warmup, Lock, and Holdover
+
+The FS725 manufacturer specifies less than 6 minutes to frequency lock and less than 7 minutes to `1\times10^{-9}` after startup under specified conditions. Those figures define reference startup behavior, not readiness of the entire laboratory.[10][11]
+
+The operating procedure shall require:
+
+1. Continuous reference operation where practical.
+2. Logged power-on, lock status, and external-reference status.
+3. Verified reference-input compatibility for every receiving instrument.
+4. A distribution arrangement with documented termination, signal level, and channel integrity.
+5. Separate synchronization of acquisition timestamps and triggers; sharing 10 MHz does not by itself synchronize timestamps.
+6. System settling demonstrated by stationary reference measurements before confirmatory acquisition.
+
+Where external 1 PPS disciplining is used, loss of that input shall create a holdover flag. Rubidium operation during holdover must be characterized against an independent reference over the intended run duration. Data shall not be silently represented as externally disciplined after loss of the disciplining signal.
+
+### 2.6 Thermal Vacuum, Shielding, and Mechanical Isolation
+
+The facility design includes:
+
+| Subsystem | Proposed implementation | Project planning allowance |
+|---|---|---:|
+| Thermal vacuum enclosure | Custom stainless-steel chamber with optical windows, thermal sensing, controlled heating/cooling, and qualified feedthroughs | $110,000–$220,000 |
+| RF shielding | ETS-Lindgren modular shielded room or validated compact enclosure for the MVP | $85,000–$165,000 for the dedicated-room concept |
+| Mechanical isolation | Newport SmartTable or TMC isolation platform, selected against measured floor vibration | $35,000–$65,000 |
+| Power conditioning | Isolation, online UPS, line filtering, and controlled grounding | $18,000–$35,000 |
+
+These are estimates from the project’s laboratory analysis, not vendor quotations. [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0)
+
+The proposed thermal target is ±0.001 K over the qualified acquisition interval. Acceptance must distinguish:
+
+- Sensor resolution.
+- Calibration uncertainty.
+- Temporal stability.
+- Spatial temperature gradients.
+- Artifact temperature relative to enclosure temperature.
+- Thermal settling following movement or excitation.
+
+The founding packet estimates a fractional resonance thermal coefficient on the order of `10^{-4}\ \text{K}^{-1}`. At 230 kHz, that corresponds to approximately 23 Hz/K, or 0.023 Hz for a 1 mK change. The coefficient must be measured for each artifact and mode because elastic-property changes and mounting effects accompany dimensional expansion.[2]
+
+The project’s `>100\ \text{dB}` shielding objective shall be treated as a design target, not an assumed universal requirement or demonstrated performance. Shielding must be tested at relevant frequencies, including seams, optical apertures, power entries, and signal feedthroughs. Low-frequency magnetic interference must be characterized separately rather than presumed absent because a conductive enclosure is present. [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0)
+
+Vacuum pressure is a protocol parameter to be selected through pressure-dependent characterization. Vacuum operation shall begin only after chamber safety review and qualification of excitation, optical access, thermal behavior, and pump-induced vibration.[2]
+
+### 2.7 Budget and Phasing
+
+The requested laboratory tiers correspond to the detailed total table in the uploaded infrastructure analysis.
+
+| Tier | Financial figure | Scope |
+|---|---:|---|
+| MVP Tier | $350,000–$520,000 | Refurbished or leased diagnostics; existing host-laboratory infrastructure; compact validated enclosure; initial measurement qualification |
+| Turnkey Facility Tier | Approximately $970,000–$1.73 million | New diagnostics, dedicated shielding and thermal vacuum infrastructure, facility modifications, integration, and one year of specialist execution |
+| Founding pilot, separate scope | Approximately $27,000 lean or $86,000 standard | Rented or partner-lab optical access, limited equipment acquisition, independent review, initial protocol, and publication |
+
+The laboratory document’s detailed turnkey total is $969,000–$1,732,000. Its executive summary separately gives $880,000–$1,850,000; the detailed table is used here because its category totals are explicit. The founding pilot is a distinct earlier stage, not an equivalent substitute for a full 3D scanning facility.[2][3]
+
+| Turnkey category | Lower estimate | Upper estimate |
+|---|---:|---:|
+| Diagnostic suite | $419,000 | $629,000 |
+| Environmental isolation | $248,000 | $485,000 |
+| Fabrication, calibration, and software | $37,000 | $73,000 |
+| Facility upgrades, integration, and one-year personnel | $265,000 | $545,000 |
+| Total | $969,000 | $1,732,000 |
+
+These figures do not establish a final campaign target. Taxes, insurance, lease terms, contingency treatment, and possible overlap with separate DAO operating budgets require reconciliation before fundraising. The general DeSci budget is an organizational funding model and must not be added wholesale to the laboratory budget without checking for duplicated personnel and research costs. [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0)
+
+Hardware milestones shall be evidence-based:
+
+| Milestone | Deliverable | Acceptance condition |
+|---|---|---|
+| M0 — Protocol and artifact design | Mode selection, drawings, preliminary uncertainty model | Independent metrology and statistical review |
+| M1 — Artifact qualification | Test, reference, spare, and dummy artifacts | Measured geometry, mode shapes, thermal coefficients, and placement repeatability |
+| M2 — Diagnostic integration | Optical channel, VNA, oscilloscope, reference distribution | Verified calibration, signal integrity, and data capture |
+| M3 — Environmental qualification | Enclosure, shielding, isolation, environmental sensors | Measured stability and interference contribution compatible with the effect threshold |
+| M4 — Blinded pilot | Frozen protocol and coded dataset | Prespecified analysis completed; deviations disclosed |
+| M5 — Independent replication | External replication dataset | Independent execution and public comparison |
+
+Publication quality depends on methods, uncertainty, and reproducibility—not on meeting a particular spending tier. The source document’s suggestion that a turnkey facility is intrinsically required for publication is not adopted as a scientific criterion. [pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws](https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0)
+
+## 3. S.P.H.E.R.E. SIMULATOR & METROLOGY SOFTWARE
+
+### 3.1 Role of the Digital Twin
+
+The S.P.H.E.R.E. Simulator is proposed as a reproducible digital twin of the artifact, apparatus, and measurement procedure. Its principal functions are:
+
+1. Predict conventional resonance modes and their dependence on geometry, material properties, temperature, and boundary conditions.
+2. Estimate measurement sensitivity to mounting, probe position, excitation, and environmental gradients.
+3. Evaluate whether the planned acquisition can distinguish the smallest effect of interest.
+4. Generate controlled synthetic datasets for blinded-analysis testing.
+5. Compare measured behavior with model predictions after calibration.
+
+The reviewed project files establish an interactive browser-based environmental-noise demonstration. They do not establish an experimentally validated digital twin, operational live telemetry, or completed Spatial Field Explorer. Accordingly, the architecture below is a proposed implementation specification rather than a claim of deployed capability. [polytec](https://www.polytec.com/en/vibrometry/products/full-field-vibrometers)
+
+### 3.2 Technical Architecture
+
+| Layer | Proposed implementation | Scientific requirement |
+|---|---|---|
+| Browser interface | TypeScript-based application with WebGL rendering and interactive room maps | Separate synthetic, imported, and live-data states |
+| Numerical modeling | Finite-element structural models, parameterized environmental models, and reproducible analysis services | Versioned material inputs, boundary conditions, mesh checks, and solver settings |
+| Acquisition gateway | Local instrument adapters using supported APIs or SCPI interfaces | Preserve instrument-native records and configuration metadata |
+| Telemetry transport | Authenticated streaming interface for monitoring | Display acquisition time, latency, data gaps, and lock status |
+| Storage and provenance | Append-only raw objects, metadata database, signed manifests | Trace every derived output to raw inputs and code versions |
+| Verification pipeline | Automated numerical tests and reproducible analysis execution | Test known-input recovery, error handling, and blinded workflow integrity |
+
+The software shall distinguish three quantities:
+
+- Predicted physical response.
+- Measured instrument response.
+- Residual between measurement and the calibrated model.
+
+A residual is not automatically evidence of new physics. It may indicate measurement error, unmodeled environmental effects, or an inadequate model.
+
+### 3.3 Interactive Room Maps and Spatial Field Explorer
+
+Interactive room maps shall represent the enclosure, fixtures, reference artifact, sensor positions, optical paths, and nominal A/B coordinates in a documented coordinate frame.
+
+The Spatial Field Explorer shall provide:
+
+- Three-dimensional scalar heatmaps for temperature, vibration magnitude, fitted frequency, or model residuals.
+- Vector displays for quantities actually measured or physically modeled as vectors.
+- Diverging color scales centered on a defined reference value.
+- Visible sensor locations and sampling density.
+- Interpolation method, parameters, and uncertainty.
+- Masks for unsupported extrapolation.
+- Cross-validation diagnostics and sensitivity to interpolation choices.
+- A distinction between measured points and interpolated volumes.
+
+A diverging color scale is a visualization choice; it is not the mathematical divergence of a vector field. Calculation of `\nabla\cdot\mathbf F` shall be available only where the field definition, sampling geometry, and differentiation method support it.
+
+### 3.4 Live Telemetry and Export Schema
+
+The monitoring interface shall display:
+
+- Optical signal quality and velocity-channel status.
+- Fitted resonance frequency and uncertainty.
+- VNA calibration identifier and fit-quality indicators.
+- Drive amplitude and excitation state.
+- Rubidium and external-reference status.
+- Temperature, pressure, vibration, and magnetic-field records.
+- Settling status and quality-control flags.
+
+The founding protocol specifies environmental logging at at least 1 Hz. Higher acquisition rates shall be selected where necessary to detect disturbances relevant to the measurement.[2]
+
+CSV and JSON exports shall include, at minimum:
+
+```text
+experiment_id, run_id, artifact_id, coded_position,
+timestamp_utc, monotonic_time, instrument_id,
+calibration_id, acquisition_configuration_hash,
+frequency_hz, frequency_standard_uncertainty_hz,
+reference_frequency_hz, frequency_ratio,
+temperature_K, pressure_Pa, drive_amplitude,
+clock_lock_status, external_reference_status,
+quality_flags, raw_record_hash, analysis_version
+```
+
+CSV and JSON provide accessible tabular and metadata exchange. They shall supplement, not replace, native waveforms, complex scattering data, optical scan geometry, and other records needed for independent reanalysis.
+
+### 3.5 Open-Access Research Modes
+
+| Mode | Core Concept | Technical Specifications | Cost/Complexity Impact | Pros | Cons |
+|---|---|---|---|---|---|
+| Training | Teach calibration, uncertainty, and confound identification | Synthetic datasets with documented answer keys | Low operating cost after development | Reproducible instruction without laboratory access | Educational outputs cannot substantiate physical claims |
+| Free-Lab | Explore apparatus and model parameters | Parameter sweeps with explicit model assumptions | Moderate computational demand | Supports design-space exploration | Creates risk of post hoc hypothesis selection |
+| Challenge | Test blinded analysis performance | Hidden injected effects, null cases, frozen scoring criteria | Requires maintained benchmarks | Tests false-positive control and sensitivity | Benchmark success does not prove experimental validity |
+| Peer-Review | Reproduce and audit experimental analysis | Read-only raw data, signed manifests, versioned code, review records | Requires curation and reviewer support | Enables independent verification | Review quality remains dependent on expertise and completeness |
+
+### 3.6 Software Validation and Prototype Remediation
+
+The reviewed environmental-noise prototype modifies plotted amplitudes using heuristic temperature and RF terms, yet includes a message asserting that sufficiently low slider settings eliminate artifacts and make any observed difference genuine. That assertion is not justified by the underlying code and must be removed from research-facing software. [polytec](https://www.polytec.com/en/vibrometry/products/full-field-vibrometers)
+
+Release qualification shall require:
+
+1. Unit-consistent equations and documented parameter sources.
+2. Known-input recovery tests for frequency fitting.
+3. Numerical convergence checks.
+4. Null and injected-effect simulations.
+5. Empirical comparison with calibrated artifact measurements.
+6. Removal of unsupported “publication-grade” or “genuine anomaly” classifications.
+7. Explicit labels for illustrative, validated, and speculative models.
+
+## 4. DeSci GOVERNANCE & CROWDFUNDING MODEL
+
+### 4.1 Governance Sequence
+
+The project adopts staged decentralization rather than immediate token-based control.
+
+The founding packet specifies founder-led legal and financial accountability, nonbinding advisory participation, no founding-phase tokenization, and no promised equity, royalties, or financial returns. Earlier DAO-oriented materials describe broader token and treasury concepts; those concepts are future options, not established project commitments.[2][6][16]
+
+| Stage | Governance arrangement | Funding arrangement |
+|---|---|---|
+| Founding | Accountable legal operator with published charter | Founder contributions, documented grants, and donation or reward-based funding |
+| Advisory participation | Independent scientific reviewers and public proposals | Restricted milestone funding |
+| DAO-lite pilot | Reviewed treasury policy and optional multisignature custody | Counsel-approved contribution mechanisms |
+| Formal DAO | Explicit legal wrapper and adopted governance rules | Only after legal, security, and operational review |
+
+The founding governance review triggers are completion of independent replication, more than 25 active contributors, treasury exceeding $50,000, or passage of 12 months. Transfer of binding authority requires legal review and revised governing documents.[2]
+
+### 4.2 Decision Rights and Scientific Independence
+
+The governance system shall separate:
+
+- Legal authority: contracts, custody, compliance, and financial obligations.
+- Scientific authority: calibration, protocol suitability, analysis integrity, and interpretation.
+- Safety authority: immediate suspension of unsafe operations.
+- Community participation: proposals, prioritization, documentation, and advisory review.
+
+Community voting shall not:
+
+- Alter confirmatory analysis after data collection begins.
+- Suppress null or inconclusive results.
+- Override an unresolved safety issue.
+- Determine whether data establish a physical effect.
+- Give donors control over publication.
+
+These restrictions preserve the founding packet’s commitments to research integrity and disclosure.[2]
+
+A future multisignature treasury may use established infrastructure such as Safe. Signer selection, thresholds, recovery procedures, spending caps, and any contract modules must be approved and tested before custody begins. The general DeSci plan identifies such tools but does not establish that they are deployed for S.P.H.E.R.E. [keysight](https://www.keysight.com/us/en/product/E5080B/e5080b-ena-vector-network-analyzer.html)
+
+### 4.3 Crowdfunding and Milestone Release
+
+Crowdfunding shall finance specified work packages, not an anticipated discovery.
+
+Each funding tranche shall identify:
+
+1. A bounded scope and acceptance criterion.
+2. Responsible operators and independent reviewers.
+3. Written equipment quotations or service agreements.
+4. Campaign fees and contingency assumptions.
+5. Publication obligations.
+6. The disposition of unused funds.
+7. The procedure for technical failure or schedule revision.
+
+Acceptable milestones include a reviewed protocol, qualified artifact, measured noise floor, completed blinded dataset, or released replication package. A positive anomaly is not an acceptable condition for payment.
+
+The founding policy requires written quotes and public changelog notes for equipment purchases above $1,000, quarterly spending summaries, and separation of founder capital from donor funds.[2]
+
+### 4.4 Immutable Experiment Logging and Data Hosting
+
+The proposed provenance system shall use:
+
+1. Instrument-native raw records captured locally.
+2. Append-only storage with retention controls.
+3. SHA-256 hashes for individual records.
+4. Signed manifests linking raw records, configurations, calibration identifiers, and acquisition sessions.
+5. Mirrored public archives.
+6. Optional blockchain anchoring of manifest hashes and version identifiers.
+
+A blockchain commitment can make later changes detectable relative to a published hash. It cannot prove that an instrument was calibrated, that a measurement occurred as described, or that the interpretation is correct.
+
+Large raw datasets shall remain off-chain. IPFS or comparable content-addressed distribution may supplement archival storage, but persistence requires an explicit retention and replication arrangement. The founding packet’s GitHub, OSF, and Zenodo workflow remains the baseline publication pathway.[2][6]
+
+Corrections shall create new versions with explanations; they shall not overwrite the original experimental record. Personal and security-sensitive information shall be removed before public release.
+
+### 4.5 Open Peer-Review Protocol
+
+The review workflow shall comprise:
+
+1. Pre-experiment review: at least two independent reviewers and a statistician examine the protocol and qualification evidence.
+2. Preregistration: freeze hypotheses, mode selection, exclusion rules, primary analysis, significance level, equivalence bounds, and replication requirements.
+3. Blinded analysis: reviewers or analysts receive coded position labels.
+4. Reproduction: independent execution of published analysis against raw records.
+5. Unblinding: release the position key only after the analysis is frozen.
+6. Public reporting: disclose findings, uncertainty, deviations, funding, and conflicts of interest.
+7. Independent replication: require external repetition before a positive public claim.
+
+The founding packet commits to publication within 60 days of unblinding regardless of outcome.[2]
+
+Default proposed licensing is permissive: MIT or Apache-2.0 for software, CC BY 4.0 for protocols and reports, and CC0 or CC BY 4.0 for datasets. Contributor roles shall be recorded; funding alone shall not confer authorship.[2]
+
+## 5. RISK ANALYSIS & MITIGATION
+
+### 5.1 Ground-Truth and Measurement Risks
+
+| Risk | Failure mechanism | Mitigation | Verification record |
+|---|---|---|---|
+| Thermal drift and gradients | Different artifact temperatures or thermal coefficients create apparent location dependence | Characterize both spheres; measure gradients and settling; use ratio analysis | Thermal calibration dataset and correction uncertainty |
+| Mounting stress | Relocation changes support forces or contact geometry | Repeatable fixtures; sham moves; repeated replacement tests | At least 20 remove-and-replace trials before confirmation |
+| Mode misidentification | Different modes or overlapping peaks are compared | Optical mode-shape mapping and frozen mode selection | Mode maps and fit residuals |
+| Signal and timebase drift | Reference loss or instrument instability biases estimates | Shared qualified reference; logged lock and holdover; stationary controls | Reference-status logs and stability analysis |
+| Faraday leakage | Seams, apertures, feedthroughs, or local electronics introduce interference | Measured shielding response and controlled interference tests | Frequency-specific leakage records |
+| Calibration and coupling losses | Probe transfer response, cable attenuation, and fixture effects obscure or shift fitted features | Reference-plane calibration, fixture characterization, repeated checks | Calibration files and uncertainty contribution |
+| Excitation nonlinearity | Drive-dependent heating or stiffness changes alter frequency | Amplitude sweeps and bounded drive conditions | Frequency-versus-drive characterization |
+| Optical artifacts | Poor return, geometry, or windows degrade vibration estimates | Signal-quality checks and qualified viewing geometry | Scan quality and optical-path records |
+| Environmental noise | Vibration, acoustic disturbance, magnetic variation, or power noise correlates with position | Continuous logging, isolation, and randomized schedules | Covariate records and disturbance flags |
+| Statistical bias | Multiple searches or exclusions create false positives | Preregister primary mode and endpoint; separate exploratory analysis | Frozen analysis plan and deviation log |
+| Governance interference | Funders or voters influence reporting | Binding publication obligations and reviewer independence | Public governance and conflict disclosures |
+| Data or treasury compromise | Lost records, altered files, or unauthorized transfers | Backups, signed manifests, access controls, reviewed custody | Integrity checks and financial audit trail |
+
+The founding packet identifies environmental control, placement repeatability, stationary stability, blinding, and null tests as prerequisites for interpretable data.[2]
+
+### 5.2 Uncertainty Budget
+
+The project shall construct a measurement model linking the reported location contrast to frequency estimates, calibration, environmental corrections, placement effects, and temporal drift.
+
+For an output `y=g(x_1,\ldots,x_n)`, a linearized uncertainty evaluation takes the form:
+
+```math
+u_c^2(y)
+=
+\sum_i
+\left(\frac{\partial g}{\partial x_i}\right)^2u^2(x_i)
++
+2\sum_{i<j}
+\frac{\partial g}{\partial x_i}
+\frac{\partial g}{\partial x_j}
+\operatorname{cov}(x_i,x_j).
+```
+
+Covariance terms matter because the test and reference channels share temperature, timebase, and environmental influences. The model shall be checked for adequacy rather than assume every contribution is independent. GUM guidance provides the reporting framework; measurement-model guidance addresses identification of relevant effects and model adequacy.[4][5]
+
+Qualification shall report:
+
+- Frequency-fit uncertainty.
+- Thermal-correction uncertainty.
+- Placement repeatability.
+- Clock and acquisition contributions.
+- Probe or optical geometry effects.
+- Between-block variability.
+- Residual autocorrelation.
+- Expanded uncertainty with the stated coverage method.
+
+The smallest effect of interest shall be frozen only after calibration demonstrates that the planned design can detect it with at least 90% power. The founding protocol does not provide a justified universal ppb detection claim; the laboratory must establish its own qualified sensitivity.[2]
+
+### 5.3 LOC-1 Confirmatory Protocol
+
+The initial experiment shall use the founding packet’s same-enclosure two-position design:
+
+- A/B separation: 0.40 m center to center.
+- Stationary reference sphere at a third fixed position.
+- At least 40 placements per position, giving 80 principal placements.
+- Ten blocks of eight placements.
+- Randomized, balanced A/B scheduling.
+- Default settling time of 30 minutes, extended if qualification requires it.
+- Environmental logging at at least 1 Hz.
+- Sham moves, rotations, dummy tests, label checks, and reference-only drift segments.[2]
+
+The confirmatory analysis shall include:
+
+1. A two-sided primary test at `\alpha=0.01`.
+2. Preregistered environmental and settling covariates.
+3. Equivalence testing against ± the smallest effect of interest.
+4. Explicit treatment of block structure and serial dependence.
+5. Separate reporting of exploratory and secondary endpoints.
+6. Independent replication before attributing a surviving signal to a reproducible location-associated effect.
+
+Repeated samples within a placement are not substitutes for independent placements or experimental blocks.
+
+### 5.4 Verified Engineering Baseline Versus Speculative Physical Hypotheses
+
+| Category | Statement | Evidentiary status |
+|---|---|---|
+| Established engineering baseline | Laser Doppler vibrometry measures surface vibration without attached sensing mass | Supported instrument capability; project implementation still requires qualification.  [bipm](https://www.bipm.org/documents/20126/2071204/JCGM_GUM_6_2020.pdf) |
+| Established engineering baseline | VNAs measure complex scattering response | Supported instrument capability; attributing a feature to the sphere requires fixture and coupling tests.  [bipm](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) |
+| Established engineering baseline | Rubidium standards provide stable reference signals | Supported instrument capability; shared timing and holdover behavior require integration tests. [10] |
+| Proposed project capability | mK-grade stability and sub-hertz resonance discrimination | Design objectives, not demonstrated S.P.H.E.R.E. performance. [2][3] |
+| Unverified Theory | Location is an intrinsic frequency variable of matter | Hypothesis motivating the experiment; not established by the project context. [2] |
+| Unverified Theory | A universal threshold occurs above 230 kHz | Not demonstrated; used only to define the selected test band. [6] |
+| Out-of-scope conjecture | Frequency manipulation enables non-kinetic relocation or teleportation | Excluded from the founding research scope and from claims supported by this protocol. [2][6] |
+
+A reproducible residual would justify further investigation. It would not uniquely identify an intrinsic location variable: conventional explanations, alternative measurement models, and independent apparatus must still be examined.
+
+A null result would establish a bound for the tested artifact, mode, separation, environment, and sensitivity. It would not refute every possible formulation of an underspecified theory.[2]
+
+### 5.5 Required Verification Checks Before Deployment
+
+1. Adopt the founding charter and reconcile conflicting governance, fundraising, and website statements.
+2. Replace budget estimates with configuration-specific quotations and a nonduplicative operating budget.
+3. Freeze artifact specifications and validate the selected `>230\ \text{kHz}` mode experimentally.
+4. Qualify excitation compatibility with atmospheric and vacuum operation.
+5. Demonstrate temperature, placement, shielding, reference, and fitting contributions through measured uncertainty records.
+6. Remove unsupported scientific classifications from simulator prototypes.
+7. Obtain independent protocol and statistical review.
+8. Preregister LOC-1 before confirmatory acquisition.
+9. Publish raw records, calibration artifacts, analysis code, deviations, and results.
+10. Complete independent replication before making any positive scientific claim.[2]

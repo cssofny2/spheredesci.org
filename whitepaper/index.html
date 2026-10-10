@@ -1,0 +1,716 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeSci Whitepaper: Open Resonance Metrology | S.P.H.E.R.E.</title><meta name="description" content="DeSci Whitepaper: Open Resonance Metrology, Digital-Twin Validation, and Accountable Research Funding">
+<meta name="theme-color" content="#05070a"><link rel="canonical" href="https://spheredesci.org/whitepaper/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Project S.P.H.E.R.E.">
+<meta property="og:title" content="DeSci Whitepaper: Open Resonance Metrology | S.P.H.E.R.E."><meta property="og:description" content="DeSci Whitepaper: Open Resonance Metrology, Digital-Twin Validation, and Accountable Research Funding">
+<meta property="og:url" content="https://spheredesci.org/whitepaper/"><meta property="og:image" content="https://spheredesci.org/assets/brand/og-image.png?v=2">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="DeSci Whitepaper: Open Resonance Metrology | S.P.H.E.R.E.">
+<meta name="twitter:description" content="DeSci Whitepaper: Open Resonance Metrology, Digital-Twin Validation, and Accountable Research Funding"><meta name="twitter:image" content="https://spheredesci.org/assets/brand/og-image.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="/assets/tailwind.css" rel="stylesheet"><link href="/assets/vendor/katex/katex.min.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">
+<script src="/assets/site.js" defer></script>
+</head><body><a class="skip-link" href="#main-content">Skip to content</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="/" aria-label="Project S.P.H.E.R.E. home"><img class="nav-logo" src="/assets/brand/sphere-lockup-compact.svg" alt="S.P.H.E.R.E." width="435" height="136"></a>
+<div class="nav-links"><a href="/about/">About</a><a href="/protocol/">Protocol</a><a href="/transparency/">Transparency</a><a href="/resources/">Resources</a><a class="nav-vl" href="/vl/">Visual Lab</a><a href="/faq/">FAQ</a>
+<details class="site-menu"><summary>More</summary><div class="menu-panel"><a href="/research/">Measurement research</a><a href="/whitepaper/">Whitepaper</a><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/careers/">Careers</a><a href="/charter/">Research charter</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Project updates</a><a href="/privacy/">Privacy notice</a></div></details>
+<a class="nav-join" href="/#join">Get involved</a></div>
+<details class="site-menu mobile-only"><summary>Menu</summary><div class="menu-panel"><a href="/">Home</a><a href="/about/">About</a><a href="/protocol/">Protocol</a><a href="/transparency/">Transparency</a><a href="/resources/">Resources</a><a class="nav-vl" href="/vl/">Visual Lab</a><a href="/faq/">FAQ</a><a href="/research/">Measurement research</a><a href="/whitepaper/">Whitepaper</a><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/careers/">Careers</a><a href="/charter/">Research charter</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Project updates</a><a href="/privacy/">Privacy notice</a><a href="/#join">Register interest</a></div></details>
+</nav><main id="main-content" class="content-shell">
+<div class="breadcrumbs"><a href="/">Home</a> / Whitepaper</div>
+<div class="eyebrow">Research / Whitepaper</div><h1 class="page-title">Open resonance metrology, accountable funding.</h1>
+<div class="whitepaper-meta"><p class="page-lede">Spatial Positioning Harmonic Empirical Resonance Experiment</p>
+<p>DeSci Whitepaper: Open Resonance Metrology, Digital-Twin Validation, and Accountable Research Funding</p>
+<p>Version: 1.0 — Technical and governance draft<br>Date: October 10, 2026<br>Project domain: spheredesci.org<br>Document classification: Proposed research infrastructure and experimental protocol; not a report of experimental findings.</p>
+</div>
+<div class="article-layout"><article class="article-body"><h2 id="1-executive-summary">1. EXECUTIVE SUMMARY</h2><h3 id="1-1-problem-statement">1.1 Problem Statement</h3><p>Project S.P.H.E.R.E. proposes an open experimental program to determine whether the resonance of a controlled copper artifact exhibits a reproducible location-associated change after measured environmental, mechanical, and instrumental effects have been accounted for.</p>
+<p>The project addresses three interdependent problems:</p>
+<ol>
+<li><p>Replicability and research transparency. Scientific reproducibility requires accessible methods, adequate statistical power, documented calibration, and publication of negative results. The broader reproducibility problem is documented in the scientific literature; it does not, by itself, establish the validity of any particular unconventional hypothesis. S.P.H.E.R.E. therefore makes preregistration, open data, and independent replication foundational requirements rather than optional dissemination activities. <a href="https://europepmc.org/article/MED/27225100">europepmc</a></p>
+</li>
+<li><p>Funding bottlenecks. The proposed experiment requires specialist optical instrumentation, controlled environmental infrastructure, and independent technical review before a scientifically interpretable result can be obtained. The project’s financial plans distinguish a small founding pilot from a substantially more expensive dedicated laboratory. Public funding must therefore follow verified technical milestones rather than promises of anomalous outcomes.</p>
+</li>
+<li><p>Metrology limitations. A resonance measurement above 230 kHz can be affected by temperature-dependent elastic properties, mounting stress, mode identification errors, excitation amplitude, electromagnetic coupling, and timebase drift. Instrument bandwidth alone does not establish sub-hertz measurement accuracy. The relevant quantity is the uncertainty of the complete measurement procedure, including environmental corrections and repeatability.</p>
+</li>
+</ol>
+<p>The central research question is:</p>
+<blockquote>
+<p>Does moving a controlled copper sphere between specified positions produce a repeatable change in its selected resonance, relative to a stationary reference sphere, that exceeds a preregistered effect threshold and survives independent replication?</p>
+</blockquote>
+<p>The October 2, 2026 founding packet identifies the project as pre-entity, pre-funding, and without collected experimental data. This whitepaper retains that status as its documentary baseline; it does not treat illustrative website figures, proposed instruments, or simulated outputs as evidence of funds raised, equipment installed, or discoveries made.</p>
+<h3 id="1-2-solution-overview">1.2 Solution Overview</h3><p>S.P.H.E.R.E. integrates three proposed infrastructure layers:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Layer</th>
+<th>Function</th>
+<th>Required evidence</th>
+</tr>
+</thead><tbody><tr>
+<td>Open-science funding and governance</td>
+<td>Finance instruments, calibration, research labor, and independent replication</td>
+<td>Public budgets, expenditure records, review decisions, and milestone acceptance</td>
+</tr>
+<tr>
+<td>S.P.H.E.R.E. Simulator</td>
+<td>Model conventional physical responses, investigate confounds, and train users in experimental design</td>
+<td>Versioned equations, reproducible simulation inputs, numerical verification, and comparison with measured data</td>
+</tr>
+<tr>
+<td>Empirical hardware verification</td>
+<td>Measure optical vibration, electromagnetic response, and environmental conditions</td>
+<td>Raw instrument records, calibration artifacts, uncertainty budgets, and blinded analysis</td>
+</tr>
+</tbody></table></div><p>The simulator is a planning and interpretation system, not an independent source of physical confirmation. Funding is a means of obtaining interpretable measurements, not a mechanism for deciding whether a hypothesis is true.</p>
+<h3 id="1-3-scientific-position-and-hypotheses">1.3 Scientific Position and Hypotheses</h3><p>The project’s locational-variable hypothesis was inspired by the Bashar material presented by Darryl Anka. That source is not established physical evidence. The founding packet explicitly treats it as inspiration for a testable question and excludes claims of teleportation, medical benefit, or financial return.</p>
+<p>The confirmatory framework comprises:</p>
+<ul>
+<li>Null hypothesis, <code class="inline-code">H_0</code>: after preregistered corrections, the location-associated difference lies within the predefined equivalence bounds.</li>
+<li>Alternative hypothesis, <code class="inline-code">H_1</code>: a difference exceeding the smallest effect of interest persists across randomized returns, survives control experiments, and is independently replicated.</li>
+<li>Inconclusive outcome: the experiment establishes neither equivalence nor a sufficiently robust difference.</li>
+</ul>
+<p>The designation <strong>Speculative</strong> applies to an intrinsic locational-frequency variable and to any assertion that 230 kHz represents a fundamental physical threshold. In this program, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>230</mn><mtext> kHz</mtext></mrow><annotation encoding="application/x-tex">&gt;230\ \text{kHz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">230</span><span class="mspace"> </span><span class="mord text"><span class="mord">kHz</span></span></span></span></span> is an experimental selection criterion inherited from the hypothesis, not an independently demonstrated boundary in established physics.</p>
+<h2 id="2-physical-metrology-experimental-lab-architecture">2. PHYSICAL METROLOGY &amp; EXPERIMENTAL LAB ARCHITECTURE</h2><h3 id="2-1-measurement-definition-and-artifact-design">2.1 Measurement Definition and Artifact Design</h3><p>The primary artifact is a thin-walled hollow copper sphere. A matched stationary reference sphere provides a differential measurement channel; a spare and a dummy artifact support reproducibility and null tests. The laboratory cost analysis specifies four high-purity spheres and proposes 99.999% copper. Procurement must separately document chemical purity, oxygen content, fabrication process, wall thickness, surface treatment, and residual stress; these properties must not be inferred from a purity label alone. <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></p>
+<p>The primary measurand is the resonance-frequency ratio:</p>
+<div class="math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>r</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msub><mi>f</mi><mi>T</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><msub><mi>f</mi><mi>R</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mfrac><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">r(t)=\frac{f_T(t)}{f_R(t)},</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span></span></span></span></span></div><p>where <code class="inline-code">f_T</code> is the selected test-sphere resonance and <code class="inline-code">f_R</code> is the stationary reference resonance.</p>
+<p>For matched artifacts, the founding protocol expresses the location contrast as:</p>
+<div class="math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">b</mi></mrow></msub><mo>=</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup><mrow><mo fence="true">(</mo><msub><mover accent="true"><mi>r</mi><mo>ˉ</mo></mover><mi>A</mi></msub><mo>−</mo><msub><mover accent="true"><mi>r</mi><mo>ˉ</mo></mover><mi>B</mi></msub><mo fence="true">)</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\Delta_{\mathrm{ppb}}
+=
+10^9\left(\bar r_A-\bar r_B\right).</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">ppb</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">.</span></span></span></span></span></div><p>The analysis must retain the actual baseline ratio rather than assume exact equality between the fabricated spheres. Matching reduces common-mode sensitivity; it does not guarantee identical modal frequencies or thermal coefficients.</p>
+<p>The founding packet uses the thin-shell approximation:</p>
+<div class="math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow></msub><mo>≈</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>π</mi><mi>R</mi></mrow></mfrac><msqrt><mfrac><mrow><mn>2</mn><mi>E</mi></mrow><mrow><mi>ρ</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>ν</mi><mo stretchy="false">)</mo></mrow></mfrac></msqrt><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">f_{\mathrm{breathing}}
+\approx
+\frac{1}{2\pi R}
+\sqrt{\frac{2E}{\rho(1-\nu)}}.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">breathing</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.04em;vertical-align:-1.194em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.846em;"><span class="svg-align" style="top:-5em;"><span class="pstrut" style="height:5em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.806em;"><span class="pstrut" style="height:5em;"></span><span class="hide-tail" style="min-width:1.02em;height:3.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="3.08em" viewBox="0 0 400000 3240" preserveAspectRatio="xMinYMin slice"><path d="M473,2793
+c339.3,-1799.3,509.3,-2700,510,-2702 l0 -0
+c3.3,-7.3,9.3,-11,18,-11 H400000v40H1017.7
+s-90.5,478,-276.2,1466c-185.7,988,-279.5,1483,-281.5,1485c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2c0,-1.3,-5.3,-32,-16,-92c-50.7,-293.3,-119.7,-693.3,-207,-1200
+c0,-1.3,-5.3,8.7,-16,30c-10.7,21.3,-21.3,42.7,-32,64s-16,33,-16,33s-26,-26,-26,-26
+s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,104,
+606zM1001 80h400000v40H1017.7z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.194em;"><span></span></span></span></span></span><span class="mord">.</span></span></span></span></span></div><p>With the packet’s approximate copper properties—<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mn>130</mn><mtext> GPa</mtext></mrow><annotation encoding="application/x-tex">E=130\ \text{GPa}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">130</span><span class="mspace"> </span><span class="mord text"><span class="mord">GPa</span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>8960</mn><mtext> </mtext><msup><mtext>kg m</mtext><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\rho=8960\ \text{kg m}^{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0929em;vertical-align:-0.1944em;"></span><span class="mord">8960</span><span class="mspace"> </span><span class="mord"><span class="mord text"><span class="mord">kg m</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ν</mi><mo>=</mo><mn>0.34</mn></mrow><annotation encoding="application/x-tex">\nu=0.34</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.34</span></span></span></span>—a breathing-mode frequency near 230 kHz implies a radius of approximately 4.6 mm. Larger artifacts may instead provide higher-order modes above 230 kHz. This approximation is a design estimate; finite-element modeling and measured mode shapes must determine the final artifact geometry and selected mode.</p>
+<h3 id="2-2-core-diagnostic-hardware">2.2 Core Diagnostic Hardware</h3><p>The following stack combines equipment identified in the uploaded planning documents with manufacturer-verified specifications. Model selection remains provisional until written quotations, configuration details, and acceptance tests are obtained.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Subsystem</th>
+<th>Core Concept</th>
+<th>Technical Specifications</th>
+<th>Cost/Complexity Impact</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead><tbody><tr>
+<td>3D scanning laser Doppler vibrometer</td>
+<td>Non-contact modal identification and surface-velocity measurement</td>
+<td>Project baseline: Polytec PSV-500-3D-HV; manufacturer documentation describes configuration-dependent scanning capabilities up to 25 MHz. Current alternative: VibroScan QTec Xtra 3D, with acquisition and signal generation up to 32 MHz.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>Planning allowance: $320,000–$450,000 new; $150,000–$220,000 refurbished or leased.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>Avoids attached sensor mass; provides mode-shape discrimination</td>
+<td>Optical return, viewing geometry, window effects, and scan duration require qualification</td>
+</tr>
+<tr>
+<td>Multi-mode VNA</td>
+<td>Complex scattering measurements and probe-response characterization</td>
+<td>Keysight E5080B, 2- or 4-port configuration. Select a low-frequency-capable option: 9 kHz to 4.5 GHz is available; other configurations start at 100 kHz. Measure <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>11</mn></msub></mrow><annotation encoding="application/x-tex">S_{11}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, and use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>21</mn></msub></mrow><annotation encoding="application/x-tex">S_{21}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">21</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> where the coupling arrangement supports transmission.  <a href="https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf">bipm</a></td>
+<td>Planning allowance: $55,000–$95,000 new; $25,000–$45,000 refurbished or leased.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>Records magnitude and phase; supports background and coupling tests</td>
+<td>Probe and fixture resonances can dominate the measured response</td>
+</tr>
+<tr>
+<td>Near-field probes</td>
+<td>Non-contact electric- and magnetic-field coupling</td>
+<td>Project candidates: Langer EMV or ETS-Lindgren probe families; exact probe transfer functions must cover the selected experimental band.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>$8,000–$15,000 new; $4,000–$8,000 refurbished.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>Enables independent electromagnetic diagnostics</td>
+<td>Position, orientation, and loading must remain controlled</td>
+</tr>
+<tr>
+<td>Rubidium frequency reference</td>
+<td>Shared frequency reference for compatible instruments</td>
+<td>Stanford Research Systems FS725; 10 MHz reference distribution. Manufacturer warmup: less than 6 minutes to lock and less than 7 minutes to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1\times10^{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span>. Optional external 1 PPS disciplining.</td>
+<td>Project allowance: $6,000–$14,000 new; $3,000–$6,000 refurbished.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>Reduces relative timebase drift</td>
+<td>Lock indication does not establish full-system thermal stability</td>
+</tr>
+<tr>
+<td>Four-channel oscilloscope</td>
+<td>Excitation verification, transient recording, and channel-coherence checks</td>
+<td>Proposed concrete implementation: Teledyne LeCroy WaveSurfer 4104HD; 1 GHz bandwidth, 12-bit acquisition, four channels, 5 GS/s on two channels or 2.5 GS/s on four channels.</td>
+<td>Original project scope allowance: $30,000–$55,000 new; revise against the selected model and options.  <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></td>
+<td>Simultaneously observes drive and diagnostic signals</td>
+<td>Record length, reference-input compatibility, and spectral estimation require verification</td>
+</tr>
+</tbody></table></div><p>A vibrometer’s displacement sensitivity is not a guarantee of resonance-frequency uncertainty. Similarly, a VNA’s displayed numerical precision is not equivalent to calibrated accuracy. The complete system must be evaluated through a measurement model and uncertainty budget.</p>
+<h3 id="2-3-excitation-and-measurement-channels">2.3 Excitation and Measurement Channels</h3><p>The proposed excitation system comprises:</p>
+<ul>
+<li>A programmable signal generator or qualified integrated vibrometer source.</li>
+<li>A non-contact excitation mechanism, such as an appropriately designed EMAT or electromagnetic actuator.</li>
+<li>Drive monitoring through the oscilloscope.</li>
+<li>A low-noise acquisition or lock-in channel for repeated frequency estimation.</li>
+<li>Power, amplitude, and duty-cycle controls to limit heating and nonlinear response.</li>
+</ul>
+<p>The founding pilot also identifies air-coupled ultrasonic excitation as an option. That method cannot operate through an evacuated propagation path; a vacuum implementation therefore requires a different excitation arrangement or an explicitly separated atmospheric measurement phase.</p>
+<p>The optical channel measures mechanical motion. The VNA channel measures the electromagnetic response of the complete sphere–probe–fixture system. Agreement between their fitted features must be demonstrated rather than presumed.</p>
+<p>Before assigning a VNA feature to the sphere:</p>
+<ol>
+<li>Measure the empty fixture and probe background.</li>
+<li>Repeat the measurement with the dummy artifact.</li>
+<li>Vary probe separation and orientation.</li>
+<li>Compare optical mode shapes and electromagnetic response where a coupling mechanism is physically supported.</li>
+<li>Reject features attributable to cables, probes, drive electronics, or environmental interference.</li>
+</ol>
+<h3 id="2-4-vna-calibration-and-s11s-11-s11-fitting">2.4 VNA Calibration and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>11</mn></msub></mrow><annotation encoding="application/x-tex">S_{11}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> Fitting</h3><p>The proposed VNA workflow is:</p>
+<ol>
+<li>Define the calibration reference plane and selected frequency band.</li>
+<li>Perform an appropriate calibrated reflection or multiport measurement using characterized standards.</li>
+<li>Record cables, adapters, port settings, source power, IF bandwidth, averaging, and calibration identifiers.</li>
+<li>Characterize the probe and fixture response separately from the connector-plane calibration.</li>
+<li>Fit complex <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>11</mn></msub></mrow><annotation encoding="application/x-tex">S_{11}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, not only its magnitude minimum.</li>
+<li>Estimate resonance frequency, quality factor, coupling parameters, background terms, and parameter covariance.</li>
+<li>Inspect residuals and compare plausible alternative fit models.</li>
+<li>Repeat calibration or verification after cable movement, fixture changes, or significant temperature changes.</li>
+</ol>
+<p>These requirements extend the project’s proposed near-field VNA measurement into an auditable measurement procedure. Reporting follows the GUM principle that the measurand, measurement model, and associated uncertainty must be explicitly defined.</p>
+<p>Neither <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><msub><mi>f</mi><mn>0</mn></msub><mi mathvariant="normal">/</mi><mi mathvariant="normal">Δ</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">Q=f_0/\Delta f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/Δ</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> nor a narrow spectral peak alone establishes sub-hertz accuracy. Frequency uncertainty also depends on signal-to-noise ratio, model adequacy, sweep sampling, drift, and repeatability.</p>
+<h3 id="2-5-rubidium-warmup-lock-and-holdover">2.5 Rubidium Warmup, Lock, and Holdover</h3><p>The FS725 manufacturer specifies less than 6 minutes to frequency lock and less than 7 minutes to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1\times10^{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span> after startup under specified conditions. Those figures define reference startup behavior, not readiness of the entire laboratory.</p>
+<p>The operating procedure shall require:</p>
+<ol>
+<li>Continuous reference operation where practical.</li>
+<li>Logged power-on, lock status, and external-reference status.</li>
+<li>Verified reference-input compatibility for every receiving instrument.</li>
+<li>A distribution arrangement with documented termination, signal level, and channel integrity.</li>
+<li>Separate synchronization of acquisition timestamps and triggers; sharing 10 MHz does not by itself synchronize timestamps.</li>
+<li>System settling demonstrated by stationary reference measurements before confirmatory acquisition.</li>
+</ol>
+<p>Where external 1 PPS disciplining is used, loss of that input shall create a holdover flag. Rubidium operation during holdover must be characterized against an independent reference over the intended run duration. Data shall not be silently represented as externally disciplined after loss of the disciplining signal.</p>
+<h3 id="2-6-thermal-vacuum-shielding-and-mechanical-isolation">2.6 Thermal Vacuum, Shielding, and Mechanical Isolation</h3><p>The facility design includes:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Subsystem</th>
+<th>Proposed implementation</th>
+<th align="right">Project planning allowance</th>
+</tr>
+</thead><tbody><tr>
+<td>Thermal vacuum enclosure</td>
+<td>Custom stainless-steel chamber with optical windows, thermal sensing, controlled heating/cooling, and qualified feedthroughs</td>
+<td align="right">$110,000–$220,000</td>
+</tr>
+<tr>
+<td>RF shielding</td>
+<td>ETS-Lindgren modular shielded room or validated compact enclosure for the MVP</td>
+<td align="right">$85,000–$165,000 for the dedicated-room concept</td>
+</tr>
+<tr>
+<td>Mechanical isolation</td>
+<td>Newport SmartTable or TMC isolation platform, selected against measured floor vibration</td>
+<td align="right">$35,000–$65,000</td>
+</tr>
+<tr>
+<td>Power conditioning</td>
+<td>Isolation, online UPS, line filtering, and controlled grounding</td>
+<td align="right">$18,000–$35,000</td>
+</tr>
+</tbody></table></div><p>These are estimates from the project’s laboratory analysis, not vendor quotations. <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></p>
+<p>The proposed thermal target is ±0.001 K over the qualified acquisition interval. Acceptance must distinguish:</p>
+<ul>
+<li>Sensor resolution.</li>
+<li>Calibration uncertainty.</li>
+<li>Temporal stability.</li>
+<li>Spatial temperature gradients.</li>
+<li>Artifact temperature relative to enclosure temperature.</li>
+<li>Thermal settling following movement or excitation.</li>
+</ul>
+<p>The founding packet estimates a fractional resonance thermal coefficient on the order of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>4</mn></mrow></msup><mtext> </mtext><msup><mtext>K</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-4}\ \text{K}^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8873em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord"><span class="mord text"><span class="mord">K</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>. At 230 kHz, that corresponds to approximately 23 Hz/K, or 0.023 Hz for a 1 mK change. The coefficient must be measured for each artifact and mode because elastic-property changes and mounting effects accompany dimensional expansion.</p>
+<p>The project’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>100</mn><mtext> dB</mtext></mrow><annotation encoding="application/x-tex">&gt;100\ \text{dB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">100</span><span class="mspace"> </span><span class="mord text"><span class="mord">dB</span></span></span></span></span> shielding objective shall be treated as a design target, not an assumed universal requirement or demonstrated performance. Shielding must be tested at relevant frequencies, including seams, optical apertures, power entries, and signal feedthroughs. Low-frequency magnetic interference must be characterized separately rather than presumed absent because a conductive enclosure is present. <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></p>
+<p>Vacuum pressure is a protocol parameter to be selected through pressure-dependent characterization. Vacuum operation shall begin only after chamber safety review and qualification of excitation, optical access, thermal behavior, and pump-induced vibration.</p>
+<h3 id="2-7-budget-and-phasing">2.7 Budget and Phasing</h3><p>The requested laboratory tiers correspond to the detailed total table in the uploaded infrastructure analysis.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Tier</th>
+<th align="right">Financial figure</th>
+<th>Scope</th>
+</tr>
+</thead><tbody><tr>
+<td>MVP Tier</td>
+<td align="right">$350,000–$520,000</td>
+<td>Refurbished or leased diagnostics; existing host-laboratory infrastructure; compact validated enclosure; initial measurement qualification</td>
+</tr>
+<tr>
+<td>Turnkey Facility Tier</td>
+<td align="right">Approximately $970,000–$1.73 million</td>
+<td>New diagnostics, dedicated shielding and thermal vacuum infrastructure, facility modifications, integration, and one year of specialist execution</td>
+</tr>
+<tr>
+<td>Founding pilot, separate scope</td>
+<td align="right">Approximately $27,000 lean or $86,000 standard</td>
+<td>Rented or partner-lab optical access, limited equipment acquisition, independent review, initial protocol, and publication</td>
+</tr>
+</tbody></table></div><p>The laboratory document’s detailed turnkey total is $969,000–$1,732,000. Its executive summary separately gives $880,000–$1,850,000; the detailed table is used here because its category totals are explicit. The founding pilot is a distinct earlier stage, not an equivalent substitute for a full 3D scanning facility.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Turnkey category</th>
+<th align="right">Lower estimate</th>
+<th align="right">Upper estimate</th>
+</tr>
+</thead><tbody><tr>
+<td>Diagnostic suite</td>
+<td align="right">$419,000</td>
+<td align="right">$629,000</td>
+</tr>
+<tr>
+<td>Environmental isolation</td>
+<td align="right">$248,000</td>
+<td align="right">$485,000</td>
+</tr>
+<tr>
+<td>Fabrication, calibration, and software</td>
+<td align="right">$37,000</td>
+<td align="right">$73,000</td>
+</tr>
+<tr>
+<td>Facility upgrades, integration, and one-year personnel</td>
+<td align="right">$265,000</td>
+<td align="right">$545,000</td>
+</tr>
+<tr>
+<td>Total</td>
+<td align="right">$969,000</td>
+<td align="right">$1,732,000</td>
+</tr>
+</tbody></table></div><p>These figures do not establish a final campaign target. Taxes, insurance, lease terms, contingency treatment, and possible overlap with separate DAO operating budgets require reconciliation before fundraising. The general DeSci budget is an organizational funding model and must not be added wholesale to the laboratory budget without checking for duplicated personnel and research costs. <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></p>
+<p>Hardware milestones shall be evidence-based:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Milestone</th>
+<th>Deliverable</th>
+<th>Acceptance condition</th>
+</tr>
+</thead><tbody><tr>
+<td>M0 — Protocol and artifact design</td>
+<td>Mode selection, drawings, preliminary uncertainty model</td>
+<td>Independent metrology and statistical review</td>
+</tr>
+<tr>
+<td>M1 — Artifact qualification</td>
+<td>Test, reference, spare, and dummy artifacts</td>
+<td>Measured geometry, mode shapes, thermal coefficients, and placement repeatability</td>
+</tr>
+<tr>
+<td>M2 — Diagnostic integration</td>
+<td>Optical channel, VNA, oscilloscope, reference distribution</td>
+<td>Verified calibration, signal integrity, and data capture</td>
+</tr>
+<tr>
+<td>M3 — Environmental qualification</td>
+<td>Enclosure, shielding, isolation, environmental sensors</td>
+<td>Measured stability and interference contribution compatible with the effect threshold</td>
+</tr>
+<tr>
+<td>M4 — Blinded pilot</td>
+<td>Frozen protocol and coded dataset</td>
+<td>Prespecified analysis completed; deviations disclosed</td>
+</tr>
+<tr>
+<td>M5 — Independent replication</td>
+<td>External replication dataset</td>
+<td>Independent execution and public comparison</td>
+</tr>
+</tbody></table></div><p>Publication quality depends on methods, uncertainty, and reproducibility—not on meeting a particular spending tier. The source document’s suggestion that a turnkey facility is intrinsically required for publication is not adopted as a scientific criterion. <a href="https://pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws.com/projectfiles-prod/gateway-object-store/repos/files-6a8613502c7f3cdac7e0358a90e2d132/downloads/75e0e667d03dcb30de580de4be06c337dd1ffafd/founding-packet/SPHERE-Founding-Packet.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Checksum-Mode=ENABLED&X-Amz-Credential=ASIA2F3EMEYE4RUYKWOQ%2F20261010%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261010T163233Z&X-Amz-Expires=600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIDFpB%2F6PYoUSrxNghxF5nMgLAKmpzQ2i8kTNwNBvmmIJAiActyHy%2FsN9L%2FsgAvObmoWqjvMCJOVeOA44MOwTU51IFSqmBQhVEAEaDDY5OTc1MzMwOTcwNSIMfIkL3QRe17kJhD7oKoMF5ktzG1i%2B%2FYluRO3j4D6372nK2uAscnA7bCeJ7nZYPV7vUfHwvam1ea5w7altwPMWC16L7ssjWiQc5%2FnLXS7wQZFiTlkVg8tI9CHk6WUKixaDeQGVrSZyRJOzdrYMaOV0HsrvORSBHmcVquyzxrgwXJVFOV2dOxXB1%2BO45gKWM9oPC7gJSwkSKuTtgBrHfGGRNHS0dRd4Z37ojAltVGgqqRMKIoGKcIas341H2OYlH7guQVNqh8r5j90e%2F8OS9NDVpYwmxfG%2BpVj7kzBcGg1shiw23AlbyUoR1z49GadRw9hQF1UeeFYGMMFf3t26wXVSAlaR3tpxkBgdCOUf4JpboyFqRMTjuIy%2FuIM9HWDwCD97ycAuW8nWfvW%2F8uaUnPNgZIFQ2nxcOaaB0q%2BkT%2Bhd%2BaNy5LoLqrW06Ml2PFuGKkdQGW2J46mwlILwTbzFZPVObkouVbALsUHVYrNjmhynDYVC5tDaOLu5yd4wt2pRqettYU6CrZqIErLD1dx5IckYrGixjfoJoR1iNOtUpk5m8n30kLTY7%2FClPKjnkd5EQhqNIVyUSMW8fVW2wdcYmAZF23OZDVTa2EcVpRM4WQ2VZfeVqbot8kfox1QMS%2BrGh%2FhH6EVwK4YeYcVSyBRdXxrogfqrrxbGp18mFBTcFTOwJPwkj1391LBuJZYA97EsLJUIrN7LzqNPO672JswhDE1FXtRsv9J9Bw0MtuysJEF6xJfonMzAvbj9bsBv9mlqaYB5JrR6VgePRM8vpKjAIdpXeXnuCzcmhb9Fd%2Boh%2FYU88Iwl5ZSAaW4Wh2b7QEgn%2FVvGgnrUsNi4G61ADjlJb9ZO%2B95A8BiUM8VFpgUK8MP6vZsjszCc3ajWBjqRAaML%2FOxeAsYA728XU%2FU9XYdK%2FU2%2FySMby6IM4AAYsqecNcHB1DaJOkjykzJgLs6rNGbHI2pNlO0eu0YLYBlf2XaM5qbs6HpYJxdeXNw0%2BaL0MXS35KjQWaiwYOxGNr6QMF8Bb7bzQpu7S8p%2FkzUjr2k8dXtiUC3kqA2fSMzckp90P%2FS37%2Br26WbbzoOknJlCaRs%3D&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a85eff783bc2ffc24c8a04042ae144f7b9391c3a8b5c73314295590d84d65ba0">pplxfilegitgateway-projectfiles-prod-use1.s3.us-east-1.amazonaws</a></p>
+<h2 id="3-s-p-h-e-r-e-simulator-metrology-software">3. S.P.H.E.R.E. SIMULATOR &amp; METROLOGY SOFTWARE</h2><h3 id="3-1-role-of-the-digital-twin">3.1 Role of the Digital Twin</h3><p>The S.P.H.E.R.E. Simulator is proposed as a reproducible digital twin of the artifact, apparatus, and measurement procedure. Its principal functions are:</p>
+<ol>
+<li>Predict conventional resonance modes and their dependence on geometry, material properties, temperature, and boundary conditions.</li>
+<li>Estimate measurement sensitivity to mounting, probe position, excitation, and environmental gradients.</li>
+<li>Evaluate whether the planned acquisition can distinguish the smallest effect of interest.</li>
+<li>Generate controlled synthetic datasets for blinded-analysis testing.</li>
+<li>Compare measured behavior with model predictions after calibration.</li>
+</ol>
+<p>The reviewed project files establish an interactive browser-based environmental-noise demonstration. They do not establish an experimentally validated digital twin, operational live telemetry, or completed Spatial Field Explorer. Accordingly, the architecture below is a proposed implementation specification rather than a claim of deployed capability. <a href="https://www.polytec.com/en/vibrometry/products/full-field-vibrometers">polytec</a></p>
+<h3 id="3-2-technical-architecture">3.2 Technical Architecture</h3><div class="table-wrap"><table><thead><tr>
+<th>Layer</th>
+<th>Proposed implementation</th>
+<th>Scientific requirement</th>
+</tr>
+</thead><tbody><tr>
+<td>Browser interface</td>
+<td>TypeScript-based application with WebGL rendering and interactive room maps</td>
+<td>Separate synthetic, imported, and live-data states</td>
+</tr>
+<tr>
+<td>Numerical modeling</td>
+<td>Finite-element structural models, parameterized environmental models, and reproducible analysis services</td>
+<td>Versioned material inputs, boundary conditions, mesh checks, and solver settings</td>
+</tr>
+<tr>
+<td>Acquisition gateway</td>
+<td>Local instrument adapters using supported APIs or SCPI interfaces</td>
+<td>Preserve instrument-native records and configuration metadata</td>
+</tr>
+<tr>
+<td>Telemetry transport</td>
+<td>Authenticated streaming interface for monitoring</td>
+<td>Display acquisition time, latency, data gaps, and lock status</td>
+</tr>
+<tr>
+<td>Storage and provenance</td>
+<td>Append-only raw objects, metadata database, signed manifests</td>
+<td>Trace every derived output to raw inputs and code versions</td>
+</tr>
+<tr>
+<td>Verification pipeline</td>
+<td>Automated numerical tests and reproducible analysis execution</td>
+<td>Test known-input recovery, error handling, and blinded workflow integrity</td>
+</tr>
+</tbody></table></div><p>The software shall distinguish three quantities:</p>
+<ul>
+<li>Predicted physical response.</li>
+<li>Measured instrument response.</li>
+<li>Residual between measurement and the calibrated model.</li>
+</ul>
+<p>A residual is not automatically evidence of new physics. It may indicate measurement error, unmodeled environmental effects, or an inadequate model.</p>
+<h3 id="3-3-interactive-room-maps-and-spatial-field-explorer">3.3 Interactive Room Maps and Spatial Field Explorer</h3><p>Interactive room maps shall represent the enclosure, fixtures, reference artifact, sensor positions, optical paths, and nominal A/B coordinates in a documented coordinate frame.</p>
+<p>The Spatial Field Explorer shall provide:</p>
+<ul>
+<li>Three-dimensional scalar heatmaps for temperature, vibration magnitude, fitted frequency, or model residuals.</li>
+<li>Vector displays for quantities actually measured or physically modeled as vectors.</li>
+<li>Diverging color scales centered on a defined reference value.</li>
+<li>Visible sensor locations and sampling density.</li>
+<li>Interpolation method, parameters, and uncertainty.</li>
+<li>Masks for unsupported extrapolation.</li>
+<li>Cross-validation diagnostics and sensitivity to interpolation choices.</li>
+<li>A distinction between measured points and interpolated volumes.</li>
+</ul>
+<p>A diverging color scale is a visualization choice; it is not the mathematical divergence of a vector field. Calculation of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">F</mi></mrow><annotation encoding="application/x-tex">\nabla\cdot\mathbf F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∇</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord mathbf">F</span></span></span></span> shall be available only where the field definition, sampling geometry, and differentiation method support it.</p>
+<h3 id="3-4-live-telemetry-and-export-schema">3.4 Live Telemetry and Export Schema</h3><p>The monitoring interface shall display:</p>
+<ul>
+<li>Optical signal quality and velocity-channel status.</li>
+<li>Fitted resonance frequency and uncertainty.</li>
+<li>VNA calibration identifier and fit-quality indicators.</li>
+<li>Drive amplitude and excitation state.</li>
+<li>Rubidium and external-reference status.</li>
+<li>Temperature, pressure, vibration, and magnetic-field records.</li>
+<li>Settling status and quality-control flags.</li>
+</ul>
+<p>The founding protocol specifies environmental logging at at least 1 Hz. Higher acquisition rates shall be selected where necessary to detect disturbances relevant to the measurement.</p>
+<p>CSV and JSON exports shall include, at minimum:</p>
+<pre class="vl-code"><code>experiment_id, run_id, artifact_id, coded_position,
+timestamp_utc, monotonic_time, instrument_id,
+calibration_id, acquisition_configuration_hash,
+frequency_hz, frequency_standard_uncertainty_hz,
+reference_frequency_hz, frequency_ratio,
+temperature_K, pressure_Pa, drive_amplitude,
+clock_lock_status, external_reference_status,
+quality_flags, raw_record_hash, analysis_version</code></pre><p>CSV and JSON provide accessible tabular and metadata exchange. They shall supplement, not replace, native waveforms, complex scattering data, optical scan geometry, and other records needed for independent reanalysis.</p>
+<h3 id="3-5-open-access-research-modes">3.5 Open-Access Research Modes</h3><div class="table-wrap"><table><thead><tr>
+<th>Mode</th>
+<th>Core Concept</th>
+<th>Technical Specifications</th>
+<th>Cost/Complexity Impact</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead><tbody><tr>
+<td>Training</td>
+<td>Teach calibration, uncertainty, and confound identification</td>
+<td>Synthetic datasets with documented answer keys</td>
+<td>Low operating cost after development</td>
+<td>Reproducible instruction without laboratory access</td>
+<td>Educational outputs cannot substantiate physical claims</td>
+</tr>
+<tr>
+<td>Free-Lab</td>
+<td>Explore apparatus and model parameters</td>
+<td>Parameter sweeps with explicit model assumptions</td>
+<td>Moderate computational demand</td>
+<td>Supports design-space exploration</td>
+<td>Creates risk of post hoc hypothesis selection</td>
+</tr>
+<tr>
+<td>Challenge</td>
+<td>Test blinded analysis performance</td>
+<td>Hidden injected effects, null cases, frozen scoring criteria</td>
+<td>Requires maintained benchmarks</td>
+<td>Tests false-positive control and sensitivity</td>
+<td>Benchmark success does not prove experimental validity</td>
+</tr>
+<tr>
+<td>Peer-Review</td>
+<td>Reproduce and audit experimental analysis</td>
+<td>Read-only raw data, signed manifests, versioned code, review records</td>
+<td>Requires curation and reviewer support</td>
+<td>Enables independent verification</td>
+<td>Review quality remains dependent on expertise and completeness</td>
+</tr>
+</tbody></table></div><h3 id="3-6-software-validation-and-prototype-remediation">3.6 Software Validation and Prototype Remediation</h3><p>The reviewed environmental-noise prototype modifies plotted amplitudes using heuristic temperature and RF terms, yet includes a message asserting that sufficiently low slider settings eliminate artifacts and make any observed difference genuine. That assertion is not justified by the underlying code and must be removed from research-facing software. <a href="https://www.polytec.com/en/vibrometry/products/full-field-vibrometers">polytec</a></p>
+<p>Release qualification shall require:</p>
+<ol>
+<li>Unit-consistent equations and documented parameter sources.</li>
+<li>Known-input recovery tests for frequency fitting.</li>
+<li>Numerical convergence checks.</li>
+<li>Null and injected-effect simulations.</li>
+<li>Empirical comparison with calibrated artifact measurements.</li>
+<li>Removal of unsupported “publication-grade” or “genuine anomaly” classifications.</li>
+<li>Explicit labels for illustrative, validated, and speculative models.</li>
+</ol>
+<h2 id="4-desci-governance-crowdfunding-model">4. DeSci GOVERNANCE &amp; CROWDFUNDING MODEL</h2><h3 id="4-1-governance-sequence">4.1 Governance Sequence</h3><p>The project adopts staged decentralization rather than immediate token-based control.</p>
+<p>The founding packet specifies founder-led legal and financial accountability, nonbinding advisory participation, no founding-phase tokenization, and no promised equity, royalties, or financial returns. Earlier DAO-oriented materials describe broader token and treasury concepts; those concepts are future options, not established project commitments.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Stage</th>
+<th>Governance arrangement</th>
+<th>Funding arrangement</th>
+</tr>
+</thead><tbody><tr>
+<td>Founding</td>
+<td>Accountable legal operator with published charter</td>
+<td>Founder contributions, documented grants, and donation or reward-based funding</td>
+</tr>
+<tr>
+<td>Advisory participation</td>
+<td>Independent scientific reviewers and public proposals</td>
+<td>Restricted milestone funding</td>
+</tr>
+<tr>
+<td>DAO-lite pilot</td>
+<td>Reviewed treasury policy and optional multisignature custody</td>
+<td>Counsel-approved contribution mechanisms</td>
+</tr>
+<tr>
+<td>Formal DAO</td>
+<td>Explicit legal wrapper and adopted governance rules</td>
+<td>Only after legal, security, and operational review</td>
+</tr>
+</tbody></table></div><p>The founding governance review triggers are completion of independent replication, more than 25 active contributors, treasury exceeding $50,000, or passage of 12 months. Transfer of binding authority requires legal review and revised governing documents.</p>
+<h3 id="4-2-decision-rights-and-scientific-independence">4.2 Decision Rights and Scientific Independence</h3><p>The governance system shall separate:</p>
+<ul>
+<li>Legal authority: contracts, custody, compliance, and financial obligations.</li>
+<li>Scientific authority: calibration, protocol suitability, analysis integrity, and interpretation.</li>
+<li>Safety authority: immediate suspension of unsafe operations.</li>
+<li>Community participation: proposals, prioritization, documentation, and advisory review.</li>
+</ul>
+<p>Community voting shall not:</p>
+<ul>
+<li>Alter confirmatory analysis after data collection begins.</li>
+<li>Suppress null or inconclusive results.</li>
+<li>Override an unresolved safety issue.</li>
+<li>Determine whether data establish a physical effect.</li>
+<li>Give donors control over publication.</li>
+</ul>
+<p>These restrictions preserve the founding packet’s commitments to research integrity and disclosure.</p>
+<p>A future multisignature treasury may use established infrastructure such as Safe. Signer selection, thresholds, recovery procedures, spending caps, and any contract modules must be approved and tested before custody begins. The general DeSci plan identifies such tools but does not establish that they are deployed for S.P.H.E.R.E. <a href="https://www.keysight.com/us/en/product/E5080B/e5080b-ena-vector-network-analyzer.html">keysight</a></p>
+<h3 id="4-3-crowdfunding-and-milestone-release">4.3 Crowdfunding and Milestone Release</h3><p>Crowdfunding shall finance specified work packages, not an anticipated discovery.</p>
+<p>Each funding tranche shall identify:</p>
+<ol>
+<li>A bounded scope and acceptance criterion.</li>
+<li>Responsible operators and independent reviewers.</li>
+<li>Written equipment quotations or service agreements.</li>
+<li>Campaign fees and contingency assumptions.</li>
+<li>Publication obligations.</li>
+<li>The disposition of unused funds.</li>
+<li>The procedure for technical failure or schedule revision.</li>
+</ol>
+<p>Acceptable milestones include a reviewed protocol, qualified artifact, measured noise floor, completed blinded dataset, or released replication package. A positive anomaly is not an acceptable condition for payment.</p>
+<p>The founding policy requires written quotes and public changelog notes for equipment purchases above $1,000, quarterly spending summaries, and separation of founder capital from donor funds.</p>
+<h3 id="4-4-immutable-experiment-logging-and-data-hosting">4.4 Immutable Experiment Logging and Data Hosting</h3><p>The proposed provenance system shall use:</p>
+<ol>
+<li>Instrument-native raw records captured locally.</li>
+<li>Append-only storage with retention controls.</li>
+<li>SHA-256 hashes for individual records.</li>
+<li>Signed manifests linking raw records, configurations, calibration identifiers, and acquisition sessions.</li>
+<li>Mirrored public archives.</li>
+<li>Optional blockchain anchoring of manifest hashes and version identifiers.</li>
+</ol>
+<p>A blockchain commitment can make later changes detectable relative to a published hash. It cannot prove that an instrument was calibrated, that a measurement occurred as described, or that the interpretation is correct.</p>
+<p>Large raw datasets shall remain off-chain. IPFS or comparable content-addressed distribution may supplement archival storage, but persistence requires an explicit retention and replication arrangement. The founding packet’s GitHub, OSF, and Zenodo workflow remains the baseline publication pathway.</p>
+<p>Corrections shall create new versions with explanations; they shall not overwrite the original experimental record. Personal and security-sensitive information shall be removed before public release.</p>
+<h3 id="4-5-open-peer-review-protocol">4.5 Open Peer-Review Protocol</h3><p>The review workflow shall comprise:</p>
+<ol>
+<li>Pre-experiment review: at least two independent reviewers and a statistician examine the protocol and qualification evidence.</li>
+<li>Preregistration: freeze hypotheses, mode selection, exclusion rules, primary analysis, significance level, equivalence bounds, and replication requirements.</li>
+<li>Blinded analysis: reviewers or analysts receive coded position labels.</li>
+<li>Reproduction: independent execution of published analysis against raw records.</li>
+<li>Unblinding: release the position key only after the analysis is frozen.</li>
+<li>Public reporting: disclose findings, uncertainty, deviations, funding, and conflicts of interest.</li>
+<li>Independent replication: require external repetition before a positive public claim.</li>
+</ol>
+<p>The founding packet commits to publication within 60 days of unblinding regardless of outcome.</p>
+<p>Default proposed licensing is permissive: MIT or Apache-2.0 for software, CC BY 4.0 for protocols and reports, and CC0 or CC BY 4.0 for datasets. Contributor roles shall be recorded; funding alone shall not confer authorship.</p>
+<h2 id="5-risk-analysis-mitigation">5. RISK ANALYSIS &amp; MITIGATION</h2><h3 id="5-1-ground-truth-and-measurement-risks">5.1 Ground-Truth and Measurement Risks</h3><div class="table-wrap"><table><thead><tr>
+<th>Risk</th>
+<th>Failure mechanism</th>
+<th>Mitigation</th>
+<th>Verification record</th>
+</tr>
+</thead><tbody><tr>
+<td>Thermal drift and gradients</td>
+<td>Different artifact temperatures or thermal coefficients create apparent location dependence</td>
+<td>Characterize both spheres; measure gradients and settling; use ratio analysis</td>
+<td>Thermal calibration dataset and correction uncertainty</td>
+</tr>
+<tr>
+<td>Mounting stress</td>
+<td>Relocation changes support forces or contact geometry</td>
+<td>Repeatable fixtures; sham moves; repeated replacement tests</td>
+<td>At least 20 remove-and-replace trials before confirmation</td>
+</tr>
+<tr>
+<td>Mode misidentification</td>
+<td>Different modes or overlapping peaks are compared</td>
+<td>Optical mode-shape mapping and frozen mode selection</td>
+<td>Mode maps and fit residuals</td>
+</tr>
+<tr>
+<td>Signal and timebase drift</td>
+<td>Reference loss or instrument instability biases estimates</td>
+<td>Shared qualified reference; logged lock and holdover; stationary controls</td>
+<td>Reference-status logs and stability analysis</td>
+</tr>
+<tr>
+<td>Faraday leakage</td>
+<td>Seams, apertures, feedthroughs, or local electronics introduce interference</td>
+<td>Measured shielding response and controlled interference tests</td>
+<td>Frequency-specific leakage records</td>
+</tr>
+<tr>
+<td>Calibration and coupling losses</td>
+<td>Probe transfer response, cable attenuation, and fixture effects obscure or shift fitted features</td>
+<td>Reference-plane calibration, fixture characterization, repeated checks</td>
+<td>Calibration files and uncertainty contribution</td>
+</tr>
+<tr>
+<td>Excitation nonlinearity</td>
+<td>Drive-dependent heating or stiffness changes alter frequency</td>
+<td>Amplitude sweeps and bounded drive conditions</td>
+<td>Frequency-versus-drive characterization</td>
+</tr>
+<tr>
+<td>Optical artifacts</td>
+<td>Poor return, geometry, or windows degrade vibration estimates</td>
+<td>Signal-quality checks and qualified viewing geometry</td>
+<td>Scan quality and optical-path records</td>
+</tr>
+<tr>
+<td>Environmental noise</td>
+<td>Vibration, acoustic disturbance, magnetic variation, or power noise correlates with position</td>
+<td>Continuous logging, isolation, and randomized schedules</td>
+<td>Covariate records and disturbance flags</td>
+</tr>
+<tr>
+<td>Statistical bias</td>
+<td>Multiple searches or exclusions create false positives</td>
+<td>Preregister primary mode and endpoint; separate exploratory analysis</td>
+<td>Frozen analysis plan and deviation log</td>
+</tr>
+<tr>
+<td>Governance interference</td>
+<td>Funders or voters influence reporting</td>
+<td>Binding publication obligations and reviewer independence</td>
+<td>Public governance and conflict disclosures</td>
+</tr>
+<tr>
+<td>Data or treasury compromise</td>
+<td>Lost records, altered files, or unauthorized transfers</td>
+<td>Backups, signed manifests, access controls, reviewed custody</td>
+<td>Integrity checks and financial audit trail</td>
+</tr>
+</tbody></table></div><p>The founding packet identifies environmental control, placement repeatability, stationary stability, blinding, and null tests as prerequisites for interpretable data.</p>
+<h3 id="5-2-uncertainty-budget">5.2 Uncertainty Budget</h3><p>The project shall construct a measurement model linking the reported location contrast to frequency estimates, calibration, environmental corrections, placement effects, and temporal drift.</p>
+<p>For an output <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=g(x_1,\ldots,x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, a linearized uncertainty evaluation takes the form:</p>
+<div class="math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>u</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msup><mrow><mo fence="true">(</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>g</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msub><mi>x</mi><mi>i</mi></msub></mrow></mfrac><mo fence="true">)</mo></mrow><mn>2</mn></msup><msup><mi>u</mi><mn>2</mn></msup><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mn>2</mn><munder><mo>∑</mo><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow></munder><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>g</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msub><mi>x</mi><mi>i</mi></msub></mrow></mfrac><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>g</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msub><mi>x</mi><mi>j</mi></msub></mrow></mfrac><mi mathvariant="normal">cov</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">u_c^2(y)
+=
+\sum_i
+\left(\frac{\partial g}{\partial x_i}\right)^2u^2(x_i)
++
+2\sum_{i&lt;j}
+\frac{\partial g}{\partial x_i}
+\frac{\partial g}{\partial x_j}
+\operatorname{cov}(x_i,x_j).</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9317em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.654em;"><span style="top:-3.9029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.7852em;vertical-align:-1.4138em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mord mathrm" style="margin-right:0.01389em;">cov</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">.</span></span></span></span></span></div><p>Covariance terms matter because the test and reference channels share temperature, timebase, and environmental influences. The model shall be checked for adequacy rather than assume every contribution is independent. GUM guidance provides the reporting framework; measurement-model guidance addresses identification of relevant effects and model adequacy.</p>
+<p>Qualification shall report:</p>
+<ul>
+<li>Frequency-fit uncertainty.</li>
+<li>Thermal-correction uncertainty.</li>
+<li>Placement repeatability.</li>
+<li>Clock and acquisition contributions.</li>
+<li>Probe or optical geometry effects.</li>
+<li>Between-block variability.</li>
+<li>Residual autocorrelation.</li>
+<li>Expanded uncertainty with the stated coverage method.</li>
+</ul>
+<p>The smallest effect of interest shall be frozen only after calibration demonstrates that the planned design can detect it with at least 90% power. The founding protocol does not provide a justified universal ppb detection claim; the laboratory must establish its own qualified sensitivity.</p>
+<h3 id="5-3-loc-1-confirmatory-protocol">5.3 LOC-1 Confirmatory Protocol</h3><p>The initial experiment shall use the founding packet’s same-enclosure two-position design:</p>
+<ul>
+<li>A/B separation: 0.40 m center to center.</li>
+<li>Stationary reference sphere at a third fixed position.</li>
+<li>At least 40 placements per position, giving 80 principal placements.</li>
+<li>Ten blocks of eight placements.</li>
+<li>Randomized, balanced A/B scheduling.</li>
+<li>Default settling time of 30 minutes, extended if qualification requires it.</li>
+<li>Environmental logging at at least 1 Hz.</li>
+<li>Sham moves, rotations, dummy tests, label checks, and reference-only drift segments.</li>
+</ul>
+<p>The confirmatory analysis shall include:</p>
+<ol>
+<li>A two-sided primary test at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>0.01</mn></mrow><annotation encoding="application/x-tex">\alpha=0.01</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.01</span></span></span></span>.</li>
+<li>Preregistered environmental and settling covariates.</li>
+<li>Equivalence testing against ± the smallest effect of interest.</li>
+<li>Explicit treatment of block structure and serial dependence.</li>
+<li>Separate reporting of exploratory and secondary endpoints.</li>
+<li>Independent replication before attributing a surviving signal to a reproducible location-associated effect.</li>
+</ol>
+<p>Repeated samples within a placement are not substitutes for independent placements or experimental blocks.</p>
+<h3 id="5-4-verified-engineering-baseline-versus-speculative-physical-hypotheses">5.4 Verified Engineering Baseline Versus Speculative Physical Hypotheses</h3><div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>Statement</th>
+<th>Evidentiary status</th>
+</tr>
+</thead><tbody><tr>
+<td>Established engineering baseline</td>
+<td>Laser Doppler vibrometry measures surface vibration without attached sensing mass</td>
+<td>Supported instrument capability; project implementation still requires qualification.  <a href="https://www.bipm.org/documents/20126/2071204/JCGM_GUM_6_2020.pdf">bipm</a></td>
+</tr>
+<tr>
+<td>Established engineering baseline</td>
+<td>VNAs measure complex scattering response</td>
+<td>Supported instrument capability; attributing a feature to the sphere requires fixture and coupling tests.  <a href="https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf">bipm</a></td>
+</tr>
+<tr>
+<td>Established engineering baseline</td>
+<td>Rubidium standards provide stable reference signals</td>
+<td>Supported instrument capability; shared timing and holdover behavior require integration tests.</td>
+</tr>
+<tr>
+<td>Proposed project capability</td>
+<td>mK-grade stability and sub-hertz resonance discrimination</td>
+<td>Design objectives, not demonstrated S.P.H.E.R.E. performance.</td>
+</tr>
+<tr>
+<td>Unverified Theory</td>
+<td>Location is an intrinsic frequency variable of matter</td>
+<td>Hypothesis motivating the experiment; not established by the project context.</td>
+</tr>
+<tr>
+<td>Unverified Theory</td>
+<td>A universal threshold occurs above 230 kHz</td>
+<td>Not demonstrated; used only to define the selected test band.</td>
+</tr>
+<tr>
+<td>Out-of-scope conjecture</td>
+<td>Frequency manipulation enables non-kinetic relocation or teleportation</td>
+<td>Excluded from the founding research scope and from claims supported by this protocol.</td>
+</tr>
+</tbody></table></div><p>A reproducible residual would justify further investigation. It would not uniquely identify an intrinsic location variable: conventional explanations, alternative measurement models, and independent apparatus must still be examined.</p>
+<p>A null result would establish a bound for the tested artifact, mode, separation, environment, and sensitivity. It would not refute every possible formulation of an underspecified theory.</p>
+<h3 id="5-5-required-verification-checks-before-deployment">5.5 Required Verification Checks Before Deployment</h3><ol>
+<li>Adopt the founding charter and reconcile conflicting governance, fundraising, and website statements.</li>
+<li>Replace budget estimates with configuration-specific quotations and a nonduplicative operating budget.</li>
+<li>Freeze artifact specifications and validate the selected <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>230</mn><mtext> kHz</mtext></mrow><annotation encoding="application/x-tex">&gt;230\ \text{kHz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">230</span><span class="mspace"> </span><span class="mord text"><span class="mord">kHz</span></span></span></span></span> mode experimentally.</li>
+<li>Qualify excitation compatibility with atmospheric and vacuum operation.</li>
+<li>Demonstrate temperature, placement, shielding, reference, and fitting contributions through measured uncertainty records.</li>
+<li>Remove unsupported scientific classifications from simulator prototypes.</li>
+<li>Obtain independent protocol and statistical review.</li>
+<li>Preregister LOC-1 before confirmatory acquisition.</li>
+<li>Publish raw records, calibration artifacts, analysis code, deviations, and results.</li>
+<li>Complete independent replication before making any positive scientific claim.</li>
+</ol>
+</article><aside class="article-aside" aria-label="On this page"><h2>On this page</h2><a href="#1-executive-summary">1. EXECUTIVE SUMMARY</a><a href="#2-physical-metrology-experimental-lab-architecture">2. PHYSICAL METROLOGY &amp; EXPERIMENTAL LAB ARCHITECTURE</a><a href="#3-s-p-h-e-r-e-simulator-metrology-software">3. S.P.H.E.R.E. SIMULATOR &amp; METROLOGY SOFTWARE</a><a href="#4-desci-governance-crowdfunding-model">4. DeSci GOVERNANCE &amp; CROWDFUNDING MODEL</a><a href="#5-risk-analysis-mitigation">5. RISK ANALYSIS &amp; MITIGATION</a></aside></div>
+</main><footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
+<div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
+<p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p></div>
+<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/research/">Measurement research</a><a href="/whitepaper/">Whitepaper</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a><a href="/vl/">Visual Lab (SPHEREVL)</a></div>
+<div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
+<div><h3>Connect</h3><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/careers/apply/">Apply</a></div>
+</div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
+<p>&copy; 2026 Project S.P.H.E.R.E. Research-page text is offered under CC BY 4.0; third-party materials retain their own terms.</p></div></footer></body></html>

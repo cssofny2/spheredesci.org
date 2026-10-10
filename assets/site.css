@@ -197,3 +197,14 @@ body{background:var(--paper);color:var(--ink)}
 @media(max-width:700px){.vl-table th{width:auto;white-space:normal;display:block;border-bottom:0;padding-bottom:0}.vl-table td{display:block}}
 .article-body ol.vl-days,.article-body ul.vl-commits{list-style:none;padding-left:0;margin-left:0}
 .article-body ol.vl-days>li{padding-left:1.4rem}
+/* Whitepaper page */
+.whitepaper-meta p{color:var(--muted);font-size:.9rem;line-height:1.7;max-width:760px;margin:0 0 .8rem}
+.whitepaper-meta p.page-lede{font-size:var(--text-base)}
+.article-body blockquote{margin:1.5rem 0;padding:1.2rem 1.4rem;background:var(--panel);border-left:3px solid var(--signal);color:var(--muted)}
+.article-body blockquote p:last-child{margin-bottom:0}
+.article-body h4{font-size:1rem;font-weight:600;color:var(--ink);margin:1.2rem 0 .4rem}
+.article-body code.inline-code{font:.88em "JetBrains Mono",monospace;background:var(--code-bg,#0a0f18);border:1px solid var(--line);border-radius:.2rem;padding:.1em .35em}
+.math-display{overflow-x:auto;margin:1.2rem 0;padding:.4rem 0}
+.article-body .katex{color:var(--ink);font-size:1.05em}
+.article-body .vl-code{white-space:pre}
+.article-body pre.vl-code code{font:inherit}
