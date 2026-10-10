@@ -1,0 +1,102 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["ResearchOrganization", "FundingScheme"],
+      "@id": "https://spheredesci.org/#organization",
+      "name": "Project S.P.H.E.R.E.",
+      "alternateName": [
+        "S.P.H.E.R.E. DeSci",
+        "Spatial Positioning Harmonic Empirical Resonance Experiment"
+      ],
+      "url": "https://spheredesci.org",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://spheredesci.org/assets/logo.png",
+        "caption": "Project S.P.H.E.R.E. Logo"
+      },
+      "description": "An open-science DeSci research protocol and high-precision metrology lab infrastructure investigating coordinate-linked high-frequency harmonic signatures (>230 kHz) on hollow copper spheres.",
+      "knowsAbout": [
+        "Metrology",
+        "Laser Doppler Vibrometry",
+        "Harmonic Resonance",
+        "DeSci",
+        "Decentralized Science",
+        "Acoustic Levitation",
+        "Vector Network Analysis",
+        "Ultra-High Vacuum Metrology"
+      ],
+      "location": {
+        "@type": "Place",
+        "@id": "https://spheredesci.org/#facility",
+        "name": "Project S.P.H.E.R.E. Metrology Laboratory Facility",
+        "description": "Controlled thermal-vacuum, vibration-isolated, and RF-shielded metrology environment equipped for 3D SLDV and high-frequency acoustic analysis."
+      },
+      "sameAs": [
+        "https://github.com/cssnewyork/spheredesci",
+        "https://x.com/spheredesci"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://spheredesci.org/#website",
+      "url": "https://spheredesci.org",
+      "name": "Project S.P.H.E.R.E. | DeSci & High-Precision Metrology Protocol",
+      "description": "Official portal and open research repository for Project S.P.H.E.R.E. (Spatial Positioning Harmonic  Resonance Experiment).",
+      "publisher": {
+        "@id": "https://spheredesci.org/#organization"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "ResearchProject",
+      "@id": "https://spheredesci.org/#project",
+      "name": "Spatial Positioning Harmonic Empirical Resonance Experiment",
+      "alternateName": "Project S.P.H.E.R.E.",
+      "url": "https://spheredesci.org",
+      "description": "An empirical research program designed to test the locational variable hypothesis by measuring coordinate-linked acoustic and RF harmonic signatures on high-purity hollow copper spheres above 230 kHz.",
+      "parentOrganization": {
+        "@id": "https://spheredesci.org/#organization"
+      },
+      "keywords": "DeSci, 3D SLDV, Metrology, Spatial Positioning, Harmonic Resonance, Hollow Copper Sphere, >230 kHz, Open Science",
+      "funder": {
+        "@id": "https://spheredesci.org/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://spheredesci.org/#faq",
+      "isPartOf": {
+        "@id": "https://spheredesci.org/#website"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Project S.P.H.E.R.E.?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Project S.P.H.E.R.E. (Spatial Positioning Harmonic Empirical Resonance Experiment) is an open-science DeSci initiative testing coordinate-linked acoustic and RF resonance signatures above 230 kHz on ultra-pure hollow copper spheres using high-precision metrology."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What equipment is used in the S.P.H.E.R.E. metrology setup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The core experimental stack consists of a 3D Scanning Laser Doppler Vibrometer (3D SLDV), high-frequency Vector Network Analyzers (VNAs), Faraday shielding, a thermal-vacuum chamber, and an atomic Rubidium frequency clock reference."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Decentralized Science (DeSci) power Project S.P.H.E.R.E.?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Project S.P.H.E.R.E. leverages DeSci principles to make raw vibrometry data, telemetry logs, mathematical models, and funding milestones fully transparent and accessible on-chain and open-source."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
