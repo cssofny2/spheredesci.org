@@ -1,0 +1,1 @@
+{"updated": "2026-10-09", "note": "Add events here, then run tools/build-directory.py. Fields: title, start (YYYY-MM-DDTHH:MM, America/New_York), end (optional), all_day (optional), type (project|external), location, url, description.", "events": []}

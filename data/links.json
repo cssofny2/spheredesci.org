@@ -1,0 +1,49 @@
+{
+  "updated": "2026-10-09",
+  "note": "Entries without a \"url\" are skipped by tools/build-directory.py. Add the URL and rerun the tool to publish an entry.",
+  "groups": [
+    {
+      "id": "project",
+      "title": "Project S.P.H.E.R.E.",
+      "intro": "Primary project channels.",
+      "items": [
+        {"name": "Website", "url": "https://spheredesci.org/", "desc": "Research pages, protocol drafts and project updates.", "internal": true},
+        {"name": "GitHub", "url": "https://github.com/cssofny2/spheredesci.org", "desc": "Public source repository and change history for this website. Issues are public."},
+        {"name": "Email", "url": "mailto:contact@spheredesci.org", "label": "contact@spheredesci.org", "desc": "General inquiries, review offers and privacy requests."},
+        {"name": "Newsletter", "url": "/newsletter/", "desc": "Subscribe, opt out, and read every issue.", "internal": true},
+        {"name": "Calendar", "url": "/calendar/", "desc": "Upcoming events and dates.", "internal": true}
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Social media profiles",
+      "intro": "Official profiles. Posts are not research findings.",
+      "items": [
+        {"name": "LinkedIn company page", "url": "", "desc": ""},
+        {"name": "YouTube", "url": "", "desc": ""},
+        {"name": "X (x.com)", "url": "", "desc": ""},
+        {"name": "Facebook company page", "url": "", "desc": ""},
+        {"name": "Instagram", "url": "", "desc": ""},
+        {"name": "TikTok", "url": "", "desc": ""}
+      ]
+    },
+    {
+      "id": "related",
+      "title": "Founder and related business pages",
+      "intro": "Operated separately from Project S.P.H.E.R.E. A listing here is not an endorsement, partnership or statement of shared ownership.",
+      "items": [
+        {"name": "Michael P. Goodman", "url": "https://michaelpgoodman.com", "desc": "Founder's personal and professional website."},
+        {"name": "Better Business Bureau (BBB) profile", "url": "", "desc": ""},
+        {"name": "Brilliant Repairs", "url": "", "desc": ""}
+      ]
+    },
+    {
+      "id": "documents",
+      "title": "Documents",
+      "intro": "Agreements and forms.",
+      "items": [
+        {"name": "Confidentiality agreement", "url": "", "desc": ""}
+      ]
+    }
+  ]
+}
