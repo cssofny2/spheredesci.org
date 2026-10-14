@@ -3,3 +3,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000
   Cross-Origin-Opener-Policy: same-origin
+
+/
+  Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
+  Link: </calendar.ics>; rel="alternate"; type="text/calendar"; title="Project S.P.H.E.R.E. events"
