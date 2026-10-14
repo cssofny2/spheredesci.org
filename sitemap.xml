@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://spheredesci.org/</loc><lastmod>2026-10-09</lastmod></url>
-<url><loc>https://spheredesci.org/about/</loc><lastmod>2026-10-02</lastmod></url>
+<url><loc>https://spheredesci.org/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/about/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://spheredesci.org/charter/</loc><lastmod>2026-10-02</lastmod></url>
 <url><loc>https://spheredesci.org/whitepaper/</loc><lastmod>2026-10-10</lastmod></url>
 <url><loc>https://spheredesci.org/protocol/</loc><lastmod>2026-10-09</lastmod></url>
@@ -28,4 +28,17 @@
 <url><loc>https://spheredesci.org/newsletter/</loc><lastmod>2026-10-09</lastmod></url>
 <url><loc>https://spheredesci.org/newsletter/2026-10-issue-1/</loc><lastmod>2026-10-09</lastmod></url>
 <url><loc>https://spheredesci.org/resources/equipment/</loc><lastmod>2026-10-09</lastmod></url>
+<url><loc>https://spheredesci.org/learn/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/what-is-desci/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/open-science-explained/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/preregistration-explained/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/replication-crisis-reproducibility/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/publishing-null-results/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/what-is-resonant-frequency/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/vibration-modes-of-a-sphere/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/laser-doppler-vibrometry-basics/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/blinding-in-physics-experiments/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/measurement-uncertainty-and-metrology/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/how-to-fund-independent-research/</loc><lastmod>2026-10-14</lastmod></url>
+<url><loc>https://spheredesci.org/learn/digital-twin-simulation-in-physics/</loc><lastmod>2026-10-14</lastmod></url>
 </urlset>

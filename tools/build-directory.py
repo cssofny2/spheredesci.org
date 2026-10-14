@@ -29,7 +29,7 @@ def load(name): return json.loads((ROOT / "data" / name).read_text(encoding="utf
 def tag(label, iso): return f'<span class="new-tag">{label} &middot; {human(iso)}</span>'
 
 
-NAV_MORE = [("/research/", "Measurement research", "research"), ("/calendar/", "Calendar", "calendar"),
+NAV_MORE = [("/research/", "Measurement research", "research"), ("/learn/", "Learn", "learn"), ("/calendar/", "Calendar", "calendar"),
             ("/newsletter/", "Newsletter", "newsletter"), ("/directory/", "Directory", "directory"),
             ("/links/", "Links &amp; profiles", "links"), ("/careers/", "Careers", "careers"),
             ("/charter/", "Research charter", None), ("/collaborate/", "Collaborate", "collaborate"),
@@ -57,7 +57,7 @@ def nav(current):
 FOOTER = '''<footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
 <div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
 <p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p></div>
-<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/research/">Measurement research</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a><a href="/vl/">Visual Lab (SPHEREVL)</a></div>
+<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/research/">Measurement research</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a><a href="/learn/">Learn</a><a href="/vl/">Visual Lab (SPHEREVL)</a></div>
 <div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
 <div><h3>Connect</h3><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/careers/apply/">Apply</a></div>
 </div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
