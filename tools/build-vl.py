@@ -215,7 +215,7 @@ def build():
     authors = ", ".join(f'{esc(a)} ({n})' for a, n in snap["authors"].items())
 
     body = f'''
-<div class="vl-hero"><img src="/assets/vl/vl-banner.svg" width="1200" height="360" alt="Illustration of a cutaway hollow copper sphere on a scan grid inside a wireframe vacuum chamber, with a laser beam and a modeled resonance dip" decoding="async">
+<div class="vl-hero"><img src="/assets/vl/vl-banner.svg" width="1200" height="360" alt="Illustration of a cutaway copper sphere on a scan grid in a vacuum chamber, with a laser beam" decoding="async">
 <div class="vl-hero-copy"><p>SPHEREVL is the visual lab brand of Project S.P.H.E.R.E. Its first experience, the <strong>S.P.H.E.R.E. Control Room</strong>, is a browser-based metrology laboratory simulator: a thermal-vacuum chamber, a Rubidium frequency reference, a vector network analyzer, a laser Doppler vibrometer and a scan planner you can operate, break and troubleshoot.</p>
 <p><a class="vl-btn" href="{LAB_URL}">Launch the Control Room</a> <a class="vl-btn alt" href="#gallery">See it first</a> <a class="vl-btn alt" href="{REPO_URL}">View source on GitHub</a></p></div></div>
 <aside class="vl-callout"><strong>Educational simulation, not physical measurements.</strong> Modeled results are not scientific validation and are not evidence for or against the locational-variable hypothesis. No physical equipment is connected.</aside>
@@ -279,7 +279,7 @@ npm run build    # type-check and production build</code></pre>
            ("run", "Run it yourself"), ("faq", "Questions and answers")]
     ld = {"@type": "WebPage", "about": {"@type": "SoftwareSourceCode", "name": "S.P.H.E.R.E. Control Room", "codeRepository": REPO_URL,
           "programmingLanguage": ["TypeScript", "TSX"], "runtimePlatform": "Web browser"}}
-    html = bd.page("/vl/", "SPHEREVL: S.P.H.E.R.E. visual lab and Control Room",
+    html = bd.page("/vl/", "SPHEREVL: visual lab and Control Room",
                    "SPHEREVL is S.P.H.E.R.E.'s visual lab: a metrology simulator with screenshots, history and limitations. Educational simulation, not measurements.",
                    "SPHEREVL, the visual lab",
                    "An interactive, educational simulator of the S.P.H.E.R.E. measurement laboratory, with the repository facts and development history behind it.",
