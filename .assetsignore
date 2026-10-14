@@ -15,3 +15,5 @@ tailwind.config.cjs
 data
 content
 schema.json
+AGENTS.md
+CLAUDE.md
