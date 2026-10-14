@@ -186,7 +186,7 @@ def build_directory():
             f'To request a listing, a correction or removal, email <a href="mailto:{MAIL}">{MAIL}</a> from the address you want associated with the entry. '
             'Personal phone numbers and home addresses are not published. See the <a href="/privacy/">privacy notice</a>.</p>')
     toc = [("active", "Active parties"), ("roles", "Open and planned roles"), ("listing", "Listing and removal")]
-    write("/directory/", page("/directory/", "Company directory: active parties and information",
+    write("/directory/", page("/directory/", "Company directory: active parties",
         "Directory of active S.P.H.E.R.E. parties with role, professional background and contact route, listed with permission.",
         "Who is involved, and how to reach them.",
         "Active parties, their roles, professional background and contact route. Listed only with permission.",
@@ -305,7 +305,7 @@ def build_newsletter():
     script = ('<script>(function(){var p=new URLSearchParams(location.search),m={subscribed:"Thanks. Your subscription request was sent. A copy was emailed to you.",'
               'optout:"Your opt-out request was sent. A copy was emailed to you."},s=document.getElementById("nl-status");'
               'for(var k in m){if(p.get(k)==="1"){s.textContent=m[k];s.hidden=false;}}})();</script>')
-    write("/newsletter/", page("/newsletter/", "Newsletter: subscribe, opt out, read every issue",
+    write("/newsletter/", page("/newsletter/", "Newsletter: subscribe, opt out, read issues",
         "Subscribe to or opt out of the S.P.H.E.R.E. newsletter, read the latest issue and browse the full archive.",
         "The newsletter, with every issue kept.",
         "Read the latest issue, browse the archive, subscribe, or opt out at any time.",
@@ -396,7 +396,7 @@ def build_apply():
               'if(x.size>5*1024*1024){r.setCustomValidity("File is larger than 5 MB.");m.textContent="That file is larger than 5 MB. Please compress it.";return false;}return true;}'
               'r.addEventListener("change",check);f.addEventListener("submit",function(e){if(!check()||!f.checkValidity())return;setTimeout(function(){b.disabled=true;b.textContent="Submitting\\u2026";},0);});'
               'if(new URLSearchParams(location.search).get("submitted")==="1"){document.getElementById("apply-done").hidden=false;f.hidden=true;}})();</script>')
-    write("/careers/apply/", page("/careers/apply/", "Candidate application: details, references, résumé",
+    write("/careers/apply/", page("/careers/apply/", "Candidate application: details and résumé",
         "Apply to Project S.P.H.E.R.E.: submit professional background, accomplishments, references and a résumé. Proposal stage; not a job offer.",
         "Tell us what you have built.",
         "Share your professional background, accomplishments, references and résumé. Roles are contingent on funding and nothing here is a job offer.",

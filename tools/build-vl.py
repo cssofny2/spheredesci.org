@@ -279,7 +279,7 @@ npm run build    # type-check and production build</code></pre>
            ("run", "Run it yourself"), ("faq", "Questions and answers")]
     ld = {"@type": "WebPage", "about": {"@type": "SoftwareSourceCode", "name": "S.P.H.E.R.E. Control Room", "codeRepository": REPO_URL,
           "programmingLanguage": ["TypeScript", "TSX"], "runtimePlatform": "Web browser"}}
-    html = bd.page("/vl/", "SPHEREVL: S.P.H.E.R.E. visual lab and Control Room",
+    html = bd.page("/vl/", "SPHEREVL: visual lab and Control Room",
                    "SPHEREVL is S.P.H.E.R.E.'s visual lab: a metrology simulator with screenshots, history and limitations. Educational simulation, not measurements.",
                    "SPHEREVL, the visual lab",
                    "An interactive, educational simulator of the S.P.H.E.R.E. measurement laboratory, with the repository facts and development history behind it.",
