@@ -161,9 +161,9 @@ def timeline(snap):
             subj = re.sub(r"\s*\(#(\d+)\)$", "", c["subject"])
             pr = re.search(r"\(#(\d+)\)$", c["subject"])
             note = commit_note(c["subject"])
-            prl = f' <a class="vl-pr" href="{REPO_URL}/pull/{pr.group(1)}">PR&nbsp;#{pr.group(1)}</a>' if pr else ""
+            prl = f' <span class="vl-pr">PR&nbsp;#{pr.group(1)}</span>' if pr else ""
             who = "" if c["author"] == "Michael P Goodman" else f' <span class="vl-by">by {esc(c["author"])}</span>'
-            out += (f'<li><a href="{REPO_URL}/commit/{c["sha"]}"><code>{c["sha"][:7]}</code></a> <strong>{esc(subj)}</strong>{prl}{who}'
+            out += (f'<li><code>{c["sha"][:7]}</code> <strong>{esc(subj)}</strong>{prl}{who}'
                     + (f'<br><span class="vl-note">{note}</span>' if note else "") + "</li>")
         out += "</ul></li>"
     return f'<ol class="vl-days">{out}</ol>'
@@ -221,7 +221,7 @@ def build():
 <aside class="vl-callout"><strong>Educational simulation, not physical measurements.</strong> Modeled results are not scientific validation and are not evidence for or against the locational-variable hypothesis. No physical equipment is connected.</aside>
 
 <section id="snapshot"><h2>Repository at a glance</h2>
-<p>Facts below are read from the public repository <a href="{REPO_URL}">{snap["repo"]}</a> at <code>main</code> commit <a href="{REPO_URL}/commit/{snap["head"]}"><code>{snap["head_short"]}</code></a> ({human(snap["head_date"])}). Live figures such as stars, forks and open issues change continuously and are therefore shown on GitHub rather than copied here.</p>
+<p>Facts below are read from the public repository <a href="{REPO_URL}">{snap["repo"]}</a> at <code>main</code> commit <code>{snap["head_short"]}</code> ({human(snap["head_date"])}). Live figures such as stars, forks and open issues change continuously and are therefore shown on GitHub rather than copied here.</p>
 <div class="vl-stats">{stats}</div>
 <table class="vl-table"><caption class="sr-only">Technology and delivery facts</caption><tbody>{stack}
 <tr><th scope=row>Commit authors</th><td>{authors}. {snap["claude_coauthored"]} of {snap["commit_total"]} commits (maintenance work on October 8) carry a Claude co-author trailer.</td></tr>
@@ -246,7 +246,7 @@ def build():
 <li><strong>Performance and hygiene.</strong> React and charts are split into separate vendor chunks; dependencies are pinned to locked versions; Tailwind&nbsp;4 cleared the reported npm audit advisories.</li></ul></section>
 
 <section id="history"><h2>Development history</h2>
-<p>Every non-merge commit on <code>main</code> from {human(first)} through {human(last)} ({len(snap["commits"])} commits; {snap["merge_commits"]} further merge commits omitted). Dates are America/New_York local dates. Generic upload messages are not treated as documented feature releases.</p>
+<p>Every non-merge commit on <code>main</code> from {human(first)} through {human(last)} ({len(snap["commits"])} commits; {snap["merge_commits"]} further merge commits omitted). Dates are America/New_York local dates. Generic upload messages are not treated as documented feature releases. Commit and pull-request numbers are shown as plain text; the repository lists them all.</p>
 {timeline(snap)}
 <p><a href="{REPO_URL}/commits/main/">See all commits on GitHub</a></p></section>
 
