@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://spheredesci.org/</loc><lastmod>2026-10-14</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://spheredesci.org/</loc><lastmod>2026-10-14</lastmod><video:video><video:thumbnail_loc>https://spheredesci.org/assets/video/locational-variable-explainer-v2-poster.jpg</video:thumbnail_loc><video:title>Locational variable: testing if space is a frequency</video:title><video:description>A short animated explainer of the locational-variable question behind Project S.P.H.E.R.E.: whether an object&apos;s resonant frequency would differ between two positions. Educational overview; the project has no results yet.</video:description><video:content_loc>https://spheredesci.org/assets/video/locational-variable-explainer-v2.mp4</video:content_loc><video:duration>48</video:duration><video:publication_date>2026-10-14</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video></url>
 <url><loc>https://spheredesci.org/about/</loc><lastmod>2026-10-14</lastmod></url>
 <url><loc>https://spheredesci.org/charter/</loc><lastmod>2026-10-02</lastmod></url>
 <url><loc>https://spheredesci.org/whitepaper/</loc><lastmod>2026-10-10</lastmod></url>
