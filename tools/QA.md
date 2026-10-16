@@ -58,3 +58,10 @@ submitted during QA because it would send an external email.
 - Test the API against local D1 (`npx wrangler dev`), not production: one ballot per voter per item (second attempt returns 409), ratings outside 1 to 10 and comments with links are rejected, cross-origin POSTs return 403, and the sanitizer strips script, style, event handler and image tags from remix SVG.
 - On a preview URL, vote from one browser only on throwaway items and delete the test rows from D1 afterwards (preview deployments share the production database).
 - Keep the "informal community poll, not research" notice on the vote pages.
+
+## Added 2026-10-16: /resources/hollow-copper-sphere/
+
+- Hand-written page; edit the HTML directly. Images are in `assets/hollow-copper-sphere/` (two SVG figures and a 1200x630 PNG for Open Graph).
+- Verify one H1, title of 60 characters or fewer, description of 140 to 160 characters, canonical URL, parseable JSON-LD (TechArticle, ImageObject, BreadcrumbList, FAQPage), alt text of 125 characters or fewer, and a sitemap entry with image entries.
+- Verify the FAQ answers in the JSON-LD match the visible FAQ text, tables scroll inside `.table-wrap` at 390 px, and no horizontal page scroll occurs.
+- Keep the proposal-stage notice. The dimensions are provisional (whitepaper section 2.1) and the cost is an unquoted planning range, not a quote or a budget line.
