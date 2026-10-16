@@ -89,7 +89,7 @@
     var inner = it.lay === 'stack' ? ic + wm + '<div class="tg">' + TAG + '</div>' : it.lay === 'hz' ? ic + '<div>' + wm + '<div class="tg">' + TAG + '</div></div>' : ic;
     return '<div class="vt vt-' + it.th + ' ' + it.lay + '" role="img" aria-label="' + esc(it.name) + ' remix">' + inner + '</div>';
   }
-  function thumb(it) { return it.kind === 'seed' ? '<img src="' + esc(it.img) + '" alt="" loading="lazy" width="88" height="88">' : lockup(it); }
+  function thumb(it) { return it.kind === 'seed' ? '<img src="' + esc(it.img) + '" alt="" loading="lazy" width="132" height="88">' : lockup(it); }
 
   /* ---------- ballot ---------- */
   function canVote() { return S.ready && !S.error; }
@@ -235,7 +235,7 @@
     var s = seedBy[id]; if (!s) return Promise.reject(new Error('Unknown logo.'));
     if (baseCache[id]) return Promise.resolve(baseCache[id]);
     return fetch(s.img).then(function (r) { return r.text(); }).then(function (t) {
-      var m = t.match(/<g id="mark" class="ic">([\s\S]*)<\/g><\/svg>\s*$/); if (!m) throw new Error('This concept cannot be remixed.');
+      var m = t.match(/<g id="mark"[^>]*>([\s\S]*?)<\/g><g id="type">/); if (!m) throw new Error('This concept cannot be remixed.');
       return (baseCache[id] = m[1]);
     });
   }

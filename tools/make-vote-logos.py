@@ -22,14 +22,9 @@ GRADIENTS = {
     "cu": '<linearGradient id="cu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2b27c"/><stop offset=".5" stop-color="#b8651f"/><stop offset="1" stop-color="#6a3512"/></linearGradient>',
     "orb": '<radialGradient id="orb" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffd9b0"/><stop offset=".35" stop-color="#d2812f"/><stop offset=".75" stop-color="#8a4413"/><stop offset="1" stop-color="#4a230a"/></radialGradient>',
 }
-# Geometric stroke letters (12 x 20 boxes) for the type-only Pulse Wordmark, which has no icon mark.
-LETTERS = {
-    "S": "M10 5C10 0 2 0 2 5C2 10.5 10 9.5 10 15C10 20.5 2 20.5 2 15",
-    "P": "M2 20V2H7C11.5 2 11.5 11 7 11H2",
-    "H": "M2 2V20M10 2V20M2 11H10",
-    "E": "M10 2H2V20H10M2 11H8",
-    "R": "M2 20V2H7C11.5 2 11.5 11 7 11H2M7 11L10 20",
-}
+# Canvas for every standalone logo file: 3:2, so stacked, side-by-side and icon-only lockups all fit.
+CW, CH, PAD, MAX_SCALE = 480, 320, 28, 1.25
+TYPE = ROOT / "data/vote/logo-concepts-type.json"
 
 def slugify(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
@@ -38,35 +33,47 @@ def slugify(s):
 def esc(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
-def svg_file(item, inner, theme):
+def lockup_svg(item, inner, theme, lk, sig_d=None):
+    """One standalone lockup: mark + wordmark + tagline, laid out as measured in the source logo rounds.
+
+    lk (from logo-concepts-type.json): w/h of the lockup box, ic = [x, y, size] of the mark inside it,
+    runs = outlined text paths (Space Grotesk, Chakra Petch, Sora or IBM Plex Mono, all SIL OFL),
+    dots = [cx, cy, r] accent dots, sig = [x, y, w, h] of the signal line. Text is outlined so it renders
+    identically inside <img> tags, where web fonts cannot load.
+    """
     bg, fg, ac, _ = THEMES[theme]
+    inner = inner or ""
     defs = "".join(g for k, g in GRADIENTS.items() if f"url(#{k})" in inner)
+    s = min(MAX_SCALE, (CW - 2 * PAD) / lk["w"], (CH - 2 * PAD) / lk["h"])
+    tx, ty = (CW - lk["w"] * s) / 2, (CH - lk["h"] * s) / 2
     css = (f"svg{{--bg:{bg};--fg:{fg};--ac:{ac}}}.bg{{fill:{bg}}}"
            f".ic{{fill:none;stroke:{fg};stroke-width:3;stroke-linecap:round;stroke-linejoin:round;color:{fg}}}"
-           f".a{{stroke:{ac}}}.af{{fill:{ac};stroke:none}}.nf{{fill:{fg};stroke:none}}.hb{{fill:{bg};stroke:none}}")
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 160 160" width="320" height="320" role="img">'
-            f'<title>{esc(item["name"])} logo concept</title><desc>{esc(item["note"])}</desc>'
+           f".a{{stroke:{ac}}}.af{{fill:{ac};stroke:none}}.nf{{fill:{fg};stroke:none}}.hb{{fill:{bg};stroke:none}}"
+           f".wm{{fill:{fg}}}.tg{{fill:{fg};fill-opacity:.9}}"
+           f".sig{{fill:none;stroke:{ac};stroke-width:2;stroke-linecap:round}}")
+    g = ""
+    if "ic" in lk:
+        x, y, w = lk["ic"]
+        g += f'<g id="mark" class="ic" transform="translate({x:g} {y:g}) scale({w / 120:.5f})">{inner}</g>'
+    g += '<g id="type">'
+    for r in lk["runs"]:
+        g += f'<path class="{r["k"]}" d="{r["d"]}"/>'
+    for cx, cy, rr in lk["dots"]:
+        g += f'<circle class="af" cx="{cx:g}" cy="{cy:g}" r="{rr:g}"/>'
+    if "sig" in lk:
+        x, y, w, h = lk["sig"]
+        g += f'<path class="sig" transform="translate({x:g} {y:g}) scale({w / 380:.5f} {h / 44:.5f})" d="{sig_d}"/>'
+    g += "</g>"
+    words = "S.P.H.E.R.E. wordmark" if lk["runs"] else "icon only"
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CW} {CH}" width="{CW}" height="{CH}" role="img">'
+            f'<title>{esc(item["name"])} logo concept</title><desc>{esc(item["note"])} Lockup: {words}.</desc>'
             f'<style>{css}</style>{"<defs>" + defs + "</defs>" if defs else ""}'
-            f'<rect class="bg" x="-20" y="-20" width="160" height="160"/><g id="mark" class="ic">{inner}</g></svg>\n')
-
-def pulse_svg(item, sig_d):
-    bg, fg, ac, _ = THEMES[item["th"]]
-    x = 0
-    parts = []
-    for ch in "SPHERE":
-        parts.append(f'<path transform="translate({x} 34)" d="{LETTERS[ch]}"/>')
-        parts.append(f'<circle class="af" cx="{x + 15}" cy="52" r="1.8"/>')
-        x += 20
-    css = (f".bg{{fill:{bg}}}.t{{fill:none;stroke:{fg};stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}}"
-           f".af{{fill:{ac};stroke:none}}.sig{{fill:none;stroke:{ac};stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}}")
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 160 160" width="320" height="320" role="img">'
-            f'<title>{esc(item["name"])} logo concept</title><desc>{esc(item["note"])}</desc><style>{css}</style>'
-            '<rect class="bg" x="-20" y="-20" width="160" height="160"/>'
-            f'<g class="t">{"".join(parts)}</g>'
-            f'<path class="sig" transform="translate(0 66) scale(.316 .8)" d="{sig_d}"/></svg>\n')
+            f'<rect class="bg" width="{CW}" height="{CH}"/>'
+            f'<g transform="translate({tx:.2f} {ty:.2f}) scale({s:.4f})">{g}</g></svg>\n')
 
 def main():
     src = json.loads(SRC.read_text())
+    type_data = json.loads(TYPE.read_text())
     OUT.mkdir(parents=True, exist_ok=True)
     for old in OUT.glob("*.svg"):
         old.unlink()
@@ -76,11 +83,8 @@ def main():
         assert slug not in seen, slug
         seen.add(slug)
         m = re.search(r'<svg class="ic"[^>]*>([\s\S]*?)</svg>', s["html"])
-        if m:
-            svg = svg_file(s, m.group(1), s["th"])
-        else:
-            sig = re.search(r'<path d="(M0 22[^"]+)"', s["html"]).group(1)
-            svg = pulse_svg(s, sig)
+        sig = re.search(r'<path d="(M0 22[^"]+)"', s["html"]) if not m else None
+        svg = lockup_svg(s, m.group(1) if m else "", s["th"], type_data[s["id"]], sig.group(1) if sig else None)
         (OUT / f"{slug}.svg").write_text(svg)
         items.append({
             "id": s["id"], "slug": slug, "name": s["name"], "set": s["set"], "group": s["group"],

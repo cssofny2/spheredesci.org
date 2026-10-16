@@ -49,12 +49,12 @@ def project_page(p, items):
             alt = f"{it['name']} logo concept for Project S.P.H.E.R.E.: {it['note'].rstrip('.')}."
             body += (f'<figure class="vote-item" id="{it["slug"]}" data-item="{it["id"]}" data-name="{esc(it["name"])}" data-img="{img}" data-remix="{1 if it["remix"] else 0}">'
                      f'<a class="vote-img" href="{img}" aria-label="Open {esc(it["name"])} as an SVG file">'
-                     f'<img src="{img}" alt="{esc(alt)}" width="320" height="320" loading="{"eager" if pos <= 4 else "lazy"}" decoding="async"></a>'
+                     f'<img src="{img}" alt="{esc(alt)}" width="480" height="320" loading="{"eager" if pos <= 4 else "lazy"}" decoding="async"></a>'
                      f'<figcaption><h3><a href="{base}#{it["slug"]}">{esc(it["name"])}</a></h3><p>{esc(it["note"])}</p></figcaption></figure>')
             ld_items.append({"@type": "ListItem", "position": pos, "item": {
                 "@type": "ImageObject", "@id": f"{url}#{it['slug']}-image", "name": f"{it['name']} logo concept",
                 "description": alt, "url": f"{url}#{it['slug']}", "contentUrl": SITE + img, "thumbnailUrl": SITE + img,
-                "encodingFormat": "image/svg+xml", "width": 320, "height": 320, "creator": {"@id": ORG["@id"]},
+                "encodingFormat": "image/svg+xml", "width": 480, "height": 320, "creator": {"@id": ORG["@id"]},
                 "isPartOf": {"@id": url + "#webpage"}}})
             sm_images.append((SITE + img, f"{it['name']} logo concept", alt))
         body += "</div></section>"
