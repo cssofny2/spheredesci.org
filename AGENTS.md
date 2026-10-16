@@ -10,7 +10,8 @@ The public website of **Project S.P.H.E.R.E.** (Spatial Positioning Harmonic
 Empirical Resonance Experiment), served at https://spheredesci.org.
 
 - Plain static HTML: one `index.html` per route (`/about/` → `about/index.html`).
-  There is no framework, bundler or `package.json`.
+  There is no framework, bundler or `package.json`. The one dynamic part is the voting API
+  (`worker/`, Cloudflare Worker + D1 database `spheredesci-vote`), which only handles `/api/*`.
 - Served by Cloudflare (Workers static assets, `wrangler.jsonc`) straight from the
   repository root: **every file not listed in `.assetsignore` is published**.
 - Pushing to `main` deploys to production automatically. Every pull request gets a
@@ -67,6 +68,8 @@ This is a pre-launch research project. Copy must stay honest about that.
 | `assets/vl/` link art | generated | `python3 tools/make-vl-art.py` |
 | `/whitepaper/` | `content/whitepaper.mdx` (uses `protocol/index.html` as its template) | `npm i --no-save katex@0.16.11 marked@12 && node tools/build-whitepaper.mjs` |
 | `assets/tailwind.css` | `styles.input.css`, `tailwind.config.cjs` | `npx --yes tailwindcss@3.4.17 -c tailwind.config.cjs -i styles.input.css -o assets/tailwind.css --minify` |
+| `/vote/`, `/vote/<project>/`, `worker/projects.js`, sitemap vote entries | `data/vote/projects.json`, `data/vote/<items>.json` | `python3 tools/make-vote-logos.py && python3 tools/build-vote.py` |
+| `assets/vote/logo-concepts/*.svg` | `data/vote/logo-concepts-source.json` | `python3 tools/make-vote-logos.py` |
 | Everything else (`index.html`, `/about/`, `/protocol/`, `/research/…`, etc.) | the HTML file itself | edit directly |
 
 Notes:
