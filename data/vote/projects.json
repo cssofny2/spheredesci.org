@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "logo-concepts",
+    "title": "Vote on the S.P.H.E.R.E. logo concepts",
+    "short": "Logo concepts",
+    "description": "Keep or drop, rate 1 to 10 and comment on 109 logo concepts for Project S.P.H.E.R.E., or remix one with an AI prompt and add it to the pool.",
+    "hub_blurb": "109 logo concepts from six design rounds. Keep or drop each one, rate it 1 to 10, leave a note, or remix a mark with a text prompt and enter it into the vote.",
+    "label": "Brand",
+    "items": "logo-concepts.json",
+    "image": "/assets/vote/logo-concepts-og.png",
+    "remix": true,
+    "added": "2026-10-16",
+    "sets": [
+      ["Concepts", "round-one", "Round one", "Eighteen broad directions: standing waves, Chladni patterns, copper shells, scan lines and a type-only wordmark."],
+      ["Round Two", "round-two", "Round two", "Halftone spheres, open networks and interference patterns."],
+      ["Round Three", "round-three", "Round three", "Constellation and triangulated-mesh variations."],
+      ["Fresh Set", "fresh-set", "Fresh set", "Apparatus, geometry and phase-and-motion ideas drawn from the lab equipment."],
+      ["Hybrids", "hybrids", "Hybrids", "Combinations of the earlier favorites, including iris and mesh forms."],
+      ["Set Seven", "set-seven", "Set seven", "Wave-dot fields, faceted forms and multi-sphere arrangements."]
+    ]
+  }
+]

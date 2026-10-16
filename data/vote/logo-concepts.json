@@ -1,0 +1,1092 @@
+[
+ {
+  "id": "L001",
+  "slug": "standing-wave",
+  "name": "Standing Wave",
+  "set": "Concepts",
+  "group": "",
+  "note": "Nodes of a resonant mode across the sphere.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L002",
+  "slug": "locational-variable",
+  "name": "Locational Variable",
+  "set": "Concepts",
+  "group": "",
+  "note": "Globe grid with one displaced measurement point, the core hypothesis.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L003",
+  "slug": "chladni-pattern",
+  "name": "Chladni Pattern",
+  "set": "Concepts",
+  "group": "",
+  "note": "Nodal-line dots of a vibrating surface.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L004",
+  "slug": "copper-shell",
+  "name": "Copper Shell",
+  "set": "Concepts",
+  "group": "",
+  "note": "Hollow copper wall with ring-down waves in the cavity.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L005",
+  "slug": "sldv-scan",
+  "name": "SLDV Scan",
+  "set": "Concepts",
+  "group": "",
+  "note": "Laser raster lines displaced by surface vibration.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L006",
+  "slug": "s-resonator",
+  "name": "S Resonator",
+  "set": "Concepts",
+  "group": "",
+  "note": "Monogram S built from two circular arcs and a center node.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L007",
+  "slug": "resonance-peak",
+  "name": "Resonance Peak",
+  "set": "Concepts",
+  "group": "",
+  "note": "Frequency response with the peak marked.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L008",
+  "slug": "offset-ripple",
+  "name": "Offset Ripple",
+  "set": "Concepts",
+  "group": "",
+  "note": "Waves from an off-center source: position changes the field.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L009",
+  "slug": "copper-orb",
+  "name": "Copper Orb",
+  "set": "Concepts",
+  "group": "",
+  "note": "Shaded copper sphere with an orbit ring. Most illustrative.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L010",
+  "slug": "hex-cage",
+  "name": "Hex Cage",
+  "set": "Concepts",
+  "group": "",
+  "note": "Extends the current hex cube with an inscribed sphere.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L011",
+  "slug": "armillary",
+  "name": "Armillary",
+  "set": "Concepts",
+  "group": "",
+  "note": "Three tilted rings around a fixed center: spatial positioning.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L012",
+  "slug": "reticle",
+  "name": "Reticle",
+  "set": "Concepts",
+  "group": "",
+  "note": "Crosshair for stage positioning.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L013",
+  "slug": "tuning-fork",
+  "name": "Tuning Fork",
+  "set": "Concepts",
+  "group": "",
+  "note": "A harmonic source driving a sphere.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L014",
+  "slug": "interference",
+  "name": "Interference",
+  "set": "Concepts",
+  "group": "",
+  "note": "Two phase-shifted waves inside the sphere.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L015",
+  "slug": "open-network",
+  "name": "Open Network",
+  "set": "Concepts",
+  "group": "",
+  "note": "Geodesic node mesh, the open-science angle.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L016",
+  "slug": "halftone-sphere",
+  "name": "Halftone Sphere",
+  "set": "Concepts",
+  "group": "",
+  "note": "Dot-matrix shading. Prints well in one color.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L017",
+  "slug": "radial-modes",
+  "name": "Radial Modes",
+  "set": "Concepts",
+  "group": "",
+  "note": "Concentric rings whose line weight swells like radial modes.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L018",
+  "slug": "pulse-wordmark",
+  "name": "Pulse Wordmark",
+  "set": "Concepts",
+  "group": "",
+  "note": "Type only. The periods become amber nodes above a decaying signal, like a ring-down measurement.",
+  "theme": "dark",
+  "remix": false
+ },
+ {
+  "id": "L019",
+  "slug": "hex-dot-sphere",
+  "name": "Hex Dot Sphere",
+  "set": "Round Two",
+  "group": "Halftone sphere",
+  "note": "Halftone sphere inside your original hex frame.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L020",
+  "slug": "ring-dots",
+  "name": "Ring Dots",
+  "set": "Round Two",
+  "group": "Halftone sphere",
+  "note": "Dots on concentric rings, sized by a radial mode.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L021",
+  "slug": "dissolving-sphere",
+  "name": "Dissolving Sphere",
+  "set": "Round Two",
+  "group": "Halftone sphere",
+  "note": "Left half is dot-matrix, right half is a solid outline with a measurement point.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L022",
+  "slug": "chladni-halftone",
+  "name": "Chladni Halftone",
+  "set": "Round Two",
+  "group": "Halftone sphere",
+  "note": "Dot size follows a standing-wave field. Peaks turn amber.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L023",
+  "slug": "orbit-dots",
+  "name": "Orbit Dots",
+  "set": "Round Two",
+  "group": "Halftone sphere",
+  "note": "Halftone sphere with a dotted orbit ring and one marked point.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L024",
+  "slug": "phyllotaxis",
+  "name": "Phyllotaxis",
+  "set": "Round Two",
+  "group": "Halftone sphere",
+  "note": "Sunflower-spiral dots. The sphere reads as a seed head, with a center node.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L025",
+  "slug": "hex-lattice",
+  "name": "Hex Lattice",
+  "set": "Round Two",
+  "group": "Open network",
+  "note": "Hexagonal node lattice in a ring, amber at the center.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L026",
+  "slug": "hex-star",
+  "name": "Hex Star",
+  "set": "Round Two",
+  "group": "Open network",
+  "note": "Six nodes joined by skip-one links around a center hub.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L027",
+  "slug": "constellation",
+  "name": "Constellation",
+  "set": "Round Two",
+  "group": "Open network",
+  "note": "Scattered nodes linked by proximity. One node is marked at the center.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L028",
+  "slug": "tri-mesh",
+  "name": "Tri-Mesh",
+  "set": "Round Two",
+  "group": "Open network",
+  "note": "Two hex rings triangulated into a mesh with an amber hub.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L029",
+  "slug": "node-globe",
+  "name": "Node Globe",
+  "set": "Round Two",
+  "group": "Open network",
+  "note": "Wireframe globe with nodes at grid crossings and one marked location.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L030",
+  "slug": "sensor-array",
+  "name": "Sensor Array",
+  "set": "Round Two",
+  "group": "Open network",
+  "note": "Eight measurement points around a central sphere.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L031",
+  "slug": "vesica",
+  "name": "Vesica",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "Two overlapping circles with the shared lens filled.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L032",
+  "slug": "two-sources",
+  "name": "Two Sources",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "Ring waves from two points. The crossings form the interference lattice.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L033",
+  "slug": "beat-envelope",
+  "name": "Beat Envelope",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "A carrier wave inside its beat envelope.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L034",
+  "slug": "lissajous-3-2",
+  "name": "Lissajous 3:2",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "Closed 3:2 Lissajous figure. Marks one phase point.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L035",
+  "slug": "three-phase",
+  "name": "Three Phase",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "Three waves 120° apart inside a circle.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L036",
+  "slug": "moire-rings",
+  "name": "Moiré Rings",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "Two offset ring sets in copper and white.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L037",
+  "slug": "dot-interference",
+  "name": "Dot Interference",
+  "set": "Round Two",
+  "group": "Interference",
+  "note": "Two-source interference drawn as halftone dots. A hybrid of directions 14 and 16.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L038",
+  "slug": "hex-constellation",
+  "name": "Hex Constellation",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Nodes inside your original hex frame.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L039",
+  "slug": "sphere-constellation",
+  "name": "Sphere Constellation",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Points on a sphere. Rear nodes and links fade.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L040",
+  "slug": "marked-facet",
+  "name": "Marked Facet",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "The triangle around the marked node is filled.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L041",
+  "slug": "depth-nodes",
+  "name": "Depth Nodes",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Node size falls off with distance from the marked point.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L042",
+  "slug": "constellation-s",
+  "name": "Constellation S",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Nodes follow an S path and link two steps ahead.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L043",
+  "slug": "radial-web",
+  "name": "Radial Web",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Three irregular rings of nodes linking inward to a hub.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L044",
+  "slug": "fading-links",
+  "name": "Fading Links",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Link opacity falls with distance from center.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L045",
+  "slug": "open-ring",
+  "name": "Open Ring",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Constellation inside a ring with a signal gap.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L046",
+  "slug": "target-lock",
+  "name": "Target Lock",
+  "set": "Round Three",
+  "group": "Constellation",
+  "note": "Constellation with a crosshair on the marked node.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L047",
+  "slug": "three-ring-mesh",
+  "name": "Three-Ring Mesh",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "One more ring than the original, with graded node sizes.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L048",
+  "slug": "faceted-mesh",
+  "name": "Faceted Mesh",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Triangles shaded like cut facets. Amber alternates around the hub.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L049",
+  "slug": "mesh-cube",
+  "name": "Mesh Cube",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Isometric cube whose three faces are each a 3×3 mesh.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L050",
+  "slug": "circular-mesh",
+  "name": "Circular Mesh",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Twelve outer nodes feeding six middle nodes. Round silhouette.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L051",
+  "slug": "hollow-mesh",
+  "name": "Hollow Mesh",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Ring mesh with an open center around a small node.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L052",
+  "slug": "vibrating-mesh",
+  "name": "Vibrating Mesh",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Outer nodes displaced as if the shell is ringing.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L053",
+  "slug": "orbit-mesh",
+  "name": "Orbit Mesh",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Mesh with a dashed halo. Node size grows toward the hub.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L054",
+  "slug": "outlier-node",
+  "name": "Outlier Node",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "One outer node moves off the grid and connects by dashed links.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L055",
+  "slug": "offset-hub",
+  "name": "Offset Hub",
+  "set": "Round Three",
+  "group": "Tri-mesh",
+  "note": "Hub shifts off-center and the inner ring follows it.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L056",
+  "slug": "cutaway-shell",
+  "name": "Cutaway Shell",
+  "set": "Fresh Set",
+  "group": "Apparatus",
+  "note": "Solid copper wall with a wedge cut away and a resonant cavity inside.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L057",
+  "slug": "frequency-dial",
+  "name": "Frequency Dial",
+  "set": "Fresh Set",
+  "group": "Apparatus",
+  "note": "Instrument dial with 72 ticks and an amber pointer.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L058",
+  "slug": "laser-beam",
+  "name": "Laser Beam",
+  "set": "Fresh Set",
+  "group": "Apparatus",
+  "note": "An SLDV beam cone converging on one point of the sphere.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L059",
+  "slug": "vacuum-chamber",
+  "name": "Vacuum Chamber",
+  "set": "Fresh Set",
+  "group": "Apparatus",
+  "note": "Chamber body, porthole, sphere and a marked point.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L060",
+  "slug": "helmholtz-pair",
+  "name": "Helmholtz Pair",
+  "set": "Fresh Set",
+  "group": "Apparatus",
+  "note": "Two coaxial coils around the sphere, with an axis line.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L061",
+  "slug": "coordinate-triad",
+  "name": "Coordinate Triad",
+  "set": "Fresh Set",
+  "group": "Apparatus",
+  "note": "Three axes with the sphere displaced from the origin.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L062",
+  "slug": "sliced-phase",
+  "name": "Sliced Phase",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Sphere cut into bars that shift into an S silhouette.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L063",
+  "slug": "coordinates",
+  "name": "Coordinates",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Sphere beside a crosshair that locates a marked point.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L064",
+  "slug": "rose-mode",
+  "name": "Rose Mode",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Eight-petal rose curve, like a mode shape.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L065",
+  "slug": "diamond-sphere",
+  "name": "Diamond Sphere",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Sphere inscribed in a diamond with an offset marker.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L066",
+  "slug": "three-rings",
+  "name": "Three Rings",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Three overlapping circles around a shared center.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L067",
+  "slug": "quadrant",
+  "name": "Quadrant",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Circle in four quadrants with one filled. Bold, app-icon scale.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L068",
+  "slug": "voxel-sphere",
+  "name": "Voxel Sphere",
+  "set": "Fresh Set",
+  "group": "Pure geometry",
+  "note": "Square pixels lit from one side.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L069",
+  "slug": "wound-sphere",
+  "name": "Wound Sphere",
+  "set": "Fresh Set",
+  "group": "Phase and motion",
+  "note": "A single line wound around a sphere, rear side faint.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L070",
+  "slug": "ring-down-spiral",
+  "name": "Ring-Down Spiral",
+  "set": "Fresh Set",
+  "group": "Phase and motion",
+  "note": "A decaying spiral into a center node.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L071",
+  "slug": "terminator",
+  "name": "Terminator",
+  "set": "Fresh Set",
+  "group": "Phase and motion",
+  "note": "Gibbous sphere, lit from one side. Position changes what you see.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L072",
+  "slug": "contour-stack",
+  "name": "Contour Stack",
+  "set": "Fresh Set",
+  "group": "Phase and motion",
+  "note": "Thirteen stacked discs that add up to a sphere.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L073",
+  "slug": "dot-sweep",
+  "name": "Dot Sweep",
+  "set": "Fresh Set",
+  "group": "Phase and motion",
+  "note": "Six dots filling from empty to full, one per letter.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L074",
+  "slug": "iris-mesh",
+  "name": "Iris Mesh",
+  "set": "Hybrids",
+  "group": "Iris hybrids",
+  "note": "Iris blades with mesh nodes at the aperture and the rim, spokes to a hub.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L075",
+  "slug": "iris-constellation",
+  "name": "Iris Constellation",
+  "set": "Hybrids",
+  "group": "Iris hybrids",
+  "note": "A constellation seen through the aperture.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L076",
+  "slug": "iris-lens",
+  "name": "Iris Lens",
+  "set": "Hybrids",
+  "group": "Iris hybrids",
+  "note": "A halftone sphere in the opening, like a lens focused on it.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L077",
+  "slug": "iris-wave",
+  "name": "Iris Wave",
+  "set": "Hybrids",
+  "group": "Iris hybrids",
+  "note": "Two phase-shifted waves visible through the aperture.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L078",
+  "slug": "iris-s",
+  "name": "Iris S",
+  "set": "Hybrids",
+  "group": "Iris hybrids",
+  "note": "An S traced through the opening.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L079",
+  "slug": "network-s",
+  "name": "Network S",
+  "set": "Hybrids",
+  "group": "Double Sphere S hybrids",
+  "note": "S made of linked nodes, with an amber junction between the spheres.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L080",
+  "slug": "taper-dots-s",
+  "name": "Taper Dots S",
+  "set": "Hybrids",
+  "group": "Double Sphere S hybrids",
+  "note": "S in dots that swell toward the middle.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L081",
+  "slug": "s-interference",
+  "name": "S Interference",
+  "set": "Hybrids",
+  "group": "Double Sphere S hybrids",
+  "note": "Three offset copies of the S. One is amber.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L082",
+  "slug": "constellation-spheres",
+  "name": "Constellation Spheres",
+  "set": "Hybrids",
+  "group": "Double Sphere S hybrids",
+  "note": "Each sphere holds its own constellation. They touch at an amber point.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L083",
+  "slug": "halftone-spheres",
+  "name": "Halftone Spheres",
+  "set": "Hybrids",
+  "group": "Double Sphere S hybrids",
+  "note": "Two halftone spheres joined by a dashed S.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L084",
+  "slug": "mesh-s",
+  "name": "Mesh S",
+  "set": "Hybrids",
+  "group": "Tri-Mesh hybrids",
+  "note": "A bold S laid over a faint tri-mesh.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L085",
+  "slug": "halftone-mesh",
+  "name": "Halftone Mesh",
+  "set": "Hybrids",
+  "group": "Tri-Mesh hybrids",
+  "note": "Mesh nodes sized by sphere lighting.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L086",
+  "slug": "moire-mesh",
+  "name": "Moiré Mesh",
+  "set": "Hybrids",
+  "group": "Tri-Mesh hybrids",
+  "note": "Two tri-meshes offset and rotated slightly, one in amber.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L087",
+  "slug": "jitter-mesh",
+  "name": "Jitter Mesh",
+  "set": "Hybrids",
+  "group": "Tri-Mesh hybrids",
+  "note": "A mesh with irregular node positions and an off-center hub.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L088",
+  "slug": "lit-low-poly",
+  "name": "Lit Low-Poly",
+  "set": "Hybrids",
+  "group": "Tri-Mesh hybrids",
+  "note": "Faceted sphere shaded by light direction. Brightest facets turn amber.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L089",
+  "slug": "wave-halftone",
+  "name": "Wave Halftone",
+  "set": "Hybrids",
+  "group": "Cross-overs",
+  "note": "Dot field carved into two phase-shifted waves.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L090",
+  "slug": "halftone-constellation",
+  "name": "Halftone Constellation",
+  "set": "Hybrids",
+  "group": "Cross-overs",
+  "note": "A faint halftone sphere under a constellation.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L091",
+  "slug": "hex-iris",
+  "name": "Hex Iris",
+  "set": "Hybrids",
+  "group": "Cross-overs",
+  "note": "Your original hex cube and dashed axis with iris blades inside.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L092",
+  "slug": "lit-wave-dots",
+  "name": "Lit Wave Dots",
+  "set": "Set Seven",
+  "group": "Wave halftone",
+  "note": "The wave dots are also sized by sphere lighting.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L093",
+  "slug": "hex-wave-dots",
+  "name": "Hex Wave Dots",
+  "set": "Set Seven",
+  "group": "Wave halftone",
+  "note": "Waves cut into dots inside your original hex frame.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L094",
+  "slug": "vertical-wave-dots",
+  "name": "Vertical Wave Dots",
+  "set": "Set Seven",
+  "group": "Wave halftone",
+  "note": "The same waves running top to bottom.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L095",
+  "slug": "s-wave-dots",
+  "name": "S Wave Dots",
+  "set": "Set Seven",
+  "group": "Wave halftone",
+  "note": "Dots follow the S curve, with an amber copy shifted beside it.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L096",
+  "slug": "beat-dots",
+  "name": "Beat Dots",
+  "set": "Set Seven",
+  "group": "Wave halftone",
+  "note": "Dotted carrier wave inside an amber envelope.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L097",
+  "slug": "polar-wave-dots",
+  "name": "Polar Wave Dots",
+  "set": "Set Seven",
+  "group": "Wave halftone",
+  "note": "Two phase-shifted rosette waves in dots.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L098",
+  "slug": "dense-facets",
+  "name": "Dense Facets",
+  "set": "Set Seven",
+  "group": "Lit facets",
+  "note": "Low-poly sphere with three rings of triangles.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L099",
+  "slug": "lit-cube",
+  "name": "Lit Cube",
+  "set": "Set Seven",
+  "group": "Lit facets",
+  "note": "Your hex cube as three shaded faces.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L100",
+  "slug": "facet-cut-s",
+  "name": "Facet Cut S",
+  "set": "Set Seven",
+  "group": "Lit facets",
+  "note": "Faceted sphere with an S cut through it.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L101",
+  "slug": "gem",
+  "name": "Gem",
+  "set": "Set Seven",
+  "group": "Lit facets",
+  "note": "Six-sided facets around a hub, lit from one side.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L102",
+  "slug": "gore-sphere",
+  "name": "Gore Sphere",
+  "set": "Set Seven",
+  "group": "Lit facets",
+  "note": "Six vertical panels, like a globe map, shaded by light.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L103",
+  "slug": "panel-sphere",
+  "name": "Panel Sphere",
+  "set": "Set Seven",
+  "group": "Lit facets",
+  "note": "A square panel grid cropped to a circle and lit.",
+  "theme": "copper",
+  "remix": true
+ },
+ {
+  "id": "L104",
+  "slug": "three-spheres",
+  "name": "Three Spheres",
+  "set": "Set Seven",
+  "group": "Constellation spheres",
+  "note": "Three touching spheres around an amber center.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L105",
+  "slug": "side-by-side",
+  "name": "Side by Side",
+  "set": "Set Seven",
+  "group": "Constellation spheres",
+  "note": "Two spheres meeting at an amber point on a horizontal axis.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L106",
+  "slug": "nested",
+  "name": "Nested",
+  "set": "Set Seven",
+  "group": "Constellation spheres",
+  "note": "A sphere inside a sphere, each with its own constellation.",
+  "theme": "navy",
+  "remix": true
+ },
+ {
+  "id": "L107",
+  "slug": "linked-spheres",
+  "name": "Linked Spheres",
+  "set": "Set Seven",
+  "group": "Constellation spheres",
+  "note": "One constellation spans two stacked spheres. Links cross the gap.",
+  "theme": "dark",
+  "remix": true
+ },
+ {
+  "id": "L108",
+  "slug": "satellite",
+  "name": "Satellite",
+  "set": "Set Seven",
+  "group": "Constellation spheres",
+  "note": "Large constellation sphere with an amber satellite on a dashed orbit.",
+  "theme": "light",
+  "remix": true
+ },
+ {
+  "id": "L109",
+  "slug": "lens",
+  "name": "Lens",
+  "set": "Set Seven",
+  "group": "Constellation spheres",
+  "note": "Overlapping spheres with a constellation only in the shared lens.",
+  "theme": "copper",
+  "remix": true
+ }
+]

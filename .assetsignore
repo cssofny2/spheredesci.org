@@ -18,3 +18,7 @@ schema.json
 AGENTS.md
 CLAUDE.md
 panton.html
+worker
+migrations
+package.json
+package-lock.json
