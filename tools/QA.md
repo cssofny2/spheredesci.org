@@ -65,3 +65,11 @@ submitted during QA because it would send an external email.
 - Verify one H1, title of 60 characters or fewer, description of 140 to 160 characters, canonical URL, parseable JSON-LD (TechArticle, ImageObject, BreadcrumbList, FAQPage), alt text of 125 characters or fewer, and a sitemap entry with image entries.
 - Verify the FAQ answers in the JSON-LD match the visible FAQ text, tables scroll inside `.table-wrap` at 390 px, and no horizontal page scroll occurs.
 - Keep the proposal-stage notice. The dimensions are provisional (whitepaper section 2.1) and the cost is an unquoted planning range, not a quote or a budget line.
+
+## Added 2026-10-16: resonance topic cluster
+
+- Five hand-written guides under `/learn/` (can-sound-change-resonant-frequency, how-to-measure-resonant-frequency-of-a-sphere, ways-to-shift-resonant-frequency, impulse-response-sine-sweep-deconvolution, modal-analysis-glossary) and `/research/resonance-change-verification-protocol/`. Edit the HTML directly.
+- Verify each has one H1, a title of 60 characters or fewer, a description of 140 to 160 characters, a canonical URL, parseable JSON-LD (Article or TechArticle, BreadcrumbList, and FAQPage where a visible FAQ exists), and sitemap entries (53 URLs).
+- Verify FAQ answers in the JSON-LD match the visible text, tables scroll inside `.table-wrap` at 390 px, and no horizontal page scroll occurs.
+- Verify every external source link resolves and that figures quoted from sources (for example the 2.43% temperature shift and the 12 to 16% mass-loading shift) match the source.
+- Keep the educational-explainer or proposal-stage notice. Pages report no measurements or results.
