@@ -31,7 +31,7 @@ def nav(current=""):
 def footer():
     return f'''<footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
 <div><p class="footer-name">Project S.P.H.E.R.E.</p><p>{FULL}</p>
-<p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p></div>
+<p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p><p>Founded by <a href="https://michaelpgoodman.com/">Michael P. Goodman</a></p></div>
 <div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a></div>
 <div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
 </div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
