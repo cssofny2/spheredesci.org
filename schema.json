@@ -43,7 +43,7 @@
       "@id": "https://spheredesci.org/#website",
       "url": "https://spheredesci.org",
       "name": "Project S.P.H.E.R.E. | DeSci & High-Precision Metrology Protocol",
-      "description": "Official portal and open research repository for Project S.P.H.E.R.E. (Spatial Positioning Harmonic  Resonance Experiment).",
+      "description": "Official portal and open research repository for Project S.P.H.E.R.E. (Spatial Positioning Harmonic Empirical Resonance Experiment).",
       "publisher": {
         "@id": "https://spheredesci.org/#organization"
       },
