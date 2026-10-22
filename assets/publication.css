@@ -139,3 +139,6 @@ a.publication-tag:hover{border-color:var(--signal);color:var(--signal)}
 }
 @media(prefers-reduced-motion:no-preference){html:has(.publication-article){scroll-behavior:smooth}}
 .analytics-panel small{display:block;margin-top:.2rem;color:#b7c1ce;font-size:.78rem;font-weight:400}
+
+.publication-shell a:where(:not([class])){color:var(--accent);text-underline-offset:3px}
+.publication-search select option{background:#0f141e;color:var(--ink)}
