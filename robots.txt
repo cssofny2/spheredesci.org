@@ -24,5 +24,7 @@ Allow: /
 Disallow: /404.html
 Disallow: /api/
 Disallow: /admin/
+Disallow: /*?*utm_
+Disallow: /*?*fbclid=
 
 Sitemap: https://spheredesci.org/sitemap.xml

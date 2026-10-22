@@ -124,7 +124,8 @@ def process(route, cfg, check):
             page = set_faq_schema(page, faq_node(items), url)
 
     if page != original and not check:
-        path.write_text(page, encoding="utf-8", newline="")
+        with path.open("w", encoding="utf-8", newline="") as handle:
+            handle.write(page)
     return page != original
 
 
@@ -140,7 +141,8 @@ def ensure_analytics(check):
             continue
         changed += 1
         if not check:
-            path.write_text(page.replace("</head>", ANALYTICS_TAG + "</head>", 1), encoding="utf-8", newline="")
+            with path.open("w", encoding="utf-8", newline="") as handle:
+                handle.write(page.replace("</head>", ANALYTICS_TAG + "</head>", 1))
     return changed
 
 

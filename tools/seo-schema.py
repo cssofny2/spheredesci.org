@@ -25,13 +25,15 @@ ORG = {
     "url": SITE + "/",
     "logo": {"@type": "ImageObject", "url": SITE + "/assets/brand/sphere-icon-512.png", "width": 512, "height": 512},
     "email": "contact@spheredesci.org",
-    "sameAs": ["https://github.com/cssofny2/spheredesci.org", "https://michaelpgoodman.com/", "https://fieldsofgreenrochester.com/"],
+    "sameAs": ["https://github.com/cssofny2/spheredesci.org"],
 }
 SEARCH = {
     "@type": "SearchAction",
     "target": {"@type": "EntryPoint", "urlTemplate": SITE + "/search/?q={search_term_string}"},
     "query-input": "required name=search_term_string",
 }
+# Founder and associated sites are separate entities, so they must not appear in Organization.sameAs.
+NOT_SAME_AS = {"https://michaelpgoodman.com/", "https://fieldsofgreenrochester.com/"}
 LD_RE = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.S)
 
 
@@ -39,16 +41,21 @@ def patch_graph(data):
     graph = data.get("@graph") if isinstance(data, dict) else None
     if graph is None:
         return False
+    before = json.dumps(data, sort_keys=True)
     site = next((n for n in graph if n.get("@id") == SITE + "/#website"), None)
     if site is None:
-        return False
-    before = json.dumps(data, sort_keys=True)
+        site = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Project S.P.H.E.R.E."}
+        graph.insert(0, site)
     org = next((n for n in graph if n.get("@id") == ORG["@id"]), None)
     if org is None:
-        graph.insert(graph.index(site), dict(ORG))
+        graph.insert(graph.index(site), json.loads(json.dumps(ORG)))
     else:
         for key, value in ORG.items():
-            org[key] = sorted(set(org.get(key, [])) | set(value)) if key == "sameAs" else value
+            if key == "sameAs":
+                merged = set(org.get(key, [])) | set(value)
+                org[key] = sorted(merged - NOT_SAME_AS)
+            else:
+                org[key] = value
     site["publisher"] = {"@id": ORG["@id"]}
     site["inLanguage"] = "en"
     site["potentialAction"] = SEARCH
@@ -92,7 +99,8 @@ def process(path):
     html = add_twitter(html)
     if html != original:
         if "--check" not in sys.argv:
-            path.write_text(html, encoding="utf-8", newline="")
+            with path.open("w", encoding="utf-8", newline="") as handle:
+                handle.write(html)
         return True
     return False
 

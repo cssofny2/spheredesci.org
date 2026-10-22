@@ -63,7 +63,7 @@ def process(path):
     og_title = get_meta(page, "og:title") or title.group(1).strip()
     og_desc = get_meta(page, "og:description") or desc
     og_image = get_meta(page, "og:image") or DEFAULT_IMAGE
-    og_alt = get_meta(page, "og:image:alt") or DEFAULT_ALT
+    og_alt = get_meta(page, "og:image:alt") or (DEFAULT_ALT if og_image == DEFAULT_IMAGE else get_meta(page, "twitter:image:alt") or og_title)
     og_type = get_meta(page, "og:type") or "website"
     tags = social_tags(og_title, og_desc, canonical.group(1), og_image, og_type, og_alt)
     # twitter tags should mirror the page's own og values, not the generic fallbacks
@@ -75,7 +75,8 @@ def process(path):
         page = page.replace("</head>", missing + "</head>", 1)
     if page != original:
         if "--check" not in sys.argv:
-            path.write_text(page, encoding="utf-8", newline="")
+            with path.open("w", encoding="utf-8", newline="") as handle:
+                handle.write(page)
         return True
     return False
 
