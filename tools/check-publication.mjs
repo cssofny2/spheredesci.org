@@ -48,6 +48,10 @@ for (const record of index) {
   if (!html.includes('property="og:title"') || !html.includes('property="og:image"') || !html.includes('name="twitter:card"')) fail(`${record.url}: missing social metadata.`);
   if (!html.includes('type="application/rss+xml"')) fail(`${record.url}: missing RSS feed discovery link.`);
   if (record.kind !== "glossary" && !sitemapSet.has(`${SITE}${record.url}`)) fail(`${record.url}: missing sitemap entry.`);
+  if (/<img\b(?![^>]*\balt=)[^>]*>/i.test(html)) fail(`${record.url}: image is missing an alt attribute.`);
+  if (record.kind === "research" && (!html.includes('class="research-disclaimer"') || !/class="[^"]*\bpublication-toc\b/.test(html) || !html.includes('class="author-panel"'))) {
+    fail(`${record.url}: research article is missing its disclaimer, table of contents, or author panel.`);
+  }
 
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     let schema;
@@ -58,8 +62,9 @@ for (const record of index) {
     }
     if (record.kind === "research" || record.kind === "knowledge") {
       if (!types.includes("Article")) fail(`${record.url}: JSON-LD is missing Article.`);
-      const article = schema["@graph"].find((item) => item["@type"] === "Article");
+      const article = schema["@graph"].find((item) => item["@type"] === "Article" || item["@type"]?.includes?.("Article"));
       if (!article.datePublished || !article.dateModified || !article.author?.length) fail(`${record.url}: Article schema is missing publication dates or author.`);
+      if (record.kind === "research" && !types.includes("BlogPosting")) fail(`${record.url}: JSON-LD is missing BlogPosting.`);
     }
     if (record.kind === "glossary" && !types.includes("DefinedTerm")) fail(`${record.url}: JSON-LD is missing DefinedTerm.`);
   }
@@ -68,6 +73,8 @@ for (const record of index) {
 
   const termLinks = [...html.matchAll(/data-glossary-term="([^"]+)"/g)].map((match) => match[1].toLowerCase());
   if (new Set(termLinks).size !== termLinks.length) fail(`${record.url}: an automatic glossary term was linked more than once.`);
+  const articleLinks = [...html.matchAll(/data-article-reference="([^"]+)"/g)].map((match) => match[1].toLowerCase());
+  if (new Set(articleLinks).size !== articleLinks.length) fail(`${record.url}: an automatic article reference was linked more than once.`);
 
   for (const link of html.matchAll(/\b(?:href|src)="([^"]+)"/gi)) {
     const value = link[1].replaceAll("&amp;", "&");
@@ -97,6 +104,22 @@ for (const record of index) {
     }
   }
 }
+
+for (const route of [
+  "/research/archive/",
+  "/research/category/measurement-methods/",
+  "/research/tag/metrology/",
+  "/research/authors/",
+  "/research/authors/project-sphere/",
+]) {
+  if (!sitemapSet.has(`${SITE}${route}`)) fail(`${route}: generated discovery page is missing from the sitemap.`);
+  const html = await readFile(path.join(ROOT, route.slice(1), "index.html"), "utf8");
+  if (html.match(/<h1\b/gi)?.length !== 1) fail(`${route}: expected exactly one H1.`);
+  if (!html.includes(`<link rel="canonical" href="${SITE}${route}">`)) fail(`${route}: missing canonical metadata.`);
+  if (!html.includes('type="application/ld+json"')) fail(`${route}: missing structured data.`);
+}
+const analyticsAlias = await readFile(path.join(ROOT, "admin", "content-insights", "index.html"), "utf8");
+if (!analyticsAlias.includes('<meta name="robots" content="noindex,follow">')) fail("/admin/content-insights/: expected noindex.");
 
 for (const record of index.filter((item) => item.kind === "research")) {
   if (!rss.includes(`<guid isPermaLink="true">${SITE}${record.url}</guid>`)) fail(`${record.url}: missing RSS feed item.`);

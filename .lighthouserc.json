@@ -5,6 +5,9 @@
         "http://localhost:4173/",
         "http://localhost:4173/research/",
         "http://localhost:4173/research/uncertainty-budget-for-resonance/",
+        "http://localhost:4173/research/archive/",
+        "http://localhost:4173/research/category/measurement-methods/",
+        "http://localhost:4173/research/authors/project-sphere/",
         "http://localhost:4173/knowledge/",
         "http://localhost:4173/glossary/",
         "http://localhost:4173/search/"

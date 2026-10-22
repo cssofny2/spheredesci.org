@@ -11,6 +11,9 @@
   const section = (title, rows, valueKey) => `<section class="analytics-panel"><h2>${escapeHtml(title)}</h2>${rows.length
     ? `<ol>${rows.map((row) => `<li><span>${escapeHtml(row.label)}</span><strong>${Number(row[valueKey]).toLocaleString()}</strong></li>`).join("")}</ol>`
     : "<p>No activity recorded in this period.</p>"}</section>`;
+  const engagementSection = (rows) => `<section class="analytics-panel"><h2>Reading engagement</h2>${rows.length
+    ? `<ol>${rows.map((row) => `<li><span>${escapeHtml(row.label)}<small>${Number(row.averageSeconds).toLocaleString()} s average · ${Number(row.averageScroll).toLocaleString()}% scroll</small></span><strong>${Number(row.visits).toLocaleString()}</strong></li>`).join("")}</ol>`
+    : "<p>No engagement data recorded in this period.</p>"}</section>`;
 
   async function load() {
     status.textContent = "Loading aggregate metrics…";
@@ -24,6 +27,7 @@
       root.innerHTML = [
         `<p class="analytics-total"><strong>${Number(data.totalViews).toLocaleString()}</strong><span>article and concept views</span></p>`,
         section("Top content", data.topContent, "views"),
+        engagementSection(data.engagement),
         section("Search queries", data.topSearches, "searches"),
         section("Referring pages", data.topReferrers, "visits"),
       ].join("");
