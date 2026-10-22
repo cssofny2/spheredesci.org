@@ -991,7 +991,7 @@ for (const [slug, group] of categoryRoutes) {
     title: group.category,
     route,
     records: group.records,
-    description: `Proposal-stage research and methods filed under ${group.category}. Hypotheses are not findings; no project measurement results are reported here.`,
+    description: `Research tagged ${group.category} is at the proposal stage. It describes hypotheses and methods, not findings or measurements.`,
   }));
 }
 const tagRoutes = new Map();
