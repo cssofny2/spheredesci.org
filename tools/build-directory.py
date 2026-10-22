@@ -166,7 +166,7 @@ def build_directory():
         prof = "".join(f"<li>{esc(x)}</li>" for x in e.get("professional", []))
         contact = ""
         for c in e.get("contact", []):
-            ext = "" if c["url"].startswith("mailto:") else ' target="_blank" rel="noopener"'
+            ext = "" if c["url"].startswith("mailto:") else (' target="_blank" rel="noopener me"' if "michaelpgoodman.com" in c["url"] else ' target="_blank" rel="noopener"')
             contact += f'<li><strong>{esc(c["label"])}:</strong> <a href="{esc(c["url"])}"{ext}>{esc(c["value"])}</a></li>'
         prof_html = f"<h4>Professional background</h4><ul>{prof}</ul>" if prof else ""
         contact_html = f'<h4>Contact</h4><ul class="plain">{contact}</ul>' if contact else ""
