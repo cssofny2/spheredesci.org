@@ -33,4 +33,4 @@ After running the page generators, run `python3 tools/seo-schema.py` to ensure e
 
 ## Lighthouse budgets
 
-`.lighthouserc.json` fails CI on LCP above 4 s (Google's poor threshold), CLS above 0.1, TBT above 200 ms and category scores below 0.9. Target LCP is 2.5 s. The SEO score tops out at 0.92 because Lighthouse reports the Cloudflare `Content-Signal` line in robots.txt as an unknown directive; that line is intentional.
+`.lighthouserc.json` fails CI on LCP above 4 s (Google's poor threshold), CLS above 0.1 and category scores below 0.9; TBT above 200 ms (the lab stand-in for INP) only warns because shared CI runners make it noisy. Target LCP is 2.5 s. The SEO score tops out at 0.92 because Lighthouse reports the Cloudflare `Content-Signal` line in robots.txt as an unknown directive; that line is intentional.
