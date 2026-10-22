@@ -19,3 +19,7 @@ Set `seoTitle`, `seoDescription`, and `seoKeywords` when a focused search snippe
 `npm run check` verifies generated canonical/meta tags, exactly one H1, social tags, JSON-LD, local links and fragments, automatic-link uniqueness, sitemap membership, and RSS membership. `npm test` exercises publication generation assumptions and Worker analytics. Lighthouse CI runs against representative article, archive, author, search, glossary, and home routes with performance, accessibility, best-practices, and SEO thresholds.
 
 Search-engine scores and Core Web Vitals depend on the deployed environment and real content. CI thresholds are regression checks, not a promise of a particular ranking or Lighthouse result.
+
+## Shared schema and metadata
+
+After running the page generators, run `python3 tools/seo-schema.py` to ensure every page's JSON-LD graph has the shared `Organization` and `WebSite` (publisher + `SearchAction`) nodes and that Twitter Card tags mirror Open Graph. It is idempotent; `--check` reports pages that need updating. `sameAs` lists only profiles that exist (currently the GitHub repository); add social URLs to `ORG` in the script once they are published.
