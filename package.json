@@ -6,7 +6,8 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node tools/build-publication.mjs",
+    "build": "node tools/build-publication.mjs && node tools/inject-entity-graph.mjs",
+    "entity-graph": "node tools/inject-entity-graph.mjs",
     "check": "node tools/check-publication.mjs",
     "test": "node --test tools/publication/*.test.mjs",
     "verify": "npm run build && npm run check && npm test"
