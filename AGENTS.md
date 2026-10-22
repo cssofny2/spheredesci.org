@@ -108,12 +108,16 @@ add a fragment under `data/newsletters/` and list it in `data/newsletters.json`.
 **Publish research, knowledge, or glossary content.** Add an `.mdx` file under
 `content/research/`, `content/knowledge/`, or `content/glossary/`. The filename
 becomes the route slug unless frontmatter sets `slug`. Required fields are
-`title`, `description`, `published`, and `updated`; use ISO dates and keep the
+`title`, `description`, `publishedDate`, and `updatedDate` (the older
+`published` and `updated` names remain supported); use ISO dates and keep the
 updated date on or after the publication date. Optional fields include
-`category`, `tags`, `author`, `related`, `knowledge`, `citations`, and `faqs`.
-Use `<Citation id="..."/>` in an article to reference a matching citation ID.
-Run `npm run verify`; CI builds the static pages, search index, RSS feed, and
-sitemap before deployment. Never hand-edit generated publication HTML.
+`category`, `subCategory`, `tags`, `author`, `featured`, `relatedArticles`,
+`knowledge`, `citations`, and `faqs`. Use `<Citation id="..."/>` to reference a
+matching citation ID. See [`CONTENT_GUIDE.md`](CONTENT_GUIDE.md) for the
+researcher workflow and available MDX components, and [`AUTHOR_GUIDE.md`](AUTHOR_GUIDE.md)
+for profiles. Run `npm run verify`; CI builds and validates the static pages,
+search index, RSS feed, and sitemap before deployment. Never hand-edit
+generated publication HTML.
 
 ## Checking your work
 

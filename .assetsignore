@@ -25,4 +25,10 @@ package.json
 package-lock.json
 package-lock.json
 PRODUCT.md
+RESEARCH_PLATFORM.md
+CONTENT_GUIDE.md
+AUTHOR_GUIDE.md
+SEO_GUIDE.md
+DEPLOYMENT_GUIDE.md
+MIGRATION_REPORT.md
 .lighthouserc.json

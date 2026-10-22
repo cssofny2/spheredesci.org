@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Project S.P.H.E.R.E.",
+    "slug": "project-sphere",
+    "type": "Organization",
+    "bio": "Project S.P.H.E.R.E. is a pre-launch research project developing proposals for controlled resonance measurements. Its research pages describe hypotheses and methods, not measurement results or scientific validation.",
+    "interests": [
+      "Metrology",
+      "Experimental design",
+      "Resonance measurement",
+      "Open science"
+    ],
+    "links": [
+      {
+        "label": "Project website",
+        "url": "https://spheredesci.org"
+      }
+    ]
+  }
+]

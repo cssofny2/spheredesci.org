@@ -46,6 +46,10 @@ test("MDX build emits metadata, table of contents, citations, and FAQ schema", a
   assert.match(article, /id="references-title"/);
   assert.match(article, /href="#ref-gum"/);
   assert.match(article, /aria-label="Table of contents"/);
+  assert.match(article, /class="research-disclaimer"/);
+  assert.match(article, /class="publication-share"/);
+  assert.match(article, /class="author-panel"/);
+  assert.match(article, /"@type":\["Article","BlogPosting"\]/);
   assert.match(article, /"@type":"FAQPage"/);
   assert.doesNotMatch(article, /<a\b[^>]*>(?:(?!<\/a>)[\s\S])*<a\b/i);
 });
@@ -65,6 +69,10 @@ test("knowledge and glossary routes are indexed and discoverable", async () => {
   const legacyArticle = await readFile(path.join(ROOT, "research", "record-replay-resonance", "index.html"), "utf8");
   assert.match(legacyArticle, /Related concepts/);
   assert.match(legacyArticle, /href="\/knowledge\/resonance\/"/);
+  assert.ok(index.find((item) => item.url === "/research/uncertainty-budget-for-resonance/").authors.includes("Project S.P.H.E.R.E."));
+  for (const route of ["/research/archive/", "/research/category/measurement-methods/", "/research/tag/metrology/", "/research/authors/project-sphere/"]) {
+    assert.ok((await readFile(path.join(ROOT, route.slice(1), "index.html"), "utf8")).includes("<h1"));
+  }
 });
 
 test("analytics event collection aggregates without storing IP addresses", async () => {
@@ -102,4 +110,18 @@ test("analytics redacts email and URL values from stored search aggregates", asy
   assert.equal(response.status, 202);
   const search = db.statements.find((statement) => statement.sql.includes("analytics_searches"));
   assert.deepEqual(search.values.slice(1), ["calibration [email] [url]"]);
+});
+
+test("analytics stores only daily duration and coarse scroll aggregates", async () => {
+  const db = new Database();
+  const response = await worker.fetch(eventRequest({
+    type: "engagement",
+    path: "/research/category/metrology/",
+    seconds: 42,
+    scrollDepth: 63,
+  }), { ANALYTICS_ENABLED: "true", DB: db });
+  assert.equal(response.status, 202);
+  const engagement = db.statements.find((statement) => statement.sql.includes("analytics_engagement"));
+  assert.deepEqual(engagement.values, [new Date().toISOString().slice(0, 10), "/research/category/metrology/", 42, 75]);
+  assert.doesNotMatch(engagement.sql.toLowerCase(), /visitor|ip|identifier/);
 });

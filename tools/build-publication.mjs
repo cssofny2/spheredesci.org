@@ -18,6 +18,7 @@ const xml = (value = "") => e(value);
 const slugify = (value = "") => String(value).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const words = (value = "") => String(value).replace(/<[^>]+>/g, " ").replace(/[`*_>#\[\]()]/g, " ").replace(/\s+/g, " ").trim();
 const dateLabel = (value) => new Intl.DateTimeFormat("en", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
+const isIsoDate = (value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(`${value}T00:00:00Z`)) && new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value;
 const absolute = (route) => `${SITE}${route.endsWith("/") ? route : `${route}/`}`;
 const toJsonLd = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const decodeHtml = (value = "") => value.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;|&#x27;/gi, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)));
@@ -37,8 +38,8 @@ const navigation = nav.includes('href="/knowledge/"')
 const footer = footerMatch[0]
   .replaceAll('<a href="/research/">Measurement research</a>', '<a href="/research/">Research journal</a><a href="/knowledge/">Knowledge base</a><a href="/glossary/">Glossary</a>');
 
-function glossaryPlugin(terms, linkedTerms) {
-  const sorted = [...terms].sort((a, b) => b.term.length - a.term.length);
+function glossaryPlugin(terms, linkedTerms, currentUrl) {
+  const sorted = terms.filter((item) => item.url !== currentUrl).sort((a, b) => b.term.length - a.term.length);
   const ignored = new Set(["a", "code", "inlineCode", "math", "inlineMath", "link", "linkReference", "heading", "html", "image", "mdxJsxTextElement", "mdxJsxFlowElement"]);
   return () => (tree) => {
     if (!sorted.length) return;
@@ -48,8 +49,8 @@ function glossaryPlugin(terms, linkedTerms) {
         const node = parent.children[index];
         if (node.type === "link" || node.type === "mdxJsxTextElement" || node.type === "mdxJsxFlowElement") {
           const href = node.url || node.attributes?.find((attribute) => attribute.name === "href")?.value;
-          const linked = sorted.find((item) => href === item.url || href === absolute(item.url));
-          if (linked) linkedTerms.add(linked.term);
+              const linked = sorted.find((item) => href === item.url || href === absolute(item.url));
+              if (linked) linkedTerms.add(linked.url);
         }
         if (node.type === "text" && !ignored.has(parent.type) && !ancestors.some((ancestor) => ignored.has(ancestor.type)) && node.value.trim()) {
           const pattern = new RegExp(`(^|[^\\p{L}\\p{N}])(${sorted.map((item) => escapeRegExp(item.term)).join("|")})(?=$|[^\\p{L}\\p{N}])`, "giu");
@@ -58,16 +59,19 @@ function glossaryPlugin(terms, linkedTerms) {
           let match;
           while ((match = pattern.exec(node.value))) {
             const term = sorted.find((item) => item.term.toLowerCase() === match[2].toLowerCase());
-            if (!term || linkedTerms.has(term.term)) continue;
+            if (!term || linkedTerms.has(term.url)) continue;
             const start = match.index + match[1].length;
             if (start > cursor) pieces.push({ type: "text", value: node.value.slice(cursor, start) });
             pieces.push({
               type: "link",
               url: term.url,
-              data: { hProperties: { className: ["glossary-link"], "data-glossary-term": term.term } },
+              data: { hProperties: {
+                className: [term.kind === "article" ? "article-reference" : "glossary-link"],
+                ...(term.kind === "article" ? { "data-article-reference": term.term } : { "data-glossary-term": term.term }),
+              } },
               children: [{ type: "text", value: match[2] }],
             });
-            linkedTerms.add(term.term);
+            linkedTerms.add(term.url);
             cursor = start + match[2].length;
           }
           if (pieces.length) {
@@ -100,6 +104,30 @@ function headingPlugin(headings) {
   };
 }
 
+async function readLinkableTerms(kinds) {
+  const terms = [];
+  for (const kind of kinds) {
+    const dir = path.join(ROOT, "content", kind);
+    let files;
+    try { files = await readdir(dir); } catch (error) {
+      if (error.code === "ENOENT") continue;
+      throw error;
+    }
+    for (const file of files.filter((item) => item.endsWith(".mdx"))) {
+      const source = await readFile(path.join(dir, file), "utf8");
+      const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/);
+      if (!frontmatter) throw new Error(`${file}: missing YAML frontmatter delimited by --- lines.`);
+      const meta = parse(frontmatter[1]);
+      if (meta?.draft === true || meta?.status === "draft") continue;
+      const slug = meta?.slug || path.basename(file, ".mdx");
+      if (meta?.title && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+        terms.push({ term: String(meta.title), url: `/${kind}/${slug}/`, kind: "article" });
+      }
+    }
+  }
+  return terms;
+}
+
 async function readContent(kind) {
   const dir = path.join(ROOT, "content", kind);
   let files;
@@ -109,7 +137,7 @@ async function readContent(kind) {
     if (error.code === "ENOENT") return [];
     throw error;
   }
-  return Promise.all(files.filter((file) => file.endsWith(".mdx")).sort().map(async (file) => {
+  return (await Promise.all(files.filter((file) => file.endsWith(".mdx")).sort().map(async (file) => {
     const source = await readFile(path.join(dir, file), "utf8");
     const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/);
     if (!frontmatter) throw new Error(`${file}: missing YAML frontmatter delimited by --- lines.`);
@@ -117,40 +145,139 @@ async function readContent(kind) {
     if (!meta || typeof meta !== "object" || Array.isArray(meta)) throw new Error(`${file}: frontmatter must be a YAML object.`);
     const slug = meta.slug || path.basename(file, ".mdx");
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error(`${file}: slug must be lowercase words separated by hyphens.`);
-    for (const required of ["title", "description", "published", "updated"]) {
-      if (!meta[required]) throw new Error(`${file}: missing required frontmatter field "${required}".`);
+    if (kind === "research" && ["archive", "authors", "category", "tag"].includes(slug)) {
+      throw new Error(`${file}: slug "${slug}" is reserved for a research platform route.`);
     }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(meta.published) || !/^\d{4}-\d{2}-\d{2}$/.test(meta.updated) || meta.updated < meta.published) {
-      throw new Error(`${file}: published/updated must be ISO dates and updated cannot precede published.`);
+    if (meta.draft === true || meta.status === "draft") return null;
+    const published = String(meta.publishedDate || meta.published || "");
+    const updated = String(meta.updatedDate || meta.updated || published);
+    for (const [field, value] of [["title", meta.title], ["description", meta.description], ["publishedDate", published], ["updatedDate", updated]]) {
+      if (!value) throw new Error(`${file}: missing required frontmatter field "${field}".`);
     }
+    if (!isIsoDate(published) || !isIsoDate(updated) || updated < published) {
+      throw new Error(`${file}: publishedDate/updatedDate must be ISO dates and updatedDate cannot precede publishedDate.`);
+    }
+    const status = String(meta.status || "proposed");
+    if (!["proposed", "planned", "in-review", "published"].includes(status)) throw new Error(`${file}: unsupported status "${status}".`);
     const url = `/${kind}/${slug}/`;
+    if (meta.tags && !Array.isArray(meta.tags)) throw new Error(`${file}: tags must be a YAML list.`);
+    if (meta.citations && !Array.isArray(meta.citations)) throw new Error(`${file}: citations must be a YAML list.`);
     const tags = [...new Set((meta.tags || []).map((tag) => String(tag).trim()).filter(Boolean))];
     const citations = (meta.citations || []).map((citation, index) => {
-      if (!citation.id || !citation.title || !citation.type) throw new Error(`${file}: citation ${index + 1} needs id, title, and type.`);
-      if (!["doi", "arxiv", "journal", "external"].includes(citation.type)) throw new Error(`${file}: citation "${citation.id}" has an unsupported type.`);
+      if (!citation.id || !/^[a-z0-9][a-z0-9_-]*$/i.test(citation.id) || !citation.title || !citation.type) throw new Error(`${file}: citation ${index + 1} needs an alphanumeric id, title, and type.`);
+      if (!["doi", "arxiv", "journal", "book", "conference", "website", "external"].includes(citation.type)) throw new Error(`${file}: citation "${citation.id}" has an unsupported type.`);
       if (citation.doi && !/^10\.\d{4,9}\/\S+$/i.test(citation.doi)) throw new Error(`${file}: invalid DOI "${citation.doi}".`);
       if (citation.arxiv && !/^\d{4}\.\d{4,5}(v\d+)?$/i.test(citation.arxiv)) throw new Error(`${file}: invalid arXiv id "${citation.arxiv}".`);
-      if (citation.url && !/^https:\/\//i.test(citation.url) && !citation.url.startsWith("/")) throw new Error(`${file}: citation URLs must use HTTPS or be site-relative.`);
+      if ((citation.type === "doi" && !citation.doi) || (citation.type === "arxiv" && !citation.arxiv)) throw new Error(`${file}: citation "${citation.id}" must include its ${citation.type} identifier.`);
+      if (citation.url && !/^https:\/\//i.test(citation.url) && (!citation.url.startsWith("/") || citation.url.startsWith("//") || citation.url.includes(".."))) throw new Error(`${file}: citation URLs must use HTTPS or a safe site-relative path.`);
       return { ...citation, number: index + 1 };
     });
+    if (new Set(citations.map((item) => item.id)).size !== citations.length || new Set(citations.map((item) => slugify(item.id))).size !== citations.length) {
+      throw new Error(`${file}: citation IDs must be unique and produce unique reference anchors.`);
+    }
+    const canonicalUrl = meta.canonicalUrl || absolute(url);
+    if (canonicalUrl !== absolute(url)) throw new Error(`${file}: canonicalUrl must match the article's official URL (${absolute(url)}).`);
+    const featuredImage = String(meta.featuredImage || "");
+    if (featuredImage && (!featuredImage.startsWith("/") || featuredImage.startsWith("//") || featuredImage.includes(".."))) {
+      throw new Error(`${file}: featuredImage must be a site-relative path; external images are not allowed.`);
+    }
+    const authors = Array.isArray(meta.author) ? meta.author.map(String) : [String(meta.author || "Project S.P.H.E.R.E.")];
+    if (authors.some((name) => !name.trim())) throw new Error(`${file}: author names cannot be empty.`);
+    if (meta.faqs && !Array.isArray(meta.faqs)) throw new Error(`${file}: faqs must be a YAML list.`);
+    if (meta.revisions && !Array.isArray(meta.revisions)) throw new Error(`${file}: revisions must be a YAML list.`);
+    for (const revision of meta.revisions || []) {
+      if (!isIsoDate(String(revision.date || "")) || revision.date < published || revision.date > updated) {
+        throw new Error(`${file}: each revision needs an ISO date between publishedDate and updatedDate.`);
+      }
+    }
+    for (const field of ["keywords", "seoKeywords"]) {
+      if (meta[field] && !Array.isArray(meta[field])) throw new Error(`${file}: ${field} must be a YAML list.`);
+    }
+    const keywords = [...new Set([...(meta.keywords || []), ...(meta.seoKeywords || [])].map(String).map((item) => item.trim()).filter(Boolean))];
     const headings = [];
     const linkedTerms = new Set();
+    const citationById = new Map(citations.map((citation) => [citation.id, citation]));
+    let citationListRendered = false;
     const compiled = await compile(source.slice(frontmatter[0].length), {
       outputFormat: "function-body",
-      remarkPlugins: [remarkGfm, glossaryPlugin(glossaryTerms, linkedTerms)],
+      remarkPlugins: [remarkGfm, glossaryPlugin(glossaryTerms, linkedTerms, url)],
       rehypePlugins: [headingPlugin(headings)],
       development: false,
     });
     const module = await run(String(compiled), { Fragment, jsx, jsxs });
-    const citationById = new Map(citations.map((citation) => [citation.id, citation]));
     const Citation = ({ id }) => {
       const citation = citationById.get(id);
       if (!citation) throw new Error(`${file}: Citation references unknown citation id "${id}".`);
       return jsx("sup", { className: "citation-marker", children: jsx("a", { href: `#ref-${slugify(id)}`, "aria-label": `Citation ${citation.number}`, children: `[${citation.number}]` }) });
     };
+    const CitationList = () => {
+      citationListRendered = true;
+      return citations.length ? jsx("div", { dangerouslySetInnerHTML: { __html: citationsMarkup(citations) } }) : null;
+    };
+    const Figure = ({ src, alt = "", caption = "", credit = "" }) => {
+      if (typeof src !== "string" || !src.startsWith("/") || src.startsWith("//") || src.includes("..")) {
+        throw new Error(`${file}: Figure src must be a site-relative path; external images are not allowed.`);
+      }
+      return jsx("figure", { className: "research-figure", children: [
+        jsx("img", { src, alt, loading: "lazy", decoding: "async" }),
+        caption || credit ? jsx("figcaption", { children: [caption, credit ? ` Credit: ${credit}` : ""].filter(Boolean).join(" ") }) : null,
+      ] });
+    };
+    const callout = (className, label) => ({ title = label, children }) => jsx("aside", {
+      className: `research-callout ${className}`,
+      "aria-label": title,
+      children: [jsx("strong", { children: title }), children ? jsx("div", { children }) : null],
+    });
+    const ResearchNote = callout("research-note", "Research note");
+    const WarningBox = callout("warning-box", "Caution");
+    const ExperimentStep = ({ number, title = "", children }) => jsx("section", {
+      className: "experiment-step",
+      children: [jsx("h3", { children: `Step ${number || ""}${title ? `: ${title}` : ""}` }), children],
+    });
+    const Equation = ({ latex = "", label = "Mathematical expression" }) => jsx("div", {
+      className: "research-equation",
+      role: "group",
+      "aria-label": label,
+      children: jsx("code", { children: latex }),
+    });
+    const ReferenceCard = ({ title, url = "", authors = "", year = "" }) => {
+      if (url && !/^https:\/\//i.test(url) && (!url.startsWith("/") || url.startsWith("//") || url.includes(".."))) throw new Error(`${file}: ReferenceCard URLs must use HTTPS or a safe site-relative path.`);
+      return jsx("aside", { className: "reference-card", children: [
+        jsx("strong", { children: url ? jsx("a", { href: url, children: title }) : title }),
+        [authors, year].filter(Boolean).length ? jsx("p", { children: [authors, year].filter(Boolean).join(" · ") }) : null,
+      ] });
+    };
+    const DataPoint = ({ label, value, unit = "", note = "" }) => jsx("dl", {
+      className: "research-data-point",
+      children: [
+        jsx("dt", { children: label }),
+        jsx("dd", { children: `${value ?? ""}${unit ? ` ${unit}` : ""}` }),
+        note ? jsx("dd", { className: "data-point-note", children: note }) : null,
+      ],
+    });
+    const ProtocolBlock = ({ title = "Protocol", children }) => jsx("section", {
+      className: "protocol-block",
+      children: [jsx("h3", { children: title }), children],
+    });
+    const EquipmentSpec = ({ title = "Equipment specification", items = {} }) => jsx("section", {
+      className: "equipment-spec",
+      children: [jsx("h3", { children: title }), jsx("dl", {
+        children: Object.entries(items).flatMap(([key, value]) => [jsx("dt", { children: key }, `term-${key}`), jsx("dd", { children: String(value) }, `value-${key}`)]),
+      })],
+    });
     const bodyHtml = renderToStaticMarkup(jsx(module.default, {
       components: {
         Citation,
+        CitationList,
+        Figure,
+        ResearchNote,
+        WarningBox,
+        ExperimentStep,
+        Equation,
+        ReferenceCard,
+        DataPoint,
+        ProtocolBlock,
+        EquipmentSpec,
         img: (properties) => jsx("img", {
           ...properties,
           loading: properties.loading || "lazy",
@@ -165,22 +292,37 @@ async function readContent(kind) {
       kind,
       slug,
       url,
+      canonicalUrl,
+      published,
+      updated,
+      publishedDate: published,
+      updatedDate: updated,
+      status,
+      featured: meta.featured === true,
+      featuredImage,
+      featuredImageAlt: String(meta.featuredImageAlt || meta.title),
+      keywords,
       tags,
       category: String(meta.category || (kind === "research" ? "Research" : kind === "knowledge" ? "Knowledge base" : "Glossary")),
+      subCategory: String(meta.subCategory || ""),
       author: meta.author || "Project S.P.H.E.R.E.",
-      authors: Array.isArray(meta.author) ? meta.author : [meta.author || "Project S.P.H.E.R.E."],
-      related: [...new Set((meta.related || []).map(String))],
+      authors,
+      related: [...new Set((meta.relatedArticles || meta.related || []).map(String))],
+      relatedArticles: [...new Set((meta.relatedArticles || meta.related || []).map(String))],
       knowledge: [...new Set((meta.knowledge || []).map(String))],
       citations,
       headings,
+      citationListRendered,
       bodyHtml,
       plainText,
-      readTime,
+      readTime: Number.isInteger(meta.readingTime) && meta.readingTime > 0 ? meta.readingTime : readTime,
+      readingTime: Number.isInteger(meta.readingTime) && meta.readingTime > 0 ? meta.readingTime : readTime,
     };
-  }));
+  }))).filter(Boolean);
 }
 
 let glossaryTerms = [];
+let authorProfiles = [];
 
 function schemaBase() {
   return [
@@ -198,31 +340,60 @@ function schemaBase() {
       name: "Project S.P.H.E.R.E.",
       publisher: { "@id": `${SITE}/#organization` },
       inLanguage: "en",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: { "@type": "EntryPoint", urlTemplate: `${SITE}/search/?q={search_term_string}` },
+        "query-input": "required name=search_term_string",
+      },
     },
   ];
 }
 
 function schemaFor(record, breadcrumbs, faqs = []) {
+  const authors = record.authors.map((name) => {
+    const profile = authorProfiles.find((item) => item.name === name);
+    return profile?.type === "Organization"
+      ? { "@type": "Organization", "@id": `${absolute(`/research/authors/${profile.slug}/`)}#author`, name }
+      : { "@type": "Person", "@id": `${absolute(`/research/authors/${profile?.slug || slugify(name)}/`)}#author`, name };
+  });
   const page = {
-    "@type": record.kind === "research" ? "Article" : record.kind === "knowledge" ? "Article" : "DefinedTerm",
+    "@type": record.kind === "research" ? ["Article", "BlogPosting"] : record.kind === "knowledge" ? "Article" : "DefinedTerm",
     "@id": `${absolute(record.url)}#content`,
-    url: absolute(record.url),
+    url: record.canonicalUrl || absolute(record.url),
     headline: record.title,
     name: record.title,
-    description: record.description,
+    description: record.seoDescription || record.description,
     isPartOf: { "@id": `${SITE}/#website` },
     inLanguage: "en",
     datePublished: record.published,
     dateModified: record.updated,
-    author: record.authors.map((name) => name === "Project S.P.H.E.R.E."
-      ? { "@type": "Organization", "@id": `${SITE}/#organization` }
-      : { "@type": "Person", name }),
+    author: authors,
     publisher: { "@id": `${SITE}/#organization` },
     mainEntityOfPage: absolute(record.url),
-    image: BRAND_IMAGE,
-    keywords: record.tags.join(", "),
+    image: record.featuredImage ? `${SITE}${record.featuredImage}` : BRAND_IMAGE,
+    keywords: [...record.tags, ...(record.keywords || [])].join(", "),
+    articleSection: record.category,
+    citation: record.citations.map((citation) => citation.url || (citation.doi ? `https://doi.org/${citation.doi}` : citation.arxiv ? `https://arxiv.org/abs/${citation.arxiv}` : citation.title)),
   };
-  const graph = [...schemaBase(), page, {
+  const authorNodes = authorProfiles.filter((profile) => record.authors.includes(profile.name)).map((profile) => ({
+    "@type": profile.type === "Organization" ? "Organization" : "Person",
+    "@id": `${absolute(`/research/authors/${profile.slug}/`)}#author`,
+    name: profile.name,
+    description: profile.bio,
+    url: absolute(`/research/authors/${profile.slug}/`),
+    sameAs: profile.links.map((link) => link.url).filter((url) => /^https:\/\//i.test(url)),
+    knowsAbout: profile.interests,
+  }));
+  const graph = [...schemaBase(), ...authorNodes, {
+    "@type": "WebPage",
+    "@id": `${absolute(record.url)}#webpage`,
+    url: absolute(record.url),
+    name: record.seoTitle || record.title,
+    description: record.seoDescription || record.description,
+    isPartOf: { "@id": `${SITE}/#website` },
+    dateModified: record.updated,
+    mainEntity: { "@id": `${absolute(record.url)}#content` },
+  }, page, {
     "@type": "BreadcrumbList",
     itemListElement: breadcrumbs.map(([name, url], index) => ({ "@type": "ListItem", position: index + 1, name, item: url })),
   }];
@@ -237,31 +408,33 @@ function schemaFor(record, breadcrumbs, faqs = []) {
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
-function pageHead({ title, description, url, type = "website", schema, noindex = false }) {
-  const canonical = absolute(url);
+function pageHead({ title, description, url, type = "website", schema, noindex = false, canonicalUrl, image = BRAND_IMAGE, keywords = "", authors = [], published, updated }) {
+  const canonical = canonicalUrl || absolute(url);
+  const robots = noindex ? "noindex,follow" : "index,follow,max-image-preview:large";
+  const articleMetadata = published && updated ? `<meta name="author" content="${e(authors.join(", "))}"><meta property="article:published_time" content="${e(published)}"><meta property="article:modified_time" content="${e(updated)}">` : "";
   return `<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${e(title)}</title><meta name="description" content="${e(description)}">
-<meta name="theme-color" content="#05070a">${noindex ? '<meta name="robots" content="noindex,follow">' : ""}
+<title>${e(title)}</title><meta name="description" content="${e(description)}"><meta name="robots" content="${robots}">${keywords ? `<meta name="keywords" content="${e(keywords)}">` : ""}${articleMetadata}
+<meta name="theme-color" content="#05070a">
 <link rel="canonical" href="${e(canonical)}"><link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. Research" href="${SITE}/rss.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="${type}"><meta property="og:site_name" content="Project S.P.H.E.R.E.">
 <meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(description)}">
-<meta property="og:url" content="${e(canonical)}"><meta property="og:image" content="${BRAND_IMAGE}">
+<meta property="og:url" content="${e(canonical)}"><meta property="og:image" content="${e(image)}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${e(title)}">
-<meta name="twitter:description" content="${e(description)}"><meta name="twitter:image" content="${BRAND_IMAGE}">
+<meta name="twitter:description" content="${e(description)}"><meta name="twitter:image" content="${e(image)}">
 <link href="/assets/site.css" rel="stylesheet"><link href="/assets/publication.css" rel="stylesheet">
 <script type="application/ld+json">${toJsonLd(schema)}</script>`;
 }
 
-function pageShell({ title, description, url, content, schema, scripts = [], noindex = false, type }) {
+function pageShell({ title, description, url, content, schema, scripts = [], noindex = false, type, canonicalUrl, image, keywords, authors, published, updated }) {
   const scriptTags = [...new Set([...scripts, "/assets/analytics.js"])].map((src) => `<script src="${src}" defer></script>`).join("");
-  return `<!doctype html><html lang="en"><head>${pageHead({ title, description, url, type, schema, noindex })}${scriptTags}</head><body><a class="skip-link" href="#main-content">Skip to content</a>${navigation}<main id="main-content" class="content-shell publication-shell">${content}</main>${footer}</body></html>\n`;
+  return `<!doctype html><html lang="en"><head>${pageHead({ title, description, url, type, schema, noindex, canonicalUrl, image, keywords, authors, published, updated })}${scriptTags}</head><body><a class="skip-link" href="#main-content">Skip to content</a>${navigation}<main id="main-content" class="content-shell publication-shell">${content}</main>${footer}</body></html>\n`;
 }
 
 function articleCard(record) {
   const labels = [...record.tags, record.category].map((label) => `<span class="publication-tag">${e(label)}</span>`).join("");
-  return `<article class="publication-result" data-kind="${e(record.kind)}" data-category="${e(record.category.toLowerCase())}" data-tags="${e(record.tags.map((tag) => tag.toLowerCase()).join("|"))}" data-search="${e(`${record.title} ${record.description} ${record.tags.join(" ")}`.toLowerCase())}">
+  return `<article class="publication-result" data-kind="${e(record.kind)}" data-category="${e(record.category.toLowerCase())}" data-tags="${e(record.tags.map((tag) => slugify(tag)).join("|"))}" data-authors="${e(record.authors.map((author) => author.toLowerCase()).join("|"))}" data-published="${e(record.published)}" data-featured="${record.featured === true}" data-search="${e(`${record.title} ${record.description} ${record.tags.join(" ")} ${record.authors.join(" ")}`.toLowerCase())}">
 <p class="publication-card-meta">${e(record.category)} <span aria-hidden="true">/</span> <time datetime="${e(record.published)}">${dateLabel(record.published)}</time> <span aria-hidden="true">/</span> ${record.readTime ? `${record.readTime} min read` : "Concept guide"}</p>
 <h3><a href="${e(record.url)}">${e(record.title)}</a></h3><p>${e(record.description)}</p><div class="publication-tags">${labels}</div></article>`;
 }
@@ -270,24 +443,24 @@ function searchControls(records) {
   const categories = [...new Set(records.map((record) => record.category))].sort((a, b) => a.localeCompare(b));
   const tags = [...new Set(records.flatMap((record) => record.tags))].sort((a, b) => a.localeCompare(b));
   return `<form class="publication-search" role="search" data-publication-search>
-<label>Search the library<input type="search" name="q" autocomplete="off" placeholder="Search articles and concepts" aria-label="Search articles and concepts"></label>
+<label>Search the library<input type="search" name="q" autocomplete="off" placeholder="Search articles, authors, and concepts" aria-label="Search articles, authors, and concepts" aria-controls="publication-results"></label>
 <label>Category<select name="category"><option value="">All categories</option>${categories.map((category) => `<option value="${e(category.toLowerCase())}">${e(category)}</option>`).join("")}</select></label>
-<label>Tag<select name="tag"><option value="">All tags</option>${tags.map((tag) => `<option value="${e(tag.toLowerCase())}">${e(tag)}</option>`).join("")}</select></label>
+<label>Tag<select name="tag"><option value="">All tags</option>${tags.map((tag) => `<option value="${e(slugify(tag))}">${e(tag)}</option>`).join("")}</select></label>
 <p class="publication-status" aria-live="polite" data-search-status>${records.length} items</p></form>`;
 }
 
 function tocMarkup(headings) {
   if (!headings.length) return "";
-  return `<nav class="publication-toc" aria-label="Table of contents"><h2>On this page</h2><ol>${headings.map(({ id, title, level }) => `<li class="toc-level-${level}"><a href="#${e(id)}">${e(title)}</a></li>`).join("")}</ol></nav>`;
+  return `<nav class="publication-toc" aria-label="Table of contents"><details open><summary>On this page</summary><ol>${headings.map(({ id, title, level }) => `<li class="toc-level-${level}"><a href="#${e(id)}">${e(title)}</a></li>`).join("")}</ol></details></nav>`;
 }
 
 function citationsMarkup(citations) {
   if (!citations.length) return "";
   return `<section class="publication-references" aria-labelledby="references-title"><h2 id="references-title">References</h2><ol>${citations.map((citation) => {
     const link = citation.url || (citation.doi ? `https://doi.org/${citation.doi}` : citation.arxiv ? `https://arxiv.org/abs/${citation.arxiv}` : null);
-    const details = [citation.authors, citation.journal, citation.year].filter(Boolean).map(e).join(". ");
+    const details = [citation.authors, citation.journal || citation.publisher || citation.booktitle, citation.year].filter(Boolean).map(e).join(". ");
     const identifier = citation.doi ? `DOI: ${e(citation.doi)}` : citation.arxiv ? `arXiv:${e(citation.arxiv)}` : null;
-    return `<li id="ref-${e(slugify(citation.id))}"><span>${e(citation.title)}${details ? `. ${details}` : ""}${identifier ? `. ${identifier}` : ""}</span>${link ? ` <a href="${e(link)}" rel="noopener noreferrer" target="_blank">External reference</a>` : ""}</li>`;
+    return `<li id="ref-${e(slugify(citation.id))}"><span>${e(citation.title)}${details ? `. ${details}` : ""}${identifier ? `. ${identifier}` : ""}</span>${link ? ` <a href="${e(link)}" rel="noopener noreferrer" target="_blank">Open ${e(citation.type)} reference</a>` : ""}</li>`;
   }).join("")}</ol></section>`;
 }
 
@@ -350,24 +523,59 @@ function renderedArticle(record, allRecords) {
   const position = cohort.findIndex((item) => item.url === record.url);
   const newer = position > 0 ? cohort[position - 1] : null;
   const older = position >= 0 && position + 1 < cohort.length ? cohort[position + 1] : null;
-  const tags = record.tags.map((tag) => `<a class="publication-tag" href="/search/?tag=${encodeURIComponent(tag.toLowerCase())}">${e(tag)}</a>`).join("");
-  const meta = `<p class="publication-byline">${record.authors.map(e).join(", ")} <span aria-hidden="true">·</span> Published <time datetime="${e(record.published)}">${dateLabel(record.published)}</time> <span aria-hidden="true">·</span> Updated <time datetime="${e(record.updated)}">${dateLabel(record.updated)}</time> <span aria-hidden="true">·</span> ${record.readTime} min read</p>`;
-  const references = citationsMarkup(record.citations);
+  const tags = record.tags.map((tag) => record.kind === "research"
+    ? `<a class="publication-tag" href="/research/tag/${e(slugify(tag))}/">${e(tag)}</a>`
+    : `<a class="publication-tag" href="/search/?tag=${encodeURIComponent(slugify(tag))}">${e(tag)}</a>`).join("");
+  const categoryLink = record.kind === "research"
+    ? `<a class="publication-tag" href="/research/category/${e(slugify(record.category))}/">${e(record.category)}</a>`
+    : `<span class="publication-tag">${e(record.category)}</span>`;
+  const authorMarkup = record.authors.map((name) => {
+    const profile = authorProfiles.find((item) => item.name === name);
+    return `<a href="/research/authors/${e(profile?.slug || slugify(name))}/">${e(name)}</a>`;
+  }).join(", ");
+  const authorPanel = record.authors.map((name) => {
+    const profile = authorProfiles.find((item) => item.name === name);
+    return `<section class="author-panel" aria-label="About the author"><h2>About ${e(name)}</h2><p>${e(profile?.bio || "Author biography has not been provided yet.")}</p><a href="/research/authors/${e(profile?.slug || slugify(name))}/">View author profile and articles</a></section>`;
+  }).join("");
+  const meta = `<p class="publication-byline">${authorMarkup} <span aria-hidden="true">·</span> Published <time datetime="${e(record.published)}">${dateLabel(record.published)}</time> <span aria-hidden="true">·</span> Updated <time datetime="${e(record.updated)}">${dateLabel(record.updated)}</time> <span aria-hidden="true">·</span> ${record.readTime} min read <span aria-hidden="true">·</span> ${record.citations.length} ${record.citations.length === 1 ? "reference" : "references"} <span aria-hidden="true">·</span> <span class="research-status">${e(record.status === "published" ? "Published" : "Proposal stage")}</span></p>`;
+  const references = record.citationListRendered ? "" : citationsMarkup(record.citations);
   const relatedSection = related.length ? `<section class="publication-related" aria-labelledby="related-title"><h2 id="related-title">Related articles</h2><ul>${related.map((item) => `<li><a href="${e(item.url)}">${e(item.title)}</a><p>${e(item.description)}</p></li>`).join("")}</ul></section>` : "";
   const relatedTermsSection = relatedTerms.length ? `<section class="publication-related" aria-labelledby="related-terms-title"><h2 id="related-terms-title">Related terms</h2><ul>${relatedTerms.map((item) => `<li><a href="${e(item.url)}">${e(item.title)}</a><p>${e(item.description)}</p></li>`).join("")}</ul></section>` : "";
   const knowledgeSection = knowledge.length ? `<section class="publication-related" aria-labelledby="concepts-title"><h2 id="concepts-title">Related concepts</h2><ul>${knowledge.map((item) => `<li><a href="${e(item.url)}">${e(item.title)}</a></li>`).join("")}</ul></section>` : "";
   const previousNext = newer || older ? `<nav class="publication-article-nav" aria-label="Article navigation">${older ? `<a rel="prev" href="${e(older.url)}"><span>Previous article</span>${e(older.title)}</a>` : "<span></span>"}${newer ? `<a rel="next" href="${e(newer.url)}"><span>Next article</span>${e(newer.title)}</a>` : ""}</nav>` : "";
   const faqs = record.faqs || [];
-  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/${e(record.kind)}/">${e(breadcrumbs[1][0])}</a> / ${e(record.title)}</div>
-<article class="publication-article"><header class="publication-header"><h1 class="page-title">${e(record.title)}</h1><p class="page-lede">${e(record.description)}</p>${meta}<div class="publication-tags">${tags}</div></header>
-<div class="publication-reading-layout">${tocMarkup(record.headings)}<div class="article-body publication-body">${record.bodyHtml}${faqMarkup(faqs)}${references}${knowledgeSection}${relatedSection}${relatedTermsSection}${previousNext}</div></div></article>`;
+  const image = record.featuredImage ? `<figure class="publication-hero"><img src="${e(record.featuredImage)}" alt="${e(record.featuredImageAlt)}" loading="lazy" decoding="async"></figure>` : "";
+  const disclaimer = record.kind === "research" ? `<aside class="research-disclaimer" aria-label="Research status notice"><strong>Research status:</strong> Project S.P.H.E.R.E. is at proposal stage. This page presents a hypothesis, plan, or method—not a measurement result or scientific validation.</aside>` : "";
+  const share = `<nav class="publication-share" aria-label="Share this article"><span>Share</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(absolute(record.url))}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:?subject=${encodeURIComponent(record.title)}&body=${encodeURIComponent(absolute(record.url))}">Email</a><a href="https://bsky.app/intent/compose?text=${encodeURIComponent(`${record.title} ${absolute(record.url)}`)}" target="_blank" rel="noopener noreferrer">Bluesky</a></nav>`;
+  const revisionEntries = Array.isArray(record.revisions) && record.revisions.length
+    ? record.revisions
+    : [{ date: record.published, note: record.updated === record.published ? "Initial publication; no separate revision note supplied." : "Initial publication." },
+      ...(record.updated !== record.published ? [{ date: record.updated, note: "Last updated; details not itemized." }] : [])];
+  const revisions = `<details class="revision-history"><summary>Revision history</summary><ol>${revisionEntries.map((item) => `<li><time datetime="${e(item.date)}">${e(item.date)}</time>${item.note ? ` — ${e(item.note)}` : ""}</li>`).join("")}</ol></details>`;
+  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / ${e(record.title)}</div>
+<article class="publication-article"><header class="publication-header">${image}<p class="publication-category">${categoryLink}</p><h1 class="page-title">${e(record.title)}</h1><p class="page-lede">${e(record.description)}</p>${meta}<div class="publication-tags">${tags}</div>${share}</header>
+${disclaimer}<div class="publication-reading-layout">${tocMarkup(record.headings)}<div class="article-body publication-body">${record.bodyHtml}${faqMarkup(faqs)}${references}${revisions}${authorPanel}${knowledgeSection}${relatedSection}${relatedTermsSection}${previousNext}</div></div></article>`;
   const schema = schemaFor(record, breadcrumbs, faqs);
-  const seoTitle = record.kind === "glossary"
+  const baseTitle = record.kind === "glossary"
     ? `${record.title} term definition | Glossary | Project S.P.H.E.R.E.`
     : record.kind === "knowledge"
       ? `${record.title} | Knowledge base | Project S.P.H.E.R.E.`
-      : record.title;
-  return pageShell({ title: seoTitle, description: record.description, url: record.url, content, schema, scripts: ["/assets/analytics.js"], type: "article" });
+      : `${record.title} | Project S.P.H.E.R.E.`;
+  return pageShell({
+    title: record.seoTitle || baseTitle,
+    description: record.seoDescription || record.description,
+    url: record.url,
+    canonicalUrl: record.canonicalUrl,
+    image: record.featuredImage ? `${SITE}${record.featuredImage}` : BRAND_IMAGE,
+    keywords: record.keywords.join(", "),
+    content,
+    schema,
+    scripts: ["/assets/publication-article.js"],
+    type: "article",
+    authors: record.authors,
+    published: record.published,
+    updated: record.updated,
+  });
 }
 
 function indexSchema(title, description, route, records) {
@@ -390,15 +598,105 @@ function indexSchema(title, description, route, records) {
 }
 
 function indexPage({ title, description, route, records, lead }) {
-  const results = route === "/glossary/" ? glossaryAlphabet(records) : `<div class="publication-results" data-search-results>${records.map(articleCard).join("")}</div>`;
+  const results = route === "/glossary/" ? glossaryAlphabet(records) : `<div class="publication-results" id="publication-results" data-search-results>${records.map(articleCard).join("")}</div>`;
   const content = `<div class="breadcrumbs"><a href="/">Home</a> / ${e(title)}</div><header class="publication-header"><h1 class="page-title">${e(title)}</h1><p class="page-lede">${e(lead)}</p></header>
 ${searchControls(records)}${results}<p class="publication-empty" data-search-empty hidden>No items match those filters. Try a different term or clear a filter.</p>`;
   return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, records), scripts: ["/assets/publication-search.js"] });
 }
 
 function researchCatalog(records) {
+  const categories = [...new Set(records.map((record) => record.category))].sort();
+  const topics = categories.map((category) => `<a class="publication-tag" href="/research/category/${e(slugify(category))}/">${e(category)}</a>`).join("");
+  const featured = records.filter((record) => record.featured);
+  const recent = records.slice(0, 3);
+  const discovery = `${featured.length ? `<section class="publication-discovery" aria-labelledby="featured-title"><h2 id="featured-title">Editor's picks</h2><div class="publication-results">${featured.map(articleCard).join("")}</div></section>` : ""}<section class="publication-discovery" aria-labelledby="recent-title"><h2 id="recent-title">Recent publications</h2><div class="publication-results">${recent.map(articleCard).join("")}</div></section><section class="publication-discovery" aria-labelledby="popular-title" data-popular-articles hidden><h2 id="popular-title">Popular in the last 30 days</h2><ol data-popular-results></ol></section><section class="publication-discovery" aria-labelledby="trending-title" data-trending-articles hidden><h2 id="trending-title">Trending over the last 7 days</h2><ol data-trending-results></ol></section>`;
   return `<section class="publication-catalog" aria-labelledby="journal-title"><h2 id="journal-title">Research journal</h2><p>Browse proposal-stage research and methods. Hypotheses are not findings; no project measurement results are reported here.</p>
-${searchControls(records)}<div class="publication-results" data-search-results>${records.map(articleCard).join("")}</div><p class="publication-empty" data-search-empty hidden>No articles match those filters. Try a different term or clear a filter.</p><p class="publication-more"><a href="/search/">Search the full library</a> <span aria-hidden="true">·</span> <a href="/knowledge/">Knowledge base</a> <span aria-hidden="true">·</span> <a href="/glossary/">Glossary</a> <span aria-hidden="true">·</span> <a href="/analytics/">Aggregate analytics</a></p></section>`;
+${discovery}<nav class="publication-topics" aria-label="Research topics">${topics}</nav>${searchControls(records)}<div class="publication-results" id="publication-results" data-search-results>${records.map(articleCard).join("")}</div><p class="publication-empty" data-search-empty hidden>No articles match those filters. Try a different term or clear a filter.</p><p class="publication-more"><a href="/research/archive/">Browse the archive</a> <span aria-hidden="true">·</span> <a href="/research/authors/">Authors</a> <span aria-hidden="true">·</span> <a href="/search/">Search the full library</a> <span aria-hidden="true">·</span> <a href="/knowledge/">Knowledge base</a> <span aria-hidden="true">·</span> <a href="/glossary/">Glossary</a> <span aria-hidden="true">·</span> <a href="/analytics/">Aggregate analytics</a></p></section>`;
+}
+
+function authorDirectory(profiles) {
+  const entries = profiles.map((profile) => `<article class="publication-result"><h2><a href="/research/authors/${e(profile.slug)}/">${e(profile.name)}</a></h2><p>${e(profile.bio)}</p><p>${profile.articles.length} ${profile.articles.length === 1 ? "article" : "articles"}</p></article>`).join("");
+  const route = "/research/authors/";
+  const title = "Research authors";
+  const description = "Author profiles, research interests, and publications from Project S.P.H.E.R.E.";
+  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / Authors</div><header class="publication-header"><h1 class="page-title">${title}</h1><p class="page-lede">${description}</p></header><div class="publication-results">${entries || "<p>Author profiles will appear here when research is published.</p>"}</div>`;
+  return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, []) });
+}
+
+function authorPage(profile) {
+  const route = `/research/authors/${profile.slug}/`;
+  const title = `${profile.name} | Research author`;
+  const articleList = profile.articles.map((record) => `<li><a href="${e(record.url)}">${e(record.title)}</a><p>${e(record.description)}</p></li>`).join("");
+  const interests = profile.interests.length ? profile.interests.map((item) => `<span class="publication-tag">${e(item)}</span>`).join("") : "<p>No research interests have been listed.</p>";
+  const links = profile.links.length ? `<ul>${profile.links.map((item) => `<li><a href="${e(item.url)}" rel="noopener noreferrer"${item.url.startsWith("https://") ? ' target="_blank"' : ""}>${e(item.label)}</a></li>`).join("")}</ul>` : "<p>No external links have been provided.</p>";
+  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / <a href="/research/authors/">Authors</a> / ${e(profile.name)}</div><header class="publication-header"><h1 class="page-title">${e(profile.name)}</h1><p class="page-lede">${e(profile.bio)}</p><p class="publication-byline">${profile.articles.length} ${profile.articles.length === 1 ? "publication" : "publications"}</p></header><section class="author-interests"><h2>Research interests</h2><div class="publication-tags">${interests}</div></section><section class="author-links"><h2>Links</h2>${links}</section><section class="publication-related"><h2>Articles</h2>${articleList ? `<ul>${articleList}</ul>` : "<p>No articles have been published under this profile.</p>"}</section>`;
+  const schema = { "@context": "https://schema.org", "@graph": [
+    ...schemaBase(),
+    { "@type": profile.type === "Organization" ? "Organization" : "Person", "@id": `${absolute(route)}#author`, name: profile.name, description: profile.bio, url: absolute(route), knowsAbout: profile.interests, sameAs: profile.links.map((item) => item.url).filter((url) => url.startsWith("https://")) },
+    { "@type": "ProfilePage", "@id": `${absolute(route)}#webpage`, url: absolute(route), name: title, mainEntity: { "@id": `${absolute(route)}#author` }, isPartOf: { "@id": `${SITE}/#website` } },
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Research authors", item: absolute("/research/authors/") },
+      { "@type": "ListItem", position: 3, name: profile.name, item: absolute(route) },
+    ] },
+  ] };
+  return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description: profile.bio, url: route, content, schema });
+}
+
+function taxonomyPage({ title, route, records, description }) {
+  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / ${e(title)}</div><header class="publication-header"><h1 class="page-title">${e(title)}</h1><p class="page-lede">${e(description)}</p></header><div class="publication-results" id="publication-results" data-search-results>${records.map(articleCard).join("")}</div>`;
+  return pageShell({ title: `${title} | Research | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, records) });
+}
+
+async function makeAuthorProfiles(records) {
+  let configured = [];
+  try {
+    configured = JSON.parse(await readFile(path.join(ROOT, "content", "authors.json"), "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  if (!Array.isArray(configured)) throw new Error("content/authors.json must contain an array of author profiles.");
+  const profiles = configured.map((profile, index) => {
+    if (!profile.name || typeof profile.name !== "string") throw new Error(`content/authors.json profile ${index + 1} needs a name.`);
+    const slug = profile.slug || slugify(profile.name);
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error(`Author "${profile.name}" has an invalid slug.`);
+    const links = (profile.links || []).map((link) => {
+      if (!link.label || !link.url || (!/^https:\/\//i.test(link.url) && (!link.url.startsWith("/") || link.url.startsWith("//") || link.url.includes("..")))) {
+        throw new Error(`Author "${profile.name}" links need a label and an HTTPS or site-relative URL.`);
+      }
+      return { label: String(link.label), url: String(link.url) };
+    });
+    return {
+      name: profile.name,
+      slug,
+      type: profile.type === "Organization" ? "Organization" : "Person",
+      bio: String(profile.bio || "No biography has been provided for this author yet."),
+      interests: (profile.interests || []).map(String),
+      links,
+      articles: [],
+    };
+  });
+  if (new Set(profiles.map((profile) => profile.name)).size !== profiles.length || new Set(profiles.map((profile) => profile.slug)).size !== profiles.length) {
+    throw new Error("Author profiles must have unique names and slugs.");
+  }
+  const byName = new Map(profiles.map((profile) => [profile.name, profile]));
+  for (const record of records.filter((item) => item.kind === "research")) {
+    for (const name of record.authors) {
+      if (!byName.has(name)) {
+        const profile = { name, slug: slugify(name), type: "Person", bio: "No biography has been provided for this author yet.", interests: [], links: [], articles: [] };
+        profiles.push(profile);
+        byName.set(name, profile);
+      }
+      byName.get(name).articles.push(record);
+    }
+  }
+  if (profiles.some((profile) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(profile.slug))) {
+    throw new Error("Author names must resolve to valid profile slugs; set explicit slugs in content/authors.json.");
+  }
+  if (new Set(profiles.map((profile) => profile.slug)).size !== profiles.length) {
+    throw new Error("Author names must resolve to unique profile slugs; set explicit slugs in content/authors.json.");
+  }
+  return profiles.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function glossaryAlphabet(records) {
@@ -407,7 +705,7 @@ function glossaryAlphabet(records) {
     const items = records.filter((record) => record.title.trim()[0].toUpperCase() === letter);
     return `<section class="glossary-group" id="letter-${e(letter)}" aria-labelledby="heading-${e(letter)}"><h2 id="heading-${e(letter)}">${e(letter)}</h2><div>${items.map(articleCard).join("")}</div></section>`;
   }).join("");
-  return `<nav class="glossary-alphabet" aria-label="Glossary letters">${letters.map((letter) => `<a href="#letter-${e(letter)}">${e(letter)}</a>`).join("")}</nav><div class="publication-results" data-search-results>${groups}</div>`;
+  return `<nav class="glossary-alphabet" aria-label="Glossary letters">${letters.map((letter) => `<a href="#letter-${e(letter)}">${e(letter)}</a>`).join("")}</nav><div class="publication-results" id="publication-results" data-search-results>${groups}</div>`;
 }
 
 async function readLegacyResearch(generatedSlugs) {
@@ -415,6 +713,7 @@ async function readLegacyResearch(generatedSlugs) {
   const entries = await readdir(dir, { withFileTypes: true });
   const pages = [];
   for (const entry of entries.filter((item) => item.isDirectory()).sort((a, b) => a.name.localeCompare(b.name))) {
+    if (["archive", "authors", "category", "tag"].includes(entry.name)) continue;
     if (generatedSlugs.has(entry.name)) continue;
     const file = path.join(dir, entry.name, "index.html");
     let html;
@@ -437,6 +736,7 @@ async function readLegacyResearch(generatedSlugs) {
     pages.push({
       kind: "research", slug: entry.name, url: `/research/${entry.name}/`, title, description,
       published, updated, category, tags: [], author: "Project S.P.H.E.R.E.", authors: ["Project S.P.H.E.R.E."],
+      canonicalUrl: absolute(`/research/${entry.name}/`), status: "proposed", keywords: [], featured: false, featuredImage: "",
       related: [...new Set(explicitRelated)], knowledge: [], citations: [], headings, plainText, readTime, legacy: true, html, file,
     });
   }
@@ -491,18 +791,35 @@ function updateLegacyHead(html, record) {
 async function updateLegacyPages(legacy, records) {
   for (const record of legacy) {
     let html = updateLegacyHead(record.html, record);
-    const byline = `<p class="page-meta">${record.authors.map(e).join(", ")} <span aria-hidden="true">·</span> Published <time datetime="${e(record.published)}">${dateLabel(record.published)}</time> <span aria-hidden="true">·</span> Updated <time datetime="${e(record.updated)}">${dateLabel(record.updated)}</time> <span aria-hidden="true">·</span> ${record.readTime} min read <span aria-hidden="true">·</span> Proposal stage</p>`;
+    const profile = authorProfiles.find((item) => item.name === record.authors[0]);
+    const authorLink = `<a href="/research/authors/${e(profile?.slug || slugify(record.authors[0]))}/">${e(record.authors[0])}</a>`;
+    const byline = `<p class="page-meta">${authorLink} <span aria-hidden="true">·</span> Published <time datetime="${e(record.published)}">${dateLabel(record.published)}</time> <span aria-hidden="true">·</span> Updated <time datetime="${e(record.updated)}">${dateLabel(record.updated)}</time> <span aria-hidden="true">·</span> ${record.readTime} min read <span aria-hidden="true">·</span> Proposal stage <span aria-hidden="true">·</span> <a class="publication-tag" href="/research/category/${e(slugify(record.category))}/">${e(record.category)}</a></p>`;
     if (/<p class="page-meta">[\s\S]*?<\/p>/i.test(html)) html = html.replace(/<p class="page-meta">[\s\S]*?<\/p>/i, byline);
     else html = html.replace(/<\/h1>/i, `</h1>${byline}`);
+    if (!html.includes('class="research-disclaimer"')) {
+      html = html.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, '$1<aside class="research-disclaimer" aria-label="Research status notice"><strong>Research status:</strong> Project S.P.H.E.R.E. is at proposal stage. This page presents a hypothesis, plan, or method—not a measurement result or scientific validation.</aside>');
+    }
+    if (!html.includes('class="publication-share"')) {
+      const url = absolute(record.url);
+      const share = `<nav class="publication-share" aria-label="Share this article"><span>Share</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:?subject=${encodeURIComponent(record.title)}&body=${encodeURIComponent(url)}">Email</a><a href="https://bsky.app/intent/compose?text=${encodeURIComponent(`${record.title} ${url}`)}" target="_blank" rel="noopener noreferrer">Bluesky</a></nav>`;
+      html = html.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, `$1${share}`);
+    }
+    if (!html.includes('class="author-panel"')) {
+      const bio = e(profile?.bio || "Author biography has not been provided yet.");
+      const panel = `<section class="author-panel" aria-label="About the author"><h2>About Project S.P.H.E.R.E.</h2><p>${bio}</p><a href="/research/authors/${e(profile?.slug || "project-sphere")}/">View author profile and articles</a></section>`;
+      html = html.replace("</article>", `${panel}</article>`);
+    }
     const block = legacyArticleNavigation(record, records);
     if (/<!-- PUBLICATION_NAV_START -->[\s\S]*?<!-- PUBLICATION_NAV_END -->/.test(html)) {
       html = html.replace(/<!-- PUBLICATION_NAV_START -->[\s\S]*?<!-- PUBLICATION_NAV_END -->/, block);
     } else {
       html = html.replace("</article>", `${block}</article>`);
     }
-    const toc = record.headings.length ? `<aside class="article-aside publication-toc" aria-label="On this page"><h2>On this page</h2>${record.headings.map((heading) => `<a href="#${e(heading.id)}">${e(heading.title)}</a>`).join("")}</aside>` : "";
-    if (/<aside class="article-aside"[\s\S]*?<\/aside>/i.test(html)) html = html.replace(/<aside class="article-aside"[\s\S]*?<\/aside>/i, toc);
+    const toc = record.headings.length ? `<nav class="article-aside publication-toc" aria-label="Table of contents"><details open><summary>On this page</summary><ol>${record.headings.map((heading) => `<li class="toc-level-${heading.level}"><a href="#${e(heading.id)}">${e(heading.title)}</a></li>`).join("")}</ol></details></nav>` : "";
+    const oldToc = /<aside class="[^"]*\barticle-aside\b[^"]*\bpublication-toc\b"[\s\S]*?<\/aside>/i;
+    if (oldToc.test(html)) html = html.replace(oldToc, toc);
     if (!html.includes('src="/assets/analytics.js"')) html = html.replace("</head>", '<script src="/assets/analytics.js" defer></script></head>');
+    if (!html.includes('src="/assets/publication-article.js"')) html = html.replace("</head>", '<script src="/assets/publication-article.js" defer></script></head>');
     await mkdir(path.dirname(record.file), { recursive: true });
     await writeFile(record.file, html);
   }
@@ -542,7 +859,10 @@ function safeJson(value) {
 }
 
 const glossaryContent = await readContent("glossary");
-glossaryTerms = glossaryContent.map((term) => ({ term: term.title, url: term.url }));
+glossaryTerms = [
+  ...glossaryContent.map((term) => ({ term: term.title, url: term.url, kind: "glossary" })),
+  ...await readLinkableTerms(["research", "knowledge"]),
+];
 const researchContent = await readContent("research");
 const knowledgeContent = await readContent("knowledge");
 const legacy = await readLegacyResearch(new Set(researchContent.map((record) => record.slug)));
@@ -551,12 +871,23 @@ const researchRecords = [...researchContent, ...legacy].sort((a, b) => b.publish
 const knowledgeRecords = knowledgeContent.sort((a, b) => a.title.localeCompare(b.title));
 const glossaryRecords = glossaryContent.sort((a, b) => a.title.localeCompare(b.title));
 const allSearchRecords = [...researchRecords, ...knowledgeRecords, ...glossaryRecords];
+authorProfiles = await makeAuthorProfiles(allSearchRecords);
 
 const duplicate = new Set();
 for (const record of records) {
   const key = `${record.kind}:${record.slug}`;
   if (duplicate.has(key)) throw new Error(`Duplicate ${record.kind} slug: ${record.slug}`);
   duplicate.add(key);
+  for (const reference of record.related) {
+    if (!records.some((candidate) => candidate.slug === reference || candidate.url === reference)) {
+      throw new Error(`${record.url}: related article "${reference}" does not exist.`);
+    }
+  }
+  for (const reference of record.knowledge) {
+    if (!records.some((candidate) => candidate.kind === "knowledge" && candidate.slug === reference)) {
+      throw new Error(`${record.url}: related knowledge page "${reference}" does not exist.`);
+    }
+  }
 }
 
 for (const record of [...researchContent, ...knowledgeContent, ...glossaryRecords]) {
@@ -577,7 +908,7 @@ await writeFile(path.join(ROOT, "glossary", "index.html"), indexPage({
   lead: "Find a term, browse alphabetically, and follow the links into related research.",
   records: glossaryRecords,
 }));
-const searchContent = `<div class="breadcrumbs"><a href="/">Home</a> / Search</div><header class="publication-header"><h1 class="page-title">Search the research library</h1><p class="page-lede">Search research articles, knowledge guides, and glossary terms. Search terms are counted only as daily aggregates; see the <a href="/privacy/">privacy notice</a>.</p></header>${searchControls(allSearchRecords)}<div class="publication-results" data-search-results>${allSearchRecords.map(articleCard).join("")}</div><p class="publication-empty" data-search-empty hidden>No results. Try a different term or filter.</p>`;
+const searchContent = `<div class="breadcrumbs"><a href="/">Home</a> / Search</div><header class="publication-header"><h1 class="page-title">Search the research library</h1><p class="page-lede">Search research articles, authors, tags, categories, knowledge guides, and glossary terms. Search terms are counted only as daily aggregates; see the <a href="/privacy/">privacy notice</a>.</p></header>${searchControls(allSearchRecords)}<div class="publication-results" id="publication-results" data-search-results>${allSearchRecords.map(articleCard).join("")}</div><p class="publication-empty" data-search-empty hidden>No results. Try a different term or filter.</p>`;
 const searchSchema = { "@context": "https://schema.org", "@graph": [...schemaBase(), { "@type": "SearchResultsPage", "@id": `${SITE}/search/#webpage`, url: `${SITE}/search/`, name: "Search the research library", isPartOf: { "@id": `${SITE}/#website` } }] };
 await mkdir(path.join(ROOT, "search"), { recursive: true });
 await writeFile(path.join(ROOT, "search", "index.html"), pageShell({
@@ -586,13 +917,21 @@ await writeFile(path.join(ROOT, "search", "index.html"), pageShell({
   url: "/search/", content: searchContent, schema: searchSchema, scripts: ["/assets/publication-search.js"],
 }));
 
-const dashboardContent = `<div class="breadcrumbs"><a href="/">Home</a> / Analytics</div><header class="publication-header"><h1 class="page-title">Research library analytics</h1><p class="page-lede">Aggregate activity for the last 30 days. No individual visitor profiles are collected. See the <a href="/privacy/#analytics">analytics privacy notice</a>.</p></header><div class="analytics-toolbar"><label>Reporting window<select id="analytics-days"><option value="30">Last 30 days</option><option value="7">Last 7 days</option><option value="90">Last 90 days</option></select></label><button type="button" id="analytics-refresh">Refresh</button></div><p id="analytics-status" class="publication-status" aria-live="polite">Loading aggregate metrics…</p><div id="analytics-dashboard" class="analytics-grid"></div><noscript>Enable JavaScript to load aggregate analytics.</noscript>`;
+const dashboardContent = `<div class="breadcrumbs"><a href="/">Home</a> / Content insights</div><header class="publication-header"><h1 class="page-title">Research library content insights</h1><p class="page-lede">Aggregate activity for the last 30 days. This dashboard is public and contains no individual visitor profiles. See the <a href="/privacy/#analytics">analytics privacy notice</a>.</p></header><div class="analytics-toolbar"><label>Reporting window<select id="analytics-days"><option value="30">Last 30 days</option><option value="7">Last 7 days</option><option value="90">Last 90 days</option></select></label><button type="button" id="analytics-refresh">Refresh</button></div><p id="analytics-status" class="publication-status" aria-live="polite">Loading aggregate metrics…</p><p class="analytics-method">Trending compares page views from the most recent seven days with the preceding seven days.</p><div id="analytics-dashboard" class="analytics-grid"></div><noscript>Enable JavaScript to load aggregate analytics.</noscript>`;
 const dashboardSchema = { "@context": "https://schema.org", "@graph": [...schemaBase(), { "@type": "WebPage", "@id": `${SITE}/analytics/#webpage`, url: `${SITE}/analytics/`, name: "Research library analytics", isPartOf: { "@id": `${SITE}/#website` } }] };
 await mkdir(path.join(ROOT, "analytics"), { recursive: true });
 await writeFile(path.join(ROOT, "analytics", "index.html"), pageShell({
-  title: "Research library analytics | Project S.P.H.E.R.E.",
+  title: "Research library content insights | Project S.P.H.E.R.E.",
   description: "Aggregate readership, popular research pages, search queries, and referring sites for the Project S.P.H.E.R.E. research library.",
   url: "/analytics/", content: dashboardContent, schema: dashboardSchema, scripts: ["/assets/analytics-dashboard.js"], noindex: true,
+}));
+const adminRoute = "/admin/content-insights/";
+const adminSchema = { "@context": "https://schema.org", "@graph": [...schemaBase(), { "@type": "WebPage", "@id": `${absolute(adminRoute)}#webpage`, url: absolute(adminRoute), name: "Research library content insights", isPartOf: { "@id": `${SITE}/#website` } }] };
+await mkdir(path.join(ROOT, "admin", "content-insights"), { recursive: true });
+await writeFile(path.join(ROOT, "admin", "content-insights", "index.html"), pageShell({
+  title: "Content insights | Project S.P.H.E.R.E.",
+  description: "Public, privacy-preserving aggregate readership and search statistics for the research library.",
+  url: adminRoute, content: dashboardContent, schema: adminSchema, scripts: ["/assets/analytics-dashboard.js"], noindex: true,
 }));
 
 const catalog = researchCatalog(researchRecords);
@@ -618,12 +957,73 @@ if (/Updated <time datetime="[^"]+">[\s\S]*?<\/time>/.test(researchIndex)) {
   researchIndex = researchIndex.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, (meta) => meta.replace("</p>", ` · Updated <time datetime="${TODAY}">${updatedDate}</time></p>`));
 }
 if (!researchIndex.includes('src="/assets/publication-search.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/publication-search.js" defer></script><script src="/assets/analytics.js" defer></script></head>');
+if (!researchIndex.includes('src="/assets/content-discovery.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/content-discovery.js" defer></script></head>');
 if (!researchIndex.includes('type="application/rss+xml"')) researchIndex = researchIndex.replace("</head>", `<link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. Research" href="${SITE}/rss.xml"></head>`);
 await writeFile(researchFile, researchIndex.replace(/\r\n|\n/g, "\r\n"));
 
+const categoryRoutes = new Map();
+for (const record of researchRecords) {
+  const slug = slugify(record.category);
+  if (categoryRoutes.has(slug) && categoryRoutes.get(slug).category !== record.category) {
+    throw new Error(`Research categories "${categoryRoutes.get(slug).category}" and "${record.category}" resolve to the same route.`);
+  }
+  if (!categoryRoutes.has(slug)) categoryRoutes.set(slug, { category: record.category, records: [] });
+  categoryRoutes.get(slug).records.push(record);
+}
+for (const [slug, group] of categoryRoutes) {
+  const route = `/research/category/${slug}/`;
+  const file = path.join(ROOT, route.slice(1), "index.html");
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, taxonomyPage({
+    title: group.category,
+    route,
+    records: group.records,
+    description: `Proposal-stage research and methods filed under ${group.category}. Hypotheses are not findings; no project measurement results are reported here.`,
+  }));
+}
+const tagRoutes = new Map();
+for (const record of researchRecords) {
+  for (const tag of record.tags) {
+    const slug = slugify(tag);
+    if (tagRoutes.has(slug) && tagRoutes.get(slug).tag !== tag) {
+      throw new Error(`Research tags "${tagRoutes.get(slug).tag}" and "${tag}" resolve to the same route.`);
+    }
+    if (!tagRoutes.has(slug)) tagRoutes.set(slug, { tag, records: [] });
+    tagRoutes.get(slug).records.push(record);
+  }
+}
+for (const [slug, group] of tagRoutes) {
+  const route = `/research/tag/${slug}/`;
+  const file = path.join(ROOT, route.slice(1), "index.html");
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, taxonomyPage({
+    title: `Research tagged “${group.tag}”`,
+    route,
+    records: group.records,
+    description: `Research articles and methods related to ${group.tag}. Project S.P.H.E.R.E. content remains proposal-stage and does not report measurement results.`,
+  }));
+}
+const archiveRoute = "/research/archive/";
+const archiveFile = path.join(ROOT, archiveRoute.slice(1), "index.html");
+await mkdir(path.dirname(archiveFile), { recursive: true });
+await writeFile(archiveFile, taxonomyPage({
+  title: "Research archive",
+  route: archiveRoute,
+  records: researchRecords,
+  description: "Chronological archive of research proposals, methods, and technical articles.",
+}));
+await mkdir(path.join(ROOT, "research", "authors"), { recursive: true });
+await writeFile(path.join(ROOT, "research", "authors", "index.html"), authorDirectory(authorProfiles));
+for (const profile of authorProfiles) {
+  const file = path.join(ROOT, "research", "authors", profile.slug, "index.html");
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, authorPage(profile));
+}
+
 await writeFile(path.join(ROOT, "assets", "publication-search.json"), safeJson(allSearchRecords.map((record) => ({
   title: record.title, description: record.description, url: record.url, kind: record.kind,
-  category: record.category, tags: record.tags, published: record.published, text: record.plainText,
+  category: record.category, tags: record.tags, authors: record.authors, keywords: record.keywords || [],
+  published: record.published, text: record.plainText, featured: record.featured === true,
 }))));
 await writeFile(path.join(ROOT, "rss.xml"), rssFeed(researchRecords));
 await updateLegacyPages(legacy, allSearchRecords);
@@ -632,9 +1032,14 @@ await updateSitemap([
   "/research/",
   ...researchContent.map((record) => record.url),
   ...legacy.map((record) => record.url),
+  archiveRoute,
+  ...[...categoryRoutes.keys()].map((slug) => `/research/category/${slug}/`),
+  ...[...tagRoutes.keys()].map((slug) => `/research/tag/${slug}/`),
+  "/research/authors/",
+  ...authorProfiles.map((profile) => `/research/authors/${profile.slug}/`),
   ...knowledgeContent.map((record) => record.url),
   ...glossaryRecords.map((record) => record.url),
   "/knowledge/", "/glossary/",
 ]);
 
-console.log(`Built publication: ${researchRecords.length} research pages, ${knowledgeRecords.length} knowledge pages, ${glossaryRecords.length} glossary terms.`);
+console.log(`Built publication: ${researchRecords.length} research pages, ${knowledgeRecords.length} knowledge pages, ${glossaryRecords.length} glossary terms, ${categoryRoutes.size} categories, ${tagRoutes.size} tags, ${authorProfiles.length} authors.`);

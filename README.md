@@ -56,7 +56,7 @@ validated scientific conclusions.
 ## Repository purpose
 
 This repository contains the public website and openly shareable project
-documentation. It is deployed through Cloudflare Pages from the `main` branch.
+documentation. It is deployed as Cloudflare Workers static assets from `main`.
 
 ## Contributing
 
@@ -101,6 +101,13 @@ It was used for the initial expansion. Existing-page augmentation steps are
 one-time migrations: do not rerun that script blindly over an already-expanded
 homepage. Edit the generated HTML directly or adapt the generator before a
 later content rebuild. Development files are excluded by `.assetsignore`.
+
+Research, knowledge, and glossary pages are authored in MDX under `content/`
+and rendered by `npm run build`. Run `npm ci && npm run verify` before changing
+publication content. See [`CONTENT_GUIDE.md`](CONTENT_GUIDE.md) for the
+researcher workflow, [`RESEARCH_PLATFORM.md`](RESEARCH_PLATFORM.md) for the
+routes and architecture, and [`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md) for
+release details.
 
 The QA inventory is in `tools/QA.md`. Sitemap and canonical URLs target the
 production domain at https://spheredesci.org/.
