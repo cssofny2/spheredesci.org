@@ -14,7 +14,7 @@ const SITE = 'https://spheredesci.org/#website';
 
 const NODES = [
   {
-    '@type': 'ResearchOrganization',
+    '@type': ['Organization', 'ResearchOrganization'],
     '@id': ORG,
     name: 'Project S.P.H.E.R.E. (SPHERE Research, LLC)',
     alternateName: 'Project SPHERE DeSci Metrology Initiative',
@@ -23,11 +23,7 @@ const NODES = [
     location: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Rochester', addressRegion: 'NY', addressCountry: 'US' } },
     founder: { '@id': PERSON },
     sameAs: [
-      'https://lab.spheredesci.org/',
       'https://www.facebook.com/SPHEREDesci',
-      'https://github.com/cssofny2',
-      'https://github.com/cssofny2/spheredesci.org',
-      'https://github.com/cssofny2/sphere-control-room-v2'
     ]
   },
   {
@@ -54,10 +50,7 @@ const NODES = [
     sameAs: [
       'https://michaelpgoodman.com/',
       'https://michaelpgoodman.com/biography/',
-      'https://github.com/cssofny2',
-      'https://spheredesci.org/',
-      'https://lab.spheredesci.org/',
-      'https://fieldsofgreenrochester.com/'
+      'https://github.com/cssofny2'
     ]
   },
   {
@@ -82,6 +75,7 @@ function walk(dir, out = []) {
 }
 
 const LD = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+const serializeLd = (value) => JSON.stringify(value).replaceAll('<', '\\u003c');
 
 function mergeGraph(doc) {
   const ctx = doc['@context'] || 'https://schema.org';
@@ -105,10 +99,10 @@ function injectLd(html) {
     let doc;
     try { doc = JSON.parse(body); } catch { return m; }
     done = true;
-    return `<script type="application/ld+json">${JSON.stringify(mergeGraph(doc))}</script>`;
+    return `<script type="application/ld+json">${serializeLd(mergeGraph(doc))}</script>`;
   });
   if (!done) {
-    const block = `<script type="application/ld+json">${JSON.stringify(mergeGraph({}))}</script>`;
+    const block = `<script type="application/ld+json">${serializeLd(mergeGraph({}))}</script>`;
     html = html.replace('</head>', `${block}</head>`);
   }
   return html;
