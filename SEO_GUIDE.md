@@ -30,3 +30,7 @@ After running the page generators, run `python3 tools/seo-schema.py` to ensure e
 - `python3 tools/social-meta.py` fills any missing Open Graph / Twitter Card tags and falls back to `assets/brand/og-image.png`; existing values are never overwritten. `social_tags()` can be imported by other generators.
 - `npm run build` runs all three in order. Run them after `build-directory.py`, `build-vl.py` and `build-whitepaper.mjs`, which regenerate pages.
 - Interaction analytics (whitepaper, GitHub, SPHEREVL, outbound links, FAQ opens) are aggregate daily counts in `analytics_events` (migration 0004); add `data-track=\"event-name\"` to a link to override its classification.
+
+## Lighthouse budgets
+
+`.lighthouserc.json` fails CI on LCP above 4 s (Google's poor threshold), CLS above 0.1, TBT above 200 ms and category scores below 0.9. Target LCP is 2.5 s. The SEO score tops out at 0.92 because Lighthouse reports the Cloudflare `Content-Signal` line in robots.txt as an unknown directive; that line is intentional.
