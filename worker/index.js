@@ -229,6 +229,14 @@ function analyticsReferrer(value, siteHost) {
   }
 }
 
+const ANALYTICS_INTERACTIONS = new Set(["whitepaper-click", "repository-click", "lab-click", "outbound-click", "faq-open"]);
+
+// Targets are a site path or a bare hostname; query strings and fragments are never kept.
+function interactionTarget(value) {
+  const target = String(value || "").trim().toLowerCase();
+  return /^\/[a-z0-9\/_.-]{0,118}$/.test(target) || /^[a-z0-9.-]{3,120}$/.test(target) ? target : null;
+}
+
 async function analyticsEvent(req, env) {
   if (env.ANALYTICS_ENABLED !== "true") return fail(404, "Not found.");
   if (req.method !== "POST") return fail(405, "Method not allowed.");
@@ -275,11 +283,19 @@ async function analyticsEvent(req, env) {
     statements.push(env.DB.prepare(
       "INSERT INTO analytics_engagement (day, path, visits, total_seconds, total_scroll) VALUES (?, ?, 1, ?, ?) ON CONFLICT(day, path) DO UPDATE SET visits = visits + 1, total_seconds = total_seconds + excluded.total_seconds, total_scroll = total_scroll + excluded.total_scroll"
     ).bind(day, path, duration, scroll));
+  } else if (body.type === "interaction") {
+    const name = String(body.name || "");
+    const target = interactionTarget(body.target);
+    if (!ANALYTICS_INTERACTIONS.has(name) || !target) return fail(400, "Invalid interaction event.");
+    statements.push(env.DB.prepare(
+      "INSERT INTO analytics_events (day, event, target, count) VALUES (?, ?, ?, 1) ON CONFLICT(day, event, target) DO UPDATE SET count = count + 1"
+    ).bind(day, name, target));
   } else {
     return fail(400, "Unsupported analytics event.");
   }
 
   statements.push(
+    env.DB.prepare("DELETE FROM analytics_events WHERE day < date('now', '-90 days')"),
     env.DB.prepare("DELETE FROM analytics_page_views WHERE day < date('now', '-90 days')"),
     env.DB.prepare("DELETE FROM analytics_searches WHERE day < date('now', '-90 days')"),
     env.DB.prepare("DELETE FROM analytics_referrers WHERE day < date('now', '-90 days')"),
@@ -298,7 +314,7 @@ async function analyticsDashboard(req, env) {
   const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
   const trendSince = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
   const previousSince = new Date(Date.now() - 14 * 86400000).toISOString().slice(0, 10);
-  const [views, topContent, topSearches, topReferrers, engagement, recentViews, previousViews] = await Promise.all([
+  const [views, topContent, topSearches, topReferrers, engagement, recentViews, previousViews, interactions] = await Promise.all([
     env.DB.prepare("SELECT COALESCE(SUM(views), 0) total FROM analytics_page_views WHERE day >= ?").bind(since).first(),
     env.DB.prepare("SELECT path label, SUM(views) views FROM analytics_page_views WHERE day >= ? GROUP BY path ORDER BY views DESC, path LIMIT 10").bind(since).all(),
     env.DB.prepare("SELECT query label, SUM(searches) searches FROM analytics_searches WHERE day >= ? GROUP BY query ORDER BY searches DESC, query LIMIT 10").bind(since).all(),
@@ -306,7 +322,8 @@ async function analyticsDashboard(req, env) {
     env.DB.prepare("SELECT path label, SUM(visits) visits, ROUND(SUM(total_seconds) * 1.0 / SUM(visits), 1) averageSeconds, ROUND(SUM(total_scroll) * 1.0 / SUM(visits)) averageScroll FROM analytics_engagement WHERE day >= ? GROUP BY path ORDER BY visits DESC, path LIMIT 10").bind(since).all(),
     env.DB.prepare("SELECT path label, SUM(views) views FROM analytics_page_views WHERE day >= ? GROUP BY path").bind(trendSince).all(),
     env.DB.prepare("SELECT path label, SUM(views) views FROM analytics_page_views WHERE day >= ? AND day < ? GROUP BY path").bind(previousSince, trendSince).all(),
-  ]);
+        env.DB.prepare("SELECT event || ' → ' || target label, SUM(count) clicks FROM analytics_events WHERE day >= ? GROUP BY event, target ORDER BY clicks DESC, label LIMIT 15").bind(since).all(),
+      ]);
   const previousByPath = new Map(previousViews.results.map((row) => [row.label, Number(row.views)]));
   const trendingContent = recentViews.results
     .map((row) => ({ label: row.label, views: Number(row.views), previousViews: previousByPath.get(row.label) || 0 }))
@@ -315,6 +332,7 @@ async function analyticsDashboard(req, env) {
     .sort((a, b) => b.change - a.change || b.views - a.views || a.label.localeCompare(b.label))
     .slice(0, 10);
   await env.DB.batch([
+    env.DB.prepare("DELETE FROM analytics_events WHERE day < date('now', '-90 days')"),
     env.DB.prepare("DELETE FROM analytics_page_views WHERE day < date('now', '-90 days')"),
     env.DB.prepare("DELETE FROM analytics_searches WHERE day < date('now', '-90 days')"),
     env.DB.prepare("DELETE FROM analytics_referrers WHERE day < date('now', '-90 days')"),
@@ -327,6 +345,7 @@ async function analyticsDashboard(req, env) {
     topSearches: topSearches.results,
     topReferrers: topReferrers.results,
     engagement: engagement.results,
+    interactions: interactions.results,
     trendingContent,
     generatedAt: new Date().toISOString(),
   });

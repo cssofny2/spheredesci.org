@@ -16,15 +16,12 @@ const NODES = [
   {
     '@type': ['Organization', 'ResearchOrganization'],
     '@id': ORG,
-    name: 'Project S.P.H.E.R.E. (SPHERE Research, LLC)',
+    name: 'Project S.P.H.E.R.E.',
     alternateName: 'Project SPHERE DeSci Metrology Initiative',
     url: 'https://spheredesci.org/',
     description: 'Open-research Decentralized Science (DeSci) metrology initiative investigating acoustic and electromagnetic resonance, precision instrumentation, and the locational variable hypothesis.',
     location: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Rochester', addressRegion: 'NY', addressCountry: 'US' } },
     founder: { '@id': PERSON },
-    sameAs: [
-      'https://www.facebook.com/SPHEREDesci',
-    ]
   },
   {
     '@type': 'Person',
@@ -109,13 +106,14 @@ function injectLd(html) {
 }
 
 const ATTRIBUTION = `<div class="footer-entity-attribution"><p>Project S.P.H.E.R.E. infrastructure and sovereign local AI pipelines architected by <a href="https://michaelpgoodman.com/" rel="author me" title="Michael P. Goodman — IT Infrastructure, Sovereign AI &amp; Managed Services"><strong>Michael P. Goodman</strong></a> — <a href="https://michaelpgoodman.com/services/" title="IT Infrastructure, Sovereign AI &amp; Managed IT Services Consulting">IT Infrastructure, Sovereign AI &amp; Managed Services Architect</a> (<a href="https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure" title="Project S.P.H.E.R.E. Sovereign Local AI Case Study">AI Infrastructure Case Study</a> · <a href="https://michaelpgoodman.com/biography/" rel="me" title="Michael P. Goodman Biography">Biography</a> · <a href="https://github.com/cssofny2" rel="me" title="Michael P. Goodman GitHub (@cssofny2)">GitHub @cssofny2</a>). SPHEREVL is an educational simulation, not measurements or scientific validation.</p></div>`;
+const ATTRIBUTION_WITH_LINK_CUES = ATTRIBUTION.replaceAll('<a ', '<a style="text-decoration:underline;text-underline-offset:2px" ');
 
 function injectFooter(html) {
   return html.replace(/<footer\b[\s\S]*?<\/footer>/, (f) => {
     if (f.includes('footer-entity-attribution')) {
-      return f.replace(/<div class="footer-entity-attribution">[\s\S]*?<\/div>/, ATTRIBUTION);
+      return f.replace(/<div class="footer-entity-attribution">[\s\S]*?<\/div>/, ATTRIBUTION_WITH_LINK_CUES);
     }
-    return f.replace('</footer>', `${ATTRIBUTION}</footer>`);
+    return f.replace('</footer>', `${ATTRIBUTION_WITH_LINK_CUES}</footer>`);
   });
 }
 

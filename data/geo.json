@@ -1,0 +1,69 @@
+{
+  "note": "Source for tools/build-geo.py. Summaries and FAQs must stay hypothesis/proposal framed: no results, no funding totals, no token claims. Answers may contain inline HTML.",
+  "pages": {
+    "/": {
+      "anchor": "after_p",
+      "summary_title": "Key facts",
+      "summary": [
+        "<strong>What:</strong> Project S.P.H.E.R.E. (Spatial Positioning Harmonic Empirical Resonance Experiment) is an independent, pre-launch research proposal.",
+        "<strong>Question:</strong> does moving a hollow copper sphere produce a reproducible change in its resonant frequency once ordinary environmental effects are accounted for?",
+        "<strong>Status:</strong> proposal stage. There are no measurement results, and the locational-variable idea is a hypothesis, not established physics.",
+        "<strong>Where to start:</strong> the <a href=\"/protocol/\">LOC-1 draft protocol</a>, the <a href=\"/whitepaper/\">whitepaper</a> and the <a href=\"/faq/\">FAQ</a>."
+      ]
+    },
+    "/about/": {
+      "anchor": "after_h1",
+      "summary": [
+        "Project S.P.H.E.R.E. is an open, independent research initiative proposing a controlled test of a locational-variable hypothesis.",
+        "The proposed test uses a hollow copper sphere and one mechanical resonance above 230 kHz; this band is a proposal, not a validated threshold.",
+        "Nothing here is a result. Claims are framed as hypotheses, plans and drafts until independent review and replication exist."
+      ]
+    },
+    "/protocol/": {
+      "anchor": "after_p",
+      "summary": [
+        "LOC-1 is a <strong>draft</strong> same-laboratory pilot design comparing a moved test sphere with a fixed reference.",
+        "It is not a completed experiment and not an issued preregistration; no public OSF registration exists yet.",
+        "A null result would set an upper bound under the tested conditions; any unexpected signal would first need artifact checks and independent replication."
+      ]
+    },
+    "/vl/": {
+      "anchor": "after_p",
+      "summary": [
+        "SPHEREVL (the Control Room) is an <strong>educational simulation</strong> of the S.P.H.E.R.E. measurement laboratory.",
+        "It does not contain measurements and is not scientific validation of the hypothesis.",
+        "The page lists the public repository facts and development history behind the simulator."
+      ],
+      "faq_title": "SPHEREVL questions",
+      "faqs": [
+        {
+          "question": "Does SPHEREVL show real measurements?",
+          "answer": "No. SPHEREVL is an educational simulation of the proposed laboratory workflow. It displays simulated data and is not a record of measurements or scientific validation."
+        },
+        {
+          "question": "Can SPHEREVL confirm the locational-variable hypothesis?",
+          "answer": "No. A simulator cannot confirm a physical hypothesis. Only a qualified, reviewed and independently replicated measurement could do that, and none has been performed."
+        }
+      ]
+    },
+    "/research/": {
+      "anchor": "after_p",
+      "summary": [
+        "This hub lists <strong>proposed</strong> research pages on synchronized copper-sphere frequency measurement.",
+        "Topics include error budgets, protocols, hardware, record-and-replay tests and verification.",
+        "The synchronized-measurement pages do not amend the LOC-1 draft protocol."
+      ]
+    },
+    "/whitepaper/": {
+      "anchor": "after_h1",
+      "summary": [
+        "Version 1.0 whitepaper: open resonance metrology, digital-twin validation and accountable research funding.",
+        "It is a proposal document. It reports no measurements and no funding totals.",
+        "Read it together with the <a href=\"/protocol/\">LOC-1 draft protocol</a>."
+      ]
+    },
+    "/faq/": {
+      "faqs_from_page": true
+    }
+  }
+}

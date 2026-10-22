@@ -81,3 +81,8 @@ submitted during QA because it would send an external email.
 - The publication checker validates generated-page canonical and social metadata, JSON-LD, internal links/assets/fragments, sitemap entries, RSS items, and duplicate glossary links. Run Lighthouse CI on mobile against the homepage, journal, article, knowledge base, glossary, and search.
 - Analytics uses daily aggregate D1 counters only, is disabled outside production, honors Do Not Track in the browser, stores no visitor or IP identifiers, redacts emails and URLs from queries, and prunes records after 90 days. Never include identifying information in a search query.
 - Do not expose credentials or use production forms during tests. Analytics endpoint tests use a mock database; do not send events to production during QA.
+
+- GEO/social: core routes have a `.geo-summary` block, FAQPage JSON-LD matches visible FAQ items, and every page has og:image and twitter:card (`python3 tools/build-geo.py --check && python3 tools/social-meta.py --check`).
+## Added 2026-10-22: SEO/accessibility lint and cross-links
+- `npm run lint:html` (part of `npm run verify` and both deploy workflows) fails on duplicate/missing H1, missing meta description or canonical, `<img>` without `alt`, invalid JSON-LD, malformed BreadcrumbList and unexpected noindex.
+- Generated publication pages show a Breadcrumb nav plus an 'Explore the project' block (whitepaper, related research, associated properties from `data/related-properties.json`).

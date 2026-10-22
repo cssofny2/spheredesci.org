@@ -7,6 +7,8 @@ import { parse } from "yaml";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { breadcrumbHtml } from "./lib/breadcrumbs.mjs";
+import { loadRelatedProperties, relatedLinksHtml, relatedResearch } from "./lib/related-links.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://spheredesci.org";
@@ -329,6 +331,7 @@ async function readContent(kind) {
   }))).filter(Boolean);
 }
 
+const relatedConfig = await loadRelatedProperties();
 let glossaryTerms = [];
 let authorProfiles = [];
 
@@ -340,6 +343,7 @@ function schemaBase() {
       name: "Project S.P.H.E.R.E.",
       url: `${SITE}/`,
       logo: BRAND_IMAGE,
+      sameAs: ["https://github.com/cssofny2/spheredesci.org"],
     },
     {
       "@type": "WebSite",
@@ -523,7 +527,7 @@ function faqMarkup(faqs) {
 }
 
 function renderedArticle(record, allRecords) {
-  const breadcrumbs = [["Home", `${SITE}/`], [record.kind === "research" ? "Research" : record.kind === "knowledge" ? "Knowledge base" : "Glossary", absolute(`/${record.kind}`)], [record.title, absolute(record.url)]];
+  const breadcrumbs = [["Home", `${SITE}/`], [record.kind === "research" ? "Research" : record.kind === "knowledge" ? "Knowledge base" : "Glossary", absolute(`/${record.kind}/`)], [record.title, absolute(record.url)]];
   const related = resolveRelated(record, allRecords);
   const relatedTerms = record.kind === "glossary" ? resolveRelatedTerms(record, allRecords) : [];
   const knowledge = resolveKnowledge(record, allRecords);
@@ -560,9 +564,10 @@ function renderedArticle(record, allRecords) {
     : [{ date: record.published, note: record.updated === record.published ? "Initial publication; no separate revision note supplied." : "Initial publication." },
       ...(record.updated !== record.published ? [{ date: record.updated, note: "Last updated; details not itemized." }] : [])];
   const revisions = `<details class="revision-history"><summary>Revision history</summary><ol>${revisionEntries.map((item) => `<li><time datetime="${e(item.date)}">${e(item.date)}</time>${item.note ? ` — ${e(item.note)}` : ""}</li>`).join("")}</ol></details>`;
-  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / ${e(record.title)}</div>
+  const exploreLinks = relatedLinksHtml({ research: relatedResearch(record, allRecords), config: relatedConfig });
+  const content = `${breadcrumbHtml(breadcrumbs)}
 <article class="publication-article"><header class="publication-header">${image}<p class="publication-category">${categoryLink}</p><h1 class="page-title">${e(record.title)}</h1><p class="page-lede">${e(record.description)}</p>${meta}<div class="publication-tags">${tags}</div>${share}</header>
-${disclaimer}<div class="publication-reading-layout">${tocMarkup(record.headings)}<div class="article-body publication-body">${record.bodyHtml}${faqMarkup(faqs)}${references}${revisions}${authorPanel}${knowledgeSection}${relatedSection}${relatedTermsSection}${previousNext}</div></div></article>`;
+${disclaimer}<div class="publication-reading-layout">${tocMarkup(record.headings)}<div class="article-body publication-body">${record.bodyHtml}${faqMarkup(faqs)}${references}${revisions}${authorPanel}${knowledgeSection}${relatedSection}${relatedTermsSection}${exploreLinks}${previousNext}</div></div></article>`;
   const schema = schemaFor(record, breadcrumbs, faqs);
   const baseTitle = record.kind === "glossary"
     ? `${record.title} | Glossary | S.P.H.E.R.E.`

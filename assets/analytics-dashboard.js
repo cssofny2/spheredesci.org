@@ -30,6 +30,7 @@
         engagementSection(data.engagement),
         section("Search queries", data.topSearches, "searches"),
         section("Referring pages", data.topReferrers, "visits"),
+        section("Link and FAQ interactions", data.interactions || [], "clicks"),
       ].join("");
       status.textContent = `Updated ${new Date(data.generatedAt).toLocaleString()} · ${data.days}-day window`;
     } catch (error) {
