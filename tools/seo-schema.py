@@ -48,7 +48,7 @@ def patch_graph(data):
         graph.insert(graph.index(site), dict(ORG))
     else:
         for key, value in ORG.items():
-            org[key] = value
+            org[key] = sorted(set(org.get(key, [])) | set(value)) if key == "sameAs" else value
     site["publisher"] = {"@id": ORG["@id"]}
     site["inLanguage"] = "en"
     site["potentialAction"] = SEARCH
