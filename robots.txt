@@ -1,8 +1,11 @@
-# Public website crawl rules. Cloudflare may prepend managed content signals.
-# Search crawlers and AI search/answer agents may read all public pages.
-# Content-Signal keeps model training and AI input off by default.
+# Public website crawl rules.
+# Ordinary web-search crawlers may read all public pages.
+# Documented AI training, answer/retrieval and user-fetch agents are disallowed below.
+# This is a cooperative, non-exhaustive approximation of the earlier Content-Signal
+# preference (ai-train=no, ai-input=no, search=yes), not an exact equivalent, and it does
+# not cover every AI service. The non-standard Content-Signal line is not used because
+# Lighthouse reports it as an invalid robots.txt directive.
 User-agent: *
-Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 Disallow: /404.html
 Disallow: /api/
@@ -14,17 +17,26 @@ User-agent: Googlebot
 User-agent: Bingbot
 User-agent: DuckDuckBot
 User-agent: Applebot
-User-agent: OAI-SearchBot
-User-agent: ChatGPT-User
-User-agent: PerplexityBot
-User-agent: Perplexity-User
-User-agent: Claude-SearchBot
-User-agent: Claude-User
 Allow: /
 Disallow: /404.html
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*?*utm_
 Disallow: /*?*fbclid=
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: CCBot
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: Bytespider
+Disallow: /
 
 Sitemap: https://spheredesci.org/sitemap.xml

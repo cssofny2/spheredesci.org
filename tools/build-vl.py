@@ -284,7 +284,7 @@ npm run build    # type-check and production build</code></pre>
                    "SPHEREVL, the visual lab",
                    "An interactive, educational simulator of the S.P.H.E.R.E. measurement laboratory, with the repository facts and development history behind it.",
                    body, toc, eyebrow="Visual lab", parent=[], navkey="vl", added="2026-10-07", updated=UPDATED,
-                   extra_ld=ld, image="https://spheredesci.org/assets/vl/vl-og.png", crumb="Visual Lab")
+                   extra_ld=ld, image="https://spheredesci.org/assets/vl/vl-og.jpg", crumb="Visual Lab")
     bd.write("/vl/", html)
 
 
