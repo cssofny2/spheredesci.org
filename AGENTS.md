@@ -9,9 +9,9 @@ similar) working in this repository. Humans are welcome to read it too; the
 The public website of **Project S.P.H.E.R.E.** (Spatial Positioning Harmonic
 Empirical Resonance Experiment), served at https://spheredesci.org.
 
-- Plain static HTML: one `index.html` per route (`/about/` → `about/index.html`).
-  There is no framework, bundler or `package.json`. The one dynamic part is the voting API
-  (`worker/`, Cloudflare Worker + D1 database `spheredesci-vote`), which only handles `/api/*`.
+- Static HTML: one `index.html` per route (`/about/` → `about/index.html`).
+  Publication pages are generated from MDX at build time; the dynamic parts are
+  the voting and aggregate analytics APIs (`worker/`, Cloudflare Worker + D1).
 - Served by Cloudflare (Workers static assets, `wrangler.jsonc`) straight from the
   repository root: **every file not listed in `.assetsignore` is published**.
 - Pushing to `main` deploys to production automatically. Every pull request gets a
@@ -67,6 +67,7 @@ This is a pre-launch research project. Copy must stay honest about that.
 | `/vl/` | `data/vl-repo.json` (snapshot of the control-room repo) | `python3 tools/build-vl.py` (refresh snapshot: `--snapshot /path/to/sphere-control-room-v2`) |
 | `assets/vl/` link art | generated | `python3 tools/make-vl-art.py` |
 | `/whitepaper/` | `content/whitepaper.mdx` (uses `protocol/index.html` as its template) | `npm i --no-save katex@0.16.11 marked@12 && node tools/build-whitepaper.mjs` |
+| `/research/`, `/knowledge/`, `/glossary/`, `/search/`, `/analytics/`, `rss.xml`, and publication search data | `content/{research,knowledge,glossary}/*.mdx` | `npm ci && npm run build` |
 | `assets/tailwind.css` | `styles.input.css`, `tailwind.config.cjs` | `npx --yes tailwindcss@3.4.17 -c tailwind.config.cjs -i styles.input.css -o assets/tailwind.css --minify` |
 | `/vote/`, `/vote/<project>/`, `worker/projects.js`, sitemap vote entries | `data/vote/projects.json`, `data/vote/<items>.json` | `python3 tools/make-vote-logos.py && python3 tools/build-vote.py` |
 | `assets/vote/logo-concepts/*.svg` | `data/vote/logo-concepts-source.json` (marks) and `data/vote/logo-concepts-type.json` (outlined wordmark/tagline layout) | `python3 tools/make-vote-logos.py` |
@@ -80,6 +81,8 @@ Notes:
   two levels deep (e.g. `research/<slug>/index.html`) are not scanned, so use
   existing classes or the hand-written styles in `assets/site.css` there.
 - `schema.json` and `content/` are source files, not published (see `.assetsignore`).
+- Publication MDX frontmatter is validated by `tools/build-publication.mjs`; do not edit generated article HTML.
+- Aggregate analytics are production-only. The D1 migration is applied by the production workflow; local and preview builds keep the API disabled.
 - Python tools need Python 3.9+. On Windows, `zoneinfo` may also need `pip install tzdata`.
 
 ## Common tasks
@@ -101,6 +104,16 @@ table above, then edit the data/generator or the HTML.
 **Add an event, newsletter issue, directory entry or link.** Edit the relevant
 file in `data/` and run `python3 tools/build-directory.py`. For a newsletter issue,
 add a fragment under `data/newsletters/` and list it in `data/newsletters.json`.
+
+**Publish research, knowledge, or glossary content.** Add an `.mdx` file under
+`content/research/`, `content/knowledge/`, or `content/glossary/`. The filename
+becomes the route slug unless frontmatter sets `slug`. Required fields are
+`title`, `description`, `published`, and `updated`; use ISO dates and keep the
+updated date on or after the publication date. Optional fields include
+`category`, `tags`, `author`, `related`, `knowledge`, `citations`, and `faqs`.
+Use `<Citation id="..."/>` in an article to reference a matching citation ID.
+Run `npm run verify`; CI builds the static pages, search index, RSS feed, and
+sitemap before deployment. Never hand-edit generated publication HTML.
 
 ## Checking your work
 

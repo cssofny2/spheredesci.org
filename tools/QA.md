@@ -73,3 +73,11 @@ submitted during QA because it would send an external email.
 - Verify FAQ answers in the JSON-LD match the visible text, tables scroll inside `.table-wrap` at 390 px, and no horizontal page scroll occurs.
 - Verify every external source link resolves and that figures quoted from sources (for example the 2.43% temperature shift and the 12 to 16% mass-loading shift) match the source.
 - Keep the educational-explainer or proposal-stage notice. Pages report no measurements or results.
+
+## Added 2026-10-21: publication platform
+
+- Articles and concept pages are generated from `content/research/*.mdx`, `content/knowledge/*.mdx`, and `content/glossary/*.mdx`. Run `npm ci && npm run verify`; never hand-edit generated publication pages.
+- Verify the research catalog, concept library, and glossary browse/search without JavaScript; check filters, alphabetical anchors, article table of contents, citations, bibliography, FAQ structured data, related links, and previous/next navigation.
+- The publication checker validates generated-page canonical and social metadata, JSON-LD, internal links/assets/fragments, sitemap entries, RSS items, and duplicate glossary links. Run Lighthouse CI on mobile against the homepage, journal, article, knowledge base, glossary, and search.
+- Analytics uses daily aggregate D1 counters only, is disabled outside production, honors Do Not Track in the browser, stores no visitor or IP identifiers, redacts emails and URLs from queries, and prunes records after 90 days. Never include identifying information in a search query.
+- Do not expose credentials or use production forms during tests. Analytics endpoint tests use a mock database; do not send events to production during QA.

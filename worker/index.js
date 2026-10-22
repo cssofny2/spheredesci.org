@@ -211,9 +211,118 @@ async function submit(req, env, project) {
   return withCookie(json({ ok: true, remix: { id, name, parent, prompt, svg, theme, layout, t: created, own: true } }), v);
 }
 
+function analyticsPath(value) {
+  const path = String(value || "");
+  return /^\/(?:research(?:\/[a-z0-9-]+)?|knowledge(?:\/[a-z0-9-]+)?|glossary(?:\/[a-z0-9-]+)?|search)\/?$/.test(path)
+    ? (path.endsWith("/") ? path : `${path}/`)
+    : null;
+}
+
+function analyticsReferrer(value, siteHost) {
+  if (!value) return "";
+  try {
+    const referrer = new URL(String(value));
+    if (referrer.protocol !== "https:" && referrer.protocol !== "http:") return "";
+    return referrer.host === siteHost ? referrer.pathname.slice(0, 200) : referrer.hostname.slice(0, 120);
+  } catch {
+    return "";
+  }
+}
+
+async function analyticsEvent(req, env) {
+  if (env.ANALYTICS_ENABLED !== "true") return fail(404, "Not found.");
+  if (req.method !== "POST") return fail(405, "Method not allowed.");
+  const url = new URL(req.url);
+  const origin = req.headers.get("origin");
+  if (origin && new URL(origin).host !== url.host) return fail(403, "Cross-site requests are not accepted.");
+  if (!(req.headers.get("content-type") || "").toLowerCase().includes("application/json")) return fail(415, "Send JSON.");
+  const text = await req.text();
+  if (text.length > 2048) return fail(413, "Request is too large.");
+  let body;
+  try { body = JSON.parse(text); } catch { return fail(400, "Invalid JSON."); }
+  const day = today();
+  const statements = [];
+
+  if (body.type === "page-view") {
+    const path = analyticsPath(body.path);
+    if (!path || path === "/search/") return json({ ok: true }, 202);
+    statements.push(env.DB.prepare(
+      "INSERT INTO analytics_page_views (day, path, views) VALUES (?, ?, 1) ON CONFLICT(day, path) DO UPDATE SET views = views + 1"
+    ).bind(day, path));
+    const referrer = analyticsReferrer(body.referrer, url.host);
+    if (referrer) statements.push(env.DB.prepare(
+      "INSERT INTO analytics_referrers (day, referrer, visits) VALUES (?, ?, 1) ON CONFLICT(day, referrer) DO UPDATE SET visits = visits + 1"
+    ).bind(day, referrer));
+  } else if (body.type === "search") {
+    const query = cleanText(body.query, 120).toLowerCase()
+      .replace(/\b[\w.+-]+@[\w.-]+\.[a-z]{2,}\b/gi, "[email]")
+      .replace(/\bhttps?:\/\/\S+/gi, "[url]")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (query.length < 2) return json({ ok: true }, 202);
+    statements.push(env.DB.prepare(
+      "INSERT INTO analytics_searches (day, query, searches) VALUES (?, ?, 1) ON CONFLICT(day, query) DO UPDATE SET searches = searches + 1"
+    ).bind(day, query));
+  } else {
+    return fail(400, "Unsupported analytics event.");
+  }
+
+  statements.push(
+    env.DB.prepare("DELETE FROM analytics_page_views WHERE day < date('now', '-90 days')"),
+    env.DB.prepare("DELETE FROM analytics_searches WHERE day < date('now', '-90 days')"),
+    env.DB.prepare("DELETE FROM analytics_referrers WHERE day < date('now', '-90 days')"),
+  );
+  await env.DB.batch(statements);
+  return json({ ok: true }, 202);
+}
+
+async function analyticsDashboard(req, env) {
+  if (env.ANALYTICS_ENABLED !== "true") return fail(404, "Analytics are not enabled.");
+  if (req.method !== "GET") return fail(405, "Method not allowed.");
+  const url = new URL(req.url);
+  const rawDays = Number(url.searchParams.get("days") || 30);
+  const days = [7, 30, 90].includes(rawDays) ? rawDays : 30;
+  const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
+  const [views, topContent, topSearches, topReferrers] = await Promise.all([
+    env.DB.prepare("SELECT COALESCE(SUM(views), 0) total FROM analytics_page_views WHERE day >= ?").bind(since).first(),
+    env.DB.prepare("SELECT path label, SUM(views) views FROM analytics_page_views WHERE day >= ? GROUP BY path ORDER BY views DESC, path LIMIT 10").bind(since).all(),
+    env.DB.prepare("SELECT query label, SUM(searches) searches FROM analytics_searches WHERE day >= ? GROUP BY query ORDER BY searches DESC, query LIMIT 10").bind(since).all(),
+    env.DB.prepare("SELECT referrer label, SUM(visits) visits FROM analytics_referrers WHERE day >= ? GROUP BY referrer ORDER BY visits DESC, referrer LIMIT 10").bind(since).all(),
+  ]);
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM analytics_page_views WHERE day < date('now', '-90 days')"),
+    env.DB.prepare("DELETE FROM analytics_searches WHERE day < date('now', '-90 days')"),
+    env.DB.prepare("DELETE FROM analytics_referrers WHERE day < date('now', '-90 days')"),
+  ]);
+  return json({
+    days,
+    totalViews: views.total,
+    topContent: topContent.results,
+    topSearches: topSearches.results,
+    topReferrers: topReferrers.results,
+    generatedAt: new Date().toISOString(),
+  });
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    if (url.pathname === "/api/analytics/event") {
+      try {
+        return await analyticsEvent(req, env);
+      } catch (error) {
+        console.error(error && error.stack ? error.stack : error);
+        return fail(500, "Unable to record this analytics event.");
+      }
+    }
+    if (url.pathname === "/api/analytics/dashboard") {
+      try {
+        return await analyticsDashboard(req, env);
+      } catch (error) {
+        console.error(error && error.stack ? error.stack : error);
+        return fail(500, "Unable to load analytics.");
+      }
+    }
     const m = url.pathname.match(/^\/api\/vote\/([a-z0-9-]+)\/(state|ballot|remix\/generate|remix\/submit)$/);
     if (!m || !PROJECTS[m[1]]) return fail(404, "Not found.");
     const [, project, action] = m;
