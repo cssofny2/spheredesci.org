@@ -28,6 +28,8 @@
     let url;
     try { url = new URL(link.href, location.href); } catch { return null; }
     if (!/^https?:$/.test(url.protocol)) return null;
+    // Same-document fragment links are in-page navigation, not destination clicks.
+    if (url.hostname === location.hostname && url.pathname === location.pathname && url.search === location.search && url.hash) return null;
     const external = url.hostname !== location.hostname;
     const override = (link.getAttribute("data-track") || "").trim().toLowerCase();
     const target = external ? url.hostname.toLowerCase() : url.pathname.toLowerCase();
@@ -61,7 +63,7 @@
   // toggle does not bubble, so listen in the capture phase.
   document.addEventListener("toggle", (event) => {
     const details = event.target;
-    if (details instanceof HTMLDetailsElement && details.open && details.classList.contains("faq-item")) {
+    if (details instanceof HTMLDetailsElement && details.open && (details.classList.contains("faq-item") || details.closest(".publication-faq, #faq"))) {
       sendInteraction("faq-open", location.pathname.toLowerCase());
     }
   }, true);
@@ -76,8 +78,11 @@
     if (scrollable > 0) maximumScroll = Math.max(maximumScroll, Math.min(100, Math.round((window.scrollY / scrollable) * 100)));
   }
 
+  // Mirrors the routes the Worker accepts for page-level metrics.
+  const TRACKED_ROUTE = /^\/(?:research(?:\/(?:category|tag|authors)\/[a-z0-9-]+|\/(?:archive|authors)|\/[a-z0-9-]+)?|knowledge(?:\/[a-z0-9-]+)?|glossary(?:\/[a-z0-9-]+)?|search)\/?$/;
+
   function recordEngagement() {
-    if (sentEngagement) return;
+    if (sentEngagement || !TRACKED_ROUTE.test(location.pathname)) return;
     sentEngagement = true;
     if (activeStartedAt !== null) activeDuration += performance.now() - activeStartedAt;
     const seconds = Math.floor(activeDuration / 1000);
