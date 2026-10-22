@@ -108,11 +108,13 @@ function injectLd(html) {
   return html;
 }
 
-const ATTRIBUTION = `<div class="footer-entity-attribution"><p>Project S.P.H.E.R.E. infrastructure, sovereign local AI pipelines, and virtual lab telemetry architected by <a href="https://michaelpgoodman.com/" rel="author me" title="Michael P. Goodman — IT Infrastructure, Sovereign AI &amp; Managed Services"><strong>Michael P. Goodman</strong></a> — <a href="https://michaelpgoodman.com/services/" title="IT Infrastructure, Sovereign AI &amp; Managed IT Services Consulting">IT Infrastructure, Sovereign AI &amp; Managed Services Architect</a> (<a href="https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure" title="Project S.P.H.E.R.E. Sovereign Local AI Case Study">AI Infrastructure Case Study</a> · <a href="https://michaelpgoodman.com/biography/" rel="me" title="Michael P. Goodman Biography">Biography</a> · <a href="https://github.com/cssofny2" rel="me" title="Michael P. Goodman GitHub (@cssofny2)">GitHub @cssofny2</a>).</p></div>`;
+const ATTRIBUTION = `<div class="footer-entity-attribution"><p>Project S.P.H.E.R.E. infrastructure and sovereign local AI pipelines architected by <a href="https://michaelpgoodman.com/" rel="author me" title="Michael P. Goodman — IT Infrastructure, Sovereign AI &amp; Managed Services"><strong>Michael P. Goodman</strong></a> — <a href="https://michaelpgoodman.com/services/" title="IT Infrastructure, Sovereign AI &amp; Managed IT Services Consulting">IT Infrastructure, Sovereign AI &amp; Managed Services Architect</a> (<a href="https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure" title="Project S.P.H.E.R.E. Sovereign Local AI Case Study">AI Infrastructure Case Study</a> · <a href="https://michaelpgoodman.com/biography/" rel="me" title="Michael P. Goodman Biography">Biography</a> · <a href="https://github.com/cssofny2" rel="me" title="Michael P. Goodman GitHub (@cssofny2)">GitHub @cssofny2</a>). SPHEREVL is an educational simulation, not measurements or scientific validation.</p></div>`;
 
 function injectFooter(html) {
   return html.replace(/<footer\b[\s\S]*?<\/footer>/, (f) => {
-    if (f.includes('footer-entity-attribution')) return f;
+    if (f.includes('footer-entity-attribution')) {
+      return f.replace(/<div class="footer-entity-attribution">[\s\S]*?<\/div>/, ATTRIBUTION);
+    }
     return f.replace('</footer>', `${ATTRIBUTION}</footer>`);
   });
 }

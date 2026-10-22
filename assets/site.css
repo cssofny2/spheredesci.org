@@ -23,7 +23,7 @@ body{background:var(--paper);color:var(--ink)}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
 .site-footer h3{color:var(--ink);font-size:.875rem;font-weight:600;margin-bottom:.7rem}
 .site-footer a{display:block;color:var(--muted);text-decoration:none;padding:.25rem 0}
-.site-footer .footer-entity-attribution a{display:inline;padding:0}
+.site-footer .footer-entity-attribution a{display:inline;padding:0;text-decoration:underline;text-underline-offset:2px}
 .site-footer a:hover{color:var(--accent)}
 .site-footer p{line-height:1.7;margin:0 0 .8rem}
 .site-footer .footer-name{color:var(--ink);font-weight:600}
