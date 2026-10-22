@@ -6,7 +6,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node tools/build-publication.mjs",
+    "build": "node tools/build-publication.mjs && python3 tools/seo-schema.py",
     "check": "node tools/check-publication.mjs",
     "test": "node --test tools/publication/*.test.mjs",
     "verify": "npm run build && npm run check && npm test"

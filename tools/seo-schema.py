@@ -25,7 +25,7 @@ ORG = {
     "url": SITE + "/",
     "logo": {"@type": "ImageObject", "url": SITE + "/assets/brand/sphere-icon-512.png", "width": 512, "height": 512},
     "email": "contact@spheredesci.org",
-    "sameAs": ["https://github.com/cssofny2/spheredesci.org"],
+    "sameAs": ["https://github.com/cssofny2/spheredesci.org", "https://michaelpgoodman.com/", "https://fieldsofgreenrochester.com/"],
 }
 SEARCH = {
     "@type": "SearchAction",

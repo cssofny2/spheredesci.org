@@ -340,7 +340,7 @@ function schemaBase() {
       name: "Project S.P.H.E.R.E.",
       url: `${SITE}/`,
       logo: BRAND_IMAGE,
-      sameAs: ["https://github.com/cssofny2/spheredesci.org"],
+      sameAs: ["https://github.com/cssofny2/spheredesci.org", "https://michaelpgoodman.com/", "https://fieldsofgreenrochester.com/"],
     },
     {
       "@type": "WebSite",
