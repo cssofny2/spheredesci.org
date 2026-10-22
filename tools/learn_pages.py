@@ -165,3 +165,21 @@ PAGES = [
    ("SPHEREVL", "<p>SPHEREVL, the project's Control Room, is an <strong>educational simulation, not measurements or scientific validation</strong>. Explore it on the <a href=\"/vl/\">Visual Lab page</a>.</p>"),
   ], related=["measurement-uncertainty-and-metrology","what-is-resonant-frequency","replication-crisis-reproducibility"]),
 ]
+
+HANDWRITTEN_HUB_PAGES = [
+  dict(slug="can-sound-change-resonant-frequency",
+   h1="Can sound change an object's resonant frequency?",
+   lede="Sound forces an object to vibrate but does not retune it. What really shifts a natural frequency, and how to tell a real change from an apparent one."),
+  dict(slug="how-to-measure-resonant-frequency-of-a-sphere",
+   h1="How to measure a sphere's resonant frequency and mode shapes",
+   lede="A step-by-step overview of measuring a sphere's natural frequencies, damping and mode shapes: support, excitation, sensors, FRFs and common pitfalls."),
+  dict(slug="ways-to-shift-resonant-frequency",
+   h1="How to shift a resonant frequency: mass, stiffness and heat",
+   lede="Compare ways to change an object's resonant frequency: added mass, geometry, temperature, supports, shunts and active control, and which are reversible."),
+  dict(slug="impulse-response-sine-sweep-deconvolution",
+   h1="Impulse response measurement: sine sweeps and deconvolution",
+   lede="How an exponential sine sweep and deconvolution give a clean impulse response, how to recreate a resonance from it, and why replay cannot retune an object."),
+  dict(slug="modal-analysis-glossary",
+   h1="Modal analysis glossary: FRF, MAC, Q factor and more",
+   lede="Plain-language definitions of natural frequency, mode shape, damping ratio, Q factor, FRF, coherence, MAC, aliasing and other resonance-testing terms."),
+]
