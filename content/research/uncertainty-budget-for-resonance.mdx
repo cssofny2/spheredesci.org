@@ -1,0 +1,57 @@
+---
+title: "Why a resonance measurement needs an uncertainty budget"
+description: "A practical guide to separating measured frequency changes from drift, calibration limits, and environmental effects in a proposed resonance experiment."
+slug: uncertainty-budget-for-resonance
+category: Measurement methods
+tags:
+  - metrology
+  - uncertainty
+  - resonance
+author: Project S.P.H.E.R.E.
+published: 2026-10-21
+updated: 2026-10-21
+related:
+  - frequency-measurement-error-budget
+  - resonance-change-verification-protocol
+knowledge:
+  - metrology
+  - resonance
+citations:
+  - id: gum
+    type: external
+    title: Evaluation of measurement data — Guide to the expression of uncertainty in measurement
+    authors: Joint Committee for Guides in Metrology
+    year: 2008
+    url: https://www.bipm.org/en/committees/jc/jcgm/publications
+faqs:
+  - question: "Does an observed frequency difference prove a location effect?"
+    answer: "No. A difference must be compared with a specified model, uncertainty budget, controls, and plausible systematic effects before any interpretation."
+  - question: "Is this page reporting a measurement?"
+    answer: "No. It describes general measurement practice and a proposed research context; Project S.P.H.E.R.E. has no measurement results."
+---
+
+An uncertainty budget is a structured account of how well a measurement is known. It helps researchers ask whether a proposed signal is distinguishable from instrument limits, environmental change, and analysis choices. It does not make a measurement accurate by itself.
+
+## State the quantity before listing errors
+
+Begin with a measurable quantity and its unit. For a resonance experiment, that could be a frequency estimate for a specified vibration mode over a defined time window. A comparison also needs a rule for combining repeated readings and for handling invalid or missing observations.
+
+The project’s draft <a href="/protocol/">LOC-1 protocol</a> remains the governing proposal. Related pages on <a href="/research/frequency-measurement-error-budget/">frequency uncertainty</a> and <a href="/research/resonance-change-verification-protocol/">verification controls</a> describe proposed design questions, not completed tests.
+
+## Separate random variation from systematic effects
+
+Repeated readings can vary even when the underlying condition is unchanged. This random variation may be summarized statistically, subject to the assumptions of the analysis. A systematic effect, such as a temperature-dependent shift or a change in mounting, can move readings in one direction and may not be revealed by repeatability alone.
+
+For each contribution, record its source, evidence, model, sensitivity, and treatment. Typical candidates include temperature, timing, instrument calibration, alignment, mounting, vibration, and changes in the measurement chain. Which terms matter depends on the apparatus and the claimed comparison.
+
+## Combine contributions only under stated assumptions
+
+The Guide to the Expression of Uncertainty in Measurement distinguishes methods for evaluating uncertainty contributions and combining them. A combined value is meaningful only when the inputs, dependencies, distributions, and coverage convention are documented. Correlated contributions should not be treated as independent merely because they appear in separate rows.
+
+The <Citation id="gum" /> is a general metrology reference. It does not validate this project’s apparatus, proposed effect, or analysis plan.
+
+## Keep the proposal separate from results
+
+A useful uncertainty budget can expose an under-specified experiment before data collection. It cannot establish that a proposed effect exists, and a small calculated uncertainty is not evidence that every systematic effect has been found. Independent review, calibration records, blinded analysis, and published data would be needed to evaluate a real result.
+
+Project S.P.H.E.R.E. is at the proposal stage. No measurement results or preregistration are claimed here.

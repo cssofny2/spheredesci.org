@@ -1,6 +1,7 @@
 # Files that must never be published as public static assets
 .git
 .github
+.impeccable
 .wrangler
 node_modules
 wrangler.jsonc
@@ -22,3 +23,6 @@ worker
 migrations
 package.json
 package-lock.json
+package-lock.json
+PRODUCT.md
+.lighthouserc.json

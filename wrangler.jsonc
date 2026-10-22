@@ -24,7 +24,8 @@
     "binding": "AI"
   },
   "vars": {
-    "REMIX_ENABLED": "true"
+    "REMIX_ENABLED": "true",
+    "ANALYTICS_ENABLED": "false"
   },
   "previews": {}
 }
