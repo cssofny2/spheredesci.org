@@ -973,7 +973,10 @@ if (/Updated <time datetime="[^"]+">[\s\S]*?<\/time>/.test(researchIndex)) {
 } else {
   researchIndex = researchIndex.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, (meta) => meta.replace("</p>", ` · Updated <time datetime="${TODAY}">${updatedDate}</time></p>`));
 }
-if (!researchIndex.includes('href="/assets/publication.css"')) researchIndex = researchIndex.replace("</head>", '<link href="/assets/publication.css" rel="stylesheet"></head>');
+if (!researchIndex.includes("/assets/publication.css")) researchIndex = researchIndex.replace("</head>", '<link href="/assets/publication.css" rel="stylesheet"></head>');
+// Self-hosted fonts (declared in site.css) replace the render-delaying Google Fonts request.
+researchIndex = researchIndex.replace(/<link rel="preconnect" href="https:\/\/fonts\.(googleapis|gstatic)\.com"[^>]*>\s*/g, "").replace(/<link href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]+" rel="stylesheet"[^>]*>(<noscript>[\s\S]*?<\/noscript>)?\s*/g, "");
+if (!researchIndex.includes("/assets/fonts/inter-latin.woff2")) researchIndex = researchIndex.replace("</head>", '<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin><style>@font-face{font-family:Inter;font-style:normal;font-weight:300 800;font-display:swap;src:url(/assets/fonts/inter-latin.woff2) format("woff2")}@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 500;font-display:swap;src:url(/assets/fonts/jetbrains-mono-latin.woff2) format("woff2")}</style></head>');
 if (!researchIndex.includes('src="/assets/publication-search.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/publication-search.js" defer></script><script src="/assets/analytics.js" defer></script></head>');
 if (!researchIndex.includes('src="/assets/content-discovery.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/content-discovery.js" defer></script></head>');
 if (!researchIndex.includes('type="application/rss+xml"')) researchIndex = researchIndex.replace("</head>", `<link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. Research" href="${SITE}/rss.xml"></head>`);
@@ -996,7 +999,7 @@ for (const [slug, group] of categoryRoutes) {
     title: group.category,
     route,
     records: group.records,
-    description: `Research tagged ${group.category} is at the proposal stage. It describes hypotheses and methods, not findings or measurements.`,
+    description: `Proposal-stage research and methods filed under ${group.category}. Hypotheses are not findings; no project measurement results are reported here.`,
   }));
 }
 const tagRoutes = new Map();
