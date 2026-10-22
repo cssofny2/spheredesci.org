@@ -1,7 +1,7 @@
 """Content for the /learn/ section. Rendered by tools/build-learn.py."""
 
 HUB = {
-    "title": "Learn: DeSci, Open Science, Resonance & Measurement Basics",
+    "title": "Learn: DeSci, Resonance & Measurement Basics",
     "desc": "Plain-language guides to DeSci, open science, preregistration, null results, resonance, sphere vibration and measurement uncertainty.",
     "h1": "Learn the ideas behind the experiment.",
     "lede": "Short, plain-language guides to the science and research-integrity concepts that Project S.P.H.E.R.E. relies on. These are explainers, not results.",
@@ -23,7 +23,7 @@ PAGES = [
 
  dict(slug="open-science-explained",
   title="Open Science: Practices for Trustworthy Research",
-  desc="What open science is: open access, open data, open methods and open peer review. A practical overview of how openness helps research be checked and reused.",
+  desc="Open science shares access, data, methods and review so others can check, reuse and build on research.",
   h1="Open science explained",
   lede="Open science means making the methods, data and conclusions of research available so that others can inspect, challenge and build on them.",
   eyebrow="Learn / Open science",
@@ -88,7 +88,7 @@ PAGES = [
   ], related=["vibration-modes-of-a-sphere","laser-doppler-vibrometry-basics","measurement-uncertainty-and-metrology"]),
 
  dict(slug="vibration-modes-of-a-sphere",
-  title="Vibration Modes of a Sphere: Copper Sphere Resonance Basics",
+  title="Vibration Modes of a Sphere: Resonance Basics",
   desc="How an elastic sphere vibrates: radial 'breathing' and other modes, what sets their frequencies, and why a copper sphere makes a useful test object.",
   h1="Vibration modes of a sphere: copper sphere resonance basics",
   lede="A solid elastic sphere has a whole family of vibration modes. Their frequencies follow from its radius, density and elastic properties.",
@@ -140,7 +140,7 @@ PAGES = [
   ], related=["publishing-null-results","laser-doppler-vibrometry-basics","blinding-in-physics-experiments"]),
 
  dict(slug="how-to-fund-independent-research",
-  title="How Independent Research Gets Funded: Options & Transparency",
+  title="Funding Independent Research: Options & Transparency",
   desc="An overview of how independent and open research projects can be funded, and the transparency practices that keep funding accountable.",
   h1="How independent research gets funded",
   lede="Researchers outside large institutions piece together support from several sources. What keeps any of them trustworthy is transparency about money and independence.",

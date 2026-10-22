@@ -1,4 +1,7 @@
 # Public website crawl rules. Cloudflare may prepend managed content signals.
+# The non-standard Content-Signal line was removed from this file because Lighthouse
+# reports it as an invalid robots.txt directive. AI-use preferences (ai-train=no,
+# ai-input=no, search=yes) are expected to come from Cloudflare's managed signals.
 User-agent: *
 Allow: /
 Disallow: /404.html
