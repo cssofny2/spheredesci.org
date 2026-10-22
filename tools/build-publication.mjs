@@ -12,6 +12,14 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://spheredesci.org";
 const BRAND_IMAGE = `${SITE}/assets/brand/og-image.png?v=2`;
 const TODAY = new Date().toISOString().slice(0, 10);
+const LEGACY_SEO_TITLES = {
+  "earth-motion-resonance-measurements": "Earth motion and resonance tests | Project S.P.H.E.R.E.",
+  "earth-rotation-lorentz-invariance-resonator-tests": "Earth rotation and resonator tests | Project S.P.H.E.R.E.",
+  "frequency-measurement-error-budget": "Frequency measurement error budget | Project S.P.H.E.R.E.",
+  "record-replay-resonance": "Record-and-replay resonance | Project S.P.H.E.R.E.",
+  "resonance-change-verification-protocol": "Resonance shift verification test | Project S.P.H.E.R.E.",
+  "synchronous-clock-network-lessons": "Clock network timing lessons | Project S.P.H.E.R.E.",
+};
 const STOP_WORDS = new Set(["a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "how", "in", "is", "it", "of", "on", "or", "the", "to", "what", "when", "why", "with"]);
 const e = (value = "") => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const xml = (value = "") => e(value);
@@ -432,11 +440,11 @@ function pageShell({ title, description, url, content, schema, scripts = [], noi
   return `<!doctype html><html lang="en"><head>${pageHead({ title, description, url, type, schema, noindex, canonicalUrl, image, keywords, authors, published, updated })}${scriptTags}</head><body><a class="skip-link" href="#main-content">Skip to content</a>${navigation}<main id="main-content" class="content-shell publication-shell">${content}</main>${footer}</body></html>\n`;
 }
 
-function articleCard(record) {
+function articleCard(record, headingLevel = 3) {
   const labels = [...record.tags, record.category].map((label) => `<span class="publication-tag">${e(label)}</span>`).join("");
   return `<article class="publication-result" data-kind="${e(record.kind)}" data-category="${e(record.category.toLowerCase())}" data-tags="${e(record.tags.map((tag) => slugify(tag)).join("|"))}" data-authors="${e(record.authors.map((author) => author.toLowerCase()).join("|"))}" data-published="${e(record.published)}" data-featured="${record.featured === true}" data-search="${e(`${record.title} ${record.description} ${record.tags.join(" ")} ${record.authors.join(" ")}`.toLowerCase())}">
 <p class="publication-card-meta">${e(record.category)} <span aria-hidden="true">/</span> <time datetime="${e(record.published)}">${dateLabel(record.published)}</time> <span aria-hidden="true">/</span> ${record.readTime ? `${record.readTime} min read` : "Concept guide"}</p>
-<h3><a href="${e(record.url)}">${e(record.title)}</a></h3><p>${e(record.description)}</p><div class="publication-tags">${labels}</div></article>`;
+<h${headingLevel}><a href="${e(record.url)}">${e(record.title)}</a></h${headingLevel}><p>${e(record.description)}</p><div class="publication-tags">${labels}</div></article>`;
 }
 
 function searchControls(records) {
@@ -557,9 +565,9 @@ function renderedArticle(record, allRecords) {
 ${disclaimer}<div class="publication-reading-layout">${tocMarkup(record.headings)}<div class="article-body publication-body">${record.bodyHtml}${faqMarkup(faqs)}${references}${revisions}${authorPanel}${knowledgeSection}${relatedSection}${relatedTermsSection}${previousNext}</div></div></article>`;
   const schema = schemaFor(record, breadcrumbs, faqs);
   const baseTitle = record.kind === "glossary"
-    ? `${record.title} term definition | Glossary | Project S.P.H.E.R.E.`
+    ? `${record.title} | Glossary | S.P.H.E.R.E.`
     : record.kind === "knowledge"
-      ? `${record.title} | Knowledge base | Project S.P.H.E.R.E.`
+      ? `${record.title} | Knowledge | S.P.H.E.R.E.`
       : `${record.title} | Project S.P.H.E.R.E.`;
   return pageShell({
     title: record.seoTitle || baseTitle,
@@ -598,7 +606,8 @@ function indexSchema(title, description, route, records) {
 }
 
 function indexPage({ title, description, route, records, lead }) {
-  const results = route === "/glossary/" ? glossaryAlphabet(records) : `<div class="publication-results" id="publication-results" data-search-results>${records.map(articleCard).join("")}</div>`;
+  const cardHeadingLevel = route === "/knowledge/" ? 2 : 3;
+  const results = route === "/glossary/" ? glossaryAlphabet(records) : `<div class="publication-results" id="publication-results" data-search-results>${records.map((record) => articleCard(record, cardHeadingLevel)).join("")}</div>`;
   const content = `<div class="breadcrumbs"><a href="/">Home</a> / ${e(title)}</div><header class="publication-header"><h1 class="page-title">${e(title)}</h1><p class="page-lede">${e(lead)}</p></header>
 ${searchControls(records)}${results}<p class="publication-empty" data-search-empty hidden>No items match those filters. Try a different term or clear a filter.</p>`;
   return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, records), scripts: ["/assets/publication-search.js"] });
@@ -609,9 +618,9 @@ function researchCatalog(records) {
   const topics = categories.map((category) => `<a class="publication-tag" href="/research/category/${e(slugify(category))}/">${e(category)}</a>`).join("");
   const featured = records.filter((record) => record.featured);
   const recent = records.slice(0, 3);
-  const discovery = `${featured.length ? `<section class="publication-discovery" aria-labelledby="featured-title"><h2 id="featured-title">Editor's picks</h2><div class="publication-results">${featured.map(articleCard).join("")}</div></section>` : ""}<section class="publication-discovery" aria-labelledby="recent-title"><h2 id="recent-title">Recent publications</h2><div class="publication-results">${recent.map(articleCard).join("")}</div></section><section class="publication-discovery" aria-labelledby="popular-title" data-popular-articles hidden><h2 id="popular-title">Popular in the last 30 days</h2><ol data-popular-results></ol></section><section class="publication-discovery" aria-labelledby="trending-title" data-trending-articles hidden><h2 id="trending-title">Trending over the last 7 days</h2><ol data-trending-results></ol></section>`;
+  const discovery = `${featured.length ? `<section class="publication-discovery" aria-labelledby="featured-title"><h2 id="featured-title">Editor's picks</h2><div class="publication-results">${featured.map((record) => articleCard(record)).join("")}</div></section>` : ""}<section class="publication-discovery" aria-labelledby="recent-title"><h2 id="recent-title">Recent publications</h2><div class="publication-results">${recent.map((record) => articleCard(record)).join("")}</div></section><section class="publication-discovery" aria-labelledby="popular-title" data-popular-articles hidden><h2 id="popular-title">Popular in the last 30 days</h2><ol data-popular-results></ol></section><section class="publication-discovery" aria-labelledby="trending-title" data-trending-articles hidden><h2 id="trending-title">Trending over the last 7 days</h2><ol data-trending-results></ol></section>`;
   return `<section class="publication-catalog" aria-labelledby="journal-title"><h2 id="journal-title">Research journal</h2><p>Browse proposal-stage research and methods. Hypotheses are not findings; no project measurement results are reported here.</p>
-${discovery}<nav class="publication-topics" aria-label="Research topics">${topics}</nav>${searchControls(records)}<div class="publication-results" id="publication-results" data-search-results>${records.map(articleCard).join("")}</div><p class="publication-empty" data-search-empty hidden>No articles match those filters. Try a different term or clear a filter.</p><p class="publication-more"><a href="/research/archive/">Browse the archive</a> <span aria-hidden="true">·</span> <a href="/research/authors/">Authors</a> <span aria-hidden="true">·</span> <a href="/search/">Search the full library</a> <span aria-hidden="true">·</span> <a href="/knowledge/">Knowledge base</a> <span aria-hidden="true">·</span> <a href="/glossary/">Glossary</a> <span aria-hidden="true">·</span> <a href="/analytics/">Aggregate analytics</a></p></section>`;
+${discovery}<nav class="publication-topics" aria-label="Research topics">${topics}</nav>${searchControls(records)}<div class="publication-results" id="publication-results" data-search-results>${records.map((record) => articleCard(record)).join("")}</div><p class="publication-empty" data-search-empty hidden>No articles match those filters. Try a different term or clear a filter.</p><p class="publication-more"><a href="/research/archive/">Browse the archive</a> <span aria-hidden="true">·</span> <a href="/research/authors/">Authors</a> <span aria-hidden="true">·</span> <a href="/search/">Search the full library</a> <span aria-hidden="true">·</span> <a href="/knowledge/">Knowledge base</a> <span aria-hidden="true">·</span> <a href="/glossary/">Glossary</a> <span aria-hidden="true">·</span> <a href="/analytics/">Aggregate analytics</a></p></section>`;
 }
 
 function authorDirectory(profiles) {
@@ -640,12 +649,15 @@ function authorPage(profile) {
       { "@type": "ListItem", position: 3, name: profile.name, item: absolute(route) },
     ] },
   ] };
-  return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description: profile.bio, url: route, content, schema });
+  return pageShell({ title: `${profile.name} | Research author`, description: profile.bio, url: route, content, schema });
 }
 
 function taxonomyPage({ title, route, records, description }) {
-  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / ${e(title)}</div><header class="publication-header"><h1 class="page-title">${e(title)}</h1><p class="page-lede">${e(description)}</p></header><div class="publication-results" id="publication-results" data-search-results>${records.map(articleCard).join("")}</div>`;
-  return pageShell({ title: `${title} | Research | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, records) });
+  const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / ${e(title)}</div><header class="publication-header"><h1 class="page-title">${e(title)}</h1><p class="page-lede">${e(description)}</p></header><div class="publication-results" id="publication-results" data-search-results>${records.map((record) => articleCard(record, 2)).join("")}</div>`;
+  const seoTitle = title.startsWith("Research tagged ")
+    ? `${title.slice("Research tagged ".length).replace(/[“”"]/g, "")} | Research | Project S.P.H.E.R.E.`
+    : `${title} | Research | Project S.P.H.E.R.E.`;
+  return pageShell({ title: seoTitle, description, url: route, content, schema: indexSchema(title, description, route, records) });
 }
 
 async function makeAuthorProfiles(records) {
@@ -703,7 +715,7 @@ function glossaryAlphabet(records) {
   const letters = [...new Set(records.map((record) => record.title.trim()[0].toUpperCase()))].sort();
   const groups = letters.map((letter) => {
     const items = records.filter((record) => record.title.trim()[0].toUpperCase() === letter);
-    return `<section class="glossary-group" id="letter-${e(letter)}" aria-labelledby="heading-${e(letter)}"><h2 id="heading-${e(letter)}">${e(letter)}</h2><div>${items.map(articleCard).join("")}</div></section>`;
+    return `<section class="glossary-group" id="letter-${e(letter)}" aria-labelledby="heading-${e(letter)}"><h2 id="heading-${e(letter)}">${e(letter)}</h2><div>${items.map((record) => articleCard(record)).join("")}</div></section>`;
   }).join("");
   return `<nav class="glossary-alphabet" aria-label="Glossary letters">${letters.map((letter) => `<a href="#letter-${e(letter)}">${e(letter)}</a>`).join("")}</nav><div class="publication-results" id="publication-results" data-search-results>${groups}</div>`;
 }
@@ -737,6 +749,7 @@ async function readLegacyResearch(generatedSlugs) {
       kind: "research", slug: entry.name, url: `/research/${entry.name}/`, title, description,
       published, updated, category, tags: [], author: "Project S.P.H.E.R.E.", authors: ["Project S.P.H.E.R.E."],
       canonicalUrl: absolute(`/research/${entry.name}/`), status: "proposed", keywords: [], featured: false, featuredImage: "",
+      seoTitle: LEGACY_SEO_TITLES[entry.name],
       related: [...new Set(explicitRelated)], knowledge: [], citations: [], headings, plainText, readTime, legacy: true, html, file,
     });
   }
@@ -757,7 +770,7 @@ function legacyArticleNavigation(record, records) {
 }
 
 function updateLegacyHead(html, record) {
-  const title = `${record.title} | Project S.P.H.E.R.E.`;
+  const title = record.seoTitle || `${record.title} | Project S.P.H.E.R.E.`;
   const schema = schemaFor(record, [
     ["Home", `${SITE}/`],
     ["Research", absolute("/research/")],
@@ -908,7 +921,7 @@ await writeFile(path.join(ROOT, "glossary", "index.html"), indexPage({
   lead: "Find a term, browse alphabetically, and follow the links into related research.",
   records: glossaryRecords,
 }));
-const searchContent = `<div class="breadcrumbs"><a href="/">Home</a> / Search</div><header class="publication-header"><h1 class="page-title">Search the research library</h1><p class="page-lede">Search research articles, authors, tags, categories, knowledge guides, and glossary terms. Search terms are counted only as daily aggregates; see the <a href="/privacy/">privacy notice</a>.</p></header>${searchControls(allSearchRecords)}<div class="publication-results" id="publication-results" data-search-results>${allSearchRecords.map(articleCard).join("")}</div><p class="publication-empty" data-search-empty hidden>No results. Try a different term or filter.</p>`;
+const searchContent = `<div class="breadcrumbs"><a href="/">Home</a> / Search</div><header class="publication-header"><h1 class="page-title">Search the research library</h1><p class="page-lede">Search research articles, authors, tags, categories, knowledge guides, and glossary terms. Search terms are counted only as daily aggregates; see the <a href="/privacy/">privacy notice</a>.</p></header>${searchControls(allSearchRecords)}<h2 class="sr-only">Search results</h2><div class="publication-results" id="publication-results" data-search-results>${allSearchRecords.map((record) => articleCard(record)).join("")}</div><p class="publication-empty" data-search-empty hidden>No results. Try a different term or filter.</p>`;
 const searchSchema = { "@context": "https://schema.org", "@graph": [...schemaBase(), { "@type": "SearchResultsPage", "@id": `${SITE}/search/#webpage`, url: `${SITE}/search/`, name: "Search the research library", isPartOf: { "@id": `${SITE}/#website` } }] };
 await mkdir(path.join(ROOT, "search"), { recursive: true });
 await writeFile(path.join(ROOT, "search", "index.html"), pageShell({
@@ -917,7 +930,7 @@ await writeFile(path.join(ROOT, "search", "index.html"), pageShell({
   url: "/search/", content: searchContent, schema: searchSchema, scripts: ["/assets/publication-search.js"],
 }));
 
-const dashboardContent = `<div class="breadcrumbs"><a href="/">Home</a> / Content insights</div><header class="publication-header"><h1 class="page-title">Research library content insights</h1><p class="page-lede">Aggregate activity for the last 30 days. This dashboard is public and contains no individual visitor profiles. See the <a href="/privacy/#analytics">analytics privacy notice</a>.</p></header><div class="analytics-toolbar"><label>Reporting window<select id="analytics-days"><option value="30">Last 30 days</option><option value="7">Last 7 days</option><option value="90">Last 90 days</option></select></label><button type="button" id="analytics-refresh">Refresh</button></div><p id="analytics-status" class="publication-status" aria-live="polite">Loading aggregate metrics…</p><p class="analytics-method">Trending compares page views from the most recent seven days with the preceding seven days.</p><div id="analytics-dashboard" class="analytics-grid"></div><noscript>Enable JavaScript to load aggregate analytics.</noscript>`;
+const dashboardContent = `<div class="breadcrumbs"><a href="/">Home</a> / Content insights</div><header class="publication-header"><h1 class="page-title">Research library content insights</h1><p class="page-lede">Aggregate activity for the last 30 days. This dashboard is public and contains no individual visitor profiles. See the <a href="/privacy/#analytics">analytics privacy notice</a>.</p></header><div class="analytics-toolbar"><label>Reporting window<select id="analytics-days"><option value="30">Last 30 days</option><option value="7">Last 7 days</option><option value="90">Last 90 days</option></select></label><button type="button" id="analytics-refresh">Refresh</button></div><p id="analytics-status" class="publication-status" aria-live="polite">Loading aggregate metrics…</p><p class="analytics-method">Trending compares page views from the most recent seven days with the preceding seven days.</p><h2 class="sr-only">Content activity</h2><div id="analytics-dashboard" class="analytics-grid"></div><noscript>Enable JavaScript to load aggregate analytics.</noscript>`;
 const dashboardSchema = { "@context": "https://schema.org", "@graph": [...schemaBase(), { "@type": "WebPage", "@id": `${SITE}/analytics/#webpage`, url: `${SITE}/analytics/`, name: "Research library analytics", isPartOf: { "@id": `${SITE}/#website` } }] };
 await mkdir(path.join(ROOT, "analytics"), { recursive: true });
 await writeFile(path.join(ROOT, "analytics", "index.html"), pageShell({
