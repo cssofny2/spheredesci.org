@@ -6,7 +6,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node tools/build-publication.mjs && node tools/inject-site-metadata.mjs",
+    "build": "node tools/build-publication.mjs && node tools/inject-site-metadata.mjs && python3 tools/build-geo.py && python3 tools/social-meta.py && python3 tools/seo-schema.py",
     "check": "node tools/check-publication.mjs",
     "lint:html": "node tools/lint-html.mjs",
     "test": "node --test tools/publication/*.test.mjs",

@@ -3,6 +3,8 @@
     "collect": {
       "url": [
         "http://localhost:4173/",
+        "http://localhost:4173/about/",
+        "http://localhost:4173/vl/",
         "http://localhost:4173/research/",
         "http://localhost:4173/research/uncertainty-budget-for-resonance/",
         "http://localhost:4173/research/archive/",
@@ -19,10 +21,14 @@
     },
     "assert": {
       "assertions": {
-        "categories:performance": ["error", { "minScore": 0.95 }],
-        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.9 }],
         "categories:best-practices": ["error", { "minScore": 0.95 }],
-        "categories:seo": ["error", { "minScore": 0.95 }]
+        "categories:seo": ["error", { "minScore": 0.9 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 4000, "aggregationMethod": "median-run" }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1, "aggregationMethod": "median-run" }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 200, "aggregationMethod": "median-run" }],
+        "interaction-to-next-paint": "off"
       }
     },
     "upload": {

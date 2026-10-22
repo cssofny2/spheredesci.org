@@ -1,13 +1,32 @@
 # Public website crawl rules.
-# Search crawlers and user-initiated fetchers (for example OAI-SearchBot, ChatGPT-User,
-# Claude-SearchBot, Claude-User) follow the default rules below.
-# Documented AI-training crawlers are disallowed. These rules are cooperative and the
+# Search crawlers and AI search/answer agents may read all public pages.
+# Documented AI-training crawlers are disallowed below. These rules are cooperative and the
 # list is not exhaustive, so they do not cover every AI service. The non-standard
 # Content-Signal directive is not used because Lighthouse reports it as invalid.
 User-agent: *
 Allow: /
 Disallow: /404.html
 Disallow: /api/
+Disallow: /admin/
+Disallow: /*?*utm_
+Disallow: /*?*fbclid=
+
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Applebot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+Allow: /
+Disallow: /404.html
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?*utm_
+Disallow: /*?*fbclid=
 
 User-agent: GPTBot
 User-agent: Google-Extended

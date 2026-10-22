@@ -21,6 +21,53 @@
 
   send("page-view", { referrer: document.referrer });
 
+  const INTERACTIONS = new Set(["whitepaper-click", "repository-click", "lab-click", "outbound-click"]);
+
+  // Returns { name, target } for a link, or null. data-track overrides the classification.
+  function classifyLink(link) {
+    let url;
+    try { url = new URL(link.href, location.href); } catch { return null; }
+    if (!/^https?:$/.test(url.protocol)) return null;
+    // Same-document fragment links are in-page navigation, not destination clicks.
+    if (url.hostname === location.hostname && url.pathname === location.pathname && url.search === location.search && url.hash) return null;
+    const external = url.hostname !== location.hostname;
+    const override = (link.getAttribute("data-track") || "").trim().toLowerCase();
+    const target = external ? url.hostname.toLowerCase() : url.pathname.toLowerCase();
+    if (INTERACTIONS.has(override)) return { name: override, target };
+    if (external) {
+      if (url.hostname === "github.com" && url.pathname.toLowerCase().startsWith("/cssofny2/spheredesci.org")) {
+        return { name: "repository-click", target };
+      }
+      if (url.hostname === "lab.spheredesci.org") return { name: "lab-click", target };
+      if (/(^|\.)spheredesci\.org$/.test(url.hostname)) return null;
+      return { name: "outbound-click", target };
+    }
+    if (/^\/whitepaper(\/|$)/.test(target)) return { name: "whitepaper-click", target };
+    if (/^\/vl(\/|$)/.test(target)) return { name: "lab-click", target };
+    return null;
+  }
+
+  function sendInteraction(name, target) {
+    if (!target) return;
+    const body = JSON.stringify({ type: "interaction", name, target });
+    const blob = new Blob([body], { type: "application/json" });
+    if (!navigator.sendBeacon?.("/api/analytics/event", blob)) send("interaction", { name, target });
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    const hit = link && classifyLink(link);
+    if (hit) sendInteraction(hit.name, hit.target);
+  });
+
+  // toggle does not bubble, so listen in the capture phase.
+  document.addEventListener("toggle", (event) => {
+    const details = event.target;
+    if (details instanceof HTMLDetailsElement && details.open && (details.classList.contains("faq-item") || details.closest(".publication-faq, #faq"))) {
+      sendInteraction("faq-open", location.pathname.toLowerCase());
+    }
+  }, true);
+
   let activeStartedAt = document.visibilityState === "visible" ? performance.now() : null;
   let activeDuration = 0;
   let maximumScroll = 0;
@@ -31,8 +78,11 @@
     if (scrollable > 0) maximumScroll = Math.max(maximumScroll, Math.min(100, Math.round((window.scrollY / scrollable) * 100)));
   }
 
+  // Mirrors the routes the Worker accepts for page-level metrics.
+  const TRACKED_ROUTE = /^\/(?:research(?:\/(?:category|tag|authors)\/[a-z0-9-]+|\/(?:archive|authors)|\/[a-z0-9-]+)?|knowledge(?:\/[a-z0-9-]+)?|glossary(?:\/[a-z0-9-]+)?|search)\/?$/;
+
   function recordEngagement() {
-    if (sentEngagement) return;
+    if (sentEngagement || !TRACKED_ROUTE.test(location.pathname)) return;
     sentEngagement = true;
     if (activeStartedAt !== null) activeDuration += performance.now() - activeStartedAt;
     const seconds = Math.floor(activeDuration / 1000);
