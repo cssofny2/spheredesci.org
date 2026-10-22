@@ -328,9 +328,9 @@ def build_newsletter():
 
 
 # ---------------------------------------------------------------- Candidate application
-ROLES = ["Scientific Director / Principal Investigator", "Metrology & Instrumentation Engineer",
-         "Laboratory & Research Operations Coordinator", "DeSci Community & Grants Lead",
-         "Independent Statistician / Methods Reviewer", "Bookkeeper & Compliance Administrator",
+ROLES = ["Science Lead / Principal Investigator", "Measurement Engineer",
+         "Lab Operations Coordinator", "Community & Grants Lead",
+         "Statistician / Methods Reviewer", "Bookkeeper / Compliance Administrator",
          "Reviewer or advisor (unpaid)", "Not listed: describe in the summary"]
 
 def _ref(n):
