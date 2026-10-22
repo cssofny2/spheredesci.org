@@ -973,6 +973,7 @@ if (/Updated <time datetime="[^"]+">[\s\S]*?<\/time>/.test(researchIndex)) {
 } else {
   researchIndex = researchIndex.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, (meta) => meta.replace("</p>", ` · Updated <time datetime="${TODAY}">${updatedDate}</time></p>`));
 }
+if (!researchIndex.includes('href="/assets/publication.css"')) researchIndex = researchIndex.replace("</head>", '<link href="/assets/publication.css" rel="stylesheet"></head>');
 if (!researchIndex.includes('src="/assets/publication-search.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/publication-search.js" defer></script><script src="/assets/analytics.js" defer></script></head>');
 if (!researchIndex.includes('src="/assets/content-discovery.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/content-discovery.js" defer></script></head>');
 if (!researchIndex.includes('type="application/rss+xml"')) researchIndex = researchIndex.replace("</head>", `<link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. Research" href="${SITE}/rss.xml"></head>`);
