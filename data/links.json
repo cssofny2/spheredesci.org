@@ -32,7 +32,11 @@
       "title": "Founder and related business pages",
       "intro": "Operated separately from Project S.P.H.E.R.E. A listing here is not an endorsement, partnership or statement of shared ownership.",
       "items": [
-        {"name": "Michael P. Goodman", "url": "https://michaelpgoodman.com", "desc": "Founder's personal and professional website."},
+        {"name": "Michael P. Goodman — IT Infrastructure, Sovereign AI & Managed Services", "url": "https://michaelpgoodman.com/", "desc": "Founder's personal and professional website."},
+        {"name": "Sovereign IT & AI Architecture Services", "url": "https://michaelpgoodman.com/services/", "desc": "Founder's separate IT infrastructure and managed services practice."},
+        {"name": "Project S.P.H.E.R.E. Sovereign AI Reference Build (Case Study)", "url": "https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure", "desc": "Case study of the local AI infrastructure behind this project's tooling."},
+        {"name": "SPHERE Virtual Lab Engineering Architecture", "url": "https://michaelpgoodman.com/projects/sphere-virtual-lab", "desc": "Engineering architecture notes for the SPHEREVL educational simulation."},
+        {"name": "Michael P. Goodman Executive Biography & Credentials", "url": "https://michaelpgoodman.com/biography/", "desc": "Founder's professional biography and credentials."},
         {"name": "Better Business Bureau (BBB) profile", "url": "", "desc": ""},
         {"name": "Brilliant Repairs", "url": "", "desc": ""}
       ]
