@@ -1,0 +1,7 @@
+{
+  "_note": "Authoritative entity profiles for Organization/WebSite sameAs. Add only real, verifiable https URLs; ORCID iDs (https://orcid.org/0000-0000-0000-0000) and registry nodes go in their lists once they exist.",
+  "github": ["https://github.com/cssofny2", "https://github.com/cssofny2/spheredesci.org"],
+  "orcid": [],
+  "registries": [],
+  "social": ["https://x.com/spheredesci"]
+}

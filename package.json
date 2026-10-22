@@ -6,10 +6,11 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node tools/build-publication.mjs",
+    "build": "node tools/build-publication.mjs && node tools/inject-site-metadata.mjs",
     "check": "node tools/check-publication.mjs",
+    "lint:html": "node tools/lint-html.mjs",
     "test": "node --test tools/publication/*.test.mjs",
-    "verify": "npm run build && npm run check && npm test"
+    "verify": "npm run build && npm run check && npm run lint:html && npm test"
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.0",
