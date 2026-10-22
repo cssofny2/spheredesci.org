@@ -138,7 +138,7 @@
       const record = index?.get(href);
       const searchable = record || {
         title: card.querySelector("h3, h2")?.textContent || "",
-        description: card.querySelector("h3 + p")?.textContent || "",
+        description: card.querySelector("h3 + p, h2 + p")?.textContent || "",
         text: card.dataset.search || "",
         tags: (card.dataset.tags || "").split("|"),
         authors: (card.dataset.authors || "").split("|"),
@@ -152,7 +152,7 @@
       card.hidden = !visible;
       card.style.order = visible ? String(-score) : "";
       const title = card.querySelector("h3 a, h2 a");
-      const description = card.querySelector("h3 + p");
+      const description = card.querySelector("h3 + p, h2 + p");
       if (title) highlight(title, visible ? terms : []);
       if (description) highlight(description, visible ? terms : []);
       if (visible) ranked.push({ card, score, date: record?.published || card.dataset.published || "" });

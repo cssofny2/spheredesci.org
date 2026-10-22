@@ -46,7 +46,7 @@ def project_page(p, items):
         for it in group:
             pos += 1
             img = f"/assets/vote/{slug}/{it['slug']}.svg"
-            alt = f"{it['name']} logo concept for Project S.P.H.E.R.E.: {it['note'].rstrip('.')}."
+            alt = f"{it['name']} logo concept for Project S.P.H.E.R.E."
             body += (f'<figure class="vote-item" id="{it["slug"]}" data-item="{it["id"]}" data-name="{esc(it["name"])}" data-img="{img}" data-remix="{1 if it["remix"] else 0}">'
                      f'<a class="vote-img" href="{img}" aria-label="Open {esc(it["name"])} as an SVG file">'
                      f'<img src="{img}" alt="{esc(alt)}" width="480" height="320" loading="{"eager" if pos <= 4 else "lazy"}" decoding="async"></a>'
@@ -121,7 +121,7 @@ def sitemap(projects, images_by, counts):
     x = p.read_text(encoding="utf-8")
     if "xmlns:image=" not in x:
         x = x.replace('<urlset ', '<urlset xmlns:image="http://www.google.com/schemas/image/1.1" ', 1)
-    x = re.sub(r"<url><loc>https://spheredesci\.org/vote/.*?</url>\n?", "", x, flags=re.S)
+    x = re.sub(r"\s*<url>\s*<loc>https://spheredesci\.org/vote/.*?</url>\s*", "", x, flags=re.S)
     entries = f'<url><loc>{SITE}/vote/</loc><lastmod>{projects[0]["added"]}</lastmod></url>\n'
     for pr in projects:
         imgs = "".join(f"<image:image><image:loc>{esc(u)}</image:loc><image:title>{esc(t)}</image:title><image:caption>{esc(c)}</image:caption></image:image>" for u, t, c in images_by[pr["slug"]])

@@ -14,9 +14,9 @@ a.publication-tag:hover{border-color:var(--signal);color:var(--signal)}
 .publication-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.5rem}
 .publication-result{min-width:0;padding:1.25rem 0 1.4rem;border-top:1px solid var(--line)}
 .publication-result[hidden],.glossary-group[hidden]{display:none}
-.publication-result h3{margin:.25rem 0 .6rem;font-size:1.25rem;line-height:1.35}
-.publication-result h3 a{color:var(--ink);text-decoration:none;text-underline-offset:4px}
-.publication-result h3 a:hover{color:var(--accent);text-decoration:underline}
+.publication-result h2,.publication-result h3{margin:.25rem 0 .6rem;font-size:1.25rem;line-height:1.35}
+.publication-result h2 a,.publication-result h3 a{color:var(--ink);text-decoration:none;text-underline-offset:4px}
+.publication-result h2 a:hover,.publication-result h3 a:hover{color:var(--accent);text-decoration:underline}
 .publication-result>p:not(.publication-card-meta){margin:0;color:#c3ccd7;font-size:.95rem;line-height:1.65}
 .publication-card-meta{margin:0}
 .publication-empty{margin:1.5rem 0;color:#c3ccd7}

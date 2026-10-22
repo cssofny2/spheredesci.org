@@ -14,7 +14,8 @@
       ],
       "numberOfRuns": 2,
       "startServerCommand": "npx --yes serve@14.2.4 . -l 4173 --no-clipboard",
-      "startServerReadyPattern": "Accepting connections"
+      "startServerReadyPattern": "Accepting connections",
+      "startServerReadyTimeout": 60000
     },
     "assert": {
       "assertions": {

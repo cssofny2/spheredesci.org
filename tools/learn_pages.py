@@ -2,7 +2,7 @@
 
 HUB = {
     "title": "Learn: DeSci, Open Science, Resonance & Measurement Basics",
-    "desc": "Plain-language guides to decentralized science (DeSci), open science, preregistration, null results, resonant frequency, sphere vibration modes and measurement uncertainty.",
+    "desc": "Plain-language guides to DeSci, open science, preregistration, null results, resonance, sphere vibration and measurement uncertainty.",
     "h1": "Learn the ideas behind the experiment.",
     "lede": "Short, plain-language guides to the science and research-integrity concepts that Project S.P.H.E.R.E. relies on. These are explainers, not results.",
 }
@@ -10,7 +10,7 @@ HUB = {
 PAGES = [
  dict(slug="what-is-desci",
   title="What Is DeSci? Decentralized Science Explained",
-  desc="DeSci (decentralized science) is a movement to make research more open, transparent and community-accountable. Learn what it means, what it does not, and how S.P.H.E.R.E. approaches it.",
+  desc="What decentralized science (DeSci) means, its limits, and how S.P.H.E.R.E. applies open research practices.",
   h1="What is DeSci? Decentralized science, explained",
   lede="DeSci is shorthand for decentralized science: a set of ideas for making research funding, review and data sharing more open and less dependent on a few gatekeepers.",
   eyebrow="Learn / DeSci",
@@ -22,7 +22,7 @@ PAGES = [
   ], related=["open-science-explained","preregistration-explained","publishing-null-results"]),
 
  dict(slug="open-science-explained",
-  title="Open Science Explained: Practices That Make Research Trustworthy",
+  title="Open Science: Practices for Trustworthy Research",
   desc="What open science is: open access, open data, open methods and open peer review. A practical overview of how openness helps research be checked and reused.",
   h1="Open science explained",
   lede="Open science means making the methods, data and conclusions of research available so that others can inspect, challenge and build on them.",
@@ -35,7 +35,7 @@ PAGES = [
   ], related=["what-is-desci","preregistration-explained","replication-crisis-reproducibility"]),
 
  dict(slug="preregistration-explained",
-  title="Preregistration Explained: Pre-Registered Studies & Registered Reports",
+  title="Preregistration and Registered Reports",
   desc="What preregistration is, why researchers time-stamp their hypotheses and analysis plans before collecting data, and how registered reports differ.",
   h1="Preregistration explained: why plan before you measure",
   lede="Preregistration means writing down your hypothesis, design and analysis plan, and time-stamping it, before you look at the outcome data.",
@@ -49,7 +49,7 @@ PAGES = [
   ], related=["open-science-explained","publishing-null-results","blinding-in-physics-experiments"]),
 
  dict(slug="replication-crisis-reproducibility",
-  title="The Replication Crisis & Reproducibility in Science, Explained",
+  title="The Replication Crisis and Reproducibility",
   desc="Why many published findings are hard to reproduce, what causes it, and which practices (preregistration, open data, null-result reporting) help.",
   h1="The replication crisis and reproducibility, explained",
   lede="In several fields, attempts to repeat published studies have often failed to match the original results. Here is why that happens and what helps.",
@@ -101,7 +101,7 @@ PAGES = [
   ], related=["what-is-resonant-frequency","laser-doppler-vibrometry-basics","blinding-in-physics-experiments"]),
 
  dict(slug="laser-doppler-vibrometry-basics",
-  title="Laser Doppler Vibrometer Basics: Measuring Vibration Without Contact",
+  title="Laser Doppler Vibrometry: Vibration Measurement",
   desc="How a laser Doppler vibrometer measures surface vibration without touching the object, and why it suits resonance measurements.",
   h1="Laser Doppler vibrometer basics",
   lede="A laser Doppler vibrometer measures how fast a surface moves by analyzing the shift in frequency of laser light reflected from it.",
@@ -115,7 +115,7 @@ PAGES = [
 
  dict(slug="blinding-in-physics-experiments",
   title="Blinding in Physics Experiments: Blind Analysis Explained",
-  desc="What blinding and blind analysis are, how they prevent unconscious bias in physics and other experiments, and how they appear in S.P.H.E.R.E.'s draft protocol.",
+  desc="How blinding and blind analysis can reduce bias in physics experiments, including the S.P.H.E.R.E. draft protocol.",
   h1="Blinding in physics experiments: blind analysis explained",
   lede="Blinding hides information that could bias a measurement or analysis, so that the result cannot be nudged, even unintentionally, toward what the researcher expects.",
   eyebrow="Learn / Experimental design",
@@ -127,8 +127,8 @@ PAGES = [
   ], related=["preregistration-explained","replication-crisis-reproducibility","vibration-modes-of-a-sphere"]),
 
  dict(slug="measurement-uncertainty-and-metrology",
-  title="Measurement Uncertainty & Metrology: An Uncertainty Budget Primer",
-  desc="Introduction to metrology and measurement uncertainty: what an uncertainty budget is, the difference between random and systematic error, and why it matters.",
+  title="Measurement Uncertainty and Metrology",
+  desc="Introduction to metrology and measurement uncertainty: what an uncertainty budget is, how random and systematic error differ, and why it matters.",
   h1="Measurement uncertainty and metrology: an uncertainty budget primer",
   lede="Every measurement has an uncertainty. Metrology is the science of measurement; an uncertainty budget is the list of everything that limits how well you know the answer.",
   eyebrow="Learn / Metrology",
@@ -153,7 +153,7 @@ PAGES = [
   ], related=["what-is-desci","open-science-explained","publishing-null-results"]),
 
  dict(slug="digital-twin-simulation-in-physics",
-  title="Digital Twin Simulation in Physics: What It Can and Cannot Show",
+  title="Digital Twins in Physics: Uses and Limits",
   desc="What a digital twin or physics simulation is, how it helps plan experiments, and why simulation output is never experimental evidence.",
   h1="Digital twin simulation in physics: what it can and cannot show",
   lede="A simulation models how a system should behave under stated assumptions. It is a planning tool, not a measurement.",
@@ -164,4 +164,22 @@ PAGES = [
    ("What it cannot do", "<p>A simulation reproduces its own assumptions. If the model omits an effect, the simulation cannot reveal it. Agreement between a model and itself is not validation; only comparison with independent real measurements is.</p>"),
    ("SPHEREVL", "<p>SPHEREVL, the project's Control Room, is an <strong>educational simulation, not measurements or scientific validation</strong>. Explore it on the <a href=\"/vl/\">Visual Lab page</a>.</p>"),
   ], related=["measurement-uncertainty-and-metrology","what-is-resonant-frequency","replication-crisis-reproducibility"]),
+]
+
+HANDWRITTEN_HUB_PAGES = [
+  dict(slug="can-sound-change-resonant-frequency",
+   h1="Can sound change an object's resonant frequency?",
+   lede="Sound forces an object to vibrate but does not retune it. What really shifts a natural frequency, and how to tell a real change from an apparent one."),
+  dict(slug="how-to-measure-resonant-frequency-of-a-sphere",
+   h1="How to measure a sphere's resonant frequency and mode shapes",
+   lede="A step-by-step overview of measuring a sphere's natural frequencies, damping and mode shapes: support, excitation, sensors, FRFs and common pitfalls."),
+  dict(slug="ways-to-shift-resonant-frequency",
+   h1="How to shift a resonant frequency: mass, stiffness and heat",
+   lede="Compare ways to change an object's resonant frequency: added mass, geometry, temperature, supports, shunts and active control, and which are reversible."),
+  dict(slug="impulse-response-sine-sweep-deconvolution",
+   h1="Impulse response measurement: sine sweeps and deconvolution",
+   lede="How an exponential sine sweep and deconvolution give a clean impulse response, how to recreate a resonance from it, and why replay cannot retune an object."),
+  dict(slug="modal-analysis-glossary",
+   h1="Modal analysis glossary: FRF, MAC, Q factor and more",
+   lede="Plain-language definitions of natural frequency, mode shape, damping ratio, Q factor, FRF, coherence, MAC, aliasing and other resonance-testing terms."),
 ]

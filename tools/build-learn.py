@@ -7,7 +7,7 @@ Run from the repository root: python3 tools/build-learn.py
 import html, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from learn_pages import HUB, PAGES  # noqa: E402
+from learn_pages import HANDWRITTEN_HUB_PAGES, HUB, PAGES  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATE = "2026-10-14"
@@ -94,8 +94,9 @@ def build_article(p):
 def build_hub():
     url = SITE + "/learn/"
     crumbs = [("Home", SITE + "/"), ("Learn", url)]
+    hub_pages = [*PAGES, *HANDWRITTEN_HUB_PAGES]
     cards = "".join(
-        f'<li><a href="/learn/{p["slug"]}/"><strong>{e(p["h1"])}</strong></a><br>{e(p["lede"])}</li>' for p in PAGES)
+        f'<li><a href="/learn/{p["slug"]}/"><strong>{e(p["h1"])}</strong></a><br>{e(p["lede"])}</li>' for p in hub_pages)
     out = head(HUB["title"], HUB["desc"], url, "hub", crumbs)
     out += (f'<div class="breadcrumbs"><a href="/">Home</a> / Learn</div>\n'
             f'<div class="eyebrow">Learn</div><h1 class="page-title">{e(HUB["h1"])}</h1>\n'
