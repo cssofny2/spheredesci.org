@@ -124,10 +124,14 @@ function injectFooter(html) {
 }
 
 let changed = 0;
+const RECORDS_CSS = '<link rel="stylesheet" href="/assets/footer-records.css">';
+function injectRecordsCss(html) {
+  return html.includes('footer-records.css') ? html : html.replace('</head>', `${RECORDS_CSS}</head>`);
+}
 for (const file of walk(root)) {
   const before = fs.readFileSync(file, 'utf8');
   if (!before.includes('</head>')) continue;
-  const after = injectFooter(injectLd(before));
+  const after = injectRecordsCss(injectFooter(injectLd(before)));
   if (after !== before) {
     fs.writeFileSync(file, after);
     changed++;

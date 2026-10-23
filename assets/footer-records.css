@@ -1,0 +1,7 @@
+.footer-records{margin:1.25rem 0 .5rem}
+.footer-records .footer-records-label{margin:0 0 .5rem;color:var(--ink,#e2e8f0);font-size:.875rem;font-weight:600}
+.footer-records ul{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.footer-records .record-badge{display:inline-flex;align-items:stretch;padding:0;border:1px solid var(--line,#334155);border-radius:.375rem;overflow:hidden;text-decoration:none;font-size:.8125rem;line-height:1.4}
+.footer-records .record-badge-key{padding:.25rem .6rem;background:var(--ink,#e2e8f0);color:var(--paper,#05070a);font-weight:700}
+.footer-records .record-badge-val{padding:.25rem .6rem;color:var(--ink,#e2e8f0)}
+.footer-records .record-badge:hover,.footer-records .record-badge:focus-visible{border-color:var(--accent,#22d3ee)}

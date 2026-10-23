@@ -58,7 +58,7 @@ def patch_graph(data):
                 org[key] = sorted(merged - NOT_SAME_AS)
             else:
                 org[key] = value
-    site["sameAs"] = sorted(set(site.get("sameAs", [])) | set(RECORDS))
+    site["sameAs"] = sorted(set(site.get("sameAs", [])) - set(RECORDS))
     site["citation"] = list(RECORDS)
     site["publisher"] = {"@id": ORG["@id"]}
     site["inLanguage"] = "en"
