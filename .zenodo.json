@@ -1,0 +1,44 @@
+{
+  "title": "Project S.P.H.E.R.E. & Protocol LOC-1: Open-Source Acoustic Metrology Portal and Specifications",
+  "upload_type": "software",
+  "license": "CC-BY-4.0",
+  "communities": [
+    {
+      "identifier": "spheredesci"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Goodman, Michael P.",
+      "affiliation": "SPHERE Research, LLC",
+      "orcid": "0009-0008-3796-5857"
+    }
+  ],
+  "keywords": [
+    "Decentralized Science (DeSci)",
+    "Precision Metrology",
+    "Acoustic Resonance",
+    "Laser Doppler Vibrometry (LDV)",
+    "Vector Network Analyzer (VNA)",
+    "Equivalence Testing (TOST)",
+    "Protocol LOC-1",
+    "SPHEREVL"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://spheredesci.org",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://spheredesci.org/whitepaper/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://spheredesci.org/vl/",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ]
+}
