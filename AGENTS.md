@@ -38,6 +38,9 @@ This is a pre-launch research project. Copy must stay honest about that.
 - Frame claims as **hypotheses, proposals or plans**, never as results. Do not
   describe any measurement, dataset, preregistration, review or funding total as
   existing unless a real record exists.
+- The published LOC-1 preregistration is at
+  [OSF](https://osf.io/5b6mj/overview); the project whitepaper is archived at
+  [Zenodo DOI 10.5281/zenodo.23583932](https://doi.org/10.5281/zenodo.23583932).
 - No token, DAO, coin or "on-chain" claims, and no placeholder funding figures.
 - SPHEREVL / the Control Room is an **educational simulation, not measurements or
   scientific validation**. Keep that notice wherever the lab is mentioned.

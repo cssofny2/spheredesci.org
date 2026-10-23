@@ -62,7 +62,7 @@ Suggested categories: Research Updates, Experimental Protocols, Metrology, Physi
 
 ## Writing and research integrity
 
-Describe pre-launch work as a hypothesis, proposal, plan, or educational explainer. Do not report measurements, datasets, preregistrations, reviews, or funding totals unless the corresponding record exists. Keep protocol and research pages labeled Draft or Proposed. SPHEREVL is an educational simulation and must not be described as measurements or scientific validation.
+Describe pre-launch work as a hypothesis, proposal, plan, or educational explainer. Do not report measurements, datasets, preregistrations, reviews, or funding totals unless the corresponding record exists. The published LOC-1 preregistration is at [OSF](https://osf.io/5b6mj/overview); its existence does not imply measurements or results. Keep protocol and research pages labeled Draft or Proposed where appropriate. SPHEREVL is an educational simulation and must not be described as measurements or scientific validation.
 
 Use original prose and cite sources next to the claims they support. Never fabricate citations, authors, instrument specifications, results, or quotations. Link only to HTTPS or site-relative citation URLs. Do not submit production forms as part of testing.
 
