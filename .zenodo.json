@@ -1,7 +1,7 @@
 {
   "title": "Project S.P.H.E.R.E. & Protocol LOC-1: Open-Source Acoustic Metrology Portal and Specifications",
   "upload_type": "software",
-  "license": "CC-BY-4.0",
+  "license": "MIT",
   "communities": [
     {
       "identifier": "spheredesci"
