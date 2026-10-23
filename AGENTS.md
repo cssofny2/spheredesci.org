@@ -47,8 +47,9 @@ This is a pre-launch research project. Copy must stay honest about that.
 - Career pages are **proposal stage, not job offers**. Keep that wording.
 - Directory entries publish only with `"consent": true`; links publish only with a URL.
 - Do not hotlink or add third-party product images until rights are cleared.
-- Keep the "Draft" / "Proposed" labels on the protocol and research pages. The
-  synchronized-measurement pages do not amend the LOC-1 draft protocol.
+- Label Protocol LOC-1 as registered and live; keep "Draft" / "Proposed" labels
+  only for unregistered research plans and amendments. Synchronized-measurement
+  pages do not amend the registered LOC-1 protocol.
 
 ## Names and addresses
 
