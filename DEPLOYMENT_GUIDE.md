@@ -28,3 +28,8 @@ The dashboard and API provide aggregate content activity and are public. This st
 Use the prior known-good deployment through the normal Cloudflare/GitHub deployment process. Do not remove or edit already-applied D1 migrations; add a forward migration for schema changes. If `npm run verify` fails, fix the source MDX, generator, generated metadata, or links rather than hand-editing generated output. Analytics failures must remain visible in the dashboard status; local/preview analytics returning disabled is expected.
 
 Never place deployment credentials in files, content, commits, or pull request descriptions. The production workflow reads Cloudflare credentials from GitHub Actions secrets.
+
+## Generated routes and Cloudflare Workers Builds
+
+Generated routes (/knowledge/, /glossary/, /search/, /analytics/, /rss.xml, publication pages) are git-ignored. `wrangler.jsonc` therefore defines `build.command` (`npm ci && npm run build`) so every `wrangler deploy`, including the Cloudflare Workers Builds git integration that runs without our workflow, generates them before uploading assets. Without it, a Workers Builds deploy replaces production with an asset set missing those routes.
+
