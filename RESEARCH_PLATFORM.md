@@ -33,6 +33,8 @@ The `/admin/content-insights/` route is **not authenticated**. The static-assets
 
 Article output includes canonical and social metadata, author links, dates, estimated reading time, research-status notice, heading-based TOC, share links, references, related reading, author panel, article navigation, and JSON-LD. The Table of Contents is available as a collapsible mobile control and a sticky desktop navigation. All content remains readable without JavaScript.
 
+The LOC-1 protocol's published preregistration is available at [OSF](https://osf.io/5b6mj/overview). The project whitepaper is archived at [Zenodo DOI 10.5281/zenodo.23583932](https://doi.org/10.5281/zenodo.23583932); the protocol and whitepaper JSON-LD cross-reference these persistent records.
+
 Research MDX can use `Citation`, `CitationList`, `Figure`, `ResearchNote`, `WarningBox`, `ExperimentStep`, `Equation`, `ReferenceCard`, `DataPoint`, `ProtocolBlock`, and `EquipmentSpec`. See `CONTENT_GUIDE.md`.
 
 ## Discovery and SEO
@@ -53,4 +55,4 @@ Pages are rendered ahead of time, browser scripts are deferred, search-index dat
 
 ## Governance constraints
 
-This is a pre-launch research project. Content must distinguish proposals, hypotheses, methods, and actual results. Never infer that a measurement, dataset, preregistration, review, or funding total exists without a record. The site does not make token, DAO, coin, or on-chain claims. The supported governance taxonomy is therefore **Open-Science Governance**. SPHEREVL remains an educational simulation, not measurement or scientific validation.
+This is a pre-launch research project. Content must distinguish proposals, hypotheses, methods, and actual results. Never infer that a measurement, dataset, preregistration, review, or funding total exists without a record. The LOC-1 OSF registration is a published preregistration, not a measurement result. The site does not make token, DAO, coin, or on-chain claims. The supported governance taxonomy is therefore **Open-Science Governance**. SPHEREVL remains an educational simulation, not measurement or scientific validation.

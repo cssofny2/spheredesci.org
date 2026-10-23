@@ -79,8 +79,11 @@ separate licensing terms.
 The site includes the draft LOC-1 protocol, budget and transparency page,
 research resource library, FAQ, collaboration guidance, update log, privacy
 notice, About page, and research charter. Documents are explicitly labeled as
-drafts or plans where appropriate. No data, funding total, or preregistration
-is represented as existing unless a real record is available.
+drafts or plans where appropriate. The published [Protocol LOC-1 preregistration
+is available on OSF](https://osf.io/5b6mj/overview), and the whitepaper is
+archived on Zenodo at [DOI 10.5281/zenodo.23583932](https://doi.org/10.5281/zenodo.23583932).
+No data, funding total, or other preregistration is represented as existing
+unless a real record is available.
 
 Since 2026-10-09 the site also carries proposal-stage synchronized-measurement research (hub at `/research/`): a proposed four-object protocol amendment, an error-budget article, related-research commentary, a hardware guide and a community design-review page. These do not amend the LOC-1 draft. Third-party product images are intentionally not used until rights are cleared.
 

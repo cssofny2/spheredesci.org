@@ -61,6 +61,7 @@ FOOTER = '''<footer class="site-footer"><div class="footer-inner"><div class="fo
 <div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
 <div><h3>Connect</h3><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/vote/">Community votes</a><a href="/careers/apply/">Apply</a></div>
 </div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
+<p>Research records: <a href="https://osf.io/5b6mj/overview">Protocol LOC-1 preregistration (OSF)</a> &middot; <a href="https://doi.org/10.5281/zenodo.23583932">Whitepaper (Zenodo DOI 10.5281/zenodo.23583932)</a>.</p>
 <p>&copy; 2026 Project S.P.H.E.R.E. Research-page text is offered under CC BY 4.0; third-party materials retain their own terms.</p></div></footer>'''
 
 

@@ -23,7 +23,7 @@
       "anchor": "after_p",
       "summary": [
         "LOC-1 is a <strong>draft</strong> same-laboratory pilot design comparing a moved test sphere with a fixed reference.",
-        "It is not a completed experiment and not an issued preregistration; no public OSF registration exists yet.",
+        "It is not a completed experiment; the published LOC-1 preregistration is available on <a href=\"https://osf.io/5b6mj/overview\">OSF</a>.",
         "A null result would set an upper bound under the tested conditions; any unexpected signal would first need artifact checks and independent replication."
       ]
     },
