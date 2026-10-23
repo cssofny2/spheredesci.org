@@ -91,7 +91,14 @@ def insert_after(page_html, anchor, block):
     if h1_end < 0:
         raise ValueError("no <h1>")
     if anchor == "after_h1":
-        pos = h1_end + len("</h1>")
+        byline_start = page_html.find('class="academic-byline"', h1_end)
+        if byline_start >= 0:
+            byline_end = page_html.find("</div>", byline_start)
+            if byline_end < 0:
+                raise ValueError("unclosed academic byline")
+            pos = byline_end + len("</div>")
+        else:
+            pos = h1_end + len("</h1>")
     else:
         p_end = page_html.find("</p>", h1_end)
         if p_end < 0:
