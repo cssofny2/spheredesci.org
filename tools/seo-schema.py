@@ -32,6 +32,8 @@ SEARCH = {
     "target": {"@type": "EntryPoint", "urlTemplate": SITE + "/search/?q={search_term_string}"},
     "query-input": "required name=search_term_string",
 }
+# Published Protocol LOC-1 OSF preregistration and Zenodo whitepaper DOI.
+RECORDS = ["https://osf.io/5b6mj/overview", "https://doi.org/10.5281/zenodo.23583932"]
 # Founder and associated sites are separate entities, so they must not appear in Organization.sameAs.
 NOT_SAME_AS = {"https://michaelpgoodman.com/", "https://fieldsofgreenrochester.com/"}
 LD_RE = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.S)
@@ -56,6 +58,8 @@ def patch_graph(data):
                 org[key] = sorted(merged - NOT_SAME_AS)
             else:
                 org[key] = value
+    site["sameAs"] = sorted(set(site.get("sameAs", [])) | set(RECORDS))
+    site["citation"] = list(RECORDS)
     site["publisher"] = {"@id": ORG["@id"]}
     site["inLanguage"] = "en"
     site["potentialAction"] = SEARCH

@@ -25,6 +25,13 @@ body{background:var(--paper);color:var(--ink)}
 .site-footer a{display:block;color:var(--muted);text-decoration:none;padding:.25rem 0}
 .site-footer .footer-entity-attribution a{display:inline;padding:0;text-decoration:underline;text-underline-offset:2px}
 .site-footer a:hover{color:var(--accent)}
+.site-footer .footer-records{margin:1.25rem 0 .5rem}
+.site-footer .footer-records-label{margin:0 0 .5rem;color:var(--ink);font-weight:600}
+.site-footer .footer-records ul{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.site-footer .record-badge{display:inline-flex;align-items:stretch;padding:0;border:1px solid var(--line);border-radius:.375rem;overflow:hidden;text-decoration:none;font-size:.8125rem}
+.site-footer .record-badge-key{padding:.25rem .6rem;background:var(--ink);color:var(--paper);font-weight:700}
+.site-footer .record-badge-val{padding:.25rem .6rem;color:var(--ink)}
+.site-footer .record-badge:hover,.site-footer .record-badge:focus-visible{border-color:var(--accent)}
 .site-footer p{line-height:1.7;margin:0 0 .8rem}
 .site-footer .footer-name{color:var(--ink);font-weight:600}
 .content-shell{max-width:1160px;margin:auto;padding:3rem clamp(1rem,4vw,3rem) 5rem;font-family:Inter,sans-serif}

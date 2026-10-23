@@ -12,6 +12,9 @@ const citationMeta = [
   '<meta name="citation_author" content="Goodman, Michael P.">',
   '<meta name="citation_author_institution" content="SPHERE Research, LLC">',
   '<meta name="citation_publication_date" content="2026/10/22">',
+  '<meta name="citation_doi" content="10.5281/zenodo.23583932">',
+  '<link rel="cite-as" href="https://doi.org/10.5281/zenodo.23583932">',
+  '<link rel="related" href="https://osf.io/5b6mj/overview" title="Protocol LOC-1 preregistration (OSF)">',
   '<meta name="citation_fulltext_html_url" content="https://spheredesci.org/whitepaper/">',
   '<meta name="citation_keywords" content="Decentralized Science (DeSci); Precision Metrology; Acoustic Resonance; Laser Doppler Vibrometry; Equivalence Testing; LOC-1">'
 ].join('\n');
@@ -85,7 +88,7 @@ const printStyles = `<style>
 const ld = {'@context': 'https://schema.org', '@graph': [
   {'@type': 'WebSite', '@id': 'https://spheredesci.org/#website', url: 'https://spheredesci.org/', name: 'Project S.P.H.E.R.E.'},
   {'@type': 'WebPage', '@id': URL + '#webpage', url: URL, name: title, description: desc, isPartOf: {'@id': 'https://spheredesci.org/#website'}, inLanguage: 'en', dateModified: fm.date || '2026-10-10'},
-  {'@type': 'ScholarlyArticle', '@id': URL + '#article', headline: 'Project S.P.H.E.R.E. & Protocol LOC-1: Open-Source Acoustic Metrology Whitepaper', description: desc, url: URL, mainEntityOfPage: {'@id': URL + '#webpage'}, inLanguage: 'en', version: fm.version, datePublished: '2026-10-22', dateModified: fm.date || '2026-10-10', identifier: '10.5281/zenodo.23583932', sameAs: ['https://doi.org/10.5281/zenodo.23583932'], citation: ['https://osf.io/5b6mj/overview'], author: {'@type': 'Person', '@id': 'https://michaelpgoodman.com/#person', name: 'Michael P. Goodman', url: 'https://michaelpgoodman.com/', sameAs: 'https://orcid.org/0009-0008-3796-5857', affiliation: {'@id': 'https://spheredesci.org/#organization'}}, publisher: {'@type': 'Organization', '@id': 'https://spheredesci.org/#organization', name: 'Project S.P.H.E.R.E.', url: 'https://spheredesci.org/'}, isAccessibleForFree: true, license: 'https://creativecommons.org/licenses/by/4.0/'},
+  {'@type': 'ScholarlyArticle', '@id': URL + '#article', headline: 'Project S.P.H.E.R.E. & Protocol LOC-1: Open-Source Acoustic Metrology Whitepaper', description: desc, url: URL, mainEntityOfPage: [{'@id': URL + '#webpage'}, 'https://doi.org/10.5281/zenodo.23583932'], inLanguage: 'en', version: fm.version, datePublished: '2026-10-22', dateModified: fm.date || '2026-10-10', identifier: '10.5281/zenodo.23583932', sameAs: ['https://doi.org/10.5281/zenodo.23583932'], citation: ['https://osf.io/5b6mj/overview'], author: {'@type': 'Person', '@id': 'https://michaelpgoodman.com/#person', name: 'Michael P. Goodman', url: 'https://michaelpgoodman.com/', sameAs: 'https://orcid.org/0009-0008-3796-5857', affiliation: {'@id': 'https://spheredesci.org/#organization'}}, publisher: {'@type': 'Organization', '@id': 'https://spheredesci.org/#organization', name: 'Project S.P.H.E.R.E.', url: 'https://spheredesci.org/'}, isAccessibleForFree: true, license: 'https://creativecommons.org/licenses/by/4.0/'},
   {'@type': 'BreadcrumbList', itemListElement: [{'@type': 'ListItem', position: 1, name: 'Home', item: 'https://spheredesci.org/'}, {'@type': 'ListItem', position: 2, name: 'Whitepaper', item: URL}]},
   {'@type': 'Person', '@id': 'https://michaelpgoodman.com/#person', name: 'Michael P. Goodman', url: 'https://michaelpgoodman.com/', sameAs: ['https://orcid.org/0009-0008-3796-5857', 'https://github.com/cssofny2', 'https://michaelpgoodman.com/', 'https://michaelpgoodman.com/biography/']} ]};
 let head = pre
@@ -101,6 +104,7 @@ let head = pre
   .replace(/ aria-current="page"/g, '')
   .replace('<a href="/protocol/">Protocol</a>', '<a href="/protocol/">Protocol</a>')
   .replace('<link href="/assets/site.css" rel="stylesheet">', '<link href="/assets/vendor/katex/katex.min.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">')
+  .replace(/<link rel="related" href="https:\/\/(?:osf\.io|doi\.org)\/[^>]*>/g, '')
   .replace('</head>', `${citationMeta}\n${printStyles}\n</head>`);
 
 const aside = `<aside class="article-aside" aria-label="On this page"><h2>On this page</h2>${toc.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('')}</aside>`;
