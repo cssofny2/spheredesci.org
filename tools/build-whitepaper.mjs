@@ -7,6 +7,16 @@ import {marked} from 'marked';
 const SRC = 'content/whitepaper.mdx', OUT = 'whitepaper/index.html', TPL = 'protocol/index.html';
 const URL = 'https://spheredesci.org/whitepaper/';
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const citationMeta = [
+  '<meta name="citation_title" content="Project S.P.H.E.R.E. &amp; Protocol LOC-1: Open-Source Acoustic Metrology for Testing the Locational Variable Hypothesis in a 230 kHz Hollow Copper Sphere">',
+  '<meta name="citation_author" content="Goodman, Michael P.">',
+  '<meta name="citation_author_institution" content="SPHERE Research, LLC">',
+  '<meta name="citation_publication_date" content="2026/10/22">',
+  '<meta name="citation_pdf_url" content="https://spheredesci.org/assets/SPHERE-Whitepaper-LOC1-Draft-v1.0.pdf">',
+  '<meta name="citation_fulltext_html_url" content="https://spheredesci.org/whitepaper/">',
+  '<meta name="citation_doi" content="10.5281/zenodo.XXXXXXX">',
+  '<meta name="citation_keywords" content="Decentralized Science (DeSci); Precision Metrology; Acoustic Resonance; Laser Doppler Vibrometry; Equivalence Testing; LOC-1">'
+].join('\n');
 const math = (t, display) => katex.renderToString(t, {displayMode: display, throwOnError: true, trust: false, output: 'htmlAndMathml'});
 const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&amp;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -42,18 +52,32 @@ marked.setOptions({renderer, gfm: true});
 const firstH2 = cleaned.indexOf('\n## ');
 const intro = cleaned.slice(0, firstH2);
 const main = marked.parse(cleaned.slice(firstH2));
-const meta = marked.parse(intro.replace(/^# .*\n/, '')).replace(/<p>/, '<p class="page-lede">');
+const meta = marked.parse(intro.replace(/^# [^\r\n]*\r?\n/, '')).replace(/<p>/, '<p class="page-lede">');
 
 let tpl = fs.readFileSync(TPL, 'utf8');
 const pre = tpl.slice(0, tpl.indexOf('<main'));
 const post = tpl.slice(tpl.lastIndexOf('</main>') + '</main>'.length);
 const title = 'DeSci Whitepaper: Open Resonance Metrology | S.P.H.E.R.E.';
 const desc = fm.description || 'S.P.H.E.R.E. DeSci whitepaper.';
+const academicByline = '<div class="academic-byline" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color, #e2e8f0); padding-bottom: 1rem;"><p style="margin: 0; font-size: 1.1rem;"><strong>Michael P. Goodman</strong><br><em>SPHERE Research, LLC, Rochester, NY</em><br><a href="https://orcid.org/0009-0008-3796-5857" target="_blank" rel="noopener noreferrer">ORCID: 0009-0008-3796-5857</a> | <a href="https://spheredesci.org">spheredesci.org</a></p></div>';
+const printStyles = `<style>
+@page { margin: 1in; }
+@media print {
+  body { background: #fff !important; color: #000 !important; font-size: 12pt; line-height: 1.6; }
+  header, footer, nav, .site-nav, .no-print, button, .breadcrumbs, .eyebrow, .article-aside { display: none !important; }
+  main, article, .whitepaper-container { width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
+  a[href^="http"]:after { content: " (" attr(href) ")"; color: #555; font-size: 90%; overflow-wrap: anywhere; }
+  h1, h2, h3 { break-after: avoid-page; page-break-after: avoid; }
+  img, table, pre, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  .table-wrap { overflow: visible !important; }
+}
+</style>`;
 const ld = {'@context': 'https://schema.org', '@graph': [
   {'@type': 'WebSite', '@id': 'https://spheredesci.org/#website', url: 'https://spheredesci.org/', name: 'Project S.P.H.E.R.E.'},
   {'@type': 'WebPage', '@id': URL + '#webpage', url: URL, name: title, description: desc, isPartOf: {'@id': 'https://spheredesci.org/#website'}, inLanguage: 'en', dateModified: fm.date || '2026-10-10'},
-  {'@type': 'TechArticle', '@id': URL + '#article', headline: 'Project S.P.H.E.R.E. DeSci Whitepaper', alternativeHeadline: fm.subtitle, description: desc, url: URL, mainEntityOfPage: {'@id': URL + '#webpage'}, inLanguage: 'en', version: fm.version, datePublished: fm.date || '2026-10-10', dateModified: fm.date || '2026-10-10', publisher: {'@type': 'Organization', name: 'Project S.P.H.E.R.E.', url: 'https://spheredesci.org/'}},
-  {'@type': 'BreadcrumbList', itemListElement: [{'@type': 'ListItem', position: 1, name: 'Home', item: 'https://spheredesci.org/'}, {'@type': 'ListItem', position: 2, name: 'Whitepaper', item: URL}]}]};
+  {'@type': 'ScholarlyArticle', '@id': URL + '#article', headline: 'Project S.P.H.E.R.E. & Protocol LOC-1: Open-Source Acoustic Metrology Whitepaper', description: desc, url: URL, mainEntityOfPage: {'@id': URL + '#webpage'}, inLanguage: 'en', version: fm.version, datePublished: '2026-10-22', dateModified: fm.date || '2026-10-10', author: {'@type': 'Person', '@id': 'https://michaelpgoodman.com/#person', name: 'Michael P. Goodman', url: 'https://michaelpgoodman.com/', sameAs: 'https://orcid.org/0009-0008-3796-5857', affiliation: {'@id': 'https://spheredesci.org/#organization'}}, publisher: {'@type': 'Organization', '@id': 'https://spheredesci.org/#organization', name: 'Project S.P.H.E.R.E.', url: 'https://spheredesci.org/'}, isAccessibleForFree: true, license: 'https://creativecommons.org/licenses/by/4.0/'},
+  {'@type': 'BreadcrumbList', itemListElement: [{'@type': 'ListItem', position: 1, name: 'Home', item: 'https://spheredesci.org/'}, {'@type': 'ListItem', position: 2, name: 'Whitepaper', item: URL}]},
+  {'@type': 'Person', '@id': 'https://michaelpgoodman.com/#person', name: 'Michael P. Goodman', url: 'https://michaelpgoodman.com/', sameAs: ['https://orcid.org/0009-0008-3796-5857', 'https://github.com/cssofny2', 'https://michaelpgoodman.com/', 'https://michaelpgoodman.com/biography/']} ]};
 let head = pre
   .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
   .replace(/(<meta name="description" content=")[^"]*"/, `$1${esc(desc)}"`)
@@ -66,12 +90,13 @@ let head = pre
   .replace(/<script type="application\/ld\+json">.*?<\/script>/s, `<script type="application/ld+json">${JSON.stringify(ld)}</script>`)
   .replace(/ aria-current="page"/g, '')
   .replace('<a href="/protocol/">Protocol</a>', '<a href="/protocol/">Protocol</a>')
-  .replace('<link href="/assets/site.css" rel="stylesheet">', '<link href="/assets/vendor/katex/katex.min.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">');
+  .replace('<link href="/assets/site.css" rel="stylesheet">', '<link href="/assets/vendor/katex/katex.min.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">')
+  .replace('</head>', `${citationMeta}\n${printStyles}\n</head>`);
 
 const aside = `<aside class="article-aside" aria-label="On this page"><h2>On this page</h2>${toc.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('')}</aside>`;
 const page = `${head}<main id="main-content" class="content-shell">
 <div class="breadcrumbs"><a href="/">Home</a> / Whitepaper</div>
-<div class="eyebrow">Research / Whitepaper</div><h1 class="page-title">Open resonance metrology, accountable funding.</h1>
+<div class="eyebrow">Research / Whitepaper</div><h1 class="page-title">Open resonance metrology, accountable funding.</h1>${academicByline}
 <div class="whitepaper-meta">${meta}</div>
 <div class="article-layout"><article class="article-body">${main}</article>${aside}</div>
 </main>${post}`;
