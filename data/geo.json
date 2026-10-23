@@ -22,9 +22,9 @@
     "/protocol/": {
       "anchor": "after_p",
       "summary": [
-        "LOC-1 is a <strong>draft</strong> same-laboratory pilot design comparing a moved test sphere with a fixed reference.",
-        "It is not a completed experiment; the published LOC-1 preregistration is available on <a href=\"https://osf.io/5b6mj/overview\">OSF</a>.",
-        "A null result would set an upper bound under the tested conditions; any unexpected signal would first need artifact checks and independent replication."
+        "Protocol LOC-1 is officially registered and live on <a href=\"https://osf.io/5b6mj/overview\">OSF</a>; the registration is the permanent source for the finalized study plan.",
+        "The technical whitepaper is archived at <a href=\"https://doi.org/10.5281/zenodo.23583932\">Zenodo DOI 10.5281/zenodo.23583932</a>.",
+        "Sampling, variable definitions, and analysis specifications are finalized in the registration. It documents a study plan, not measurement results."
       ]
     },
     "/vl/": {

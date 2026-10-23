@@ -110,6 +110,13 @@ test("GEO summaries, FAQPage schema and social tags are present on core routes",
   for (const route of ["", "about/", "protocol/", "vl/", "research/", "whitepaper/", "faq/"]) {
     const page = await readFile(path.join(ROOT, route, "index.html"), "utf8");
     if (route !== "faq/") assert.match(page, /class="geo-summary"/, `${route || "/"} should have a key-facts summary`);
+    if (route === "protocol/") {
+      assert.match(page, /Protocol LOC-1 is officially registered and live/, "protocol summary should reflect the official registration");
+      assert.doesNotMatch(page, /LOC-1 is a <strong>draft<\/strong>/, "protocol summary must not describe LOC-1 as a draft");
+      assert.match(page, /<p class="footer-records-label">Permanent research records<\/p>/, "protocol footer should identify permanent records");
+      assert.match(page, /<span class="record-badge-key">OSF · LIVE<\/span>/, "protocol footer should mark the OSF registration live");
+      assert.match(page, /10\.5281\/zenodo\.23583932 · Archived whitepaper/, "protocol footer should identify the Zenodo archive");
+    }
     for (const key of ["og:title", "og:description", "og:image", "og:url", "twitter:card", "twitter:image"]) {
       assert.match(page, new RegExp(`<meta (?:property|name)="${key}"`), `${route || "/"} missing ${key}`);
     }
