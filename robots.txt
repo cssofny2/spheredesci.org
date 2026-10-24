@@ -1,10 +1,8 @@
 # Public website crawl rules.
 # Ordinary web-search crawlers may read all public pages.
-# Documented AI training, answer/retrieval and user-fetch agents are disallowed below.
-# This is a cooperative, non-exhaustive approximation of the earlier Content-Signal
-# preference (ai-train=no, ai-input=no, search=yes), not an exact equivalent, and it does
-# not cover every AI service. The non-standard Content-Signal line is not used because
-# Lighthouse reports it as an invalid robots.txt directive.
+# AI answer/retrieval agents are allowed on public content paths
+# but blocked from admin, API, and private utility pages.
+# This is a cooperative, non-exhaustive list; it does not cover every AI service.
 User-agent: *
 Allow: /
 Disallow: /404.html
@@ -37,6 +35,18 @@ User-agent: CCBot
 User-agent: Applebot-Extended
 User-agent: Meta-ExternalAgent
 User-agent: Bytespider
+Allow: /learn/
+Allow: /knowledge/
+Allow: /glossary/
+Allow: /faq/
+Allow: /research/
+Allow: /whitepaper/
+Allow: /protocol/
+Allow: /about/
+Allow: /projects/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /404.html
 Disallow: /
 
 Sitemap: https://spheredesci.org/sitemap.xml
