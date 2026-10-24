@@ -9,3 +9,19 @@
 /
   Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
   Link: </calendar.ics>; rel="alternate"; type="text/calendar"; title="Project S.P.H.E.R.E. events"
+
+# Noindex taxonomy/archive pages — thin, auto-generated, no unique content value
+/research/archive/
+  X-Robots-Tag: noindex, nofollow
+
+/research/category/*
+  X-Robots-Tag: noindex, nofollow
+
+/research/tag/*
+  X-Robots-Tag: noindex, nofollow
+
+/research/authors/
+  X-Robots-Tag: noindex, nofollow
+
+/research/authors/*
+  X-Robots-Tag: noindex, nofollow
