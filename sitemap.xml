@@ -180,30 +180,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://spheredesci.org/projects/panton/</loc>
-    <lastmod>2026-10-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-      <image:image>
-        <image:loc>https://spheredesci.org/assets/projects/panton/panton-01.webp</image:loc>
-      </image:image>
-      <image:image>
-        <image:loc>https://spheredesci.org/assets/projects/panton/panton-02.webp</image:loc>
-      </image:image>
-      <image:image>
-        <image:loc>https://spheredesci.org/assets/projects/panton/panton-03.webp</image:loc>
-      </image:image>
-      <image:image>
-        <image:loc>https://spheredesci.org/assets/projects/panton/panton-04.webp</image:loc>
-      </image:image>
-      <image:image>
-        <image:loc>https://spheredesci.org/assets/projects/panton/panton-05.webp</image:loc>
-      </image:image>
-      <image:image>
-        <image:loc>https://spheredesci.org/assets/projects/panton/panton-06.webp</image:loc>
-      </image:image>
-  </url>
-  <url>
     <loc>https://spheredesci.org/resources/hollow-copper-sphere/</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>daily</changefreq>
