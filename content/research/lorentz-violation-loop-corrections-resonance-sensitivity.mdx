@@ -1,0 +1,70 @@
+---
+title: "Loop-Induced Lorentz Violation and What Resonance Experiments Can Probe"
+seoTitle: "Lorentz Violation Loop Corrections Resonance Tests | Project S.P.H.E.R.E."
+description: "A 2025 QED analysis shows that Lorentz-violating parameters introduced in one sector of a theory can spread to other sectors through quantum corrections — and that resonance-based experiments may be sensitive enough to constrain those effects."
+slug: lorentz-violation-loop-corrections-resonance-sensitivity
+category: Theoretical Physics
+tags:
+  - Lorentz invariance
+  - standard model extension
+  - resonance measurement
+  - fundamental physics
+  - CPT symmetry
+keywords:
+  - Lorentz invariance test resonance
+  - standard model extension SME
+  - quantum loop corrections Lorentz violation
+  - local Lorentz invariance experiment
+author: Project S.P.H.E.R.E.
+publishedDate: 2026-10-27
+updatedDate: 2026-10-27
+status: proposed
+canonicalUrl: https://spheredesci.org/research/lorentz-violation-loop-corrections-resonance-sensitivity/
+relatedArticles:
+  - uncertainty-budget-for-resonance
+  - frequency-measurement-error-budget
+citations:
+  - id: kepuladze2025
+    type: external
+    title: "Lorentz Violation: Loop-Induced Effects in QED and Observational Constraints"
+    authors: Kepuladze, Zurab
+    year: 2025
+    url: https://arxiv.org/abs/2504.15608
+faqs:
+  - question: "Does the SPHERE experiment test Lorentz invariance directly?"
+    answer: "No. The proposed LOC-1 measurement compares resonant frequencies between copper spheres at different geographic locations. The hypothesis motivating that comparison comes from the Bashar framework, which is not a validated physics theory. This page discusses Lorentz invariance as context for understanding resonance-based experiments in physics, not as a claim about what SPHERE measures or finds."
+  - question: "What is the Standard Model Extension (SME)?"
+    answer: "The SME is a theoretical framework developed by Colladay and Kostelecký that systematically catalogues all possible Lorentz- and CPT-violating terms that could be added to the Standard Model of particle physics. It provides a consistent language for comparing limits set by different experiments."
+---
+
+A 2025 paper by Kepuladze analyzes how a violation of Lorentz invariance introduced in one sector of a quantum field theory can spread to other sectors through quantum loop corrections — the higher-order diagrams in QED that describe photons acquiring mass-like behavior and electrons changing their dispersion relations. <Citation id="kepuladze2025" /> The analysis finds that accelerator-based resonance studies could place limits on induced Lorentz-violating parameters at the level of 10⁻⁸ to 10⁻⁹, potentially rivaling constraints from astrophysical observations.
+
+The paper is a theoretical study, not a new experimental result. But its framing is useful for any experiment that uses resonant frequency as a primary observable: it illustrates how small, systematic shifts in frequency — at the part-per-billion scale — can be physically meaningful if the measurement precision and controls are adequate.
+
+## What Lorentz invariance means and why it matters
+
+Lorentz invariance is one of the foundational symmetries of physics. It means that the laws of physics are the same regardless of the orientation or velocity of the reference frame in which the measurement is made. A violation would mean that some physical quantity — a rest mass, a frequency, a decay rate — has a direction-dependent component that standard physics does not predict.
+
+No confirmed violation of Lorentz invariance has been observed. A large body of precision experiments, from clock comparisons to cosmic ray measurements, has constrained possible violations to extremely small values. The Standard Model Extension (SME) provides the theoretical toolkit for those comparisons: it catalogs every possible Lorentz-violating term and lets experimenters express their sensitivity in a common language. <Citation id="kepuladze2025" />
+
+## How loop corrections spread Lorentz violation across sectors
+
+The Kepuladze analysis studies what happens when a Lorentz-violating parameter is introduced in the electron sector of QED. Through radiative corrections — the diagrams that arise when the same calculation is done to higher order — that violation propagates into the photon sector, altering how electromagnetic waves propagate and how resonant cavities behave. The effect is small but, in principle, detectable at accelerators that can study dispersion relations with high precision.
+
+The mechanism is analogous to how a small calibration error in one part of a measurement chain can propagate to every measurement downstream if the calibration source is shared. In the QED case, the "shared source" is the quantum vacuum, which mediates interactions between sectors.
+
+## What this suggests for resonance-based experiment design
+
+The paper illustrates a broader point: a resonance measurement that is precise enough to constrain a frequency shift at the 10⁻⁸ level is sensitive enough to participate in fundamental physics tests. That sensitivity requires careful characterization of every mundane source of frequency drift — temperature, mounting, coupling geometry — so that any remaining signal can be attributed to the phenomenon under study rather than to instrument noise.
+
+SPHERE's proposed protocol approaches this from the opposite direction: it takes a specific hypothesis from the Bashar framework — that resonant frequency in a copper sphere depends on geographic location — and asks whether that hypothesis can be falsified with a controlled, blinded measurement. The LOC-1 protocol, described at the <a href="/protocol/">project protocol page</a> and archived at OSF, specifies the controls designed to rule out the most plausible environmental explanations before any comparison is interpreted.
+
+The connection to Lorentz invariance is not direct: SPHERE does not propose to test the SME or any specific Lorentz-violating term. But the design challenge is shared. Both types of experiment require distinguishing a small, systematic frequency difference from a large background of mundane environmental effects. The techniques developed in precision tests of Lorentz invariance — thermal isolation, vibration decoupling, independent calibration chains — are directly relevant to the <a href="/research/">measurement design questions</a> SPHERE faces.
+
+## Open questions about sensitivity
+
+The Kepuladze analysis places the sensitivity threshold for loop-induced effects at 10⁻⁸ to 10⁻⁹. SPHERE's proposed measurement precision is far lower: the LOC-1 protocol targets fractional frequency resolution adequate to test the Bashar hypothesis, not to probe quantum gravity. The relevant question for SPHERE is not whether a sub-part-per-billion effect is detectable, but whether any frequency difference at all — at any level above instrument noise — is present and reproducible between spatially separated spheres.
+
+That is a much lower bar technically, but a much harder question experimentally, because the dominant uncertainty sources at the kHz scale are thermal and mechanical rather than quantum. The <a href="/research/">SPHERE research documentation</a> addresses those sources in detail.
+
+Project S.P.H.E.R.E. is at the proposal stage. No measurements or results are claimed here.
