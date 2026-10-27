@@ -1,0 +1,62 @@
+---
+title: "NIST Research on High-Frequency Acoustic Resonators and What It Means for Precision Measurement"
+seoTitle: "High-Frequency Acoustic Resonators NIST 2026 | Project S.P.H.E.R.E."
+description: "A 2026 NIST-led study on acoustic resonators above 100 GHz demonstrates a stacking approach that dramatically improves figure of merit — with implications for any experiment that depends on resonant frequency as a primary observable."
+slug: acoustic-resonators-above-100ghz-nist-2026
+category: Instrumentation
+tags:
+  - acoustic resonance
+  - NIST
+  - piezoelectric resonator
+  - metrology
+  - frequency measurement
+keywords:
+  - acoustic resonator precision
+  - high frequency resonance measurement
+  - piezoelectric resonator quality factor
+  - NIST frequency metrology
+author: Project S.P.H.E.R.E.
+publishedDate: 2026-10-27
+updatedDate: 2026-10-27
+status: proposed
+canonicalUrl: https://spheredesci.org/research/acoustic-resonators-above-100ghz-nist-2026/
+relatedArticles:
+  - uncertainty-budget-for-resonance
+  - frequency-measurement-error-budget
+citations:
+  - id: kramer2026
+    type: external
+    title: "Acoustic resonators above 100 GHz"
+    authors: Kramer, Bosworth, Matto, Jungwirth, Barrera, Bergmann, Cho, Chulukhadze, Goorsky, Orloff, Lu
+    year: 2026
+    url: https://arxiv.org/abs/2502.03632
+faqs:
+  - question: "Does SPHERE use piezoelectric resonators?"
+    answer: "No. SPHERE's proposed design uses copper spheres as mechanical resonators, not piezoelectric materials. The NIST work is relevant as a study in precision resonance design principles, not as a specification for SPHERE's apparatus."
+  - question: "Is this page reporting a measurement?"
+    answer: "No. Project S.P.H.E.R.E. is at the proposal stage. This page discusses a published external study and what it suggests for resonance experiment design."
+---
+
+A research team at the National Institute of Standards and Technology (NIST) and the University of Texas at Austin has demonstrated acoustic resonators operating above 100 GHz, achieving a figure of merit roughly an order of magnitude better than prior piezoelectric devices in that frequency range. <Citation id="kramer2026" /> The approach — stacking three lithium niobate layers with alternating crystal orientations — strengthens electromechanical coupling for higher-order vibration modes without sacrificing quality factor. The result shows that careful structural design can circumvent what had been treated as a fundamental trade-off in high-frequency resonance work.
+
+## Why quality factor and coupling together matter
+
+In any resonance measurement, two quantities shape what is detectable: quality factor (Q) and coupling efficiency. Q describes how sharply defined a resonant peak is — a high-Q resonator produces a narrow, stable frequency signature that is easier to track over time and easier to distinguish from environmental drift. Coupling efficiency describes how much of the drive energy actually excites the resonant mode of interest, rather than being lost to adjacent modes or the measurement chain.
+
+The NIST approach improves both simultaneously by exploiting constructive interference between stacked layers. <Citation id="kramer2026" /> The physical insight is that the interaction between layers can be engineered to reinforce the target mode without requiring thinner individual layers (which would lower Q through surface losses). This is a structural solution to what had previously been attacked through materials selection alone.
+
+## Relevance to the SPHERE measurement design
+
+SPHERE proposes to measure resonant frequency in copper spheres as its primary observable, using a combination of Laser Doppler Vibrometry and a Vector Network Analyzer. The proposed experiment is described in the <a href="/protocol/">LOC-1 protocol at OSF</a> and the <a href="https://doi.org/10.5281/zenodo.23583932">project whitepaper on Zenodo</a>.
+
+Copper spheres at the size and mass proposed by SPHERE resonate in the low-kHz range — well below 100 GHz — so the NIST fabrication technique is not directly applicable. What is applicable is the design principle: that mode-selective coupling and Q preservation are achievable goals when the resonator geometry is engineered with that objective in mind. For SPHERE, the analogous design question is how mounting geometry, excitation positioning, and sphere surface finish interact to favor the target breathing mode over spurious rocking and bending modes.
+
+The NIST study suggests that treating the resonator's geometry as an active design parameter — rather than accepting trade-offs as given — is a productive framing. That framing applies equally well at kHz as at GHz scales.
+
+## Open questions for low-frequency sphere resonance
+
+The NIST result is achieved with precisely fabricated thin-film stacks in controlled cleanroom conditions. SPHERE's proposed apparatus uses macroscopic copper spheres in a lab setting, where surface finish, thermal gradients, and mounting compliance introduce different error sources.
+
+The <a href="/research/">SPHERE research documentation</a> discusses the dominant uncertainty contributors for that configuration: temperature-driven frequency drift, mounting stiffness variation, and changes in the coupling between the sphere and the measurement transducer. Each of these would need to be characterized and bounded before any frequency comparison between differently-located spheres could be interpreted. The NIST approach of systematic structural optimization provides a useful model for how to approach that characterization — beginning with the theoretical coupling geometry and working backward to the physical constraints.
+
+Project S.P.H.E.R.E. is at the proposal stage. No measurements or results are claimed here.
