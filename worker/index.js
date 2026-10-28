@@ -1,5 +1,7 @@
 // Voting API for spheredesci.org (Cloudflare Worker + D1). Static pages are served by the assets
-// binding; this Worker only runs for /api/* (see wrangler.jsonc: assets.run_worker_first).
+// binding; this Worker only runs for /api/* and /assets/video/* (see wrangler.jsonc:
+// assets.run_worker_first). Video requests get byte-range support from media.js.
+import { MEDIA_PREFIX, serveMedia } from "./media.js";
 import { PROJECTS } from "./projects.js";
 import { sanitizeSvg } from "./sanitize.js";
 
@@ -354,6 +356,7 @@ async function analyticsDashboard(req, env) {
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    if (url.pathname.startsWith(MEDIA_PREFIX)) return serveMedia(req, env);
     if (url.pathname === "/api/analytics/event") {
       try {
         return await analyticsEvent(req, env);
