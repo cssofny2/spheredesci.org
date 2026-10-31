@@ -45,6 +45,21 @@ export function lintPage(html, rel) {
   if (!desc || !(attr(desc, "content") || "").trim()) errors.push(`${rel}: missing or empty meta description`);
   if (!/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(html)) errors.push(`${rel}: missing canonical link`);
   if (/<meta\b[^>]*name=["']robots["'][^>]*noindex/i.test(html) && !NOINDEX_OK.has(rel)) errors.push(`${rel}: unexpected noindex directive`);
+  const noindex = /<meta\b[^>]*name=["']robots["'][^>]*noindex/i.test(html);
+  const canonical = attr(html.match(/<link\b[^>]*rel=["']canonical["'][^>]*>/i)?.[0] || "", "href");
+  const hreflang = new Map();
+  for (const tag of html.match(/<link\b[^>]*\bhreflang=[^>]*>/gi) || []) {
+    const lang = (attr(tag, "hreflang") || "").toLowerCase();
+    if (attr(tag, "rel") !== "alternate") errors.push(`${rel}: hreflang link must use rel="alternate"`);
+    if (hreflang.has(lang)) errors.push(`${rel}: duplicate hreflang="${lang}"`);
+    hreflang.set(lang, attr(tag, "href"));
+  }
+  if (!noindex && canonical) {
+    for (const lang of ["en", "x-default"]) {
+      if (!hreflang.has(lang)) errors.push(`${rel}: missing hreflang="${lang}" alternate`);
+      else if (hreflang.get(lang) !== canonical) errors.push(`${rel}: hreflang="${lang}" href must match the canonical URL`);
+    }
+  }
   for (const tag of body.match(/<img\b[^>]*>/gi) || []) {
     if (attr(tag, "alt") === undefined) errors.push(`${rel}: <img> without alt attribute (${attr(tag, "src") || "no src"})`);
   }

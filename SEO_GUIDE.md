@@ -24,6 +24,19 @@ Search-engine scores and Core Web Vitals depend on the deployed environment and 
 
 After running the page generators, run `python3 tools/seo-schema.py` to ensure every page's JSON-LD graph has the shared `Organization` and `WebSite` (publisher + `SearchAction`) nodes and that Twitter Card tags mirror Open Graph. It is idempotent; `--check` reports pages that need updating. `sameAs` lists only profiles that exist (currently the GitHub repository); add social URLs to `ORG` in the script once they are published.
 
+## hreflang (language targeting)
+
+The site is published in English only. `tools/inject-site-metadata.mjs` (run by `npm run build`) adds two self-referencing annotations directly after the canonical link of every indexable page:
+
+```html
+<link rel="alternate" hreflang="en" href="https://spheredesci.org/<route>/">
+<link rel="alternate" hreflang="x-default" href="https://spheredesci.org/<route>/">
+```
+
+Both point at the page's canonical URL, so search engines treat each URL as the single English version and the default for every other locale instead of guessing at regional variants. Pages with `noindex` or without an on-site canonical are skipped. The step strips and rewrites existing hreflang tags, so it is idempotent; do not hand-write hreflang into pages or templates. `npm run lint:html` fails when an indexable page is missing either annotation, repeats one, or points one anywhere other than its canonical URL.
+
+If translated sections launch, add their language codes to `HREFLANG` in the script and emit the reciprocal alternates for each translated route (every language version must list all versions, including itself).
+
 ## GEO blocks, FAQ schema and social tags
 
 - `data/geo.json` + `python3 tools/build-geo.py` inject the key-facts summary (`.geo-summary`) and the reusable FAQ section (`faq_section()` emits visible `<details>` plus a matching `FAQPage` node). `faqs_from_page` derives the schema from a page's existing `faq-item` blocks. Keep every bullet hypothesis/proposal framed.

@@ -3,8 +3,9 @@ import test from "node:test";
 import { breadcrumbs } from "../lib/breadcrumbs.mjs";
 import { relatedLinksHtml, relatedResearch } from "../lib/related-links.mjs";
 import { lintPage } from "../lint-html.mjs";
+import { applyHreflang } from "../inject-site-metadata.mjs";
 
-const page = (body, head = "") => `<!doctype html><html lang="en"><head><title>T</title><meta name="description" content="d"><link rel="canonical" href="https://spheredesci.org/x/">${head}</head><body>${body}</body></html>`;
+const page = (body, head = "") => `<!doctype html><html lang="en"><head><title>T</title><meta name="description" content="d"><link rel="canonical" href="https://spheredesci.org/x/"><link rel="alternate" hreflang="en" href="https://spheredesci.org/x/"><link rel="alternate" hreflang="x-default" href="https://spheredesci.org/x/">${head}</head><body>${body}</body></html>`;
 
 test("breadcrumbs render a trail and matching BreadcrumbList", () => {
   const { html, schema } = breadcrumbs([["Home", "/"], ["Research", "/research/"], ["Page", "/research/page/"]]);
@@ -35,4 +36,33 @@ test("lint flags duplicate H1, missing alt, missing description and bad schema",
   assert.match(text, /without alt/);
   assert.match(text, /meta description/);
   assert.match(text, /invalid JSON-LD/);
+});
+
+const bare = (head = "") => `<!doctype html><html lang="en"><head><title>T</title><meta name="description" content="d"><link rel="canonical" href="https://spheredesci.org/x/">${head}</head><body><h1>Hi</h1></body></html>`;
+
+test("hreflang injection adds self-referencing en and x-default links after the canonical", () => {
+  const out = applyHreflang(bare());
+  assert.match(out, /<link rel="canonical" href="https:\/\/spheredesci\.org\/x\/"><link rel="alternate" hreflang="en" href="https:\/\/spheredesci\.org\/x\/"><link rel="alternate" hreflang="x-default" href="https:\/\/spheredesci\.org\/x\/">/);
+  assert.deepEqual(lintPage(out, "x/index.html"), []);
+});
+
+test("hreflang injection is idempotent and replaces stale annotations", () => {
+  const once = applyHreflang(bare());
+  assert.equal(applyHreflang(once), once);
+  const stale = applyHreflang(bare('<link rel="alternate" hreflang="en-us" href="https://spheredesci.org/old/">'));
+  assert.doesNotMatch(stale, /en-us|\/old\//);
+  assert.equal((stale.match(/hreflang=/g) || []).length, 2);
+});
+
+test("hreflang injection skips noindex pages and off-site canonicals", () => {
+  assert.doesNotMatch(applyHreflang(bare('<meta name="robots" content="noindex,follow">')), /hreflang/);
+  const offsite = bare().replace("https://spheredesci.org/x/", "https://example.org/x/");
+  assert.doesNotMatch(applyHreflang(offsite), /hreflang/);
+});
+
+test("lint flags missing or mismatched hreflang on indexable pages", () => {
+  assert.match(lintPage(bare(), "x/index.html").join("\n"), /missing hreflang="en"/);
+  const wrong = bare('<link rel="alternate" hreflang="en" href="https://spheredesci.org/y/"><link rel="alternate" hreflang="x-default" href="https://spheredesci.org/x/">');
+  assert.match(lintPage(wrong, "x/index.html").join("\n"), /hreflang="en" href must match/);
+  assert.deepEqual(lintPage(bare('<meta name="robots" content="noindex">'), "404.html"), []);
 });
