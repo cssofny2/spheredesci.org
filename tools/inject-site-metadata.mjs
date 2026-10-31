@@ -1,5 +1,6 @@
-// Post-build step: adds the global RSS discovery link and Organization/WebSite
-// sameAs entity links to every published HTML page. Idempotent.
+// Post-build step: adds the global RSS discovery link, self-referencing hreflang
+// annotations and Organization/WebSite sameAs entity links to every published
+// HTML page. Idempotent.
 import { readFile, writeFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,6 +9,25 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://spheredesci.org";
 const FEED_LINK = '<link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. RSS Feed" href="/rss.xml" />';
 const SKIP = new Set(["node_modules", ".git", ".github", "tools", "data", "content", "worker", "migrations", "admin"]);
+
+// The site is published in one language. Each indexable page declares itself as
+// the English version and as the x-default fallback, pointing at its canonical
+// URL, so search engines never infer a language/region variant that does not
+// exist. Add entries here (e.g. ["es", "/es"]) if translated sections launch.
+export const HREFLANG = ["en", "x-default"];
+
+const HREFLANG_RE = /<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang=)[^>]*>/gi;
+const CANONICAL_RE = /<link\b[^>]*rel=["']canonical["'][^>]*>/i;
+
+export function applyHreflang(html) {
+  const stripped = html.replace(HREFLANG_RE, "");
+  const canonicalTag = stripped.match(CANONICAL_RE)?.[0];
+  const href = canonicalTag?.match(/\bhref=["']([^"']+)["']/i)?.[1];
+  const noindex = /<meta\b[^>]*name=["']robots["'][^>]*noindex/i.test(stripped);
+  if (!href || noindex || !href.startsWith(`${SITE}/`)) return stripped;
+  const links = HREFLANG.map((lang) => `<link rel="alternate" hreflang="${lang}" href="${href}">`).join("");
+  return stripped.replace(canonicalTag, `${canonicalTag}${links}`);
+}
 
 export async function loadSameAs() {
   const profiles = JSON.parse(await readFile(path.join(ROOT, "data", "entity-profiles.json"), "utf8"));
@@ -67,7 +87,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   for await (const file of walk(ROOT)) {
     const before = await readFile(file, "utf8");
     if (!/<\/head>/i.test(before)) continue;
-    const after = applySameAs(applyFeedLink(before), sameAs);
+    const after = applySameAs(applyHreflang(applyFeedLink(before)), sameAs);
     if (after !== before) { await writeFile(file, after); changed++; }
   }
   console.log(`Site metadata applied; ${changed} page(s) updated.`);

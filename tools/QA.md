@@ -84,5 +84,5 @@ submitted during QA because it would send an external email.
 
 - GEO/social: core routes have a `.geo-summary` block, FAQPage JSON-LD matches visible FAQ items, and every page has og:image and twitter:card (`python3 tools/build-geo.py --check && python3 tools/social-meta.py --check`).
 ## Added 2026-10-22: SEO/accessibility lint and cross-links
-- `npm run lint:html` (part of `npm run verify` and both deploy workflows) fails on duplicate/missing H1, missing meta description or canonical, `<img>` without `alt`, invalid JSON-LD, malformed BreadcrumbList and unexpected noindex.
+- `npm run lint:html` (part of `npm run verify` and both deploy workflows) fails on duplicate/missing H1, missing meta description or canonical, `<img>` without `alt`, invalid JSON-LD, malformed BreadcrumbList and unexpected noindex. It also requires every indexable page to carry `hreflang="en"` and `hreflang="x-default"` alternates that match its canonical URL (added by `tools/inject-site-metadata.mjs`).
 - Generated publication pages show a Breadcrumb nav plus an 'Explore the project' block (whitepaper, related research, associated properties from `data/related-properties.json`).
