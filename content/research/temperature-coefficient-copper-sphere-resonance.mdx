@@ -1,0 +1,158 @@
+---
+title: "How Temperature Can Mimic a Location Effect in Copper Sphere Resonance"
+seoTitle: "Copper Sphere Resonance Temperature Coefficient | Project S.P.H.E.R.E."
+description: "Published elastic-constant data for copper imply a resonance temperature coefficient near 10⁻⁴ per kelvin, dominated by modulus softening rather than expansion. Here is why that matters for any test that moves a sphere between positions."
+seoDescription: "Why copper's temperature-dependent stiffness, not thermal expansion, sets the resonance drift a sphere-relocation experiment must control, with worked estimates and design responses."
+slug: temperature-coefficient-copper-sphere-resonance
+author: Project S.P.H.E.R.E.
+publishedDate: 2026-10-31
+updatedDate: 2026-10-31
+status: proposed
+category: Metrology
+subCategory: Thermal systematics
+tags:
+  - metrology
+  - resonance
+  - thermal drift
+  - copper
+  - uncertainty
+  - experimental design
+keywords:
+  - copper resonance temperature coefficient
+  - elastic modulus temperature dependence
+  - thermal drift resonance measurement
+  - sphere vibration frequency temperature
+seoKeywords:
+  - temperature coefficient of resonant frequency
+  - copper elastic constants temperature
+  - thermal settling time copper
+canonicalUrl: https://spheredesci.org/research/temperature-coefficient-copper-sphere-resonance/
+readingTime: 8
+relatedArticles:
+  - uncertainty-budget-for-resonance
+  - frequency-measurement-error-budget
+  - resonance-change-verification-protocol
+knowledge:
+  - metrology
+  - resonance
+citations:
+  - id: ledbetter1974
+    type: doi
+    doi: 10.1063/1.3253150
+    title: "Elastic Properties of Metals and Alloys. II. Copper"
+    authors: H. M. Ledbetter, E. R. Naimon
+    year: 1974
+    url: https://srd.nist.gov/jpcrdreprint/1.3253150.pdf
+  - id: overton1955
+    type: doi
+    doi: 10.1103/PhysRev.98.969
+    title: "Temperature Variation of the Elastic Constants of Cubic Elements. I. Copper"
+    authors: W. C. Overton Jr., J. Gaffney
+    year: 1955
+    url: https://doi.org/10.1103/PhysRev.98.969
+  - id: malica2021
+    type: arxiv
+    arxiv: "2109.00459"
+    title: "Quasi-harmonic thermoelasticity of palladium, platinum, copper, and gold from first principles"
+    authors: C. Malica, A. Dal Corso
+    year: 2021
+    url: https://arxiv.org/abs/2109.00459
+  - id: nistcu
+    type: website
+    title: "Material Properties: OFHC Copper (UNS C10100/C10200)"
+    authors: NIST Cryogenic Technologies Group
+    url: https://trc.nist.gov/cryogenics/materials/OFHC%20Copper/OFHC_Copper_rev1.htm
+  - id: gum
+    type: book
+    title: "Evaluation of measurement data — Guide to the expression of uncertainty in measurement"
+    authors: Joint Committee for Guides in Metrology
+    year: 2008
+    url: https://www.bipm.org/en/committees/jc/jcgm/publications
+faqs:
+  - question: "Is thermal expansion the main reason a copper sphere's resonance drifts with temperature?"
+    answer: "No. Based on published elastic-constant data, the softening of copper's elastic moduli contributes roughly ten to twenty times more frequency change per kelvin than dimensional expansion does."
+  - question: "Why does moving the sphere make temperature more important?"
+    answer: "Relocation changes the sphere's thermal surroundings and contact conditions. If the sphere has not settled to the same temperature at each position, the resulting frequency difference will correlate with position even though it is a thermal effect."
+  - question: "Is this page reporting a measurement?"
+    answer: "No. Project S.P.H.E.R.E. is at the proposal stage. The numbers here are estimates derived from published reference data and must be replaced by coefficients measured on each artifact and mode."
+---
+
+The central question in the <a href="/protocol/">LOC-1 protocol</a> is whether moving the same hollow copper sphere between two fixed positions produces a repeatable resonance difference once temperature, mounting, timing, and other measured conditions are controlled. Of those conditions, temperature deserves special attention: it is the variable most able to produce a position-correlated frequency change on its own. This article estimates how large that effect is for copper, using published reference data, and explains why the act of relocation is itself a thermal disturbance.
+
+<ResearchNote title="Scope">
+This is a proposal-stage design note. The coefficients below are derived estimates from published copper data, not measurements of any Project S.P.H.E.R.E. artifact.
+</ResearchNote>
+
+## Where a resonance temperature coefficient comes from
+
+Every vibration mode of an elastic sphere, solid or hollow, has a frequency that scales with an elastic wave speed divided by a characteristic length. The wave speed depends on an effective modulus M (a combination of shear and bulk stiffness that depends on the mode) and on density ρ:
+
+<Equation latex="f ∝ (1/R) · √(M / ρ)" label="Frequency scaling for any mode of a sphere of radius R" />
+
+When the temperature changes, three things move at once. The modulus changes, the radius grows by the linear expansion coefficient α, and the density falls because the same mass now occupies a larger volume (ρ ∝ R⁻³). Combining those terms gives a compact result:
+
+<Equation latex="(1/f) · df/dT ≈ ½ · (1/M) · dM/dT + ½ · α" label="Fractional frequency change per kelvin" />
+
+The derivation assumes uniform, isotropic expansion of a stress-free artifact. Mounting stress, shell-thickness variation, and surface finish can alter the real coefficient, which is why it has to be measured per artifact and per mode.
+
+## The stiffness term dominates
+
+Copper's linear expansion coefficient near room temperature is well characterized. Evaluating the NIST fit for oxygen-free copper at 293 K gives about 16.6 × 10⁻⁶ per kelvin, so the expansion term above contributes roughly +8 parts per million per kelvin. <Citation id="nistcu" />
+
+The stiffness term is larger and has the opposite sign. Ultrasonic measurements on copper single crystals from 4.2 K to 300 K established how its elastic constants soften with temperature, <Citation id="overton1955" /> and Ledbetter and Naimon's critical review compiled recommended polycrystalline values and temperature derivatives. <Citation id="ledbetter1974" /> A recent first-principles study summarizes the combined experimental record: between 0 and 800 K, copper's C11, C12, and C44 constants soften by about 15, 10, and 24 percent respectively. <Citation id="malica2021" />
+
+Converting those figures to aggregate moduli gives a rough sense of scale. Bulk stiffness softens by about 12 percent and shear stiffness by about 25 percent over that span, an average of roughly 1.5 to 3.5 × 10⁻⁴ per kelvin depending on how much of the low-temperature plateau is excluded. That is a coarse average, not a room-temperature derivative, but it lands in the same range as the reference tables and is enough to reach a design conclusion.
+
+<DataPoint label="Derived fractional resonance coefficient" value="−0.7 to −1.7 × 10⁻⁴" unit="per K" note="Estimate from published copper data; not a measurement. Each artifact and mode must be characterized." />
+
+The stiffness term outweighs the expansion term by a factor of about ten to twenty. A design that budgets only for thermal expansion would underestimate the temperature sensitivity by an order of magnitude.
+
+## What that means in the proposed test band
+
+The <a href="/whitepaper/">project whitepaper</a> describes a test band above 230 kHz and already estimates a fractional thermal coefficient on the order of 10⁻⁴ per kelvin. The derivation above is consistent with that estimate and shows where it comes from. At 230 kHz, the derived range corresponds to roughly 15 to 38 Hz per kelvin, or about 0.015 to 0.04 Hz for a 1 mK change.
+
+That is why the whitepaper sets a proposed thermal target of ±0.001 K and calls for measuring artifact temperature relative to the enclosure, spatial gradients, and settling after movement. A temperature difference of a few millikelvin between the two positions would produce a frequency difference comparable to the small effects a careful location test would try to resolve.
+
+<WarningBox title="Interpretation">
+A frequency difference that tracks position is not evidence of a location effect unless the temperature of the artifact itself, not only the room or enclosure, is shown to be the same at both positions within the stated uncertainty.
+</WarningBox>
+
+## Why relocation is a thermal event
+
+Moving a sphere changes its heat exchange. It may be touched by a gripper or fixture, rest against a mount at a different temperature, sit closer to a heat source, or see a different radiative environment. Each of those can leave it slightly warmer or cooler than its surroundings after the move, and the frequency will drift until it settles.
+
+How long settling takes depends strongly on the environment. As an illustration only, consider a solid copper sphere of 4.6 mm radius, the whitepaper's design estimate for a breathing mode near 230 kHz, with a heat capacity of about 1.4 J/K. In still air, with a convective coefficient of 5 to 10 W/(m²·K), its thermal time constant is roughly 9 to 18 minutes. In vacuum, where polished copper loses heat mainly by weak radiation, the radiative time constant alone stretches to several hours. Conduction through the mount would usually shorten that, but it also makes the mount's own temperature part of the measurement. Reducing an initial 0.1 K offset to 1 mK takes about 4.6 time constants.
+
+Two practical consequences follow. Settling criteria should be defined in advance rather than chosen after looking at the data, and vacuum operation, which the whitepaper proposes for other reasons, changes the thermal timescale enough that it needs its own qualification.
+
+## Design responses worth considering
+
+None of the following is new to metrology, but each targets the specific way temperature could imitate a location effect:
+
+<ExperimentStep number="1" title="Measure the artifact, not just the room">
+Record the sphere's own temperature, or a validated proxy for it, alongside every frequency reading, and map the temperature difference between the two positions.
+</ExperimentStep>
+
+<ExperimentStep number="2" title="Characterize each coefficient directly">
+The protocol already calls for deliberately varying temperature during calibration. That step turns the estimate on this page into a measured coefficient, with its own uncertainty, for each artifact and mode.
+</ExperimentStep>
+
+<ExperimentStep number="3" title="Use a stationary reference and ratios">
+A matched reference artifact that never moves shares the room's temperature drift. Analyzing the ratio of the two frequencies suppresses common-mode drift, though it cannot remove a temperature difference that exists only at one position.
+</ExperimentStep>
+
+<ExperimentStep number="4" title="Alternate positions symmetrically">
+An A-B-B-A visit order cancels a linear drift in time. Randomizing or alternating order keeps slow thermal trends from lining up with position.
+</ExperimentStep>
+
+<ExperimentStep number="5" title="Carry the correction into the budget">
+Any temperature correction adds its own uncertainty, from the thermometer, the fitted coefficient, and the gradient between sensor and artifact. Those terms belong in the combined uncertainty, following GUM practice. <Citation id="gum" />
+</ExperimentStep>
+
+The <a href="/research/uncertainty-budget-for-resonance/">uncertainty budget guide</a> and the <a href="/research/resonance-change-verification-protocol/">verification controls page</a> describe how these terms fit into the broader proposed analysis.
+
+## What this note does not establish
+
+The figures here come from published reference data for copper in general. They do not describe a fabricated Project S.P.H.E.R.E. artifact, a mounted hollow shell, or any measured mode. The real coefficients may differ because of alloy, temper, residual stress, shell geometry, and boundary conditions. The purpose of this note is to show the expected size of the effect before measurement, so that the controls are designed to be adequate rather than adjusted after the fact.
+
+Project S.P.H.E.R.E. is at the proposal stage. The LOC-1 preregistration is published at [OSF](https://osf.io/5b6mj/overview), and the whitepaper is archived at [Zenodo](https://doi.org/10.5281/zenodo.23583932). No measurements or results are claimed here.
