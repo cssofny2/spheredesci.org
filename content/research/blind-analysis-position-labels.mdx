@@ -1,0 +1,168 @@
+---
+title: "Why LOC-1 Hides the Position Labels: Blind Analysis in Precision Measurement"
+seoTitle: "Blind Analysis in Resonance Experiments | Project S.P.H.E.R.E."
+description: "Physicists hide answers from themselves until the analysis is frozen. Here is where that practice came from, how frequency measurements have been blinded, and why LOC-1 gives the position key to someone other than the analyst."
+seoDescription: "How blind analysis protects precision measurements from experimenter bias, with examples from KTeV, SNO, Muon g-2 and LIGO, and what blinded position labels can and cannot do for Protocol LOC-1."
+slug: blind-analysis-position-labels
+author: Project S.P.H.E.R.E.
+publishedDate: 2026-11-01
+updatedDate: 2026-11-01
+status: proposed
+category: Experimental Protocols
+subCategory: Bias control
+tags:
+  - blind analysis
+  - experimenter bias
+  - experimental design
+  - metrology
+  - resonance
+  - open science
+keywords:
+  - blind analysis physics
+  - experimenter bias measurement
+  - blinded labels experiment
+  - hidden offset blinding
+seoKeywords:
+  - blind analysis precision measurement
+  - how to blind a frequency measurement
+  - preregistration and blinding
+canonicalUrl: https://spheredesci.org/research/blind-analysis-position-labels/
+readingTime: 9
+relatedArticles:
+  - resonance-change-verification-protocol
+  - uncertainty-budget-for-resonance
+  - temperature-coefficient-copper-sphere-resonance
+  - frequency-measurement-error-budget
+knowledge:
+  - metrology
+  - resonance
+citations:
+  - id: klein2005
+    type: doi
+    doi: 10.1146/annurev.nucl.55.090704.151521
+    title: "Blind Analysis in Nuclear and Particle Physics"
+    authors: Joshua R. Klein, Aaron Roodman
+    year: 2005
+    url: https://doi.org/10.1146/annurev.nucl.55.090704.151521
+  - id: maccoun2015
+    type: doi
+    doi: 10.1038/526187a
+    title: "Blind analysis: Hide results to seek the truth"
+    authors: Robert MacCoun, Saul Perlmutter
+    year: 2015
+    url: https://doi.org/10.1038/526187a
+  - id: keshavarzi2019
+    type: arxiv
+    arxiv: "1905.00497"
+    title: "The Muon g-2 experiment at Fermilab"
+    authors: Alexander Keshavarzi, on behalf of the Muon g-2 Collaboration
+    year: 2019
+    url: https://arxiv.org/abs/1905.00497
+  - id: ligo2011
+    type: website
+    title: "“Blind injection” stress-tests LIGO and Virgo’s search for gravitational waves"
+    authors: LIGO Scientific Collaboration
+    year: 2011
+    url: https://ligo.org/blind-injection/
+  - id: golub2023
+    type: arxiv
+    arxiv: "2311.13542"
+    title: "Blind analysis in Physics experiments: Is this trip necessary?"
+    authors: Robert Golub
+    year: 2023
+    url: https://arxiv.org/abs/2311.13542
+faqs:
+  - question: "What is blind analysis?"
+    answer: "Blind analysis is the practice of hiding the answer, or the labels that would reveal it, from the people analyzing the data until every analysis choice has been fixed. It keeps decisions about cuts, corrections and stopping points from being steered, even unconsciously, by the result they produce."
+  - question: "How does LOC-1 blind its data?"
+    answer: "The registered plan's controls include blinded labels: an independent position keeper holds the placement key and the analyst receives coded data. The OSF preregistration is the controlling record for the details."
+  - question: "Does blinding prevent false positives caused by temperature or handling?"
+    answer: "No. Blinding stops the analyst from tuning the analysis toward a desired answer. It does not remove a physical effect that is genuinely correlated with position, such as a temperature difference. Thermal characterization, sham moves and a stationary reference address those."
+  - question: "Is this page reporting a measurement?"
+    answer: "No. Project S.P.H.E.R.E. is at the proposal stage. LOC-1 is registered on OSF, but no measurements or results are reported here."
+---
+
+Among the controls listed for the <a href="/protocol/">LOC-1 protocol</a> is one that involves no instrument at all: an independent position keeper holds the placement key, and the analyst receives coded data. The analyst does not know which readings were taken at position A and which at position B until the analysis is finished. This article explains why precision physics adopted that kind of discipline, how frequency measurements in particular have been blinded, and what a blinded label can and cannot protect against.
+
+<ResearchNote title="Scope">
+This is an educational and design note. It describes the published blinding control at a plain-language level and discusses general practice elsewhere. The OSF registration controls the actual LOC-1 procedure, and nothing here amends it.
+</ResearchNote>
+
+## The problem blinding solves
+
+A measurement analysis involves dozens of reasonable choices: which runs to exclude, how long to wait for settling, which drift model to fit, when a calibration looks wrong enough to redo. None of those choices is dishonest. The risk is that an analyst who can see the answer will, without meaning to, look harder for problems when the answer is surprising and stop looking when it is expected.
+
+Klein and Roodman's review of blind analysis in nuclear and particle physics names this pattern directly. They describe stopping bias, continuing to search for mistakes until the result matches expectations and then stopping, as probably the most common form of experimenter's bias, and they quote an early warning from the physicist Frank Dunnington: "It is easier than is generally realized to unconsciously work toward a certain value." <Citation id="klein2005" />
+
+The review also presents circumstantial evidence. Successive measurements of several particle properties clustered closer to the previously published averages than to the eventual best values, more tightly than their quoted uncertainties would predict. The authors are careful to say this does not prove bias, since unrecognized systematic effects could produce the same pattern, but the pattern is the kind of thing blinding is designed to prevent. <Citation id="klein2005" />
+
+## How physicists hide the answer
+
+There is no single blinding method. The right one depends on what the result is and which choices could be steered. Klein and Roodman describe several families: <Citation id="klein2005" />
+
+- **Hidden signal box.** In searches for rare events, the region of data where a signal would appear is kept closed until the selection criteria are frozen.
+- **Hidden offset.** The fitted quantity is shifted by an unknown constant, with a random sign, so the analyst can study stability and systematic effects without seeing the true value. KTeV used this for its measurement of direct CP violation.
+- **Added events.** The Sudbury Neutrino Observatory mixed tagged events of known origin into the data in a hidden time window and removed them later, so the raw count could not be read off.
+- **Prescaling.** The analysis is developed on a known fraction of the data and then applied, unchanged, to the rest.
+
+MacCoun and Perlmutter later argued that these techniques travel well beyond physics. Their summary table includes adding noise to values, adding a hidden bias, and cell scrambling, which shuffles the labels on experimental conditions so that it is unclear which results belong to which condition. <Citation id="maccoun2015" /> LOC-1's coded position labels belong to that last family.
+
+## Blinding a frequency
+
+Resonance experiments report frequencies, and frequencies are measured against a clock. The Fermilab Muon g-2 experiment, whose key observable is a precession frequency, applied its blinding in hardware: the 40 MHz clock that timestamps the detector data was given an offset somewhere within ±25 parts per million, set externally so that the collaboration could not read the true frequency from its own data. <Citation id="keshavarzi2019" />
+
+The general form of a hidden-offset blind is simple:
+
+<Equation latex="f_blind = f_true · (1 + δ),  with δ unknown to the analyst" label="Hidden fractional offset applied to a frequency" />
+
+Because the same unknown factor multiplies every reading taken against that clock, ratios and differences between objects measured on the same timebase are largely preserved while the absolute value is hidden. That is the property that makes clock-level blinding attractive for absolute measurements. It is also why it does little for a comparison like LOC-1's: the quantity of interest is a difference between positions, and a common offset leaves that difference visible. For a contrast between conditions, hiding which condition is which is the more direct tool.
+
+## What the position keeper protects
+
+With coded labels, the analyst can still do almost everything a good analysis needs. They can inspect drift, check the reference artifact, apply thermal corrections, reject runs that fail predefined quality rules, and validate the code end to end. What they cannot do is see whether a given choice makes the A–B difference larger or smaller. Every exclusion and correction is decided on its merits, before its effect on the answer is known.
+
+This works best alongside preregistration. A registered plan fixes the primary outcome, the analysis rules, and the decision criteria in advance. Blinding protects the many smaller judgments that no plan can fully anticipate. The <a href="/protocol/">protocol overview</a> also commits to releasing raw measurements, environmental logs, analysis scripts and deviations, and to publishing results within 60 days of unblinding regardless of outcome, which makes it possible for others to check that the sequence was followed.
+
+<WarningBox title="What blinding does not do">
+Blinding prevents the analyst from steering the result. It does not remove a physical effect that is genuinely correlated with position. If the sphere is slightly warmer at one position, the blinded analysis will faithfully find a difference. Thermal characterization, mount-repeatability tests, sham moves and a stationary reference are what separate a location effect from those confounders.
+</WarningBox>
+
+The <a href="/research/temperature-coefficient-copper-sphere-resonance/">copper temperature coefficient note</a> estimates how large one such confounder could be, and the <a href="/research/resonance-change-verification-protocol/">verification controls page</a> describes the broader set of checks.
+
+## Ways a blind can leak
+
+A blind is only as good as its weakest side channel. The following are general design considerations for any coded-label comparison, offered for discussion rather than as changes to the registered plan:
+
+<ExperimentStep number="1" title="Metadata that encodes the label">
+File names, timestamps that follow a known schedule, sensor channel names, or an environmental log that differs systematically between positions can each reveal the key. Coded datasets need the same scrutiny as the coded column itself.
+</ExperimentStep>
+
+<ExperimentStep number="2" title="A visit order the analyst can guess">
+If positions alternate in a fixed, known pattern, the order alone can decode the labels. Randomized or keeper-chosen schedules reduce that risk, as long as they still balance slow drift.
+</ExperimentStep>
+
+<ExperimentStep number="3" title="Informal conversation">
+The position keeper and the analyst work in the same project. Agreeing in advance on what the keeper will and will not discuss before unblinding is as important as any file permission.
+</ExperimentStep>
+
+<ExperimentStep number="4" title="Signal-shaped checks">
+If the analysis can see a large, stable split in the data, the analyst may infer which group is which even without the key. Deciding before unblinding what checks are allowed, and recording them, keeps that from becoming a hidden degree of freedom.
+</ExperimentStep>
+
+## Testing the pipeline with a known answer
+
+Blinding has a companion practice: deliberately putting a known signal into the data to see whether the analysis finds it. The best-known example is LIGO and Virgo's 2010 blind injection. A simulated gravitational-wave signal was added to the detector data without the analysts' knowledge. The collaborations treated it as real, wrote a paper titled "Evidence for the Direct Detection of Gravitational Waves from a Black Hole Binary Coalescence," and voted to approve it before the envelope revealing the injection was opened in March 2011. <Citation id="ligo2011" />
+
+The episode showed that the search could find a signal it was not told about, and that the collaboration's review process ran to completion on a result its members believed. In a resonance comparison, the analogous ideas are sham moves, where the sphere is handled but returned to the same position, and known-answer tests of the analysis code on synthetic data. Both check that the pipeline reports nothing when nothing is there and something when something is.
+
+## The cost of a blind
+
+Blinding is not free. It takes planning, it can delay the discovery of a real problem until unblinding, and it requires a written rule for what happens if a mistake is found afterwards. Klein and Roodman discuss these costs, <Citation id="klein2005" /> and not every physicist agrees the practice is always worth them: a 2023 note by Robert Golub revisits their case and reaches a different conclusion. <Citation id="golub2023" /> The practical answer most experiments adopt is to report any post-unblinding change openly, with the blinded result alongside it, rather than to treat the blind as unbreakable.
+
+For a pre-launch project testing an unconventional hypothesis, the case for blinding is unusually strong. The people building the experiment are, by definition, interested in the idea it tests. A blinded, preregistered analysis is how that interest is kept out of the result, whichever way the result turns out.
+
+## What this note does not establish
+
+This article describes a published control in general terms and surveys how blinding is used elsewhere. It does not describe how LOC-1's coded labels are implemented in detail, and it does not report any data. The OSF registration is the controlling record for the study plan.
+
+Project S.P.H.E.R.E. is at the proposal stage. The LOC-1 preregistration is published at [OSF](https://osf.io/5b6mj/overview), and the whitepaper is archived at [Zenodo](https://doi.org/10.5281/zenodo.23583932). No measurements or results are claimed here.
