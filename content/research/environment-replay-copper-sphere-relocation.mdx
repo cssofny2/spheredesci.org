@@ -1,0 +1,249 @@
+---
+title: "Recording a Copper Sphere's Resonance at One Location and Replaying the Environment at Another"
+seoTitle: "Copper Sphere Environment Record-and-Replay Protocol | Project S.P.H.E.R.E."
+description: "A proposed engineering protocol for recording a hollow copper sphere's resonance and its site environment at Location A, then isolating the sphere at Location B and replaying A's vibration and magnetic environment under closed-loop control."
+seoDescription: "How to separate a copper sphere's intrinsic resonance from a location's environment, replay that environment at a second site with time waveform replication, and verify the match, with controls and equipment tiers."
+slug: environment-replay-copper-sphere-relocation
+author: Project S.P.H.E.R.E.
+publishedDate: 2026-11-03
+updatedDate: 2026-11-03
+status: proposed
+category: Experimental Protocols
+subCategory: Environmental replay
+tags:
+  - experimental design
+  - resonance
+  - copper
+  - vibration
+  - metrology
+  - controls
+keywords:
+  - copper sphere resonance recording
+  - time waveform replication
+  - environmental replay experiment
+  - vibration isolation resonance measurement
+seoKeywords:
+  - hollow copper sphere breathing mode
+  - inverse FRF drive correction
+  - Helmholtz coil field replay
+canonicalUrl: https://spheredesci.org/research/environment-replay-copper-sphere-relocation/
+readingTime: 14
+relatedArticles:
+  - temperature-coefficient-copper-sphere-resonance
+  - blind-analysis-position-labels
+  - uncertainty-budget-for-resonance
+  - record-replay-resonance
+knowledge:
+  - resonance
+  - metrology
+citations:
+  - id: lamb1882
+    type: doi
+    doi: 10.1112/plms/s1-14.1.50
+    title: "On the Vibrations of a Spherical Shell"
+    authors: Horace Lamb
+    year: 1882
+    url: https://doi.org/10.1112/plms/s1-14.1.50
+  - id: nistcu
+    type: website
+    title: "Material Properties: OFHC Copper (UNS C10100/C10200)"
+    authors: NIST Cryogenic Technologies Group
+    url: https://trc.nist.gov/cryogenics/materials/OFHC%20Copper/OFHC_Copper_rev1.htm
+  - id: janssens2021
+    type: arxiv
+    arxiv: "2110.14730"
+    title: "Impact of Schumann resonances on the Einstein Telescope and projections for the magnetic coupling function"
+    authors: K. Janssens, K. Martinovic, N. Christensen, P. M. Meyers, M. Sakellariadou
+    year: 2021
+    url: https://arxiv.org/abs/2110.14730
+  - id: milstd810h
+    type: book
+    title: "MIL-STD-810H, Environmental Engineering Considerations and Laboratory Tests, Method 525.2: Time Waveform Replication"
+    authors: U.S. Department of Defense
+    year: 2019
+  - id: polytec
+    type: website
+    title: "VibroFlex single-point laser Doppler vibrometer"
+    authors: Polytec
+    url: https://www.polytec.com/en/vibrometry/products/single-point-vibrometers/vibroflex
+faqs:
+  - question: "Can a copper sphere record the frequency of a location?"
+    answer: "Not in any established physical sense. A passive copper sphere has resonant modes set by its geometry and material, and it responds to whatever excites it. The meaningful split is between the sphere's intrinsic resonance and the environment delivered to it at a site, which can be measured and reproduced."
+  - question: "What does overwhelming the second location's environment mean here?"
+    answer: "It means fidelity, not power: isolating the sphere so the second site's residual vibration and field sit at least 20 dB below the replayed signal, while matching the first site's recorded levels rather than exceeding them."
+  - question: "Is this page reporting a measurement?"
+    answer: "No. Project S.P.H.E.R.E. is at the proposal stage. The frequencies and thresholds here are calculations and engineering proposals, not measurements of any project artifact."
+---
+
+The registered <a href="/protocol/">LOC-1 protocol</a> asks whether moving the same hollow copper sphere between fixed positions produces a repeatable resonance difference once measured conditions are controlled. A natural follow-up question is whether any such difference belongs to the place itself or to the environment the place delivers to the sphere: vibration, magnetic field, temperature and pressure. This note sets out a proposed way to answer that by recording at one location and replaying that environment at another.
+
+<ResearchNote title="Scope">
+This is a proposal-stage engineering note. No experiment described here has been run, and nothing here amends the OSF registration of LOC-1. Frequencies are analytical estimates; thresholds are engineering proposals. SPHEREVL figures are from an educational simulation, not measurements or scientific validation. An <a href="https://claude.site/public/artifacts/de53d992-2868-4814-a5fa-c5383aba330d/embed">extended report version</a> of this note is also available.
+</ResearchNote>
+
+## Two different signals
+
+A passive copper sphere has no power source, so it does not emit a signal of its own. It has mechanical resonant modes, fixed by its geometry and elastic constants, and electromagnetic responses such as eddy currents and scattering. Anything measured at a location is the sphere's response to whatever excites it there. The experiment therefore records two separate things:
+
+1. **The sphere's intrinsic signature**: resonance frequency f₀, quality factor Q and mode splitting. This is a property of the object.
+2. **The site's environment as delivered to the sphere**: mount acceleration, magnetic field, temperature and pressure. This is a property of the place.
+
+Replay tests whether the first depends on the second.
+
+## Where the sphere resonates
+
+The project's <a href="/resources/hollow-copper-sphere/">reference artifact</a> is a provisional 9.2 mm outer-diameter shell with a 0.3 mm wall. For a thin spherical shell, Lamb's analysis gives the breathing (ℓ = 0) mode: <Citation id="lamb1882" />
+
+<Equation latex="f₀ = (1 / 2πR) · √[ 2E / (ρ(1 − ν)) ]" label="Thin-shell breathing mode" />
+
+With E ≈ 128 GPa, ν ≈ 0.34 and ρ ≈ 8,960 kg/m³, the square-root term is about 6,580 m/s. For R = 4.6 mm that gives f₀ ≈ 228 kHz, consistent with the whitepaper's 230 kHz design band. Copper's modulus varies with alloy and temper (published values span roughly 117–130 GPa), which moves f₀ by about 5 percent. <Citation id="nistcu" /> The thin-shell spectrum also contains lower ℓ = 2 modes near 0.42 f₀ (about 95 kHz) and 0.70 f₀ (about 160 kHz), so a readout covering roughly 80–260 kHz is needed to identify modes correctly.
+
+<DataPoint label="Estimated breathing mode, 9.2 mm shell" value="≈ 228" unit="kHz" note="Analytical free-shell estimate, roughly ±5–10%; mounting adds stiffness and damping. Must be confirmed by sweep or finite-element analysis." />
+
+Every frequency scales as 1/R, which makes larger prototypes useful for debugging:
+
+| Diameter | Shell f₀ | Solid ℓ = 2 | Solid f₀ |
+|---|---|---|---|
+| 9.2 mm | ≈ 228 kHz | — | — |
+| 5 cm | ≈ 42 kHz | ≈ 38 kHz | ≈ 82 kHz |
+| 10 cm | ≈ 21 kHz | ≈ 19 kHz | ≈ 41 kHz |
+| 30 cm | ≈ 7 kHz | ≈ 6.3 kHz | ≈ 14 kHz |
+
+"Shell f₀" is the thin hollow shell breathing mode (the 9.2 mm row is the 0.3 mm-wall baseline); "Solid ℓ = 2" and "Solid f₀" are the quadrupole and breathing modes of a solid sphere. All values are illustrative free-sphere calculations, not measurements.
+
+### Electromagnetic scale
+
+For copper's resistivity, electromagnetic skin depth is about 8.4 mm at 60 Hz and about 0.14 mm at 230 kHz, so extremely-low-frequency (ELF) fields pass straight through a 0.3 mm wall. The lowest electromagnetic resonance of a 4.6 mm-radius sphere lies near c/(2πa), about 10 GHz, and its self-capacitance is about 0.5 pF. The fundamental Schumann resonance near 8 Hz has an amplitude that rarely exceeds about 1 pT. <Citation id="janssens2021" /> The sphere has no resonance in that band and no meaningful mechanism to store it.
+
+## Recording at Location A
+
+<ExperimentStep number="1" title="Thermal soak">
+Install the sphere on its standard mount in a passive thermal enclosure and wait until artifact temperature drift falls below about 10 mK per hour. The project's <a href="/research/temperature-coefficient-copper-sphere-resonance/">temperature analysis</a> estimates roughly 15–38 Hz per kelvin at 230 kHz, so tens of millikelvin already matter.
+</ExperimentStep>
+
+<ExperimentStep number="2" title="Common timebase">
+Lock every instrument to one reference, such as a GPS-disciplined oscillator or rubidium standard, and timestamp every channel in UTC.
+</ExperimentStep>
+
+<ExperimentStep number="3" title="Environment channels">
+Record the location signature at the mount: a triaxial accelerometer on the mount (the control point to reproduce later) at 48 kHz or more and 24-bit depth; a geophone or seismometer on the floor for 0.5–50 Hz; a measurement microphone; an induction-coil magnetometer for 1–100 Hz plus a fluxgate for DC to about 1 kHz; a barometer, humidity sensor and two or three RTDs. Log at least 24 hours to capture diurnal cycles, with calibration factors, sensor serials, orientation and position stored as metadata.
+</ExperimentStep>
+
+<ExperimentStep number="4" title="Intrinsic resonance channel">
+Measure the sphere by swept sine (small piezo or air-coupled ultrasonic exciter, read out by laser Doppler vibrometry or a contact pickup) and by ring-down (a tone burst at f₀ followed by an exponential-sinusoid fit for f₀ and Q). Commercial vibrometers cover the band comfortably. <Citation id="polytec" /> Repeat every 10–30 minutes through the ambient log so f₀ can be regressed against temperature, pressure and vibration.
+</ExperimentStep>
+
+<ExperimentStep number="5" title="Transfer path">
+Tap-test or sweep the mount to obtain the site frequency-response function (FRF) from floor to sphere. The deliverables from Location A are a target time history and power spectral density (PSD) for every environment channel, f₀ and Q over time with their temperature regression, and the mount FRF.
+</ExperimentStep>
+
+## Replaying at Location B
+
+<ExperimentStep number="6" title="Move, re-soak and record a native baseline">
+Relocation is a thermal and mechanical event. Log the move, re-soak for the same duration as at A, then record B's ambient environment and f₀ exactly as at A. This is the B-native condition.
+</ExperimentStep>
+
+<ExperimentStep number="7" title="Isolate from Location B">
+Place the sphere and mount on an isolation stage (air mounts or a negative-stiffness platform), inside an acoustic enclosure and a mu-metal shield or active three-axis field cancellation. Re-measure until B's residual ambient sits at least 20 dB below A's recorded level in every band to be replayed. With a 20 dB margin, an incoherent residual adds only about 0.04 dB to the replayed level; the worst coherent case is about 0.8 dB.
+</ExperimentStep>
+
+<ExperimentStep number="8" title="Mechanical replay by time waveform replication">
+Drive the mount through an electrodynamic shaker. Measure the drive-to-control FRF H(f) with band-limited noise, compute an initial drive from a regularized inverse, then iterate the drive until the control accelerometer reproduces A's recorded waveform. This is the drive-file method used for road-load replay and standardized as Time Waveform Replication. <Citation id="milstd810h" />
+</ExperimentStep>
+
+<Equation latex="x(k+1) = x(k) + g · H⁻¹ · (y_target − y(k)),  with g ≈ 0.3–0.7 and H⁻¹ ≈ H* / (|H|² + λ)" label="Iterative inverse-FRF drive correction" />
+
+<ExperimentStep number="9" title="Magnetic replay">
+Replay A's recorded field with three-axis Helmholtz coils and close the loop with a magnetometer at the sphere position. For coils of radius 0.15 m with 50 turns, 1 mA produces about 0.3 µT, so a picotesla-level replay needs nanoamp-level current and a precision low-noise source.
+</ExperimentStep>
+
+<ExperimentStep number="10" title="Thermal match and measurement">
+Hold the enclosure at A's mean temperature within about 20–50 mK, or correct f₀ with A's regression and propagate its uncertainty. Keep shaker and coil heat away from the sphere: drive heating is the most likely false positive. Then measure f₀ and Q with the same readout chain, settings and timebase used at A.
+</ExperimentStep>
+
+<WarningBox title="Overwhelm means fidelity, not power">
+Driving the sphere far above A's recorded levels changes the experiment and can cause amplitude-dependent and thermal frequency shifts. The goal is for the sphere to see A's environment, not more energy than A had.
+</WarningBox>
+
+## Proposed verification criteria
+
+| Metric | Proposed pass criterion |
+|---|---|
+| PSD match, each replayed channel | Within ±3 dB per one-third-octave band (±1 dB tight) |
+| Time-domain fidelity | Normalized RMS error under 10 percent (under 20 percent for low-cost rigs) |
+| Coherence, target vs measured | Above 0.9 across the replay band |
+| Isolation margin | B residual at least 20 dB below replay level in each band |
+| Thermal match | T_B − T_A within 50 mK, or corrected with propagated uncertainty |
+| Outcome variable | Δf₀ against A, with a pre-registered smallest effect size of interest and an equivalence test |
+
+These thresholds are engineering proposals, not values set by any standard cited here.
+
+## Controls
+
+- **Conditions:** B-native, B-isolated, B with A-replay, B with sham replay (amplifier on, drive muted or a phase-randomized surrogate with A's spectrum) and B with B-replay (B's own recording played back, to test the apparatus itself).
+- **Blinding:** an independent operator assigns conditions from a sealed key and the analyst sees coded data, following the approach described in <a href="/research/blind-analysis-position-labels/">why LOC-1 hides the position labels</a>.
+- **Order:** randomized balanced blocks, with A–B–A returns to check for hysteresis.
+- **Reference artifact:** a matched sphere that never moves, so common-mode drift can be removed.
+- **Pre-registration:** the effect-size threshold, equivalence margin and sham conditions would be fixed before any data collection.
+
+## What the outcomes would mean
+
+- **H₀, standard physics:** every Δf₀ is explained by temperature, mounting preload and pressure. Replaying micro-g vibration or picotesla-to-nanotesla fields produces no shift above the noise floor apart from heating.
+- **H₁, environment-mediated:** B-native differs from A, and A-replay reduces the difference significantly more than sham does.
+- **H₂, position-intrinsic:** a difference persists after complete environmental replay with every thermal and mounting control holding. Only this outcome would favour the locational hypothesis.
+
+The locational hypothesis carries a low prior probability under standard physics, and no established mechanism allows an object to retain a place's frequency. The value of this design is that it turns a vague location effect into a falsifiable split between environmental and positional explanations, and a null result would be published with the same care as a positive one.
+
+## Equipment tiers
+
+Prices are approximate planning figures, not quotes.
+
+**Low-cost prototype (about USD 2,000–4,000):** a 5–10 cm commercial hollow copper ball (f₀ roughly 20–40 kHz); a Red Pitaya-class signal generator and Bode analyzer; a 24-bit/192 kHz audio interface; piezo pickups and drivers; a MEMS or IEPE accelerometer; a geophone or small seismometer; a tactile transducer and class-D amplifier as the shaker; home-wound three-axis Helmholtz coils with a DAQ-driven current source; RTDs with a millikelvin-resolution logger, a barometer and a GPS-disciplined oscillator.
+
+**Lab grade (roughly USD 60,000–200,000 or more):** a laser Doppler vibrometer; a vector network analyzer; triaxial IEPE accelerometers and a multichannel 24-bit DAQ; electrodynamic shakers with a controller supporting time waveform replication; an active isolation table; induction-coil and fluxgate magnetometers; a mu-metal shield or active field cancellation; a rubidium frequency standard and a millikelvin-controlled thermal enclosure.
+
+## Analysis outline
+
+The following Python sketch shows the processing chain: PSD estimation, an H1 FRF estimate with coherence, a regularized inverse, the replay iteration and a ring-down fit. It is illustrative and untested against hardware.
+
+```python
+import numpy as np
+import scipy.signal as sig
+from scipy.optimize import curve_fit
+
+FS = 48_000  # environment channels; the 230 kHz readout needs a separate fast DAQ
+
+def psd(x, nper=2**15):
+    return sig.welch(x, FS, nperseg=nper)
+
+def frf_h1(drive, resp, nper=2**14):
+    f, pxx = sig.welch(drive, FS, nperseg=nper)
+    _, pxy = sig.csd(drive, resp, FS, nperseg=nper)
+    _, coh = sig.coherence(drive, resp, FS, nperseg=nper)
+    return f, pxy / pxx, coh
+
+def inv_filter(h, lam=1e-3):
+    return np.conj(h) / (np.abs(h) ** 2 + lam * np.max(np.abs(h)) ** 2)
+
+def twr(target, play_and_record, h_inv, g=0.5, iters=8):
+    n = len(target)
+    x = np.fft.irfft(h_inv * np.fft.rfft(target), n=n)
+    for _ in range(iters):
+        err = target - play_and_record(x)
+        x = x + g * np.fft.irfft(h_inv * np.fft.rfft(err), n=n)
+    return x
+
+def ringdown_fit(t, v, f_guess):
+    model = lambda t, a, tau, f, ph, c: a * np.exp(-t / tau) * np.sin(2 * np.pi * f * t + ph) + c
+    p, cov = curve_fit(model, t, v, p0=[v.max(), 1e-3, f_guess, 0, 0])
+    f0, tau = p[2], p[1]
+    return f0, np.sqrt(cov[2, 2]), np.pi * f0 * tau  # f0, its standard error, Q
+```
+
+## Safety
+
+Vibrometer lasers are typically Class 2; do not stare into the beam. Shaker amplifiers can deliver dangerous currents, so use fused outputs and interlocks. Watch for coil heating at amp-level currents, wear hearing protection for audio-band shakers, and keep replayed magnetic fields at environmental levels near anyone with an implanted medical device.
+
+## References
+
+<CitationList />

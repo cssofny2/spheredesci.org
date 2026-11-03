@@ -97,7 +97,7 @@
   </url>
   <url>
     <loc>https://spheredesci.org/updates/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -395,4 +395,6 @@
 <url><loc>https://spheredesci.org/research/tag/experimental-design/</loc><lastmod>2026-10-31</lastmod></url><url><loc>https://spheredesci.org/research/blind-analysis-position-labels/</loc><lastmod>2026-11-01</lastmod></url>
 <url><loc>https://spheredesci.org/research/category/experimental-protocols/</loc><lastmod>2026-11-01</lastmod></url>
 <url><loc>https://spheredesci.org/research/tag/blind-analysis/</loc><lastmod>2026-11-01</lastmod></url>
-<url><loc>https://spheredesci.org/research/tag/experimenter-bias/</loc><lastmod>2026-11-01</lastmod></url></urlset>
+<url><loc>https://spheredesci.org/research/tag/experimenter-bias/</loc><lastmod>2026-11-01</lastmod></url><url><loc>https://spheredesci.org/research/environment-replay-copper-sphere-relocation/</loc><lastmod>2026-11-03</lastmod></url>
+<url><loc>https://spheredesci.org/research/tag/vibration/</loc><lastmod>2026-11-03</lastmod></url>
+<url><loc>https://spheredesci.org/research/tag/controls/</loc><lastmod>2026-11-03</lastmod></url></urlset>
