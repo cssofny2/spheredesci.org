@@ -180,7 +180,7 @@ These thresholds are engineering proposals, not values set by any standard cited
 
 ## Controls
 
-- **Conditions:** B-native, B-isolated, B with A-replay, B with sham replay (amplifier on, drive muted or a phase-randomized surrogate with A's spectrum) and B with B-replay (B's own recording played back, to test the apparatus itself).
+- **Conditions:** B-native, B-isolated, B with A-replay, B with sham replay (same isolated apparatus, amplifier on, drive muted), B with a phase-randomized surrogate that keeps A's spectrum and drive power but not its waveform, and B with B-replay (B's own recording played back, to test the apparatus itself). The muted sham is the primary contrast; the phase-randomized surrogate is a separate active control for waveform-specific effects, because it delivers the same vibration energy as A-replay.
 - **Blinding:** an independent operator assigns conditions from a sealed key and the analyst sees coded data, following the approach described in <a href="/research/blind-analysis-position-labels/">why LOC-1 hides the position labels</a>.
 - **Order:** randomized balanced blocks, with A–B–A returns to check for hysteresis.
 - **Reference artifact:** a matched sphere that never moves, so common-mode drift can be removed.
@@ -189,10 +189,10 @@ These thresholds are engineering proposals, not values set by any standard cited
 ## What the outcomes would mean
 
 - **H₀, standard physics:** every Δf₀ is explained by temperature, mounting preload and pressure. Replaying micro-g vibration or picotesla-to-nanotesla fields produces no shift above the noise floor apart from heating.
-- **H₁, environment-mediated:** B-native differs from A, and A-replay reduces the difference significantly more than sham does.
-- **H₂, position-intrinsic:** a difference persists after complete environmental replay with every thermal and mounting control holding. Only this outcome would favour the locational hypothesis.
+- **H₁, environment-mediated:** B-native differs from A, and A-replay reduces the difference significantly more than the drive-muted sham does. Comparing A-replay with the phase-randomized surrogate then separates energy-dependent from waveform-dependent effects.
+- **H₂, unexplained residual:** a difference persists after replay with every thermal and mounting control holding. Replay here covers only vibration and magnetic field over selected bands plus mean temperature; sound, pressure and humidity are logged, not reproduced. A residual could therefore still come from those unreplayed channels or from replay error within tolerance. Only after those alternatives are tested and excluded would it be consistent with the locational hypothesis.
 
-The locational hypothesis carries a low prior probability under standard physics, and no established mechanism allows an object to retain a place's frequency. The value of this design is that it turns a vague location effect into a falsifiable split between environmental and positional explanations, and a null result would be published with the same care as a positive one.
+The locational hypothesis carries a low prior probability under standard physics, and no established mechanism allows an object to retain a place's frequency. The value of this design is that it turns a vague location effect into testable contrasts that can attribute a difference to specific replayed environmental channels, or show that it is not explained by them, and a null result would be published with the same care as a positive one.
 
 ## Equipment tiers
 
@@ -204,7 +204,7 @@ Prices are approximate planning figures, not quotes.
 
 ## Analysis outline
 
-The following Python sketch shows the processing chain: PSD estimation, an H1 FRF estimate with coherence, a regularized inverse, the replay iteration and a ring-down fit. It is illustrative and untested against hardware.
+The following Python sketch shows the processing chain: PSD estimation, an H1 FRF estimate with coherence, a regularized inverse, the replay iteration and a ring-down fit. It is illustrative: it has been run against a simulated plant, not against hardware.
 
 ```python
 import numpy as np
@@ -225,8 +225,14 @@ def frf_h1(drive, resp, nper=2**14):
 def inv_filter(h, lam=1e-3):
     return np.conj(h) / (np.abs(h) ** 2 + lam * np.max(np.abs(h)) ** 2)
 
-def twr(target, play_and_record, h_inv, g=0.5, iters=8):
+def on_grid(f_frf, h_inv, n):
+    # interpolate the inverse FRF onto the rfft grid of an n-sample signal
+    f = np.fft.rfftfreq(n, 1 / FS)
+    return np.interp(f, f_frf, h_inv.real) + 1j * np.interp(f, f_frf, h_inv.imag)
+
+def twr(target, play_and_record, f_frf, h_inv, g=0.5, iters=8):
     n = len(target)
+    h_inv = on_grid(f_frf, h_inv, n)
     x = np.fft.irfft(h_inv * np.fft.rfft(target), n=n)
     for _ in range(iters):
         err = target - play_and_record(x)
