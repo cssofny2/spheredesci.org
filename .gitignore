@@ -8,3 +8,9 @@ node_modules/
 /analytics/
 /assets/publication-search.json
 /rss.xml
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.env
+.env.*
