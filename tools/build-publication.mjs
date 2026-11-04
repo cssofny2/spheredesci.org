@@ -229,20 +229,20 @@ async function readContent(kind) {
         throw new Error(`${file}: Figure src must be a site-relative path; external images are not allowed.`);
       }
       return jsx("figure", { className: "research-figure", children: [
-        jsx("img", { src, alt, loading: "lazy", decoding: "async" }),
-        caption || credit ? jsx("figcaption", { children: [caption, credit ? ` Credit: ${credit}` : ""].filter(Boolean).join(" ") }) : null,
+        jsx("img", { src, alt, loading: "lazy", decoding: "async" }, "image"),
+        caption || credit ? jsx("figcaption", { children: [caption, credit ? ` Credit: ${credit}` : ""].filter(Boolean).join(" ") }, "caption") : null,
       ] });
     };
     const callout = (className, label) => ({ title = label, children }) => jsx("aside", {
       className: `research-callout ${className}`,
       "aria-label": title,
-      children: [jsx("strong", { children: title }), children ? jsx("div", { children }) : null],
+      children: [jsx("strong", { children: title }, "label"), children ? jsx("div", { children }, "content") : null],
     });
     const ResearchNote = callout("research-note", "Research note");
     const WarningBox = callout("warning-box", "Caution");
     const ExperimentStep = ({ number, title = "", children }) => jsx("section", {
       className: "experiment-step",
-      children: [jsx("h3", { children: `Step ${number || ""}${title ? `: ${title}` : ""}` }), children],
+      children: [jsx("h3", { children: `Step ${number || ""}${title ? `: ${title}` : ""}` }, "heading"), children],
     });
     const Equation = ({ latex = "", label = "Mathematical expression" }) => jsx("div", {
       className: "research-equation",
@@ -253,25 +253,25 @@ async function readContent(kind) {
     const ReferenceCard = ({ title, url = "", authors = "", year = "" }) => {
       if (url && !/^https:\/\//i.test(url) && (!url.startsWith("/") || url.startsWith("//") || url.includes(".."))) throw new Error(`${file}: ReferenceCard URLs must use HTTPS or a safe site-relative path.`);
       return jsx("aside", { className: "reference-card", children: [
-        jsx("strong", { children: url ? jsx("a", { href: url, children: title }) : title }),
-        [authors, year].filter(Boolean).length ? jsx("p", { children: [authors, year].filter(Boolean).join(" · ") }) : null,
+        jsx("strong", { children: url ? jsx("a", { href: url, children: title }) : title }, "title"),
+        [authors, year].filter(Boolean).length ? jsx("p", { children: [authors, year].filter(Boolean).join(" · ") }, "metadata") : null,
       ] });
     };
     const DataPoint = ({ label, value, unit = "", note = "" }) => jsx("dl", {
       className: "research-data-point",
       children: [
-        jsx("dt", { children: label }),
-        jsx("dd", { children: `${value ?? ""}${unit ? ` ${unit}` : ""}` }),
-        note ? jsx("dd", { className: "data-point-note", children: note }) : null,
+        jsx("dt", { children: label }, "label"),
+        jsx("dd", { children: `${value ?? ""}${unit ? ` ${unit}` : ""}` }, "value"),
+        note ? jsx("dd", { className: "data-point-note", children: note }, "note") : null,
       ],
     });
     const ProtocolBlock = ({ title = "Protocol", children }) => jsx("section", {
       className: "protocol-block",
-      children: [jsx("h3", { children: title }), children],
+      children: [jsx("h3", { children: title }, "heading"), children],
     });
     const EquipmentSpec = ({ title = "Equipment specification", items = {} }) => jsx("section", {
       className: "equipment-spec",
-      children: [jsx("h3", { children: title }), jsx("dl", {
+      children: [jsx("h3", { children: title }, "heading"), jsx("dl", {
         children: Object.entries(items).flatMap(([key, value]) => [jsx("dt", { children: key }, `term-${key}`), jsx("dd", { children: String(value) }, `value-${key}`)]),
       })],
     });
