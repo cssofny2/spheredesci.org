@@ -2,6 +2,7 @@
 * text=auto
 *.sh text eol=lf
 *.mjs text eol=lf
+*.ics text eol=crlf
 *.png binary
 *.jpg binary
 *.jpeg binary
