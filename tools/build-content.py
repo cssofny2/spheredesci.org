@@ -75,7 +75,7 @@ pages = {
 "protocol": {
  "title":"Copper Sphere Resonance Experiment: LOC-1 Protocol",
  "description":"Explore S.P.H.E.R.E.'s draft copper sphere resonance experiment: blinded location comparisons, reference artifacts, environmental controls, and null-result criteria.",
- "label":"Research / Draft protocol",
+ "label":"Research / Registered protocol",
  "h1":"One question. A controlled first experiment.",
  "lede":"LOC-1 is the proposed same-laboratory pilot for the locational-variable hypothesis. This is a reviewable design summary, not a completed experiment. The published preregistration is available on OSF.",
  "sections":[
@@ -142,7 +142,7 @@ pages = {
  ]},
 "resources":{
  "title":"Research Resources: Protocol, Open Data & Replication",
- "description":"Find S.P.H.E.R.E.'s current research charter, draft experiment protocol, FAQs, open-science guidance, and clearly labeled plans for data and replication.",
+ "description":"Find S.P.H.E.R.E.'s current research charter, registered experiment protocol, FAQs, open-science guidance, and clearly labeled plans for data and replication.",
  "label":"Research / Library",
  "h1":"The evidence starts with an open record.",
  "lede":"A single place to find the documents that exist today and the outputs that are still being prepared. Planned publications are never presented as finished results.",
@@ -163,7 +163,7 @@ pages = {
  "h1":"Questions worth asking before the experiment.",
  "lede":"Clear answers about what the project is proposing, what it has not established, and how to evaluate the work.",
  "sections":[section("questions","Project questions",''.join(f'<details class="faq-item"><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>' for q,a in FAQS)),
- section("next","Go one layer deeper",'''<p>Read the <a href="/protocol/">draft protocol</a> for the controls and decision rules, the <a href="/transparency/">transparency page</a> for budget assumptions, or the <a href="/collaborate/">collaboration page</a> to contribute technical review.</p>''')]
+ section("next","Go one layer deeper",'''<p>Read the <a href="/protocol/">registered protocol</a> for the controls and decision rules, the <a href="/transparency/">transparency page</a> for budget assumptions, or the <a href="/collaborate/">collaboration page</a> to contribute technical review.</p>''')]
  },
 "collaborate":{
  "title":"Collaborate on Open Resonance Research | S.P.H.E.R.E.",

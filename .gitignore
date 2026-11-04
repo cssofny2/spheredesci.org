@@ -1,7 +1,6 @@
 .wrangler/
 .impeccable/
 node_modules/
-node_modules/
 /research/*/index.html
 /knowledge/
 /glossary/
@@ -9,3 +8,9 @@ node_modules/
 /analytics/
 /assets/publication-search.json
 /rss.xml
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.env
+.env.*
