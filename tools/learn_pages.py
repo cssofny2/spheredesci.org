@@ -45,7 +45,7 @@ PAGES = [
    ("Why it matters", "<p>When an analysis is chosen after seeing the data, it is easy, even without intending to, to pick the version that looks most interesting. This inflates false positives. A preregistered plan separates <em>confirmatory</em> tests (planned) from <em>exploratory</em> ones (found along the way), and both are legitimate if labeled honestly.</p>"),
    ("Registered reports", "<p>A registered report goes one step further: a journal reviews the question and methods first and agrees in principle to publish regardless of the outcome. This reduces pressure to produce a positive result.</p>"),
    ("Preregistration is not a guarantee", "<p>A preregistration can be vague, can be broken, or can be filed after the fact. Readers should check whether deviations are reported. Preregistration improves transparency; it does not by itself make a design sound.</p>"),
-   ("How S.P.H.E.R.E. approaches it", "<p>The <a href=\"/protocol/\">registered LOC-1 protocol</a> is written to be preregistered before any data collection. No preregistration has been filed yet, and none should be assumed to exist until a public record is linked. See also <a href=\"/learn/blinding-in-physics-experiments/\">blinding in experiments</a>.</p>"),
+   ("How S.P.H.E.R.E. approaches it", "<p>The <a href=\"/protocol/\">registered LOC-1 protocol</a> is registered on the Open Science Framework at <a href=\"https://osf.io/5b6mj/overview\" target=\"_blank\" rel=\"noopener\">osf.io/5b6mj</a>, a timestamped public record made before any data collection. Registration does not mean any data have been collected or any result exists. See also <a href=\"/learn/blinding-in-physics-experiments/\">blinding in experiments</a>.</p>"),
   ], related=["open-science-explained","publishing-null-results","blinding-in-physics-experiments"]),
 
  dict(slug="replication-crisis-reproducibility",
@@ -123,7 +123,7 @@ PAGES = [
    ("Why blinding exists", "<p>Researchers are human. Knowing which condition is which can influence decisions about cuts, corrections and when to stop. Blinding removes that knowledge until the analysis is fixed.</p>"),
    ("Forms of blinding", "<ul><li><strong>Blinded conditions:</strong> sample labels are coded so the operator does not know which is which.</li><li><strong>Blind analysis:</strong> the key quantity is offset or hidden while the analysis method is finalized, then unblinded once.</li><li><strong>Independent analysts:</strong> one team collects, another analyzes.</li></ul>"),
    ("Limits", "<p>Blinding cannot fix a poor design or uncontrolled systematic effects, and in some setups it is hard to hide a condition. It should be paired with <a href=\"/learn/preregistration-explained/\">preregistration</a> and a clear <a href=\"/learn/measurement-uncertainty-and-metrology/\">uncertainty budget</a>.</p>"),
-   ("In the registered protocol", "<p>The <a href=\"/protocol/\">registered LOC-1 protocol</a> proposes blinded location comparisons. It is a draft for public review; no blinded data collection has occurred.</p>"),
+   ("In the registered protocol", "<p>The <a href=\"/protocol/\">registered LOC-1 protocol</a> proposes blinded location comparisons. It is registered and open for public review; no blinded data collection has occurred.</p>"),
   ], related=["preregistration-explained","replication-crisis-reproducibility","vibration-modes-of-a-sphere"]),
 
  dict(slug="measurement-uncertainty-and-metrology",

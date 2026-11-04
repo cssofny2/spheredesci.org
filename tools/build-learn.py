@@ -65,7 +65,7 @@ def head(title, desc, url, kind, crumbs):
 
 
 NOTE = ('<div class="note"><strong>Status: educational explainer.</strong> This page reports no experiment results. '
-        'Project S.P.H.E.R.E. is at the proposal stage, hypotheses are not findings, and nothing here amends the draft '
+        'Project S.P.H.E.R.E. is at the proposal stage, hypotheses are not findings, and nothing here amends the registered '
         '<a href="/protocol/">LOC-1 protocol</a>.</div>')
 
 
