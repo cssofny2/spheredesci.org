@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SKIP_DIRS = new Set(["node_modules", ".git", ".github", ".wrangler", "tools", "data", "content", "worker", "migrations"]);
 const SKIP_FILES = new Set(["panton.html"]);
 const NOINDEX_OK = new Set(["404.html", "admin/content-insights/index.html", "analytics/index.html", "projects/panton/index.html"]);
+const NOINDEX_PREFIXES = ["research/archive/", "research/category/", "research/tag/", "research/authors/"];
 
 async function* walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -44,7 +45,7 @@ export function lintPage(html, rel) {
   const desc = html.match(/<meta\b[^>]*name=["']description["'][^>]*>/i)?.[0];
   if (!desc || !(attr(desc, "content") || "").trim()) errors.push(`${rel}: missing or empty meta description`);
   if (!/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(html)) errors.push(`${rel}: missing canonical link`);
-  if (/<meta\b[^>]*name=["']robots["'][^>]*noindex/i.test(html) && !NOINDEX_OK.has(rel)) errors.push(`${rel}: unexpected noindex directive`);
+  if (/<meta\b[^>]*name=["']robots["'][^>]*noindex/i.test(html) && !NOINDEX_OK.has(rel) && !NOINDEX_PREFIXES.some((prefix) => rel.startsWith(prefix))) errors.push(`${rel}: unexpected noindex directive`);
   const noindex = /<meta\b[^>]*name=["']robots["'][^>]*noindex/i.test(html);
   const canonical = attr(html.match(/<link\b[^>]*rel=["']canonical["'][^>]*>/i)?.[0] || "", "href");
   const hreflang = new Map();

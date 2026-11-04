@@ -10,7 +10,7 @@ Set `seoTitle`, `seoDescription`, and `seoKeywords` when a focused search snippe
 
 ## Discovery feeds
 
-`npm run build` updates `sitemap.xml` with articles and generated category, tag, archive, and author pages. It generates `rss.xml` from research articles and writes `assets/publication-search.json` for browser search. Do not edit these generated outputs directly.
+`npm run build` updates `sitemap.xml` with articles and removes entries for pages that are no longer published. The generated category, tag, archive, and author pages are thin listings: they carry `<meta name="robots" content="noindex,follow">`, a matching `X-Robots-Tag: noindex, follow` header in `_headers`, no hreflang, and are intentionally kept out of the sitemap. Keep those signals consistent; mixing `noindex` with sitemap or hreflang entries is reported as a crawl error. Knowledge and glossary tags are plain labels, not links to `/search/?tag=` URLs, so crawlers do not discover parameterised search pages. It generates `rss.xml` from research articles and writes `assets/publication-search.json` for browser search. Do not edit these generated outputs directly.
 
 `robots.txt` points to the sitemap. The analytics and content-insights dashboards are `noindex,follow`; they are public aggregate reports, not private administration pages.
 
