@@ -33,3 +33,7 @@ SEO_GUIDE.md
 DEPLOYMENT_GUIDE.md
 MIGRATION_REPORT.md
 .lighthouserc.json
+.gitattributes
+.claude
+pagespeed-fixes.patch
+SPHERE-ADDRESS-STANDARD.md
