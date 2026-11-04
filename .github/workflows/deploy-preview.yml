@@ -19,6 +19,7 @@ concurrency:
 jobs:
   preview:
     name: Deploy PR Preview
+    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: preview

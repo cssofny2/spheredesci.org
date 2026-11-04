@@ -97,3 +97,20 @@ submitted during QA because it would send an external email.
 - Safe: `npm run build` (publication, RSS, search, sitemap) and `python3 tools/build-directory.py`. The directory generator drops head/footer additions made by later scripts, so follow it with `npm run build`/`npm run verify` and review the diff before committing.
 - Not safe to commit: `python3 tools/build-learn.py`. It overwrites Learn pages with shorter generated bodies and strips later hand edits (extra sections, cross-links, the Q factor page entry). Use it only to check status wording, then `git checkout learn/`.
 - Never run `tools/build-content.py` (one-time migration; it still contains historical "draft" wording).
+
+## Added 2026-11-04: security and workflow maintenance
+
+- `SECURITY.md` is a private vulnerability-reporting guide for the repository and
+  is excluded from Cloudflare static assets by `.assetsignore`.
+- CodeQL analyzes JavaScript and TypeScript in `worker/` and `tools/` on pull
+  requests touching those paths and weekly. Confirm the CodeQL job succeeds for
+  such pull requests and retains only read access plus `security-events: write`.
+- Dependabot is configured for weekly npm and GitHub Actions updates. Its pull
+  requests do not receive Cloudflare preview credentials, so preview deployment
+  is skipped for Dependabot; publication checks and Lighthouse still run.
+- Keep `.gitattributes`' LF text-file policy and CRLF `.ics` exception. For
+  workflow upgrades, verify preview deployment, publication checks and Lighthouse
+  on a normal feature-branch pull request and inspect logs for deprecation or
+  build warnings.
+- Never test by submitting production forms. Use the private preview for changed
+  route checks and do not test production-only analytics or voting endpoints.

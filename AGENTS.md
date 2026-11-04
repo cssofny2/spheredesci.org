@@ -31,6 +31,20 @@ Empirical Resonance Experiment), served at https://spheredesci.org.
    (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`). Never write tokens, keys or
    personal data into files, commits or PR descriptions.
 
+## Security maintenance
+
+- Keep [`SECURITY.md`](SECURITY.md) in the repository but excluded from public
+  static assets via `.assetsignore`; use its private reporting instructions for
+  vulnerability disclosures.
+- CodeQL analyzes JavaScript and TypeScript in `worker/` and `tools/` on relevant
+  pull requests and weekly. Do not widen its `security-events` permission.
+- `.github/dependabot.yml` checks npm dependencies and GitHub Actions weekly.
+  Dependabot pull requests cannot access the Cloudflare preview credentials, so
+  the preview deployment job is skipped for those pull requests; publication
+  checks and Lighthouse still run.
+- `.gitattributes` normalizes text files to LF and preserves CRLF for `.ics`
+  files. Keep this line-ending policy intact.
+
 ## Research-integrity rules for content
 
 This is a pre-launch research project. Copy must stay honest about that.
