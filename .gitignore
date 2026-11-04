@@ -1,7 +1,6 @@
 .wrangler/
 .impeccable/
 node_modules/
-node_modules/
 /research/*/index.html
 /knowledge/
 /glossary/
