@@ -20,7 +20,7 @@ NAV = re.search(r'<nav class="site-nav".*?</nav>', tpl, re.S).group(0)
 NAV = NAV.replace(' aria-current="page"', "")
 NAV = NAV.replace('<a href="/learn/">Learn</a>', '<a href="/learn/" aria-current="page">Learn</a>')
 FOOT = re.search(r'<footer class="site-footer">.*?</footer>', tpl, re.S).group(0)
-by_slug = {p["slug"]: p for p in PAGES}
+by_slug = {p["slug"]: p for p in [*PAGES, *HANDWRITTEN_HUB_PAGES]}
 e = html.escape
 
 
@@ -86,7 +86,7 @@ def build_article(p):
             f'<p class="page-lede">{e(p["lede"])}</p><p class="page-meta">Added <time datetime="{DATE}">{DATE_LONG}</time> &middot; Educational explainer</p>\n'
             f'<div class="article-layout"><article class="article-body">{NOTE}\n{body}\n'
             f'<h2 id="keep-learning">Keep learning</h2><ul>{rel}<li><a href="/learn/">All learning guides</a></li>'
-            f'<li><a href="/protocol/">Current draft LOC-1 protocol</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul></article>\n'
+            f'<li><a href="/protocol/">Registered LOC-1 protocol</a></li><li><a href="/faq/">Frequently asked questions</a></li></ul></article>\n'
             f'<aside class="article-aside" aria-label="On this page"><h2>On this page</h2>{toc}<a href="#keep-learning">Keep learning</a></aside></div></main>{FOOT}</body></html>\n')
     write(os.path.join(ROOT, "learn", p["slug"], "index.html"), out)
 
@@ -106,7 +106,7 @@ def build_hub():
             f'<h2 id="about-the-project">About the project behind the guides</h2><p>Project S.P.H.E.R.E. '
             f'(Spatial Positioning Harmonic Empirical Resonance Experiment) is an open, independent research proposal testing whether '
             f'location alone changes the measured resonance of a controlled copper sphere. Start with the <a href="/about/">about page</a>, '
-            f'the <a href="/protocol/">draft protocol</a> or the <a href="/whitepaper/">whitepaper</a>.</p></article>\n'
+            f'the <a href="/protocol/">registered protocol</a> or the <a href="/whitepaper/">whitepaper</a>.</p></article>\n'
             f'<aside class="article-aside" aria-label="On this page"><h2>On this page</h2><a href="#guides">Guides</a>'
             f'<a href="#about-the-project">About the project</a></aside></div></main>{FOOT}</body></html>\n')
     write(os.path.join(ROOT, "learn", "index.html"), out)

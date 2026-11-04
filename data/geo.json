@@ -8,7 +8,7 @@
         "<strong>What:</strong> Project S.P.H.E.R.E. (Spatial Positioning Harmonic Empirical Resonance Experiment) is an independent, pre-launch research proposal.",
         "<strong>Question:</strong> does moving a hollow copper sphere produce a reproducible change in its resonant frequency once ordinary environmental effects are accounted for?",
         "<strong>Status:</strong> proposal stage. There are no measurement results, and the locational-variable idea is a hypothesis, not established physics.",
-        "<strong>Where to start:</strong> the <a href=\"/protocol/\">LOC-1 draft protocol</a>, the <a href=\"/whitepaper/\">whitepaper</a> and the <a href=\"/faq/\">FAQ</a>."
+        "<strong>Where to start:</strong> the <a href=\"/protocol/\">registered LOC-1 protocol</a>, the <a href=\"/whitepaper/\">whitepaper</a> and the <a href=\"/faq/\">FAQ</a>."
       ]
     },
     "/about/": {
@@ -51,7 +51,7 @@
       "summary": [
         "This hub lists <strong>proposed</strong> research pages on synchronized copper-sphere frequency measurement.",
         "Topics include error budgets, protocols, hardware, record-and-replay tests and verification.",
-        "The synchronized-measurement pages do not amend the LOC-1 draft protocol."
+        "The synchronized-measurement pages do not amend the registered LOC-1 protocol."
       ]
     },
     "/whitepaper/": {
@@ -59,7 +59,7 @@
       "summary": [
         "Version 1.0 whitepaper: open resonance metrology, digital-twin validation and accountable research funding.",
         "It is a proposal document. It reports no measurements and no funding totals.",
-        "Read it together with the <a href=\"/protocol/\">LOC-1 draft protocol</a>."
+        "Read it together with the <a href=\"/protocol/\">registered LOC-1 protocol</a>."
       ]
     },
     "/faq/": {

@@ -43,7 +43,7 @@ Use the organization name Project S.P.H.E.R.E., the official site address
 
 ## Evidence on Hand
 
-The repository contains the current project overview, draft protocol,
+The repository contains the current project overview, registered protocol,
 proposal-stage research pages, educational explainers, and brand assets. It
 contains no measurement results.
 

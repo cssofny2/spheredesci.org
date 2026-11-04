@@ -18,7 +18,7 @@ PAGES = [
    ("What does DeSci mean?", "<p>Decentralized science (DeSci) is an umbrella term for efforts to run research in the open: publicly visible plans, openly shared data and code, transparent funding, and review that is not limited to a single journal or institution. Some DeSci projects use blockchain tools; many of the underlying ideas, such as open access and preregistration, predate them and need no special technology.</p>"),
    ("Common DeSci practices", "<ul><li><strong>Open protocols:</strong> publish the plan before collecting data.</li><li><strong>Open data and code:</strong> let others re-run the analysis.</li><li><strong>Transparent funding:</strong> show where money comes from and what it buys.</li><li><strong>Independent review:</strong> invite critique from outside the project.</li><li><strong>Publish what you find:</strong> including null and inconclusive results.</li></ul>"),
    ("Why people are interested", "<p>Supporters point to slow publishing cycles, paywalled papers, funding concentrated in few hands, and studies that are hard to replicate. DeSci proposals aim to address these by making the research record public and auditable. Critics note that openness does not by itself make research correct, and that governance and incentives still need careful design.</p>"),
-   ("How S.P.H.E.R.E. uses the idea", "<p>Project S.P.H.E.R.E. is an independent, open research proposal. It applies the practical parts of DeSci: a public draft protocol, a published budget plan, and a commitment to share results either way. It does <strong>not</strong> issue a token, coin or on-chain asset, and contributions do not buy equity, royalties or a financial return. The project is at the proposal stage and has no measurement results yet.</p><p>Read the <a href=\"/whitepaper/\">DeSci whitepaper</a>, the <a href=\"/charter/\">research charter</a> and the <a href=\"/transparency/\">transparency page</a> for specifics.</p>"),
+   ("How S.P.H.E.R.E. uses the idea", "<p>Project S.P.H.E.R.E. is an independent, open research proposal. It applies the practical parts of DeSci: a public, registered protocol, a published budget plan, and a commitment to share results either way. It does <strong>not</strong> issue a token, coin or on-chain asset, and contributions do not buy equity, royalties or a financial return. The project is at the proposal stage and has no measurement results yet.</p><p>Read the <a href=\"/whitepaper/\">DeSci whitepaper</a>, the <a href=\"/charter/\">research charter</a> and the <a href=\"/transparency/\">transparency page</a> for specifics.</p>"),
   ], related=["open-science-explained","preregistration-explained","publishing-null-results"]),
 
  dict(slug="open-science-explained",
@@ -31,7 +31,7 @@ PAGES = [
    ("The core idea", "<p>Research is easier to trust when it can be checked. Open science is a collection of habits that make checking possible: sharing the plan, the raw measurements, the analysis code and the final write-up, ideally in formats other people can actually use.</p>"),
    ("Five practices to know", "<ul><li><strong>Open access:</strong> papers readable without a subscription.</li><li><strong>Open data:</strong> raw or processed measurements with documentation.</li><li><strong>Open methods and code:</strong> enough detail to repeat the work.</li><li><strong>Preregistration:</strong> a time-stamped plan made before the data exist. See <a href=\"/learn/preregistration-explained/\">preregistration explained</a>.</li><li><strong>Open review:</strong> critique that is visible and citable.</li></ul>"),
    ("Limits and trade-offs", "<p>Openness takes effort and has costs: data need cleaning and documenting, some data involve privacy, and sharing does not guarantee that anyone will check it. Good open science states what is and is not shared and why.</p>"),
-   ("Open science at S.P.H.E.R.E.", "<p>The project publishes its draft protocol, budget plan and research pages for public comment and invites outside review through the <a href=\"/collaborate/\">collaboration page</a>. Everything remains a proposal until a real, dated record says otherwise. More background is available at <a href=\"https://en.wikipedia.org/wiki/Open_science\" target=\"_blank\" rel=\"noopener\">Wikipedia: Open science</a>.</p>"),
+   ("Open science at S.P.H.E.R.E.", "<p>The project publishes its registered protocol, budget plan and research pages for public comment and invites outside review through the <a href=\"/collaborate/\">collaboration page</a>. Everything remains a proposal until a real, dated record says otherwise. More background is available at <a href=\"https://en.wikipedia.org/wiki/Open_science\" target=\"_blank\" rel=\"noopener\">Wikipedia: Open science</a>.</p>"),
   ], related=["what-is-desci","preregistration-explained","replication-crisis-reproducibility"]),
 
  dict(slug="preregistration-explained",
@@ -45,7 +45,7 @@ PAGES = [
    ("Why it matters", "<p>When an analysis is chosen after seeing the data, it is easy, even without intending to, to pick the version that looks most interesting. This inflates false positives. A preregistered plan separates <em>confirmatory</em> tests (planned) from <em>exploratory</em> ones (found along the way), and both are legitimate if labeled honestly.</p>"),
    ("Registered reports", "<p>A registered report goes one step further: a journal reviews the question and methods first and agrees in principle to publish regardless of the outcome. This reduces pressure to produce a positive result.</p>"),
    ("Preregistration is not a guarantee", "<p>A preregistration can be vague, can be broken, or can be filed after the fact. Readers should check whether deviations are reported. Preregistration improves transparency; it does not by itself make a design sound.</p>"),
-   ("How S.P.H.E.R.E. approaches it", "<p>The <a href=\"/protocol/\">draft LOC-1 protocol</a> is written to be preregistered before any data collection. No preregistration has been filed yet, and none should be assumed to exist until a public record is linked. See also <a href=\"/learn/blinding-in-physics-experiments/\">blinding in experiments</a>.</p>"),
+   ("How S.P.H.E.R.E. approaches it", "<p>The <a href=\"/protocol/\">registered LOC-1 protocol</a> is written to be preregistered before any data collection. No preregistration has been filed yet, and none should be assumed to exist until a public record is linked. See also <a href=\"/learn/blinding-in-physics-experiments/\">blinding in experiments</a>.</p>"),
   ], related=["open-science-explained","publishing-null-results","blinding-in-physics-experiments"]),
 
  dict(slug="replication-crisis-reproducibility",
@@ -58,7 +58,7 @@ PAGES = [
    ("Replication vs. reproducibility", "<p>Terms vary, but a common usage is: <strong>reproducing</strong> means re-running the same analysis on the same data and getting the same numbers; <strong>replicating</strong> means collecting new data with the same method and checking whether the finding holds.</p>"),
    ("Why findings fail to replicate", "<ul><li>Small samples and noisy measurements.</li><li>Flexible analysis choices made after seeing data.</li><li>Publication bias: positive results get published more often than null ones.</li><li>Uncontrolled differences in equipment, environment or procedure.</li><li>Honest error, and occasionally misconduct.</li></ul>"),
    ("What helps", "<p>Preregistered plans, blinded analysis, shared data and code, uncertainty budgets, independent replication and publishing null results all make unreliable findings easier to catch. See <a href=\"/learn/preregistration-explained/\">preregistration</a>, <a href=\"/learn/publishing-null-results/\">null results</a> and <a href=\"/learn/measurement-uncertainty-and-metrology/\">measurement uncertainty</a>.</p>"),
-   ("Why this matters for S.P.H.E.R.E.", "<p>The project proposes a surprising-sounding question (whether location alone changes a controlled object's measured resonance). Such a question demands strong controls and independent repetition, which is why the draft protocol emphasizes blinding, reference artifacts and an error budget. See the <a href=\"/research/frequency-measurement-error-budget/\">error budget page</a>. Background: <a href=\"https://en.wikipedia.org/wiki/Replication_crisis\" target=\"_blank\" rel=\"noopener\">Wikipedia: Replication crisis</a>.</p>"),
+   ("Why this matters for S.P.H.E.R.E.", "<p>The project proposes a surprising-sounding question (whether location alone changes a controlled object's measured resonance). Such a question demands strong controls and independent repetition, which is why the registered protocol emphasizes blinding, reference artifacts and an error budget. See the <a href=\"/research/frequency-measurement-error-budget/\">error budget page</a>. Background: <a href=\"https://en.wikipedia.org/wiki/Replication_crisis\" target=\"_blank\" rel=\"noopener\">Wikipedia: Replication crisis</a>.</p>"),
   ], related=["preregistration-explained","publishing-null-results","open-science-explained"]),
 
  dict(slug="publishing-null-results",
@@ -85,7 +85,7 @@ PAGES = [
    ("Key quantities", "<ul><li><strong>Frequency (f):</strong> cycles per second, in hertz (Hz).</li><li><strong>Quality factor (Q):</strong> how sharply peaked the resonance is; high Q means low damping.</li><li><strong>Mode:</strong> a specific vibration pattern with its own frequency.</li></ul>"),
    ("Why frequency is a good thing to measure", "<p>Frequency can be measured very precisely against a stable clock, so small shifts in a resonance can be detected. The same property makes it sensitive to temperature, mounting and other disturbances, which must be controlled or recorded.</p>"),
    ("Resonance in S.P.H.E.R.E.", "<p>The proposed experiment compares the measured resonant frequencies of controlled copper spheres at different locations. Whether any location dependence exists is the hypothesis being tested, not an established result. Next: <a href=\"/learn/vibration-modes-of-a-sphere/\">vibration modes of a sphere</a>. Background: <a href=\"https://en.wikipedia.org/wiki/Resonance\" target=\"_blank\" rel=\"noopener\">Wikipedia: Resonance</a>.</p>"),
-  ], related=["vibration-modes-of-a-sphere","laser-doppler-vibrometry-basics","measurement-uncertainty-and-metrology"]),
+  ], related=["vibration-modes-of-a-sphere","laser-doppler-vibrometry-basics","measurement-uncertainty-and-metrology","q-factor-quality-factor-explained"]),
 
  dict(slug="vibration-modes-of-a-sphere",
   title="Vibration Modes of a Sphere: Resonance Basics",
@@ -97,8 +97,8 @@ PAGES = [
    ("A family of modes", "<p>An elastic sphere can vibrate in torsional modes (twisting) and spheroidal modes (including the radial \"breathing\" mode, where the surface moves in and out). Horace Lamb analyzed these in the nineteenth century. Each mode has a characteristic pattern and frequency.</p>"),
    ("What sets the frequencies", "<p>For a given mode, frequency scales roughly with the speed of sound in the material divided by the sphere's radius. A larger sphere rings lower; a stiffer or lighter material rings higher. Machining tolerances, internal stress and mounting shift the real values from ideal ones, which is why each physical sphere needs its own calibration.</p>"),
    ("Why copper?", "<p>Copper is easy to obtain in high purity, machines well and has well-characterized elastic properties. Its frequencies change with temperature, so temperature recording and control are essential. These are practical reasons for a test object, not claims about copper being special.</p>"),
-   ("Practical measurement issues", "<ul><li>Suspend or support the sphere so the mount does not dominate the response.</li><li>Identify which mode is being measured and track neighboring peaks.</li><li>Record temperature, humidity and handling history.</li></ul><p>See the <a href=\"/protocol/\">draft LOC-1 protocol</a> and the <a href=\"/resources/synchronized-resonance-measurement-hardware/\">hardware guide</a>. Nothing here reports a measurement.</p>"),
-  ], related=["what-is-resonant-frequency","laser-doppler-vibrometry-basics","blinding-in-physics-experiments"]),
+   ("Practical measurement issues", "<ul><li>Suspend or support the sphere so the mount does not dominate the response.</li><li>Identify which mode is being measured and track neighboring peaks.</li><li>Record temperature, humidity and handling history.</li></ul><p>See the <a href=\"/protocol/\">registered LOC-1 protocol</a> and the <a href=\"/resources/synchronized-resonance-measurement-hardware/\">hardware guide</a>. Nothing here reports a measurement.</p>"),
+  ], related=["what-is-resonant-frequency","laser-doppler-vibrometry-basics","blinding-in-physics-experiments","q-factor-quality-factor-explained"]),
 
  dict(slug="laser-doppler-vibrometry-basics",
   title="Laser Doppler Vibrometry: Vibration Measurement",
@@ -115,7 +115,7 @@ PAGES = [
 
  dict(slug="blinding-in-physics-experiments",
   title="Blinding in Physics Experiments: Blind Analysis Explained",
-  desc="How blinding and blind analysis can reduce bias in physics experiments, including the S.P.H.E.R.E. draft protocol.",
+  desc="How blinding and blind analysis can reduce bias in physics experiments, including the S.P.H.E.R.E. registered protocol.",
   h1="Blinding in physics experiments: blind analysis explained",
   lede="Blinding hides information that could bias a measurement or analysis, so that the result cannot be nudged, even unintentionally, toward what the researcher expects.",
   eyebrow="Learn / Experimental design",
@@ -123,7 +123,7 @@ PAGES = [
    ("Why blinding exists", "<p>Researchers are human. Knowing which condition is which can influence decisions about cuts, corrections and when to stop. Blinding removes that knowledge until the analysis is fixed.</p>"),
    ("Forms of blinding", "<ul><li><strong>Blinded conditions:</strong> sample labels are coded so the operator does not know which is which.</li><li><strong>Blind analysis:</strong> the key quantity is offset or hidden while the analysis method is finalized, then unblinded once.</li><li><strong>Independent analysts:</strong> one team collects, another analyzes.</li></ul>"),
    ("Limits", "<p>Blinding cannot fix a poor design or uncontrolled systematic effects, and in some setups it is hard to hide a condition. It should be paired with <a href=\"/learn/preregistration-explained/\">preregistration</a> and a clear <a href=\"/learn/measurement-uncertainty-and-metrology/\">uncertainty budget</a>.</p>"),
-   ("In the draft protocol", "<p>The <a href=\"/protocol/\">LOC-1 draft</a> proposes blinded location comparisons. It is a draft for public review; no blinded data collection has occurred.</p>"),
+   ("In the registered protocol", "<p>The <a href=\"/protocol/\">registered LOC-1 protocol</a> proposes blinded location comparisons. It is a draft for public review; no blinded data collection has occurred.</p>"),
   ], related=["preregistration-explained","replication-crisis-reproducibility","vibration-modes-of-a-sphere"]),
 
  dict(slug="measurement-uncertainty-and-metrology",
@@ -137,7 +137,7 @@ PAGES = [
    ("What an uncertainty budget is", "<p>An uncertainty budget lists each contribution (temperature, mounting, timing, alignment, electronics and so on), estimates its size, and combines them into a total. The international guide for this is the <em>Guide to the Expression of Uncertainty in Measurement</em> (GUM), published through the <a href=\"https://www.bipm.org/en/committees/jc/jcgm/publications\" target=\"_blank\" rel=\"noopener\">BIPM JCGM</a>.</p>"),
    ("Why it prevents false discoveries", "<p>A small difference between two measurements is only meaningful if it is larger than the combined uncertainty. Without a budget it is easy to mistake an instrument artifact for a real effect.</p>"),
    ("Applied to S.P.H.E.R.E.", "<p>The project's illustrative <a href=\"/research/frequency-measurement-error-budget/\">frequency measurement error budget</a> shows how timing, drift and temperature would be tracked. It is a planning document, not a measured budget.</p>"),
-  ], related=["publishing-null-results","laser-doppler-vibrometry-basics","blinding-in-physics-experiments"]),
+  ], related=["publishing-null-results","laser-doppler-vibrometry-basics","blinding-in-physics-experiments","q-factor-quality-factor-explained"]),
 
  dict(slug="how-to-fund-independent-research",
   title="Funding Independent Research: Options & Transparency",

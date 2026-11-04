@@ -75,7 +75,7 @@ pages = {
 "protocol": {
  "title":"Copper Sphere Resonance Experiment: LOC-1 Protocol",
  "description":"Explore S.P.H.E.R.E.'s draft copper sphere resonance experiment: blinded location comparisons, reference artifacts, environmental controls, and null-result criteria.",
- "label":"Research / Draft protocol",
+ "label":"Research / Registered protocol",
  "h1":"One question. A controlled first experiment.",
  "lede":"LOC-1 is the proposed same-laboratory pilot for the locational-variable hypothesis. This is a reviewable design summary, not a completed experiment. The published preregistration is available on OSF.",
  "sections":[
@@ -142,7 +142,7 @@ pages = {
  ]},
 "resources":{
  "title":"Research Resources: Protocol, Open Data & Replication",
- "description":"Find S.P.H.E.R.E.'s current research charter, draft experiment protocol, FAQs, open-science guidance, and clearly labeled plans for data and replication.",
+ "description":"Find S.P.H.E.R.E.'s current research charter, registered experiment protocol, FAQs, open-science guidance, and clearly labeled plans for data and replication.",
  "label":"Research / Library",
  "h1":"The evidence starts with an open record.",
  "lede":"A single place to find the documents that exist today and the outputs that are still being prepared. Planned publications are never presented as finished results.",
@@ -163,7 +163,7 @@ pages = {
  "h1":"Questions worth asking before the experiment.",
  "lede":"Clear answers about what the project is proposing, what it has not established, and how to evaluate the work.",
  "sections":[section("questions","Project questions",''.join(f'<details class="faq-item"><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>' for q,a in FAQS)),
- section("next","Go one layer deeper",'''<p>Read the <a href="/protocol/">draft protocol</a> for the controls and decision rules, the <a href="/transparency/">transparency page</a> for budget assumptions, or the <a href="/collaborate/">collaboration page</a> to contribute technical review.</p>''')]
+ section("next","Go one layer deeper",'''<p>Read the <a href="/protocol/">registered protocol</a> for the controls and decision rules, the <a href="/transparency/">transparency page</a> for budget assumptions, or the <a href="/collaborate/">collaboration page</a> to contribute technical review.</p>''')]
  },
 "collaborate":{
  "title":"Collaborate on Open Resonance Research | S.P.H.E.R.E.",
@@ -184,7 +184,7 @@ pages = {
  "h1":"Progress, with the unfinished work visible.",
  "lede":"Dated notes record what has changed and what still needs to happen. Publishing a website or protocol draft is not the same as completing a research gate.",
  "sections":[
- section("october","October 2, 2026: public research foundation",'''<p>The public description and research charter were added to the website, and the full project name was standardized to Spatial Positioning Harmonic Empirical Resonance Experiment. Homepage language was revised to distinguish the hypothesis from established findings.</p><p>The research library now includes a draft LOC-1 protocol summary, a first-year budget and transparency page, FAQs, collaboration guidance, and this update log. The site no longer displays placeholder funding totals, wallet counts, or token-sale claims.</p><p>These are documentation milestones only. Entity formation, advisor engagement, instrument qualification, preregistration, data collection, and replication remain uncompleted or unconfirmed.</p>'''),
+ section("october","October 2, 2026: public research foundation",'''<p>The public description and research charter were added to the website, and the full project name was standardized to Spatial Positioning Harmonic Empirical Resonance Experiment. Homepage language was revised to distinguish the hypothesis from established findings.</p><p>The research library now includes a registered LOC-1 protocol summary, a first-year budget and transparency page, FAQs, collaboration guidance, and this update log. The site no longer displays placeholder funding totals, wallet counts, or token-sale claims.</p><p>These are documentation milestones only. Entity formation, advisor engagement, instrument qualification, preregistration, data collection, and replication remain uncompleted or unconfirmed.</p>'''),
  section("next","Next on the research roadmap",'''<ol><li>Adopt the founding packet and confirm the operating entity.</li><li>Recruit independent reviewers and obtain instrument-access quotes.</li><li>Validate sphere dimensions, selected modes, and the proposed acquisition chain.</li><li>Build the calibration and repeatability dataset needed for an uncertainty budget.</li><li>Complete and preregister the confirmatory design before LOC-1 runs.</li><li>Publish all outcomes and prepare an independently usable replication package.</li></ol><p>No calendar date is promised for the first run. Progress depends on technical feasibility, review, equipment access, and funding readiness.</p>'''),
  section("changes","How to follow changes",'''<p>Major public updates are posted here. The <a href="https://github.com/cssofny2/spheredesci.org/commits/main/">GitHub commit history</a> provides the detailed website change record. For important protocol updates, the project will record the version, reason, and whether the change preceded or followed preregistration.</p><p><a href="/#join">Register interest</a> to request project updates, or <a href="/collaborate/">offer technical review</a>.</p>''')
  ]},
