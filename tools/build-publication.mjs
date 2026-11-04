@@ -537,7 +537,7 @@ function renderedArticle(record, allRecords) {
   const older = position >= 0 && position + 1 < cohort.length ? cohort[position + 1] : null;
   const tags = record.tags.map((tag) => record.kind === "research"
     ? `<a class="publication-tag" href="/research/tag/${e(slugify(tag))}/">${e(tag)}</a>`
-    : `<a class="publication-tag" href="/search/?tag=${encodeURIComponent(slugify(tag))}">${e(tag)}</a>`).join("");
+    : `<span class="publication-tag">${e(tag)}</span>`).join("");
   const categoryLink = record.kind === "research"
     ? `<a class="publication-tag" href="/research/category/${e(slugify(record.category))}/">${e(record.category)}</a>`
     : `<span class="publication-tag">${e(record.category)}</span>`;
@@ -634,7 +634,7 @@ function authorDirectory(profiles) {
   const title = "Research authors";
   const description = "Author profiles, research interests, and publications from Project S.P.H.E.R.E.";
   const content = `<div class="breadcrumbs"><a href="/">Home</a> / <a href="/research/">Research</a> / Authors</div><header class="publication-header"><h1 class="page-title">${title}</h1><p class="page-lede">${description}</p></header><div class="publication-results">${entries || "<p>Author profiles will appear here when research is published.</p>"}</div>`;
-  return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, []) });
+  return pageShell({ title: `${title} | Project S.P.H.E.R.E.`, description, url: route, content, schema: indexSchema(title, description, route, []), noindex: true });
 }
 
 function authorPage(profile) {
@@ -654,7 +654,7 @@ function authorPage(profile) {
       { "@type": "ListItem", position: 3, name: profile.name, item: absolute(route) },
     ] },
   ] };
-  return pageShell({ title: `${profile.name} | Research author`, description: profile.bio, url: route, content, schema });
+  return pageShell({ title: `${profile.name} | Research author`, description: profile.bio, url: route, content, schema, noindex: true });
 }
 
 function taxonomyPage({ title, route, records, description }) {
@@ -662,7 +662,7 @@ function taxonomyPage({ title, route, records, description }) {
   const seoTitle = title.startsWith("Research tagged ")
     ? `${title.slice("Research tagged ".length).replace(/[“”"]/g, "")} | Research | Project S.P.H.E.R.E.`
     : `${title} | Research | Project S.P.H.E.R.E.`;
-  return pageShell({ title: seoTitle, description, url: route, content, schema: indexSchema(title, description, route, records) });
+  return pageShell({ title: seoTitle, description, url: route, content, schema: indexSchema(title, description, route, records), noindex: true });
 }
 
 async function makeAuthorProfiles(records) {
@@ -853,10 +853,11 @@ function updateSitemap(urls) {
   return readFile(path.join(ROOT, "sitemap.xml"), "utf8").then(async (current) => {
     const allowed = new Set(urls.map((url) => absolute(url)));
     const prefixes = ["/research/", "/knowledge/", "/glossary/"];
+    const pruned = [];
     const entries = [...current.matchAll(/<url>[\s\S]*?<\/url>/g)].map((match) => {
       let entry = match[0];
       const loc = decodeHtml(entry.match(/<loc>([\s\S]*?)<\/loc>/)?.[1] || "");
-      if (prefixes.some((prefix) => loc.startsWith(`${SITE}${prefix}`)) && !allowed.has(loc)) return null;
+      if (prefixes.some((prefix) => loc.startsWith(`${SITE}${prefix}`)) && !allowed.has(loc)) { pruned.push(entry); return null; }
       if (allowed.has(loc)) {
         entry = /<lastmod>[\s\S]*?<\/lastmod>/.test(entry)
           ? entry.replace(/<lastmod>[\s\S]*?<\/lastmod>/, `<lastmod>${TODAY}</lastmod>`)
@@ -868,7 +869,17 @@ function updateSitemap(urls) {
     const additions = urls.filter((url) => !known.has(absolute(url))).map((url) => `<url><loc>${xml(absolute(url))}</loc><lastmod>${TODAY}</lastmod></url>`);
     const closing = current.lastIndexOf("</urlset>");
     if (closing < 0) throw new Error("sitemap.xml does not contain a closing </urlset>.");
-    await writeFile(path.join(ROOT, "sitemap.xml"), `${current.slice(0, closing)}${additions.join("\n")}${current.slice(closing)}`);
+    // Drop pages that are no longer published (for example noindex taxonomy pages); every other entry stays untouched.
+    let kept = current;
+    for (const entry of pruned) {
+      const start = kept.indexOf(entry);
+      let stop = start + entry.length;
+      if (kept[stop] === "\r") stop++;
+      if (kept[stop] === "\n") stop++;
+      kept = kept.slice(0, start) + kept.slice(stop);
+    }
+    const end = kept.lastIndexOf("</urlset>");
+    await writeFile(path.join(ROOT, "sitemap.xml"), `${kept.slice(0, end)}${additions.join("\n")}${kept.slice(end)}`);
   });
 }
 
@@ -1022,7 +1033,7 @@ for (const [slug, group] of tagRoutes) {
     title: `Research tagged “${group.tag}”`,
     route,
     records: group.records,
-    description: `Research articles and methods related to ${group.tag}. Project S.P.H.E.R.E. content remains proposal-stage and does not report measurement results.`,
+    description: `Research and methods tagged ${group.tag}. Project S.P.H.E.R.E. content is proposal-stage; no measurement results are reported.`,
   }));
 }
 const archiveRoute = "/research/archive/";
@@ -1054,11 +1065,6 @@ await updateSitemap([
   "/research/",
   ...researchContent.map((record) => record.url),
   ...legacy.map((record) => record.url),
-  archiveRoute,
-  ...[...categoryRoutes.keys()].map((slug) => `/research/category/${slug}/`),
-  ...[...tagRoutes.keys()].map((slug) => `/research/tag/${slug}/`),
-  "/research/authors/",
-  ...authorProfiles.map((profile) => `/research/authors/${profile.slug}/`),
   ...knowledgeContent.map((record) => record.url),
   ...glossaryRecords.map((record) => record.url),
   "/knowledge/", "/glossary/",

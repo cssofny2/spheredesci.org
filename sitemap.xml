@@ -361,6 +361,7 @@
 <url><loc>https://spheredesci.org/research/acoustic-resonators-above-100ghz-nist-2026/</loc><lastmod>2026-10-27</lastmod></url>
 <url><loc>https://spheredesci.org/research/lorentz-violation-loop-corrections-resonance-sensitivity/</loc><lastmod>2026-10-27</lastmod></url>
 <url><loc>https://spheredesci.org/research/open-science-funding-independent-experiments/</loc><lastmod>2026-10-27</lastmod></url>
+<<<<<<< Updated upstream
 <url><loc>https://spheredesci.org/research/archive/</loc><lastmod>2026-10-27</lastmod></url>
 <url><loc>https://spheredesci.org/research/category/theoretical-physics/</loc><lastmod>2026-10-27</lastmod></url>
 <url><loc>https://spheredesci.org/research/category/open-science-governance/</loc><lastmod>2026-10-27</lastmod></url>
@@ -398,3 +399,8 @@
 <url><loc>https://spheredesci.org/research/tag/experimenter-bias/</loc><lastmod>2026-11-01</lastmod></url><url><loc>https://spheredesci.org/research/environment-replay-copper-sphere-relocation/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://spheredesci.org/research/tag/vibration/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://spheredesci.org/research/tag/controls/</loc><lastmod>2026-11-03</lastmod></url></urlset>
+=======
+<url><loc>https://spheredesci.org/research/temperature-coefficient-copper-sphere-resonance/</loc><lastmod>2026-10-31</lastmod></url>
+<url><loc>https://spheredesci.org/research/blind-analysis-position-labels/</loc><lastmod>2026-11-01</lastmod></url>
+</urlset>
+>>>>>>> Stashed changes

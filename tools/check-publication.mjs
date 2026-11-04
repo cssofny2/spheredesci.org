@@ -112,8 +112,10 @@ for (const route of [
   "/research/authors/",
   "/research/authors/project-sphere/",
 ]) {
-  if (!sitemapSet.has(`${SITE}${route}`)) fail(`${route}: generated discovery page is missing from the sitemap.`);
+  if (sitemapSet.has(`${SITE}${route}`)) fail(`${route}: noindex discovery page must not be listed in the sitemap.`);
   const html = await readFile(path.join(ROOT, route.slice(1), "index.html"), "utf8");
+  if (!/<meta name="robots" content="noindex,follow">/.test(html)) fail(`${route}: expected noindex,follow robots meta.`);
+  if (/hreflang=/.test(html)) fail(`${route}: noindex page must not declare hreflang.`);
   if (html.match(/<h1\b/gi)?.length !== 1) fail(`${route}: expected exactly one H1.`);
   if (!html.includes(`<link rel="canonical" href="${SITE}${route}">`)) fail(`${route}: missing canonical metadata.`);
   if (!html.includes('type="application/ld+json"')) fail(`${route}: missing structured data.`);

@@ -10,18 +10,20 @@
   Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
   Link: </calendar.ics>; rel="alternate"; type="text/calendar"; title="Project S.P.H.E.R.E. events"
 
-# Noindex taxonomy/archive pages — thin, auto-generated, no unique content value
+# Noindex taxonomy/archive pages — thin, auto-generated, no unique content value.
+# "follow" keeps the articles they list reachable. The same pages carry
+# <meta name="robots" content="noindex,follow">, are absent from sitemap.xml and get no hreflang.
 /research/archive/
-  X-Robots-Tag: noindex, nofollow
+  X-Robots-Tag: noindex, follow
 
 /research/category/*
-  X-Robots-Tag: noindex, nofollow
+  X-Robots-Tag: noindex, follow
 
 /research/tag/*
-  X-Robots-Tag: noindex, nofollow
+  X-Robots-Tag: noindex, follow
 
 /research/authors/
-  X-Robots-Tag: noindex, nofollow
+  X-Robots-Tag: noindex, follow
 
 /research/authors/*
-  X-Robots-Tag: noindex, nofollow
+  X-Robots-Tag: noindex, follow
