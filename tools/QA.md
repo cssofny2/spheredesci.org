@@ -90,3 +90,10 @@ submitted during QA because it would send an external email.
 ## Added 2026-11-04: Q factor guide
 
 - `/learn/q-factor-quality-factor-explained/` is hand-written HTML (not in `PAGES`; listed in `HANDWRITTEN_HUB_PAGES`). Edit the HTML directly, and keep the hub entry in `learn/index.html`, `sitemap.xml` and the `/updates/` log in sync. Target keywords: q factor, quality factor.
+
+## Added 2026-11-04: which generators are safe to re-run
+
+- Status wording ("registered and live" for Protocol LOC-1) is aligned between sources and committed HTML for `tools/build-directory.py`, `tools/build-learn.py`/`tools/learn_pages.py` and `npm run build`; re-running them does not reintroduce "draft" or "No preregistration" text.
+- Safe: `npm run build` (publication, RSS, search, sitemap) and `python3 tools/build-directory.py`. The directory generator drops head/footer additions made by later scripts, so follow it with `npm run build`/`npm run verify` and review the diff before committing.
+- Not safe to commit: `python3 tools/build-learn.py`. It overwrites Learn pages with shorter generated bodies and strips later hand edits (extra sections, cross-links, the Q factor page entry). Use it only to check status wording, then `git checkout learn/`.
+- Never run `tools/build-content.py` (one-time migration; it still contains historical "draft" wording).
