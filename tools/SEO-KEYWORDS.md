@@ -24,6 +24,7 @@ relying on it. No keyword may be used to imply results, tokens or funding.
 | 16 | metrology | /learn/measurement-uncertainty-and-metrology/ |
 | 17 | independent research funding | /learn/how-to-fund-independent-research/ |
 | 18 | digital twin simulation | /learn/digital-twin-simulation-in-physics/ |
+| 19 | q factor / quality factor | /learn/q-factor-quality-factor-explained/ |
 
 Rebuild the /learn/ pages with `python3 tools/build-learn.py` (content lives in
 `tools/learn_pages.py`).

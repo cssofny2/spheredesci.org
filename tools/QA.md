@@ -86,3 +86,7 @@ submitted during QA because it would send an external email.
 ## Added 2026-10-22: SEO/accessibility lint and cross-links
 - `npm run lint:html` (part of `npm run verify` and both deploy workflows) fails on duplicate/missing H1, missing meta description or canonical, `<img>` without `alt`, invalid JSON-LD, malformed BreadcrumbList and unexpected noindex (the generated `research/{archive,category,tag,authors}/` listing pages are the allowed exception and must stay out of `sitemap.xml` and carry no hreflang). It also requires every indexable page to carry `hreflang="en"` and `hreflang="x-default"` alternates that match its canonical URL (added by `tools/inject-site-metadata.mjs`).
 - Generated publication pages show a Breadcrumb nav plus an 'Explore the project' block (whitepaper, related research, associated properties from `data/related-properties.json`).
+
+## Added 2026-11-04: Q factor guide
+
+- `/learn/q-factor-quality-factor-explained/` is hand-written HTML (not in `PAGES`; listed in `HANDWRITTEN_HUB_PAGES`). Edit the HTML directly, and keep the hub entry in `learn/index.html`, `sitemap.xml` and the `/updates/` log in sync. Target keywords: q factor, quality factor.
