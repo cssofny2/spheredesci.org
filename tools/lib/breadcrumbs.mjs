@@ -1,6 +1,7 @@
 // Reusable breadcrumb component: one trail definition yields both the visible
 // navigation and the matching BreadcrumbList JSON-LD node.
 const SITE = "https://spheredesci.org";
+const SITE_ORIGIN = new URL(SITE).origin;
 const esc = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const absolute = (url) => (/^https?:\/\//i.test(url) ? url : `${SITE}${url.startsWith("/") ? "" : "/"}${url}`);
@@ -15,7 +16,8 @@ export function breadcrumbHtml(trail) {
   const items = breadcrumbTrail(trail);
   const last = items.length - 1;
   const links = items.map((item, i) => {
-    const path = item.url.startsWith(SITE) ? item.url.slice(SITE.length) || "/" : item.url;
+    const parsedUrl = new URL(item.url);
+    const path = parsedUrl.origin === SITE_ORIGIN ? `${parsedUrl.pathname}${parsedUrl.search}${parsedUrl.hash}` : item.url;
     return i === last ? `<span aria-current="page">${esc(item.name)}</span>` : `<a href="${esc(path)}">${esc(item.name)}</a>`;
   });
   return `<nav class="breadcrumbs" aria-label="Breadcrumb">${links.join(" / ")}</nav>`;

@@ -15,6 +15,11 @@ test("breadcrumbs render a trail and matching BreadcrumbList", () => {
   assert.equal(schema.itemListElement[1].item, "https://spheredesci.org/research/");
 });
 
+test("breadcrumbs keep URLs on lookalike hosts external", () => {
+  const { html } = breadcrumbs([["Home", "https://spheredesci.org.evil.example/path"], ["Page", "/page/"]]);
+  assert.match(html, /href="https:\/\/spheredesci\.org\.evil\.example\/path"/);
+});
+
 test("related links include whitepaper and associated properties", () => {
   const config = { whitepaper: { title: "WP", url: "/whitepaper/" }, properties: [{ title: "michaelpgoodman.com", url: "https://michaelpgoodman.com/", description: "d" }] };
   const records = [{ kind: "research", url: "/a/", title: "A", tags: ["x"], category: "c" }, { kind: "research", url: "/b/", title: "B", tags: ["x"], category: "c" }];
