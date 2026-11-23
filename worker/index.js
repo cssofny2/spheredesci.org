@@ -13,10 +13,12 @@ const LIMITS = {
   aiGlobalDay: 100,         // AI remix generations across the whole site per day
   submitsPerProject: 5,     // remixes a voter can add to one project
   submitsGlobalDay: 50,
+  analyticsPerIpDay: 300,   // aggregate analytics events accepted from one IP per day
   commentMax: 400,
   nameMax: 40,
   promptMax: 300,
   stateComments: 400,
+  stateRemixes: 50,
 };
 const THEMES = ["light", "dark", "copper", "navy"];
 const LAYOUTS = ["stack", "hz", "icon"];
@@ -59,7 +61,8 @@ async function getVoter(req, env, create) {
   const tok = cookieOf(req, "sv");
   if (tok && /^[a-f0-9]{64}$/.test(tok)) {
     const h = await sha(tok);
-    if (await env.DB.prepare("SELECT h FROM voters WHERE h=?").bind(h).first()) return { h, cookie: null };
+    const row = await env.DB.prepare("SELECT h, ip FROM voters WHERE h=?").bind(h).first();
+    if (row) return { h: row.h, ip: row.ip, cookie: null };
   }
   if (!create) return null;
   const ip = await sha((await salt(env)) + (req.headers.get("cf-connecting-ip") || "unknown"));
@@ -78,12 +81,38 @@ async function ipKey(req, env) {
   return sha((await salt(env)) + (req.headers.get("cf-connecting-ip") || "unknown"));
 }
 
+export async function readLimitedText(req, max) {
+  const declared = Number(req.headers.get("content-length"));
+  if (Number.isFinite(declared) && declared > max) throw new HttpError(413, "Request is too large.");
+  if (!req.body) return "";
+  const reader = req.body.getReader();
+  const decoder = new TextDecoder();
+  const chunks = [];
+  let total = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > max) {
+        await reader.cancel();
+        throw new HttpError(413, "Request is too large.");
+      }
+      chunks.push(decoder.decode(value, { stream: true }));
+    }
+    chunks.push(decoder.decode());
+    return chunks.join("");
+  } catch (error) {
+    if (error instanceof HttpError) throw error;
+    throw new HttpError(400, "Unable to read request.");
+  }
+}
+
 async function readBody(req) {
   if (!(req.headers.get("content-type") || "").includes("application/json")) throw new HttpError(415, "Send JSON.");
   const origin = req.headers.get("origin");
   if (origin && new URL(origin).host !== new URL(req.url).host) throw new HttpError(403, "Cross-site requests are not accepted.");
-  const text = await req.text();
-  if (text.length > 120000) throw new HttpError(413, "Request is too large.");
+  const text = await readLimitedText(req, 120000);
   try { return JSON.parse(text); } catch { throw new HttpError(400, "Invalid JSON."); }
 }
 
@@ -92,11 +121,13 @@ const withCookie = (res, v) => {
   return res;
 };
 
-async function validItem(env, project, item, voterHash) {
+async function validItem(env, project, item, voter) {
   if (PROJECTS[project].items.includes(item)) return { ok: true };
-  const row = await env.DB.prepare("SELECT voter FROM submissions WHERE id=? AND project=? AND hidden=0").bind(item, project).first();
+  const row = await env.DB.prepare(
+    "SELECT s.voter, v.ip FROM submissions s JOIN voters v ON v.h=s.voter WHERE s.id=? AND s.project=? AND s.hidden=0"
+  ).bind(item, project).first();
   if (!row) return { ok: false };
-  return { ok: true, own: row.voter === voterHash };
+  return { ok: true, own: row.voter === voter.h || row.ip === voter.ip };
 }
 
 async function state(req, env, project) {
@@ -106,7 +137,7 @@ async function state(req, env, project) {
     q("SELECT item, COUNT(*) n, SUM(rating) s, SUM(vote=1) y FROM ballots WHERE project=? GROUP BY item", project),
     q("SELECT item, rating, COUNT(*) c FROM ballots WHERE project=? GROUP BY item, rating", project),
     q("SELECT item, vote, rating, comment, created FROM ballots WHERE project=? AND comment<>'' ORDER BY created DESC LIMIT ?", project, LIMITS.stateComments),
-    q("SELECT id, name, parent, prompt, svg, theme, layout, created, voter FROM submissions WHERE project=? AND hidden=0 ORDER BY created", project),
+    q("SELECT id, name, parent, prompt, svg, theme, layout, created, voter FROM submissions WHERE project=? AND hidden=0 ORDER BY created DESC LIMIT ?", project, LIMITS.stateRemixes),
     q("SELECT item, vote, rating, comment FROM ballots WHERE project=? AND voter=?", project, v ? v.h : ""),
   ]);
   const stats = {};
@@ -134,7 +165,7 @@ async function ballot(req, env, project) {
   const comment = cleanText(b.c, LIMITS.commentMax);
   if (comment && LINKISH.test(comment)) throw new HttpError(400, "Links are not allowed in comments.");
   const v = await getVoter(req, env, true);
-  const it = await validItem(env, project, item, v.h);
+  const it = await validItem(env, project, item, v);
   if (!it.ok) throw new HttpError(404, "Unknown item.");
   if (it.own) throw new HttpError(403, "You cannot vote on your own submission.");
   const ip = v.ip || (await ipKey(req, env));
@@ -202,14 +233,14 @@ async function submit(req, env, project) {
   let svg;
   try { svg = sanitizeSvg(String(b.svg || "")); } catch (e) { throw new HttpError(400, e.message); }
   const v = await getVoter(req, env, true);
-  const mine = await env.DB.prepare("SELECT COUNT(*) c FROM submissions WHERE project=? AND voter=? AND hidden=0").bind(project, v.h).first();
-  if (mine.c >= LIMITS.submitsPerProject) throw new HttpError(403, `You have used all ${LIMITS.submitsPerProject} submissions.`);
   if (!(await bump(env, "submit:all", LIMITS.submitsGlobalDay))) throw new HttpError(429, "Submissions are paused for today. Try again tomorrow.");
   const id = "r-" + randHex(6);
   const created = Date.now();
-  await env.DB.prepare(
-    "INSERT INTO submissions (id, project, voter, name, parent, prompt, svg, theme, layout, created) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-  ).bind(id, project, v.h, name, parent, prompt, svg, theme, layout, created).run();
+  const inserted = await env.DB.prepare(
+    "INSERT INTO submissions (id, project, voter, name, parent, prompt, svg, theme, layout, created) " +
+    "SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ? WHERE (SELECT COUNT(*) FROM submissions WHERE project=? AND voter=? AND hidden=0) < ?"
+  ).bind(id, project, v.h, name, parent, prompt, svg, theme, layout, created, project, v.h, LIMITS.submitsPerProject).run();
+  if (!inserted.meta.changes) throw new HttpError(403, `You have used all ${LIMITS.submitsPerProject} submissions.`);
   return withCookie(json({ ok: true, remix: { id, name, parent, prompt, svg, theme, layout, t: created, own: true } }), v);
 }
 
@@ -232,6 +263,15 @@ function analyticsReferrer(value, siteHost) {
 }
 
 const ANALYTICS_INTERACTIONS = new Set(["whitepaper-click", "repository-click", "lab-click", "outbound-click", "faq-open"]);
+const EMAIL_IN_QUERY = /(?:"[^"]+"|[^\s@]+)@(?:[^\s@]+\.)[\p{L}\p{N}-]{2,}/giu;
+
+export function redactAnalyticsQuery(value) {
+  return cleanText(value, 120).toLowerCase()
+    .replace(EMAIL_IN_QUERY, "[email]")
+    .replace(/\bhttps?:\/\/\S+/gi, "[url]")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 // Targets are a site path or a bare hostname; query strings and fragments are never kept.
 function interactionTarget(value) {
@@ -246,8 +286,15 @@ async function analyticsEvent(req, env) {
   const origin = req.headers.get("origin");
   if (origin && new URL(origin).host !== url.host) return fail(403, "Cross-site requests are not accepted.");
   if (!(req.headers.get("content-type") || "").toLowerCase().includes("application/json")) return fail(415, "Send JSON.");
-  const text = await req.text();
-  if (text.length > 2048) return fail(413, "Request is too large.");
+  const ip = await ipKey(req, env);
+  if (!(await bump(env, "analytics:" + ip, LIMITS.analyticsPerIpDay))) return fail(429, "Too many analytics events from this network today.");
+  let text;
+  try {
+    text = await readLimitedText(req, 2048);
+  } catch (error) {
+    if (error instanceof HttpError) return fail(error.status, error.message);
+    throw error;
+  }
   let body;
   try { body = JSON.parse(text); } catch { return fail(400, "Invalid JSON."); }
   const day = today();
@@ -264,11 +311,7 @@ async function analyticsEvent(req, env) {
       "INSERT INTO analytics_referrers (day, referrer, visits) VALUES (?, ?, 1) ON CONFLICT(day, referrer) DO UPDATE SET visits = visits + 1"
     ).bind(day, referrer));
   } else if (body.type === "search") {
-    const query = cleanText(body.query, 120).toLowerCase()
-      .replace(/\b[\w.+-]+@[\w.-]+\.[a-z]{2,}\b/gi, "[email]")
-      .replace(/\bhttps?:\/\/\S+/gi, "[url]")
-      .replace(/\s+/g, " ")
-      .trim();
+    const query = redactAnalyticsQuery(body.query);
     if (query.length < 2) return json({ ok: true }, 202);
     statements.push(env.DB.prepare(
       "INSERT INTO analytics_searches (day, query, searches) VALUES (?, ?, 1) ON CONFLICT(day, query) DO UPDATE SET searches = searches + 1"
@@ -296,13 +339,6 @@ async function analyticsEvent(req, env) {
     return fail(400, "Unsupported analytics event.");
   }
 
-  statements.push(
-    env.DB.prepare("DELETE FROM analytics_events WHERE day < date('now', '-90 days')"),
-    env.DB.prepare("DELETE FROM analytics_page_views WHERE day < date('now', '-90 days')"),
-    env.DB.prepare("DELETE FROM analytics_searches WHERE day < date('now', '-90 days')"),
-    env.DB.prepare("DELETE FROM analytics_referrers WHERE day < date('now', '-90 days')"),
-    env.DB.prepare("DELETE FROM analytics_engagement WHERE day < date('now', '-90 days')"),
-  );
   await env.DB.batch(statements);
   return json({ ok: true }, 202);
 }

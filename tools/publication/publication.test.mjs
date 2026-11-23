@@ -19,7 +19,7 @@ class Database {
         statement.values = values;
         return statement;
       },
-      first: async () => ({ total: 3 }),
+      first: async () => (statement.sql.includes("RETURNING n") ? { n: 1 } : { total: 3 }),
       all: async () => ({ results: [] }),
     };
     this.statements.push(statement);
