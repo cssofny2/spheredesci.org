@@ -80,7 +80,7 @@
   /* ---------- items ---------- */
   var TH = { light: 'L', dark: 'D', copper: 'C', navy: 'N' };
   function remixItems() {
-    return S.remixes.map(function (r) { return { id: r.id, name: r.name, kind: 'remix', own: r.own, svg: r.svg, th: TH[r.theme] || 'L', lay: r.layout, set: 'Remix', parent: r.parent, prompt: r.prompt, t: r.t }; });
+    return S.remixes.slice(0, 50).map(function (r) { return { id: r.id, name: r.name, kind: 'remix', own: r.own, svg: r.svg, th: TH[r.theme] || 'L', lay: r.layout, set: 'Remix', parent: r.parent, prompt: r.prompt, t: r.t }; });
   }
   function allItems() { return seeds.concat(remixItems()); }
   function lockup(it) {
