@@ -17,7 +17,14 @@ async function* walk(dir) {
   }
 }
 
-const stripNonContent = (html) => html.replace(/<script\b[\s\S]*?<\/script>/gi, "").replace(/<style\b[\s\S]*?<\/style>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
+const stripNonContent = (html) => {
+  let previous;
+  do {
+    previous = html;
+    html = html.replace(/<script\b[\s\S]*?<\/script>/gi, "").replace(/<style\b[\s\S]*?<\/style>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
+  } while (html !== previous);
+  return html;
+};
 const attr = (tag, name) => tag.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"))?.slice(1).find((v) => v !== undefined);
 
 function lintSchema(node, where, errors) {

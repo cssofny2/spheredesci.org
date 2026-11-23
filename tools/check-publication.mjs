@@ -7,7 +7,7 @@ const SITE = "https://spheredesci.org";
 const fail = (message) => {
   throw new Error(message);
 };
-const htmlText = (value) => value.replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&#x27;/gi, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ").trim();
+const htmlText = (value) => value.replace(/<[^>]*>/g, " ").replace(/&quot;/g, '"').replace(/&#39;|&#x27;/gi, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
 const index = JSON.parse(await readFile(path.join(ROOT, "assets", "publication-search.json"), "utf8"));
 if (!Array.isArray(index) || !index.length) fail("Publication search index is missing or empty.");

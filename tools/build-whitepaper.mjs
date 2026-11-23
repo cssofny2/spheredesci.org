@@ -19,7 +19,15 @@ const citationMeta = [
   '<meta name="citation_keywords" content="Decentralized Science (DeSci); Precision Metrology; Acoustic Resonance; Laser Doppler Vibrometry; Equivalence Testing; LOC-1">'
 ].join('\n');
 const math = (t, display) => katex.renderToString(t, {displayMode: display, throwOnError: true, trust: false, output: 'htmlAndMathml'});
-const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&amp;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const stripTags = s => {
+  let previous;
+  do {
+    previous = s;
+    s = s.replace(/<[^>]+>/g, '');
+  } while (s !== previous);
+  return s;
+};
+const slug = s => stripTags(s.toLowerCase()).replace(/&amp;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // Source holds a placeholder front matter block, then the real one; keep the document body only.
 let src = fs.readFileSync(SRC, 'utf8');
@@ -37,7 +45,7 @@ renderer.code = (code, lang) => lang === 'math'
   ? `<div class="math-display">${math(code, true)}</div>`
   : `<pre class="vl-code"><code>${esc(code)}</code></pre>`;
 renderer.codespan = code => {
-  const t = code.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+  const t = code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
   return /[\\^_=]/.test(t) && !/^[\w./-]+$/.test(t) ? math(t, false) : `<code class="inline-code">${code}</code>`;
 };
 const toc = [];
@@ -102,7 +110,6 @@ let head = pre
   .replace(/(<meta name="twitter:description" content=")[^"]*"/, `$1${esc(desc)}"`)
   .replace(/<script type="application\/ld\+json">.*?<\/script>/s, `<script type="application/ld+json">${JSON.stringify(ld)}</script>`)
   .replace(/ aria-current="page"/g, '')
-  .replace('<a href="/protocol/">Protocol</a>', '<a href="/protocol/">Protocol</a>')
   .replace('<link href="/assets/site.css" rel="stylesheet">', '<link href="/assets/vendor/katex/katex.min.css" rel="stylesheet"><link href="/assets/site.css" rel="stylesheet">')
   .replace(/<link rel="related" href="https:\/\/(?:osf\.io|doi\.org)\/[^>]*>/g, '')
   .replace('</head>', `${citationMeta}\n${printStyles}\n</head>`);
