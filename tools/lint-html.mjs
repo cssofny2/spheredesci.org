@@ -17,13 +17,67 @@ async function* walk(dir) {
   }
 }
 
+const tagNameAt = (html, index, name, closing = false) => {
+  let cursor = index + 1;
+  if (closing) {
+    if (html[cursor] !== "/") return false;
+    cursor += 1;
+  } else if (html[cursor] === "/") return false;
+  for (const character of name) {
+    if (html[cursor]?.toLowerCase() !== character) return false;
+    cursor += 1;
+  }
+  return [">", "/", " ", "\t", "\n", "\r", "\f"].includes(html[cursor]);
+};
+
+const tagEnd = (html, start) => {
+  let quote = "";
+  for (let cursor = start; cursor < html.length; cursor += 1) {
+    const character = html[cursor];
+    if (quote) {
+      if (character === quote) quote = "";
+    } else if (character === '"' || character === "'") quote = character;
+    else if (character === ">") return cursor;
+  }
+  return -1;
+};
+
 const stripNonContent = (html) => {
-  let previous;
-  do {
-    previous = html;
-    html = html.replace(/<script\b[\s\S]*?<\/script>/gi, "").replace(/<style\b[\s\S]*?<\/style>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
-  } while (html !== previous);
-  return html;
+  const content = [];
+  let cursor = 0;
+  while (cursor < html.length) {
+    const start = html.indexOf("<", cursor);
+    if (start < 0) {
+      content.push(html.slice(cursor));
+      break;
+    }
+    content.push(html.slice(cursor, start));
+    if (html.startsWith("<!--", start)) {
+      const end = html.indexOf("-->", start + 4);
+      content.push(" ");
+      cursor = end < 0 ? html.length : end + 3;
+      continue;
+    }
+    const name = ["script", "style"].find((candidate) => tagNameAt(html, start, candidate));
+    if (name) {
+      const openingEnd = tagEnd(html, start);
+      if (openingEnd < 0) {
+        content.push(" ");
+        break;
+      }
+      let closingStart = html.indexOf("</", openingEnd + 1);
+      while (closingStart >= 0 && !tagNameAt(html, closingStart, name, true)) {
+        closingStart = html.indexOf("</", closingStart + 2);
+      }
+      const closingEnd = closingStart < 0 ? -1 : tagEnd(html, closingStart);
+      content.push(" ");
+      cursor = closingEnd < 0 ? html.length : closingEnd + 1;
+      continue;
+    }
+    content.push("<");
+    cursor = start + 1;
+  }
+  return content.join("");
 };
 const attr = (tag, name) => tag.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"))?.slice(1).find((v) => v !== undefined);
 
