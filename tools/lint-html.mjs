@@ -125,7 +125,7 @@ export function lintPage(html, rel) {
   for (const tag of body.match(/<img\b[^>]*>/gi) || []) {
     if (attr(tag, "alt") === undefined) errors.push(`${rel}: <img> without alt attribute (${attr(tag, "src") || "no src"})`);
   }
-  for (const [, json] of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+  for (const [, json] of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script\b[^>]*>/gi)) {
     let data;
     try { data = JSON.parse(json); } catch (error) { errors.push(`${rel}: invalid JSON-LD (${error.message})`); continue; }
     if (!data["@context"]) errors.push(`${rel}: JSON-LD block has no @context`);

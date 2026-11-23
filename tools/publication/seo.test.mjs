@@ -15,6 +15,11 @@ test("breadcrumbs render a trail and matching BreadcrumbList", () => {
   assert.equal(schema.itemListElement[1].item, "https://spheredesci.org/research/");
 });
 
+test("breadcrumbs keep URLs on lookalike hosts external", () => {
+  const { html } = breadcrumbs([["Home", "https://spheredesci.org.evil.example/path"], ["Page", "/page/"]]);
+  assert.match(html, /href="https:\/\/spheredesci\.org\.evil\.example\/path"/);
+});
+
 test("related links include whitepaper and associated properties", () => {
   const config = { whitepaper: { title: "WP", url: "/whitepaper/" }, properties: [{ title: "michaelpgoodman.com", url: "https://michaelpgoodman.com/", description: "d" }] };
   const records = [{ kind: "research", url: "/a/", title: "A", tags: ["x"], category: "c" }, { kind: "research", url: "/b/", title: "B", tags: ["x"], category: "c" }];
@@ -27,6 +32,14 @@ test("related links include whitepaper and associated properties", () => {
 
 test("lint accepts a valid page", () => {
   assert.deepEqual(lintPage(page("<h1>Hi</h1><img src=a alt=''>"), "x/index.html"), []);
+});
+
+test("lint recognizes script and style end tags with whitespace or attributes", () => {
+  const html = page(
+    '<script><h1>not content</h1></script data-test="x"><style><h1>not content</h1></style ><h1>Visible</h1>',
+    '<script type="application/ld+json">{"@context":"https://schema.org"}</script >',
+  );
+  assert.deepEqual(lintPage(html, "x/index.html"), []);
 });
 
 test("lint flags duplicate H1, missing alt, missing description and bad schema", () => {
