@@ -215,3 +215,88 @@ body{background:var(--paper);color:var(--ink)}
 .geo-summary ul{margin:0;padding-left:1.1rem;line-height:1.6}
 .geo-summary li+li{margin-top:.3rem}
 .geo-faq{margin:3rem auto;max-width:48rem}
+
+/* ---- Homepage Hero and Visualizations (Refined layout) ---- */
+.vl-promo-compact{margin-top:.75rem}
+.vl-promo-compact a{min-height:4.25rem}
+.vl-promo-compact .vl-promo-copy{min-height:4.25rem;padding:.7rem 1.2rem;gap:.15rem}
+.vl-promo-compact .vl-promo-title{font-size:1.05rem}
+.vl-promo-compact .vl-promo-text{font-size:.8rem;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vl-promo-compact .vl-promo-cta{display:none}
+@media(max-width:700px){
+  .vl-promo-compact .vl-promo-text{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+}
+
+.hero{position:relative;z-index:10;max-width:76rem;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+.hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:3rem;align-items:center}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+.hero-fullname{font:500 .8rem "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin:0 0 .75rem}
+.hero-status{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .8rem;border-radius:99px;border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.08);color:var(--signal);font:500 .72rem "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem}
+.hero-status-dot{width:6px;height:6px;border-radius:50%;background:var(--signal);box-shadow:0 0 8px var(--signal)}
+.hero-title{font-size:clamp(2.1rem,1.5rem + 2.2vw,3.6rem);font-weight:800;line-height:1.12;letter-spacing:-.03em;color:#fff;margin:0 0 1.25rem}
+.hero-accent{color:transparent;background:linear-gradient(135deg,var(--accent) 20%,#c86b3c 100%);-webkit-background-clip:text;background-clip:text;text-shadow:0 0 24px rgba(200,107,60,.25)}
+.hero-lede{font-size:clamp(1.05rem,.98rem + .3vw,1.2rem);line-height:1.65;color:var(--muted);margin:0 0 1.5rem;max-width:38rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem;align-items:center}
+.hero-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.4rem;font-size:.95rem;font-weight:600;border-radius:.4rem;text-decoration:none!important;transition:all .2s ease}
+.hero-btn-primary{background:#a35025;color:#fff!important;box-shadow:0 4px 18px rgba(163,80,37,.35)}
+.hero-btn-primary:hover{background:#c86b3c;box-shadow:0 6px 24px rgba(200,107,60,.5);transform:translateY(-1px)}
+.hero-btn-ghost{background:rgba(15,20,30,.7);border:1px solid var(--line);color:var(--ink)!important}
+.hero-btn-ghost:hover{border-color:var(--muted);background:rgba(26,35,49,.8);transform:translateY(-1px)}
+.hero-btn-copper{border-color:rgba(200,107,60,.4);color:var(--accent)!important}
+.hero-btn-copper:hover{border-color:var(--accent);background:rgba(200,107,60,.1)}
+.hero-records{display:flex;flex-wrap:wrap;gap:1.25rem;list-style:none;padding:0;margin:1.75rem 0 0;font-size:.82rem;color:var(--muted)}
+.hero-records li a{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.hero-records li a:hover{color:var(--accent)}
+.hero-records li span{font:600 .7rem "JetBrains Mono",monospace;padding:.15rem .45rem;border-radius:.25rem;background:rgba(38,49,67,.6);border:1px solid var(--line);color:var(--signal)}
+
+.hero-visual{position:relative;margin:0;display:flex;flex-direction:column;align-items:center;width:100%}
+.hero-stage{position:relative;width:100%;max-width:440px;aspect-ratio:1/1;border-radius:1rem;background:radial-gradient(circle at 50% 50%,rgba(200,107,60,.08) 0%,rgba(15,20,30,.85) 65%,rgba(5,7,10,.95) 100%);border:1px solid rgba(200,107,60,.25);box-shadow:0 20px 48px rgba(0,0,0,.6),inset 0 0 32px rgba(200,107,60,.06);overflow:hidden}
+.hero-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+.hero-stage canvas:active{cursor:grabbing}
+.hero-fallback{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-hud{position:absolute;font:500 .68rem "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.25rem .5rem;background:rgba(5,7,10,.7);border:1px solid var(--line);border-radius:.25rem;backdrop-filter:blur(4px);pointer-events:none;z-index:2}
+.hero-hud-tl{top:.75rem;left:.75rem;color:var(--signal);border-color:rgba(34,211,238,.3)}
+.hero-hud-br{bottom:.75rem;right:.75rem}
+.hero-visual figcaption{margin-top:.75rem;font-size:.78rem;line-height:1.45;color:var(--muted);text-align:center;max-width:380px}
+
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;list-style:none;padding:1.5rem 0 0;margin:3rem 0 0;border-top:1px solid var(--line)}
+.hero-stats li{background:rgba(15,20,30,.5);border:1px solid var(--line);border-radius:.5rem;padding:1rem 1.2rem;text-align:left;transition:border-color .2s}
+.hero-stats li:hover{border-color:rgba(200,107,60,.4)}
+.hero-stats strong{display:block;font-size:1.6rem;font-weight:700;color:#fff;line-height:1.2}
+.hero-stats span{display:block;margin-top:.35rem;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.4}
+
+/* Technical Visualization Panels */
+.viz-panel{margin:2.5rem 0 1.5rem;padding:1.5rem;background:var(--panel);border:1px solid var(--line);border-radius:.75rem;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.viz-panel-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.25rem;border-bottom:1px solid var(--line);padding-bottom:1rem}
+.viz-panel-title{font-size:1.15rem;font-weight:700;color:#fff;margin:0}
+.viz-panel-subtitle{font-size:.85rem;color:var(--muted);margin:.25rem 0 0}
+.viz-badge{font:500 .7rem "JetBrains Mono",monospace;padding:.2rem .6rem;border-radius:99px;border:1px solid rgba(34,211,238,.35);color:var(--signal);background:rgba(34,211,238,.08);white-space:nowrap}
+.viz-caption{margin-top:1rem;font-size:.82rem;line-height:1.55;color:var(--muted);text-align:left}
+.viz-caption strong{color:var(--ink)}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-copy{align-items:center;text-align:center}
+  .hero-lede{text-align:center}
+  .hero-ctas{justify-content:center}
+  .hero-records{justify-content:center}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:540px){
+  .hero{padding-top:1.5rem}
+  .hero-stats{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;width:100%}
+  .hero-btn{width:100%;justify-content:center}
+}
+
+/* Hero geo-summary alignment */
+.hero .geo-summary{margin:1.25rem 0;max-width:100%;font-size:.85rem;background:rgba(15,20,30,.7);border-color:var(--line);border-left:3px solid var(--accent)}
+.hero .geo-summary ul{padding-left:1.2rem}
+.hero .geo-summary li{margin-top:.25rem}
+
+/* Sticky Nav Enhancement */
+.site-nav{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,10,.88)}
+
+/* Visualization Card Tweaks */
+.viz-panel{position:relative;background:radial-gradient(ellipse at 50% 0%,rgba(15,20,30,0.95),rgba(9,13,20,0.98));border:1px solid rgba(200,107,60,.22)}
+.viz-panel:hover{border-color:rgba(200,107,60,.38)}
