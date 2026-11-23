@@ -26,12 +26,20 @@ const STOP_WORDS = new Set(["a", "an", "and", "are", "as", "at", "be", "by", "fo
 const e = (value = "") => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const xml = (value = "") => e(value);
 const slugify = (value = "") => String(value).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-const words = (value = "") => String(value).replace(/<[^>]+>/g, " ").replace(/[`*_>#\[\]()]/g, " ").replace(/\s+/g, " ").trim();
+const stripHtmlTags = (value, replacement = " ") => {
+  let previous;
+  do {
+    previous = value;
+    value = value.replace(/<[^>]+>/g, replacement);
+  } while (value !== previous);
+  return value;
+};
+const words = (value = "") => stripHtmlTags(String(value)).replace(/[`*_>#\[\]()]/g, " ").replace(/\s+/g, " ").trim();
 const dateLabel = (value) => new Intl.DateTimeFormat("en", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
 const isIsoDate = (value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(`${value}T00:00:00Z`)) && new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value;
 const absolute = (route) => `${SITE}${route.endsWith("/") ? route : `${route}/`}`;
 const toJsonLd = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
-const decodeHtml = (value = "") => value.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;|&#x27;/gi, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)));
+const decodeHtml = (value = "") => value.replace(/&quot;/g, '"').replace(/&#39;|&apos;|&#x27;/gi, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 const template = await readFile(path.join(ROOT, "research", "index.html"), "utf8");
@@ -738,18 +746,18 @@ async function readLegacyResearch(generatedSlugs) {
       if (error.code === "ENOENT") continue;
       throw error;
     }
-    const title = decodeHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, "").trim() || entry.name);
+    const title = decodeHtml(stripHtmlTags(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || "", "").trim() || entry.name);
     const description = decodeHtml(html.match(/<meta name="description" content="([^"]*)"/i)?.[1] || title);
     const published = html.match(/<meta property="article:published_time" content="(\d{4}-\d{2}-\d{2})"/i)?.[1] || TODAY;
     const updated = html.match(/<meta property="article:modified_time" content="(\d{4}-\d{2}-\d{2})"/i)?.[1] || published;
-    const eyebrow = decodeHtml(html.match(/<div class="eyebrow">([\s\S]*?)<\/div>/i)?.[1]?.replace(/<[^>]+>/g, "").trim() || "Research");
+    const eyebrow = decodeHtml(stripHtmlTags(html.match(/<div class="eyebrow">([\s\S]*?)<\/div>/i)?.[1] || "", "").trim() || "Research");
     const category = eyebrow.split("/").at(-1).trim();
     const article = (html.match(/<article class="article-body">([\s\S]*?)<\/article>/i)?.[1] || html)
       .replace(/<!-- PUBLICATION_NAV_START -->[\s\S]*?<!-- PUBLICATION_NAV_END -->/g, "");
-    const plainText = words(decodeHtml(article.replace(/<[^>]+>/g, " ")));
+    const plainText = words(decodeHtml(stripHtmlTags(article)));
     const readTime = Math.max(1, Math.ceil(plainText.split(/\s+/).filter(Boolean).length / 200));
     const explicitRelated = [...article.matchAll(/<a href="\/research\/([a-z0-9-]+)\/">/gi)].map((match) => match[1]).filter((slug) => slug !== entry.name);
-    const headings = [...article.matchAll(/<h([2-4])[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/gi)].map((match) => ({ level: Number(match[1]), id: match[2], title: decodeHtml(match[3].replace(/<[^>]+>/g, "").trim()) }));
+    const headings = [...article.matchAll(/<h([2-4])[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/gi)].map((match) => ({ level: Number(match[1]), id: match[2], title: decodeHtml(stripHtmlTags(match[3], "").trim()) }));
     pages.push({
       kind: "research", slug: entry.name, url: `/research/${entry.name}/`, title, description,
       published, updated, category, tags: [], author: "Project S.P.H.E.R.E.", authors: ["Project S.P.H.E.R.E."],

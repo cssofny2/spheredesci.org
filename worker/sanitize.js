@@ -15,7 +15,12 @@ const ID = /^[A-Za-z0-9_-]{1,60}$/;
 
 export function sanitizeSvg(input) {
   if (typeof input !== "string" || input.length > 60000) throw new Error("SVG is too large (limit 60 KB).");
-  let src = input.replace(/<!--[\s\S]*?-->/g, "");
+  let src = input;
+  let previous;
+  do {
+    previous = src;
+    src = src.replace(/<!--[\s\S]*?-->/g, "");
+  } while (src !== previous);
   if (/<[!?]/.test(src)) throw new Error("The SVG contains unsupported markup.");
   const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)((?:"[^"]*"|'[^']*'|[^<>"'])*?)(\/?)>/g;
   // Pass 1: collect local ids.
