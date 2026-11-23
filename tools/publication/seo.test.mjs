@@ -34,6 +34,14 @@ test("lint accepts a valid page", () => {
   assert.deepEqual(lintPage(page("<h1>Hi</h1><img src=a alt=''>"), "x/index.html"), []);
 });
 
+test("lint recognizes script and style end tags with whitespace or attributes", () => {
+  const html = page(
+    '<script><h1>not content</h1></script data-test="x"><style><h1>not content</h1></style ><h1>Visible</h1>',
+    '<script type="application/ld+json">{"@context":"https://schema.org"}</script >',
+  );
+  assert.deepEqual(lintPage(html, "x/index.html"), []);
+});
+
 test("lint flags duplicate H1, missing alt, missing description and bad schema", () => {
   const bad = `<html lang="en"><head><title>T</title><link rel="canonical" href="x"><script type="application/ld+json">{bad</script></head><body><h1>a</h1><h1>b</h1><img src="a.png"></body></html>`;
   const text = lintPage(bad, "x/index.html").join("\n");

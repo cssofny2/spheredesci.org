@@ -17,7 +17,7 @@ async function* walk(dir) {
   }
 }
 
-const stripNonContent = (html) => html.replace(/<script\b[\s\S]*?<\/script>/gi, "").replace(/<style\b[\s\S]*?<\/style>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
+const stripNonContent = (html) => html.replace(/<script\b[\s\S]*?<\/script\b[^>]*>/gi, "").replace(/<style\b[\s\S]*?<\/style\b[^>]*>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
 const attr = (tag, name) => tag.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"))?.slice(1).find((v) => v !== undefined);
 
 function lintSchema(node, where, errors) {
@@ -64,7 +64,7 @@ export function lintPage(html, rel) {
   for (const tag of body.match(/<img\b[^>]*>/gi) || []) {
     if (attr(tag, "alt") === undefined) errors.push(`${rel}: <img> without alt attribute (${attr(tag, "src") || "no src"})`);
   }
-  for (const [, json] of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+  for (const [, json] of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script\b[^>]*>/gi)) {
     let data;
     try { data = JSON.parse(json); } catch (error) { errors.push(`${rel}: invalid JSON-LD (${error.message})`); continue; }
     if (!data["@context"]) errors.push(`${rel}: JSON-LD block has no @context`);
