@@ -283,11 +283,11 @@ async function analyticsEvent(req, env) {
   if (env.ANALYTICS_ENABLED !== "true") return fail(404, "Not found.");
   if (req.method !== "POST") return fail(405, "Method not allowed.");
   const url = new URL(req.url);
-  const ip = await ipKey(req, env);
-  if (!(await bump(env, "analytics:" + ip, LIMITS.analyticsPerIpDay))) return fail(429, "Too many analytics events from this network today.");
   const origin = req.headers.get("origin");
   if (origin && new URL(origin).host !== url.host) return fail(403, "Cross-site requests are not accepted.");
   if (!(req.headers.get("content-type") || "").toLowerCase().includes("application/json")) return fail(415, "Send JSON.");
+  const ip = await ipKey(req, env);
+  if (!(await bump(env, "analytics:" + ip, LIMITS.analyticsPerIpDay))) return fail(429, "Too many analytics events from this network today.");
   let text;
   try {
     text = await readLimitedText(req, 2048);
