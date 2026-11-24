@@ -1,0 +1,87 @@
+{
+  "currentVersion": "2.4.0",
+  "releaseDate": "2026-11-24",
+  "releaseDateLabel": "November 24, 2026",
+  "scopeNote": "Website and documentation version log for spheredesci.org. Release numbers track public site updates only and do not represent experimental measurements or results.",
+  "releases": [
+    {
+      "version": "2.4.0",
+      "date": "2026-11-24",
+      "dateLabel": "Nov 24, 2026",
+      "category": "UI & Navigation",
+      "tone": "copper",
+      "title": "Organized 4-section navigation, 29 hand-drawn icons & versioned changelog",
+      "changes": [
+        "Reorganized desktop and mobile navigation into four clear sections — Experiment, Library, Governance, and Community — alongside direct Visual Lab and Search links.",
+        "Added 29 bespoke hand-drawn scientific-etching SVG icons (/assets/nav-icons.svg) so every section and destination has a distinct emblem rather than text-only links.",
+        "Built a full-viewport sectioned mobile navigation drawer with quick Home and SPHEREVL spotlight cards, working natively via HTML details even without JavaScript.",
+        "Restructured the homepage into numbered chapters with a sticky horizontal Chapter Wayfinder bar, side-by-side plain-language guide, Explore by section portal, and this versioned release log."
+      ]
+    },
+    {
+      "version": "2.3.0",
+      "date": "2026-11-24",
+      "dateLabel": "Nov 24, 2026",
+      "category": "Infrastructure & Metrology UI",
+      "tone": "cyan",
+      "title": "Control Room subdomain routing, Worker hardening & homepage diagrams",
+      "changes": [
+        "Routed lab.spheredesci.org directly to the live SPHEREVL Control Room simulator dashboard (educational simulation, not physical measurements).",
+        "Refined the homepage hero stage and added two technical schematics: Frequency Response (Null vs. Hypothesis) and Protocol LOC-1 Differential Metrology Architecture.",
+        "Hardened Cloudflare Worker analytics and community remix voting endpoints, SVG sanitization, breadcrumb origin validation, and HTML lint checks."
+      ]
+    },
+    {
+      "version": "2.2.0",
+      "date": "2026-11-04",
+      "dateLabel": "Nov 4, 2026",
+      "category": "Research & Learn",
+      "tone": "copper",
+      "title": "Q-factor guide, environment-replay & blind-analysis notes, CodeQL",
+      "changes": [
+        "Published the Q factor (quality factor) explainer under /learn/ covering damping ratio, ring-down time, and measurement methods.",
+        "Added research journal notes on environment record-and-replay relocation, blind analysis of LOC-1 position labels, and copper's thermal resonance coefficient.",
+        "Aligned Protocol LOC-1 registered status wording across generated pages, enabled CodeQL static analysis, and added IndexNow verification."
+      ]
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-10-28",
+      "dateLabel": "Oct 28, 2026",
+      "category": "Media & Research",
+      "tone": "cyan",
+      "title": "Mobile video byte-range playback, hreflang SEO & three research posts",
+      "changes": [
+        "Re-encoded the homepage explainer video and added HTTP byte-range support in the Cloudflare Worker for reliable playback on iOS Safari and Android.",
+        "Published three research journal articles: Loop-Induced Lorentz Violation, NIST High-Frequency Acoustic Resonators, and Open-Science Funding Infrastructure.",
+        "Added self-referencing hreflang=\"en\" and x-default metadata across all indexable pages."
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-10-23",
+      "dateLabel": "Oct 23, 2026",
+      "category": "Protocol & Platform",
+      "tone": "copper",
+      "title": "Registered Protocol LOC-1, Zenodo whitepaper & MDX publication platform",
+      "changes": [
+        "Linked the live Protocol LOC-1 preregistration on OSF (osf.io/5b6mj) and archived technical whitepaper on Zenodo (DOI 10.5281/zenodo.23583932) with permanent footer badges.",
+        "Launched the build-time MDX research platform powering /research/, /knowledge/, /glossary/, /search/, RSS feeds, and structured citations.",
+        "Recorded SPHERE Research, LLC entity formation across governance pages and expanded /learn/ explainers."
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-10-09",
+      "dateLabel": "Oct 9, 2026",
+      "category": "Foundation",
+      "tone": "cyan",
+      "title": "Initial public site launch, SPHEREVL showcase & community pages",
+      "changes": [
+        "Launched the plain-language homepage with three-phase funding transparency and the 48-second animated concept explainer.",
+        "Added the SPHEREVL visual lab overview (/vl/), twelve foundational /learn/ guides, the hollow copper sphere reference page, and informal community logo votes (/vote/).",
+        "Published the directory, calendar, newsletter archive, verified links, research charter, and career-outline pages."
+      ]
+    }
+  ]
+}

@@ -122,4 +122,6 @@ submitted during QA because it would send an external email.
 - Verify on desktop (1440 px) that all four section mega-menus (`Experiment`, `Library`, `Governance`, `Community`) open exclusively, stay within viewport bounds, close on outside click and Escape (restoring focus), and render their unique illustrated icons.
 - Verify on mobile (390 px) that the sticky header and full-height sectioned drawer render cleanly with zero horizontal overflow, legible touch targets, and the Visual Lab educational-simulation notice.
 - Verify the homepage Chapter Wayfinder bar scrolls horizontally without causing page overflow on 390 px mobile and tracks active chapters on scroll.
+- Site version number and chronological release log live in `data/releases.json` and are built by `python3 tools/build-releases.py` (included in `npm run build`) into `/#releases`, `/updates/#releases`, and the footer version pill. Verify the current version number, chronological order, collapsible archive, and zero horizontal overflow on 390 px mobile.
+
 
