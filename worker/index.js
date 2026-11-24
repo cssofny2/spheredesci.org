@@ -1,9 +1,16 @@
-// Voting API for spheredesci.org (Cloudflare Worker + D1). Static pages are served by the assets
-// binding; this Worker only runs for /api/* and /assets/video/* (see wrangler.jsonc:
-// assets.run_worker_first). Video requests get byte-range support from media.js.
+// Voting API and lab routing for spheredesci.org (Cloudflare Worker + D1).
+// Requests for lab.spheredesci.org redirect to the control room dashboard on Vercel;
+// video requests get byte-range support from media.js; other static pages are served by the assets binding.
 import { MEDIA_PREFIX, serveMedia } from "./media.js";
 import { PROJECTS } from "./projects.js";
 import { sanitizeSvg } from "./sanitize.js";
+
+export const LAB_TARGET = "https://sphere-control-room-v2.vercel.app/#/dashboard";
+
+export function isLabHostname(hostname) {
+  const h = String(hostname || "").toLowerCase();
+  return h === "lab.spheredesci.org" || h === "www.lab.spheredesci.org";
+}
 
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const LIMITS = {
@@ -392,6 +399,9 @@ async function analyticsDashboard(req, env) {
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    if (isLabHostname(url.hostname)) {
+      return Response.redirect(LAB_TARGET, 302);
+    }
     if (url.pathname.startsWith(MEDIA_PREFIX)) return serveMedia(req, env);
     if (url.pathname === "/api/analytics/event") {
       try {
@@ -410,19 +420,23 @@ export default {
       }
     }
     const m = url.pathname.match(/^\/api\/vote\/([a-z0-9-]+)\/(state|ballot|remix\/generate|remix\/submit)$/);
-    if (!m || !PROJECTS[m[1]]) return fail(404, "Not found.");
-    const [, project, action] = m;
-    const wantsGet = action === "state";
-    if ((req.method === "GET") !== wantsGet) return fail(405, "Method not allowed.");
-    try {
-      if (action === "state") return await state(req, env, project);
-      if (action === "ballot") return await ballot(req, env, project);
-      if (action === "remix/generate") return await generate(req, env, project);
-      return await submit(req, env, project);
-    } catch (e) {
-      if (e instanceof HttpError) return fail(e.status, e.message);
-      console.error(e && e.stack ? e.stack : e);
-      return fail(500, "Something went wrong. Try again.");
+    if (m && PROJECTS[m[1]]) {
+      const [, project, action] = m;
+      const wantsGet = action === "state";
+      if ((req.method === "GET") !== wantsGet) return fail(405, "Method not allowed.");
+      try {
+        if (action === "state") return await state(req, env, project);
+        if (action === "ballot") return await ballot(req, env, project);
+        if (action === "remix/generate") return await generate(req, env, project);
+        return await submit(req, env, project);
+      } catch (e) {
+        if (e instanceof HttpError) return fail(e.status, e.message);
+        console.error(e && e.stack ? e.stack : e);
+        return fail(500, "Something went wrong. Try again.");
+      }
     }
+    if (url.pathname.startsWith("/api/")) return fail(404, "Not found.");
+    if (env?.ASSETS) return env.ASSETS.fetch(req);
+    return fail(404, "Not found.");
   },
 };

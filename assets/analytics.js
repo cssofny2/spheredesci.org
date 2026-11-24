@@ -38,7 +38,7 @@
       if (url.hostname === "github.com" && url.pathname.toLowerCase().startsWith("/cssofny2/spheredesci.org")) {
         return { name: "repository-click", target };
       }
-      if (url.hostname === "lab.spheredesci.org") return { name: "lab-click", target };
+      if (url.hostname === "lab.spheredesci.org" || url.hostname === "sphere-control-room-v2.vercel.app") return { name: "lab-click", target };
       if (/(^|\.)spheredesci\.org$/.test(url.hostname)) return null;
       return { name: "outbound-click", target };
     }

@@ -1,6 +1,51 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { readLimitedText, redactAnalyticsQuery } from "./index.js";
+import worker, { LAB_TARGET, isLabHostname, readLimitedText, redactAnalyticsQuery } from "./index.js";
+
+test("isLabHostname recognizes lab subdomains case-insensitively", () => {
+  assert.equal(isLabHostname("lab.spheredesci.org"), true);
+  assert.equal(isLabHostname("www.lab.spheredesci.org"), true);
+  assert.equal(isLabHostname("LAB.SPHEREDESCI.ORG"), true);
+  assert.equal(isLabHostname("spheredesci.org"), false);
+  assert.equal(isLabHostname("example.com"), false);
+  assert.equal(isLabHostname(null), false);
+});
+
+test("worker.fetch redirects lab.spheredesci.org to the Control Room on Vercel", async () => {
+  const req = new Request("https://lab.spheredesci.org/");
+  const res = await worker.fetch(req, {});
+  assert.equal(res.status, 302);
+  assert.equal(res.headers.get("location"), LAB_TARGET);
+});
+
+test("worker.fetch redirects lab.spheredesci.org deep paths to the Control Room on Vercel", async () => {
+  const req = new Request("https://lab.spheredesci.org/dashboard");
+  const res = await worker.fetch(req, {});
+  assert.equal(res.status, 302);
+  assert.equal(res.headers.get("location"), LAB_TARGET);
+});
+
+test("worker.fetch passes non-lab requests through to env.ASSETS", async () => {
+  let fetchedUrl = null;
+  const mockEnv = {
+    ASSETS: {
+      fetch: async (request) => {
+        fetchedUrl = request.url;
+        return new Response("OK", { status: 200 });
+      },
+    },
+  };
+  const req = new Request("https://spheredesci.org/about/");
+  const res = await worker.fetch(req, mockEnv);
+  assert.equal(res.status, 200);
+  assert.equal(fetchedUrl, "https://spheredesci.org/about/");
+});
+
+test("worker.fetch returns 404 for unknown api routes", async () => {
+  const req = new Request("https://spheredesci.org/api/unknown-endpoint");
+  const res = await worker.fetch(req, {});
+  assert.equal(res.status, 404);
+});
 
 test("redactAnalyticsQuery removes quoted and international email addresses", () => {
   assert.equal(
@@ -16,3 +61,4 @@ test("readLimitedText rejects oversized request streams before buffering them", 
   });
   await assert.rejects(readLimitedText(request, 2048), /Request is too large/);
 });
+
