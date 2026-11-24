@@ -206,7 +206,7 @@ def build():
         ("Charts", f'Recharts {ver(deps["recharts"])}'),
         ("Analytics", f'@vercel/analytics {ver(deps["@vercel/analytics"])} (integration committed; production configuration not asserted)'),
         ("Runtime target", f'Node.js {snap["node"]}.x (<code>.nvmrc</code>, <code>package.json</code> engines)'),
-        ("Hosting", "Vercel build configuration (<code>vercel.json</code>) with Cloudflare Worker configuration also present; the production lab address is lab.spheredesci.org"),
+        ("Hosting", "Vercel build configuration (<code>vercel.json</code>) with Cloudflare Worker configuration also present; the production lab address is lab.spheredesci.org (pointing to https://sphere-control-room-v2.vercel.app/#/dashboard)"),
         ("CI", "GitHub Actions: foundation validation on pushes to main and pull requests (locked install, regression suites, mounted lifecycle tests, type-check and production build, whitespace check) plus a restricted PR&nbsp;#6 sweep-publisher workflow"),
         ("Licence file", "None in the repository at this snapshot" if not snap["license_file"] else "Present"),
     ]
