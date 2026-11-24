@@ -123,3 +123,10 @@ submitted during QA because it would send an external email.
 - Verify on mobile (390 px) that the sticky header and full-height sectioned drawer render cleanly with zero horizontal overflow, legible touch targets, and the Visual Lab educational-simulation notice.
 - Verify the homepage Chapter Wayfinder bar scrolls horizontally without causing page overflow on 390 px mobile and tracks active chapters on scroll.
 
+## Added 2026-11-24: site version number & chronological release changelog
+
+- `/changelog/` and the homepage `#changelog` section are generated from `data/changelog.json` by `python3 tools/build-changelog.py` (included in `npm run build`); the site-wide footer version badge (`SITE vX.Y.Z`) is injected from the same file by `tools/inject-entity-graph.mjs`. Do not hand-edit `changelog/index.html` or the `<!--site-changelog:start-->` block in `index.html`.
+- Verify `/changelog/` has one H1, a unique title/description, canonical URL, `hreflang` alternates, parseable JSON-LD (including `WebPage.version`), and a `sitemap.xml` entry.
+- Verify the chronological list renders cleanly without JavaScript, that the Newest/Oldest order toggle and change-type filter chips work when JavaScript is enabled, and that no horizontal overflow occurs at 390 px mobile or 1440 px desktop.
+- Keep the notice distinguishing website release versions from the registered Protocol LOC-1 record on OSF and the archived Zenodo whitepaper.
+

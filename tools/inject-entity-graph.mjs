@@ -108,14 +108,40 @@ function injectLd(html) {
 const ATTRIBUTION = `<div class="footer-entity-attribution"><p>Project S.P.H.E.R.E. infrastructure and sovereign local AI pipelines architected by <a href="https://michaelpgoodman.com/" rel="author me" title="Michael P. Goodman — IT Infrastructure, Sovereign AI &amp; Managed Services"><strong>Michael P. Goodman</strong></a> — <a href="https://michaelpgoodman.com/services/" title="IT Infrastructure, Sovereign AI &amp; Managed IT Services Consulting">IT Infrastructure, Sovereign AI &amp; Managed Services Architect</a> (<a href="https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure" title="Project S.P.H.E.R.E. Sovereign Local AI Case Study">AI Infrastructure Case Study</a> · <a href="https://michaelpgoodman.com/biography/" rel="me" title="Michael P. Goodman Biography">Biography</a> · <a href="https://github.com/cssofny2" rel="me" title="Michael P. Goodman GitHub (@cssofny2)">GitHub @cssofny2</a>). SPHEREVL is an educational simulation, not measurements or scientific validation.</p></div>`;
 const ATTRIBUTION_WITH_LINK_CUES = ATTRIBUTION.replaceAll('<a ', '<a style="text-decoration:underline;text-underline-offset:2px" ');
 
+const escapeHtml = (value) => String(value)
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
+
+const formatIsoDate = (iso) => {
+  const [y, m, d] = String(iso).slice(0, 10).split('-').map(Number);
+  if (!y || !m || !d) return escapeHtml(iso);
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[m - 1]} ${d}, ${y}`;
+};
+
+const changelogPath = path.join(root, 'data', 'changelog.json');
+let SITE_VERSION_BAR = '';
+if (fs.existsSync(changelogPath)) {
+  const cl = JSON.parse(fs.readFileSync(changelogPath, 'utf8'));
+  const ver = escapeHtml(String(cl.current_version || '').replace(/^v/i, ''));
+  const rel = escapeHtml(String(cl.released || ''));
+  if (ver && rel) {
+    SITE_VERSION_BAR = `<div class="footer-version" aria-label="Website version"><div class="footer-version-meta"><span class="footer-version-pill">SITE v${ver}</span><span>Updated <time datetime="${rel}">${formatIsoDate(rel)}</time> &middot; Website release version (independent of Protocol LOC-1)</span></div><a class="footer-version-link" href="/changelog/">View chronological changelog &rarr;</a></div>`;
+  }
+}
+
 const RECORDS = `<div class="footer-records" aria-label="Permanent Protocol LOC-1 records"><p class="footer-records-label">Permanent research records</p><ul><li><a class="record-badge" href="https://osf.io/5b6mj/overview" rel="noopener" title="Official, live Protocol LOC-1 preregistration on the Open Science Framework"><span class="record-badge-key">OSF · LIVE</span><span class="record-badge-val">Official Protocol LOC-1 preregistration</span></a></li><li><a class="record-badge" href="https://doi.org/10.5281/zenodo.23583932" rel="noopener" title="Archived technical whitepaper at Zenodo"><span class="record-badge-key">DOI</span><span class="record-badge-val">10.5281/zenodo.23583932 · Archived whitepaper</span></a></li></ul></div>`;
 
 function injectFooter(html) {
   return html.replace(/<footer\b[\s\S]*?<\/footer>/, (footer) => {
     const f = footer
+      .replace(/<div class="footer-version"[\s\S]*?<\/a><\/div>/, '')
       .replace(/<div class="footer-records"[\s\S]*?<\/ul><\/div>/, '')
       .replace(/<p>Research records:[\s\S]*?<\/p>\s*/, '')
-      .replace(/(<div class="footer-entity-attribution">|<\/footer>)/, `${RECORDS}$1`);
+      .replace(/(<div class="footer-entity-attribution">|<\/footer>)/, `${SITE_VERSION_BAR}${RECORDS}$1`);
     if (f.includes('footer-entity-attribution')) {
       return f.replace(/<div class="footer-entity-attribution">[\s\S]*?<\/div>/, ATTRIBUTION_WITH_LINK_CUES);
     }

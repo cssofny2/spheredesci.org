@@ -1076,7 +1076,7 @@ await writeFile(path.join(ROOT, "assets", "publication-search.json"), safeJson(a
 await writeFile(path.join(ROOT, "rss.xml"), rssFeed(researchRecords));
 await updateLegacyPages(legacy, allSearchRecords);
 await updateSitemap([
-  "/", "/updates/", "/privacy/",
+  "/", "/updates/", "/changelog/", "/privacy/",
   "/research/",
   ...researchContent.map((record) => record.url),
   ...legacy.map((record) => record.url),

@@ -1,0 +1,261 @@
+{
+  "site": "spheredesci.org",
+  "current_version": "1.5.0",
+  "released": "2026-11-24",
+  "scheme": {
+    "name": "Semantic Versioning (Website Releases)",
+    "summary": "Website versions follow MAJOR.MINOR.PATCH and track public interface, documentation, publication platform, and infrastructure releases on spheredesci.org.",
+    "integrity_note": "The website version number tracks site releases only. It is independent of the registered Protocol LOC-1 preregistration on OSF and the archived whitepaper on Zenodo, and does not indicate completed measurements or research results."
+  },
+  "repository_commits_url": "https://github.com/cssofny2/spheredesci.org/commits/main/",
+  "releases": [
+    {
+      "version": "1.5.0",
+      "date": "2026-11-24",
+      "title": "Site versioning & chronological release log",
+      "scope": "Platform & UI",
+      "summary": "Introduces an explicit semantic version number for spheredesci.org and a structured, chronological release log accessible across the site.",
+      "changes": [
+        {
+          "type": "added",
+          "text": "Added the dedicated Site Version & Release Changelog page with a current-version summary, chronological release timeline, sort order toggle, and category filters.",
+          "href": "/changelog/",
+          "link_label": "Site changelog"
+        },
+        {
+          "type": "added",
+          "text": "Added a Site Releases section to the homepage highlighting the live site version number and latest chronological updates, plus a wayfinder bar shortcut.",
+          "href": "/#changelog",
+          "link_label": "Homepage release section"
+        },
+        {
+          "type": "added",
+          "text": "Added a site-wide version badge in the footer and a hand-drawn changelog emblem in the Governance navigation menu, built from a single data/changelog.json source of truth."
+        }
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "date": "2026-11-24",
+      "title": "Four-section navigation, hand-drawn icons & live Control Room routing",
+      "scope": "Navigation & Lab",
+      "summary": "Reorganized site-wide navigation into four illustrated pillars, introduced chaptered homepage wayfinding, and routed lab.spheredesci.org to the live educational simulator.",
+      "changes": [
+        {
+          "type": "changed",
+          "text": "Reorganized desktop and mobile navigation into four top-level pillars (Experiment, Library, Governance, and Community) backed by 29 custom hand-drawn scientific-etching SVG icons."
+        },
+        {
+          "type": "changed",
+          "text": "Restructured the homepage into numbered chapters with a sticky horizontal wayfinder bar and an Explore by section directory.",
+          "href": "/",
+          "link_label": "Homepage"
+        },
+        {
+          "type": "changed",
+          "text": "Routed lab.spheredesci.org directly to the live SPHEREVL Control Room dashboard on Vercel (educational simulation; not physical measurements).",
+          "href": "/vl/",
+          "link_label": "Visual Lab overview"
+        }
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "date": "2026-11-23",
+      "title": "Homepage metrology visualizations & API hardening",
+      "scope": "Visualizations & Security",
+      "summary": "Added illustrative metrology visualizations to the homepage and hardened worker endpoints and HTML build verification.",
+      "changes": [
+        {
+          "type": "added",
+          "text": "Refined the homepage layout with illustrative metrology visualizations and improved section pacing."
+        },
+        {
+          "type": "security",
+          "text": "Hardened the aggregate analytics and community vote remix endpoints, resolved incomplete-sanitization code scanning alerts, and validated breadcrumb URLs by origin."
+        },
+        {
+          "type": "fixed",
+          "text": "Updated the build-time HTML linter to handle browser-tolerated closing tags cleanly across generated and hand-written pages."
+        }
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-11-04",
+      "title": "CodeQL analysis, Q-factor guide & metrology research notes",
+      "scope": "Research & Security",
+      "summary": "Added automated CodeQL security scanning, aligned analysis wording strictly with the registered OSF plan, and published new research and educational explainers.",
+      "changes": [
+        {
+          "type": "security",
+          "text": "Enabled automated CodeQL static analysis for worker/ and tools/, and aligned the homepage preregistered-analysis wording with the registered Protocol LOC-1 record on OSF.",
+          "href": "/protocol/",
+          "link_label": "Protocol LOC-1"
+        },
+        {
+          "type": "content",
+          "text": "Published the Q factor (quality factor) educational explainer in the Learn library.",
+          "href": "/learn/q-factor-quality-factor-explained/",
+          "link_label": "Q factor explained"
+        },
+        {
+          "type": "content",
+          "text": "Added proposal-stage research notes on site-environment record-and-replay, blind analysis position labels, and copper's temperature coefficient.",
+          "href": "/research/environment-replay-copper-sphere-relocation/",
+          "link_label": "Environment replay note"
+        },
+        {
+          "type": "added",
+          "text": "Added self-referencing hreflang annotations to all indexable pages, IndexNow key verification, and Lighthouse SEO exemptions for noindex discovery pages."
+        }
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-10-28",
+      "title": "Mobile video playback, weekly research essays & LLC entity metadata",
+      "scope": "Media & Research",
+      "summary": "Enabled reliable mobile video playback with byte-range delivery, expanded Learn explainers, and published three research essays.",
+      "changes": [
+        {
+          "type": "fixed",
+          "text": "Re-encoded the homepage explainer video for phone hardware decoding and added HTTP byte-range support for iOS Safari and Android browsers.",
+          "href": "/#intro-video",
+          "link_label": "Explainer video"
+        },
+        {
+          "type": "content",
+          "text": "Published weekly research notes on loop-induced Lorentz violation, NIST high-frequency acoustic resonators, and open-science funding infrastructure.",
+          "href": "/research/",
+          "link_label": "Research journal"
+        },
+        {
+          "type": "content",
+          "text": "Expanded twelve /learn/ guides to 1,200+ words each and added SPHERE Research, LLC entity metadata across the site.",
+          "href": "/learn/",
+          "link_label": "Learn library"
+        }
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-10-23",
+      "title": "Registered Protocol LOC-1, Zenodo whitepaper & MDX publication platform",
+      "scope": "Research Platform & LOC-1",
+      "summary": "Marked the live OSF preregistration of Protocol LOC-1, Zenodo whitepaper archival, and launch of the static MDX scientific publishing platform.",
+      "changes": [
+        {
+          "type": "added",
+          "text": "Published permanent links and site-wide footer badges for the live OSF Protocol LOC-1 preregistration and archived Zenodo whitepaper (DOI 10.5281/zenodo.23583932).",
+          "href": "/whitepaper/",
+          "link_label": "Whitepaper"
+        },
+        {
+          "type": "added",
+          "text": "Launched the build-time MDX publication platform generating Research, Knowledge Base, Glossary, Search, Author, Category, Tag, and RSS feeds with citation linking and privacy-preserving aggregate analytics.",
+          "href": "/knowledge/",
+          "link_label": "Knowledge base"
+        },
+        {
+          "type": "changed",
+          "text": "Added print-to-PDF whitepaper styling, academic indexing metadata, HTML/SEO build lint checks, and standardized the full project name to Spatial Positioning Harmonic Empirical Resonance Experiment."
+        }
+      ]
+    },
+    {
+      "version": "0.9.0",
+      "date": "2026-10-16",
+      "title": "Community votes, resonance guides & hollow copper sphere reference",
+      "scope": "Community & Guides",
+      "summary": "Launched informal community identity polls, five resonance guides, a proposed A/B/A verification protocol, and a hollow copper sphere reference page.",
+      "changes": [
+        {
+          "type": "added",
+          "text": "Launched Community Votes backed by Cloudflare D1, opening with 109 logo concepts and an SVG remix lab (informal public-identity polls, not research).",
+          "href": "/vote/",
+          "link_label": "Community votes"
+        },
+        {
+          "type": "content",
+          "text": "Added five resonance guides in Learn, the proposed A/B/A excitation-off verification protocol, and the record-and-replay resonance proposal.",
+          "href": "/research/resonance-change-verification-protocol/",
+          "link_label": "Verification protocol"
+        },
+        {
+          "type": "content",
+          "text": "Added the provisional hollow copper sphere reference page covering shell geometry, purity, and planning ranges, plus the separate /projects/ section.",
+          "href": "/resources/hollow-copper-sphere/",
+          "link_label": "Hollow copper sphere"
+        }
+      ]
+    },
+    {
+      "version": "0.8.0",
+      "date": "2026-10-14",
+      "title": "Plain-language homepage, Learn section & funding phases",
+      "scope": "Education & Homepage",
+      "summary": "Introduced a plain-language introduction video and overview, three-phase budget structure, and twelve foundational Learn explainers.",
+      "changes": [
+        {
+          "type": "added",
+          "text": "Added the plain-language homepage opening, captioned introduction video with full transcript, and three-phase planning budget summary.",
+          "href": "/transparency/",
+          "link_label": "Budget & transparency"
+        },
+        {
+          "type": "added",
+          "text": "Launched the Learn section with twelve plain-language explainers on DeSci, open science, preregistration, null results, resonance, vibrometry, blinding, and simulation.",
+          "href": "/learn/",
+          "link_label": "Learn"
+        }
+      ]
+    },
+    {
+      "version": "0.5.0",
+      "date": "2026-10-09",
+      "title": "SPHEREVL visual lab, synchronized-measurement proposals & community tools",
+      "scope": "Visual Lab & Proposals",
+      "summary": "Overhauled the SPHEREVL visual lab overview, added eight synchronized-measurement proposal pages, and launched community directory and newsletter tools.",
+      "changes": [
+        {
+          "type": "changed",
+          "text": "Rebuilt the /vl/ visual lab page with Control Room simulator screenshots, repository history snapshot, stated limitations, and educational-simulation notices.",
+          "href": "/vl/",
+          "link_label": "Visual Lab (SPHEREVL)"
+        },
+        {
+          "type": "content",
+          "text": "Published eight synchronized-measurement proposal pages including the four-object protocol draft, frequency error budget, Earth-motion analyses, and hardware checklist.",
+          "href": "/protocol/synchronized-four-object-frequency-measurement/",
+          "link_label": "Four-object proposal"
+        },
+        {
+          "type": "added",
+          "text": "Added Links & Profiles, opt-in Directory, Calendar with downloadable .ics feed, Newsletter archive (Issue 1), and proposal-stage Careers application pages.",
+          "href": "/newsletter/",
+          "link_label": "Newsletter"
+        }
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-10-02",
+      "title": "Public research foundation",
+      "scope": "Foundation",
+      "summary": "Established the pre-launch public research website with transparent scope, charter, FAQ, and update log.",
+      "changes": [
+        {
+          "type": "added",
+          "text": "Published the Research Charter, About overview, FAQ, Collaborate page, initial LOC-1 protocol summary, budget transparency page, and Project Updates log.",
+          "href": "/updates/",
+          "link_label": "Project updates"
+        },
+        {
+          "type": "changed",
+          "text": "Removed placeholder funding totals, wallet counts, and token-sale wording to distinguish hypotheses from established findings."
+        }
+      ]
+    }
+  ]
+}

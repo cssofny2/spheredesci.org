@@ -522,3 +522,86 @@ body{background:var(--paper);color:var(--ink)}
   .mob-quick-home{flex-direction:row;justify-content:flex-start;gap:.65rem;padding:.75rem .9rem!important}
 }
 
+/* ================================================================
+   SITE VERSION & CHRONOLOGICAL RELEASE CHANGELOG
+   ================================================================ */
+.cl-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 1.75rem;padding:1.35rem 1.5rem;margin-bottom:2rem;border:1px solid var(--line-soft);border-left:3px solid var(--signal);border-radius:.85rem;background:linear-gradient(135deg,rgba(15,21,33,.92) 0%,rgba(9,13,21,.96) 100%)}
+.cl-banner-ver{display:flex;align-items:center;gap:1rem;min-width:0}
+.cl-ver-stamp{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;padding:.55rem .95rem;border-radius:.65rem;border:1px solid rgba(34,211,238,.42);background:rgba(34,211,238,.09);flex:0 0 auto}
+.cl-ver-stamp-label{font:500 .62rem/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.cl-ver-stamp-num{font:700 1.45rem/1 "JetBrains Mono",monospace;color:#67e8f9;letter-spacing:-.02em}
+.cl-banner-copy{min-width:0}
+.cl-banner-title{font-size:1.05rem;font-weight:700;color:#fff;margin:0 0 .25rem}
+.cl-banner-meta{font-size:.86rem;line-height:1.55;color:var(--muted);margin:0}
+.cl-banner-meta time{color:var(--ink);font-weight:500}
+.cl-banner-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem}
+
+.cl-summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin:0 0 1.5rem}
+.cl-stat-card{padding:1rem 1.15rem;border:1px solid var(--line-soft);border-top:2px solid rgba(34,211,238,.42);border-radius:.7rem;background:linear-gradient(180deg,rgba(15,21,33,.86) 0%,rgba(9,13,21,.94) 100%)}
+.cl-stat-card:nth-child(2){border-top-color:rgba(228,155,115,.45)}
+.cl-stat-label{display:block;font:500 .68rem/1.2 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.cl-stat-val{display:block;font:700 1.35rem/1.2 "JetBrains Mono",monospace;color:#fff}
+.cl-stat-sub{display:block;margin-top:.3rem;font-size:.8rem;line-height:1.45;color:var(--muted)}
+
+.cl-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 1rem;padding:.85rem 1rem;margin:0 0 1.5rem;border:1px solid var(--line-soft);border-radius:.7rem;background:rgba(11,16,25,.82)}
+.cl-ctrl-group{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
+.cl-ctrl-label{font:500 .7rem/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:.25rem}
+.cl-btn{appearance:none;cursor:pointer;padding:.34rem .7rem;border-radius:99px;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);color:var(--ink);font:500 .78rem/1.2 Inter,sans-serif;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.cl-btn:hover{background:rgba(255,255,255,.07);border-color:var(--muted);color:#fff}
+.cl-btn[aria-pressed="true"]{background:rgba(34,211,238,.14);border-color:rgba(34,211,238,.5);color:#67e8f9}
+.cl-count{font:500 .76rem/1.2 "JetBrains Mono",monospace;color:var(--muted)}
+
+.cl-list{list-style:none;margin:0;padding:0;position:relative;display:grid;gap:1.15rem}
+.article-body ol.cl-list{list-style:none;margin:0;padding:0}
+.cl-list::before{content:"";position:absolute;left:13px;top:1.25rem;bottom:1.25rem;width:2px;background:linear-gradient(180deg,rgba(34,211,238,.45) 0%,rgba(200,107,60,.35) 55%,rgba(148,163,184,.15) 100%)}
+.cl-release{position:relative;padding-left:2.45rem;margin:0}
+.article-body ol.cl-list>li.cl-release{margin:0;padding-left:2.45rem}
+.cl-release::before{content:"";position:absolute;left:7px;top:1.45rem;width:14px;height:14px;border-radius:50%;background:var(--paper,#05070a);border:2px solid var(--accent,#e49b73);box-shadow:0 0 0 3px rgba(5,7,10,.9)}
+.cl-release.is-latest::before{background:var(--signal,#22d3ee);border-color:#67e8f9;box-shadow:0 0 12px rgba(34,211,238,.55),0 0 0 3px rgba(5,7,10,.9)}
+
+.cl-card{padding:1.25rem 1.4rem;border:1px solid var(--line-soft);border-radius:.85rem;background:linear-gradient(180deg,rgba(15,21,33,.88) 0%,rgba(9,13,21,.95) 100%);transition:border-color .18s ease}
+.cl-release.is-latest .cl-card{border-color:rgba(34,211,238,.36)}
+.cl-card:hover{border-color:rgba(228,155,115,.38)}
+.cl-card-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem .85rem;margin-bottom:.6rem}
+.cl-card-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem}
+.cl-ver-pill{display:inline-flex;align-items:center;padding:.2rem .58rem;border-radius:.35rem;border:1px solid rgba(228,155,115,.42);background:rgba(200,107,60,.14);color:#f3b694;font:700 .8rem/1.2 "JetBrains Mono",monospace}
+.cl-release.is-latest .cl-ver-pill{border-color:rgba(34,211,238,.48);background:rgba(34,211,238,.14);color:#67e8f9}
+.cl-latest-badge{display:inline-flex;align-items:center;padding:.18rem .5rem;border-radius:99px;background:rgba(34,211,238,.16);border:1px solid rgba(34,211,238,.45);color:#67e8f9;font:600 .66rem/1.1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.cl-scope-badge{display:inline-flex;align-items:center;padding:.18rem .5rem;border-radius:99px;border:1px solid var(--line-soft);background:rgba(255,255,255,.03);color:var(--muted);font:500 .7rem/1.2 "JetBrains Mono",monospace}
+.cl-date{font:500 .8rem/1.3 "JetBrains Mono",monospace;color:var(--muted)}
+.cl-release-title{font-size:1.12rem;font-weight:700;color:#fff;margin:0 0 .35rem;line-height:1.3}
+.article-body .cl-card h2.cl-release-title{margin:0 0 .35rem;padding:0;border:0;font-size:1.15rem;line-height:1.3}
+.cl-release-summary{font-size:.9rem;line-height:1.6;color:var(--muted);margin:0 0 .85rem}
+
+.cl-items{list-style:none;margin:0;padding:.75rem 0 0;border-top:1px solid var(--line-soft);display:grid;gap:.55rem}
+.article-body ul.cl-items{list-style:none;margin:0;padding:.75rem 0 0}
+.cl-item{display:flex;align-items:baseline;gap:.65rem;font-size:.9rem;line-height:1.58;color:var(--ink)}
+.article-body ul.cl-items li.cl-item{margin:0}
+.cl-type{flex:0 0 auto;display:inline-block;min-width:4.9rem;text-align:center;padding:.14rem .42rem;border-radius:.28rem;font:600 .68rem/1.3 "JetBrains Mono",monospace;letter-spacing:.05em;text-transform:uppercase;border:1px solid transparent}
+.cl-type-added{color:#67e8f9;background:rgba(34,211,238,.12);border-color:rgba(34,211,238,.32)}
+.cl-type-changed{color:#f3b694;background:rgba(200,107,60,.16);border-color:rgba(228,155,115,.34)}
+.cl-type-content{color:#c4b5fd;background:rgba(167,139,250,.14);border-color:rgba(196,181,253,.32)}
+.cl-type-fixed{color:#6ee7b7;background:rgba(52,211,153,.14);border-color:rgba(110,231,183,.32)}
+.cl-type-security{color:#fcd34d;background:rgba(251,191,36,.14);border-color:rgba(252,211,77,.34)}
+.cl-item-text{min-width:0;color:var(--ink);opacity:.92}
+.cl-item-link{margin-left:.35rem;color:var(--accent,#e49b73);font-weight:500;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.cl-item-link:hover{color:#fff}
+
+.cl-foot-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.85rem 1.25rem;margin-top:1.75rem;padding:1rem 1.25rem;border:1px solid var(--line-soft);border-radius:.75rem;background:rgba(11,16,25,.75);font-size:.9rem;color:var(--muted)}
+.cl-foot-bar a{color:var(--accent,#e49b73);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.cl-foot-bar a:hover{color:#fff}
+.cl-empty{padding:1.25rem;border:1px dashed var(--line-soft);border-radius:.7rem;text-align:center;color:var(--muted);font-size:.92rem}
+
+@media(max-width:760px){
+  .cl-summary-grid{grid-template-columns:1fr}
+  .cl-banner{padding:1.1rem}
+  .cl-banner-ver{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .cl-list::before{left:9px}
+  .cl-release,.article-body ol.cl-list>li.cl-release{padding-left:1.85rem}
+  .cl-release::before{left:3px}
+  .cl-card{padding:1rem 1.05rem}
+  .cl-item{flex-direction:column;gap:.25rem}
+  .cl-type{min-width:0}
+}
+
+
