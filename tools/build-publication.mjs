@@ -47,14 +47,21 @@ const navMatch = template.match(/<nav class="site-nav"[\s\S]*?<\/nav>/);
 const footerMatch = template.match(/<footer class="site-footer">[\s\S]*?<\/footer>/);
 if (!navMatch || !footerMatch) throw new Error("The research page is missing its shared navigation or footer.");
 
-const nav = navMatch[0]
+const baseNavigation = navMatch[0]
   .replace(/\s+aria-current="page"/g, "")
-  .replaceAll('<a href="/research/">Measurement research</a>', '<a href="/research/">Research journal</a>');
-const navigation = nav.includes('href="/knowledge/"')
-  ? nav
-  : nav.replaceAll('<a href="/learn/">Learn</a>', '<a href="/learn/">Learn</a><a href="/knowledge/">Knowledge base</a><a href="/glossary/">Glossary</a>');
-const footer = footerMatch[0]
-  .replaceAll('<a href="/research/">Measurement research</a>', '<a href="/research/">Research journal</a><a href="/knowledge/">Knowledge base</a><a href="/glossary/">Glossary</a>');
+  .replace(/\s+data-active="true"/g, "");
+function navForUrl(routeUrl = "") {
+  const sectionKey = routeUrl.startsWith("/research") ? "research"
+    : routeUrl.startsWith("/knowledge") ? "knowledge"
+    : routeUrl.startsWith("/glossary") ? "glossary"
+    : routeUrl.startsWith("/search") ? "search"
+    : "";
+  if (!sectionKey) return baseNavigation;
+  return baseNavigation
+    .replace('data-section="library"', 'data-section="library" data-active="true"')
+    .replaceAll(`href="/${sectionKey}/"`, `href="/${sectionKey}/" aria-current="page"`);
+}
+const footer = footerMatch[0];
 
 function glossaryPlugin(terms, linkedTerms, currentUrl) {
   const sorted = terms.filter((item) => item.url !== currentUrl).sort((a, b) => b.term.length - a.term.length);
@@ -448,8 +455,8 @@ function pageHead({ title, description, url, type = "website", schema, noindex =
 }
 
 function pageShell({ title, description, url, content, schema, scripts = [], noindex = false, type, canonicalUrl, image, keywords, authors, published, updated }) {
-  const scriptTags = [...new Set([...scripts, "/assets/analytics.js"])].map((src) => `<script src="${src}" defer></script>`).join("");
-  return `<!doctype html><html lang="en"><head>${pageHead({ title, description, url, type, schema, noindex, canonicalUrl, image, keywords, authors, published, updated })}${scriptTags}</head><body><a class="skip-link" href="#main-content">Skip to content</a>${navigation}<main id="main-content" class="content-shell publication-shell">${content}</main>${footer}</body></html>\n`;
+  const scriptTags = [...new Set(["/assets/site.js", ...scripts, "/assets/analytics.js"])].map((src) => `<script src="${src}" defer></script>`).join("");
+  return `<!doctype html><html lang="en"><head>${pageHead({ title, description, url, type, schema, noindex, canonicalUrl, image, keywords, authors, published, updated })}${scriptTags}</head><body><a class="skip-link" href="#main-content">Skip to content</a>${navForUrl(url)}<main id="main-content" class="content-shell publication-shell">${content}</main>${footer}</body></html>\n`;
 }
 
 function articleCard(record, headingLevel = 3) {

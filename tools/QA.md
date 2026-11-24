@@ -114,3 +114,12 @@ submitted during QA because it would send an external email.
   build warnings.
 - Never test by submitting production forms. Use the private preview for changed
   route checks and do not test production-only analytics or voting endpoints.
+
+## Added 2026-11-24: organized 4-section navigation, hand-drawn icons & homepage chapters
+
+- Navigation is defined once in `tools/nav_spec.py` (used by `tools/build-directory.py`, `tools/build-vl.py`, `tools/build-vote.py`, and `tools/sync-nav.py`; publication pages inherit from `research/index.html` via `tools/build-publication.mjs`).
+- All 29 hand-drawn illustrated SVG icons live in `/assets/nav-icons.svg`; `tools/check-publication.mjs` verifies that every `#ni-*` fragment resolves.
+- Verify on desktop (1440 px) that all four section mega-menus (`Experiment`, `Library`, `Governance`, `Community`) open exclusively, stay within viewport bounds, close on outside click and Escape (restoring focus), and render their unique illustrated icons.
+- Verify on mobile (390 px) that the sticky header and full-height sectioned drawer render cleanly with zero horizontal overflow, legible touch targets, and the Visual Lab educational-simulation notice.
+- Verify the homepage Chapter Wayfinder bar scrolls horizontally without causing page overflow on 390 px mobile and tracks active chapters on scroll.
+

@@ -29,41 +29,20 @@ def load(name): return json.loads((ROOT / "data" / name).read_text(encoding="utf
 def tag(label, iso): return f'<span class="new-tag">{label} &middot; {human(iso)}</span>'
 
 
-NAV_MORE = [("/research/", "Research journal", "research"), ("/knowledge/", "Knowledge base", "knowledge"),
-            ("/glossary/", "Glossary", "glossary"), ("/calendar/", "Calendar", "calendar"),
-            ("/newsletter/", "Newsletter", "newsletter"), ("/directory/", "Directory", "directory"),
-            ("/links/", "Links &amp; profiles", "links"), ("/vote/", "Community votes", "vote"), ("/careers/", "Careers", "careers"),
-            ("/charter/", "Research charter", None), ("/collaborate/", "Collaborate", "collaborate"),
-            ("/updates/", "Project updates", None), ("/privacy/", "Privacy notice", None)]
+import importlib.util as _ilu
+_nav_spec_loader = _ilu.spec_from_file_location("nav_spec", ROOT / "tools" / "nav_spec.py")
+_nav_spec = _ilu.module_from_spec(_nav_spec_loader)
+_nav_spec_loader.loader.exec_module(_nav_spec)
+
+NAV_MORE = _nav_spec.NAV_MORE
 
 
 def nav(current):
-    def a(href, text, key=None):
-        cur = ' aria-current="page"' if key and key == current else ""
-        return f'<a href="{href}"{cur}>{text}</a>'
-    top = "".join([a("/about/", "About"), a("/protocol/", "Protocol"), a("/transparency/", "Transparency"),
-                   a("/resources/", "Resources"), '<a class="nav-vl" href="/vl/"' + (' aria-current="page"' if current == "vl" else "") + '>Visual Lab</a>', a("/faq/", "FAQ")])
-    more = "".join(a(h, t, k) for h, t, k in NAV_MORE)
-    mob = a("/", "Home") + top + more + a("/#join", "Register interest")
-    return f'''<a class="skip-link" href="#main-content">Skip to content</a>
-<nav class="site-nav" aria-label="Main navigation">
-<a href="/" aria-label="Project S.P.H.E.R.E. home"><img class="nav-logo" src="/assets/brand/sphere-lockup-compact.svg" alt="S.P.H.E.R.E." width="435" height="136"></a>
-<div class="nav-links">{top}
-<details class="site-menu"><summary>More</summary><div class="menu-panel">{more}</div></details>
-<a class="nav-join" href="/#join">Get involved</a></div>
-<details class="site-menu mobile-only"><summary>Menu</summary><div class="menu-panel">{mob}</div></details>
-</nav>'''
+    return _nav_spec.render_nav(current, include_skip=True)
 
 
-FOOTER = '''<footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
-<div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
-<p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p><p>Founded by <a href="https://michaelpgoodman.com/">Michael P. Goodman</a></p></div>
-<div><h3>Research</h3><a href="/protocol/">First experiment</a><a href="/research/">Research journal</a><a href="/knowledge/">Knowledge base</a><a href="/glossary/">Glossary</a><a href="/charter/">Research charter</a><a href="/resources/">Research resources</a><a href="/faq/">Questions &amp; answers</a><a href="/vl/">Visual Lab (SPHEREVL)</a></div>
-<div><h3>Project</h3><a href="/transparency/">Budget &amp; transparency</a><a href="/collaborate/">Collaborate</a><a href="/updates/">Updates</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
-<div><h3>Connect</h3><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/links/">Links &amp; profiles</a><a href="/vote/">Community votes</a><a href="/careers/apply/">Apply</a></div>
-</div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
-<p>Research records: <a href="https://osf.io/5b6mj/overview">Protocol LOC-1 preregistration (OSF)</a> &middot; <a href="https://doi.org/10.5281/zenodo.23583932">Whitepaper (Zenodo DOI 10.5281/zenodo.23583932)</a>.</p>
-<p>&copy; 2026 Project S.P.H.E.R.E. Research-page text is offered under CC BY 4.0; third-party materials retain their own terms.</p></div></footer>'''
+FOOTER = _nav_spec.FOOTER_HTML
+
 
 
 def page(path, title, desc, h1, lede, body, toc, *, eyebrow, parent, navkey, updated=None, extra_ld=None, extra_script="", og_type="website", crumb=None, added=None, image=None):
