@@ -82,6 +82,7 @@ This is a pre-launch research project. Copy must stay honest about that.
 | Pages | Source of truth | Rebuild with |
 | --- | --- | --- |
 | `/links/`, `/directory/`, `/calendar/`, `/newsletter/` (and issues), `/careers/apply/` | `data/links.json`, `data/directory.json`, `data/events.json`, `data/newsletters.json`, `data/newsletters/*.html` | `python3 tools/build-directory.py` |
+| `/changelog/`, homepage `#changelog` section, and footer site-version badge | `data/changelog.json` | `python3 tools/build-changelog.py` (also runs during `npm run build`) |
 | `/vl/` | `data/vl-repo.json` (snapshot of the control-room repo) | `python3 tools/build-vl.py` (refresh snapshot: `--snapshot /path/to/sphere-control-room-v2`) |
 | `assets/vl/` link art | generated | `python3 tools/make-vl-art.py` |
 | `/whitepaper/` | `content/whitepaper.mdx` (uses `protocol/index.html` as its template) | `npm i --no-save katex@0.16.11 marked@12 && node tools/build-whitepaper.mjs` |

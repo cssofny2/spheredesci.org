@@ -124,8 +124,15 @@ NAV_SECTIONS = [
                 "key": "updates",
                 "href": "/updates/",
                 "label": "Project updates",
-                "desc": "Roadmap milestones & public changelog",
+                "desc": "Roadmap milestones & field notes",
                 "icon": "ni-updates",
+            },
+            {
+                "key": "changelog",
+                "href": "/changelog/",
+                "label": "Site changelog",
+                "desc": "Version number & chronological release log",
+                "icon": "ni-changelog",
             },
             {
                 "key": "faq",
@@ -346,7 +353,7 @@ FOOTER_HTML = '''<footer class="site-footer"><div class="footer-inner"><div clas
 <div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
 <p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p><p>Founded by <a href="https://michaelpgoodman.com/">Michael P. Goodman</a></p></div>
 <div><h3>Experiment &amp; Library</h3><a href="/protocol/">Protocol LOC-1</a><a href="/whitepaper/">Whitepaper</a><a href="/resources/">Resources &amp; hardware</a><a href="/vl/">Visual Lab (SPHEREVL)</a><a href="/research/">Research journal</a><a href="/knowledge/">Knowledge base</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a></div>
-<div><h3>Governance</h3><a href="/about/">About S.P.H.E.R.E.</a><a href="/transparency/">Budget &amp; transparency</a><a href="/charter/">Research charter</a><a href="/updates/">Project updates</a><a href="/faq/">Questions &amp; answers</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
+<div><h3>Governance</h3><a href="/about/">About S.P.H.E.R.E.</a><a href="/transparency/">Budget &amp; transparency</a><a href="/charter/">Research charter</a><a href="/updates/">Project updates</a><a href="/changelog/">Site changelog</a><a href="/faq/">Questions &amp; answers</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
 <div><h3>Community</h3><a href="/collaborate/">Collaborate</a><a href="/vote/">Community votes</a><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/careers/">Careers</a><a href="/links/">Links &amp; profiles</a><a href="/search/">Search archive</a></div>
 </div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
 <p>Research records: <a href="https://osf.io/5b6mj/overview">Protocol LOC-1 preregistration (OSF)</a> &middot; <a href="https://doi.org/10.5281/zenodo.23583932">Whitepaper (Zenodo DOI 10.5281/zenodo.23583932)</a>.</p>
