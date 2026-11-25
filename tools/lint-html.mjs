@@ -5,9 +5,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SKIP_DIRS = new Set(["node_modules", ".git", ".github", ".wrangler", "tools", "data", "content", "worker", "migrations"]);
+const SKIP_DIRS = new Set(["node_modules", ".git", ".github", ".wrangler", "tools", "data", "content", "worker", "migrations", "docs"]);
 const SKIP_FILES = new Set(["panton.html"]);
-const NOINDEX_OK = new Set(["404.html", "admin/content-insights/index.html", "analytics/index.html", "projects/panton/index.html"]);
+const NOINDEX_OK = new Set(["404.html", "admin/content-insights/index.html", "analytics/index.html", "projects/index.html", "projects/panton/index.html"]);
 const NOINDEX_PREFIXES = ["research/archive/", "research/category/", "research/tag/", "research/authors/"];
 
 async function* walk(dir) {

@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://spheredesci.org"
 DEFAULT_IMAGE = SITE + "/assets/brand/og-image.png?v=2"
 DEFAULT_ALT = "Project S.P.H.E.R.E. copper sphere resonance research"
-SKIP_DIRS = {"node_modules", "data", "worker", "tools", "content", "migrations", "admin", "analytics"}
+SKIP_DIRS = {"node_modules", "data", "worker", "tools", "content", "migrations", "admin", "analytics", "docs"}
 
 
 def social_tags(title, description, url, image=DEFAULT_IMAGE, og_type="website", alt=DEFAULT_ALT):
@@ -85,7 +85,7 @@ def main():
     changed = 0
     for path in sorted(ROOT.rglob("*.html")):
         rel = path.relative_to(ROOT)
-        if rel.parts[0].startswith(".") or rel.parts[0] in SKIP_DIRS or rel.name == "panton.html":
+        if rel.parts[0].startswith(".") or rel.parts[0] in SKIP_DIRS or rel.name == "panton.html" or rel.parts[:2] == ("projects", "panton"):
             continue
         changed += process(path)
     print(("Would update" if "--check" in sys.argv else "Updated"), changed, "pages")

@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://spheredesci.org";
 const FEED_LINK = '<link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. RSS Feed" href="/rss.xml" />';
-const SKIP = new Set(["node_modules", ".git", ".github", "tools", "data", "content", "worker", "migrations", "admin"]);
+const SKIP = new Set(["node_modules", ".git", ".github", "tools", "data", "content", "worker", "migrations", "admin", "docs"]);
 
 // The site is published in one language. Each indexable page declares itself as
 // the English version and as the x-default fallback, pointing at its canonical
@@ -47,11 +47,11 @@ function enrichNode(node, sameAs) {
   if (Array.isArray(node)) return node.forEach((n) => enrichNode(n, sameAs));
   if (!node || typeof node !== "object") return;
   const types = [].concat(node["@type"] || []);
-  if (types.includes("Organization") || types.includes("WebSite")) {
-    const id = String(node["@id"] || "");
-    if (id === `${SITE}/#organization` || id === `${SITE}/#website`) {
-      node.sameAs = [...new Set([...(node.sameAs || []), ...sameAs])];
-    }
+  const id = String(node["@id"] || "");
+  if (types.includes("Organization") && id === `${SITE}/#organization`) {
+    node.sameAs = [...sameAs];
+  } else if (types.includes("WebSite") && id === `${SITE}/#website`) {
+    delete node.sameAs;
   }
   if (Array.isArray(node["@graph"])) {
     const graph = node["@graph"];
@@ -76,8 +76,11 @@ export function applySameAs(html, sameAs) {
 
 async function* walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
-    if (entry.isDirectory()) { if (!SKIP.has(entry.name)) yield* walk(path.join(dir, entry.name)); }
-    else if (entry.name.endsWith(".html")) yield path.join(dir, entry.name);
+    const full = path.join(dir, entry.name);
+    const rel = path.relative(ROOT, full).split(path.sep).join("/");
+    if (rel === "panton.html" || rel === "projects/panton" || rel.startsWith("projects/panton/")) continue;
+    if (entry.isDirectory()) { if (!SKIP.has(entry.name)) yield* walk(full); }
+    else if (entry.name.endsWith(".html")) yield full;
   }
 }
 

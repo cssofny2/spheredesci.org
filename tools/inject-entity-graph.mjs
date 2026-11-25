@@ -6,7 +6,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SKIP = new Set(['.git', '.github', '.impeccable', '.wrangler', 'node_modules', 'tools', 'data', 'content', 'worker', 'migrations', 'panton.html']);
+const SKIP = new Set(['.git', '.github', '.impeccable', '.wrangler', 'node_modules', 'tools', 'data', 'content', 'worker', 'migrations', 'docs', 'panton.html']);
+
+const meta = JSON.parse(fs.readFileSync(path.join(root, 'data', 'program-metadata.json'), 'utf8'));
+const profiles = JSON.parse(fs.readFileSync(path.join(root, 'data', 'entity-profiles.json'), 'utf8'));
+const ORG_SAME_AS = [...new Set([
+  ...(profiles.github || []),
+  ...(profiles.orcid || []),
+  ...(profiles.registries || []),
+  ...(profiles.social || []),
+].filter((u) => typeof u === 'string' && /^https:\/\//i.test(u)))];
 
 const ORG = 'https://spheredesci.org/#organization';
 const PERSON = 'https://michaelpgoodman.com/#person';
@@ -16,48 +25,52 @@ const NODES = [
   {
     '@type': ['Organization', 'ResearchOrganization'],
     '@id': ORG,
-    name: 'Project S.P.H.E.R.E.',
-    alternateName: 'Project SPHERE DeSci Metrology Initiative',
+    name: meta.programName,
+    alternateName: meta.fullName,
+    legalName: meta.legalEntity.name,
     url: 'https://spheredesci.org/',
-    description: 'Open-research Decentralized Science (DeSci) metrology initiative investigating acoustic and electromagnetic resonance, precision instrumentation, and the locational variable hypothesis.',
-    location: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Rochester', addressRegion: 'NY', addressCountry: 'US' } },
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://spheredesci.org/assets/brand/sphere-icon-512.png',
+      width: 512,
+      height: 512,
+    },
+    email: meta.contactEmail,
+    description: meta.positioning.program,
+    location: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: meta.legalEntity.location.locality,
+        addressRegion: meta.legalEntity.location.region,
+        addressCountry: meta.legalEntity.location.country,
+      },
+    },
     founder: { '@id': PERSON },
+    sameAs: ORG_SAME_AS,
   },
   {
     '@type': 'Person',
     '@id': PERSON,
-    name: 'Michael P. Goodman',
-    alternateName: 'Michael Goodman',
-    jobTitle: 'Principal Architect, IT Infrastructure, Sovereign AI & Managed Services Consultant',
-    url: 'https://michaelpgoodman.com/',
-    mainEntityOfPage: 'https://michaelpgoodman.com/about/',
-    worksFor: {
-      '@type': 'ProfessionalService',
-      '@id': 'https://michaelpgoodman.com/#service',
-      name: 'Michael P. Goodman — IT Infrastructure, Sovereign AI & Managed Services',
-      url: 'https://michaelpgoodman.com/services/'
-    },
-    hasCredential: [
-      'Microsoft Certified Systems Engineer + Internet (MCSE+I)',
-      'ITIL Foundation Certification',
-      'CompTIA Network+',
-      'CompTIA A+',
-      'Certified Commercial Investment Member (CCIM)'
-    ].map((name) => ({ '@type': 'EducationalOccupationalCredential', credentialCategory: 'Certification', name })),
+    name: meta.legalEntity.principal.name,
+    jobTitle: `${meta.legalEntity.principal.role}, ${meta.legalEntity.name}`,
+    url: meta.legalEntity.principal.personalSite,
+    identifier: meta.legalEntity.principal.orcid,
     sameAs: [
-      'https://michaelpgoodman.com/',
-      'https://michaelpgoodman.com/biography/',
-      'https://github.com/cssofny2'
-    ]
+      meta.legalEntity.principal.orcid,
+      meta.legalEntity.principal.personalSite,
+      meta.legalEntity.principal.github,
+    ],
   },
   {
     '@type': 'WebSite',
     '@id': SITE,
     url: 'https://spheredesci.org/',
-    name: 'Project S.P.H.E.R.E. | Decentralized Science & Precision Metrology',
+    name: meta.programName,
+    alternateName: meta.fullName,
     publisher: { '@id': ORG },
     creator: { '@id': PERSON },
-    inLanguage: 'en-US'
+    inLanguage: 'en',
   }
 ];
 
@@ -65,6 +78,8 @@ function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (SKIP.has(e.name) && dir === root) continue;
     const p = path.join(dir, e.name);
+    const rel = path.relative(root, p).split(path.sep).join('/');
+    if (rel === 'projects/panton' || rel.startsWith('projects/panton/')) continue;
     if (e.isDirectory()) walk(p, out);
     else if (e.name.endsWith('.html')) out.push(p);
   }
@@ -83,8 +98,24 @@ function mergeGraph(doc) {
   }
   for (const node of NODES) {
     const i = graph.findIndex((n) => n && n['@id'] === node['@id']);
-    if (i >= 0) graph[i] = { ...graph[i], ...node };
-    else graph.push(node);
+    if (i >= 0) {
+      const merged = { ...graph[i], ...node };
+      if (node['@id'] === PERSON) {
+        delete merged.worksFor;
+        delete merged.hasCredential;
+        delete merged.mainEntityOfPage;
+        delete merged.alternateName;
+      }
+      if (node['@id'] === ORG) {
+        merged.sameAs = ORG_SAME_AS;
+      }
+      if (node['@id'] === SITE) {
+        delete merged.sameAs;
+      }
+      graph[i] = merged;
+    } else {
+      graph.push(node);
+    }
   }
   return { '@context': ctx, '@graph': graph };
 }
@@ -105,7 +136,7 @@ function injectLd(html) {
   return html;
 }
 
-const ATTRIBUTION = `<div class="footer-entity-attribution"><p>Project S.P.H.E.R.E. infrastructure and sovereign local AI pipelines architected by <a href="https://michaelpgoodman.com/" rel="author me" title="Michael P. Goodman — IT Infrastructure, Sovereign AI &amp; Managed Services"><strong>Michael P. Goodman</strong></a> — <a href="https://michaelpgoodman.com/services/" title="IT Infrastructure, Sovereign AI &amp; Managed IT Services Consulting">IT Infrastructure, Sovereign AI &amp; Managed Services Architect</a> (<a href="https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure" title="Project S.P.H.E.R.E. Sovereign Local AI Case Study">AI Infrastructure Case Study</a> · <a href="https://michaelpgoodman.com/biography/" rel="me" title="Michael P. Goodman Biography">Biography</a> · <a href="https://github.com/cssofny2" rel="me" title="Michael P. Goodman GitHub (@cssofny2)">GitHub @cssofny2</a>). SPHEREVL is an educational simulation, not measurements or scientific validation.</p></div>`;
+const ATTRIBUTION = `<div class="footer-entity-attribution"><p>Operated by <strong>SPHERE Research, LLC</strong> (Rochester, NY; Founder &amp; Sole Managing Member: <a href="https://orcid.org/0009-0008-3796-5857" rel="noopener" title="Michael P. Goodman ORCID record"><strong>Michael P. Goodman</strong>, ORCID 0009-0008-3796-5857</a>). <a href="https://michaelpgoodman.com/" rel="noopener" title="Michael P. Goodman personal site (separate commercial and portfolio entity)">michaelpgoodman.com</a> and unrelated hosted pages are separate from Project S.P.H.E.R.E. (<a href="/about/#entity-separation">Entity separation &amp; COI</a>). SPHEREVL is a Level 0 educational simulation, not physical measurements or scientific validation. Corrections: <a href="mailto:contact@spheredesci.org">contact@spheredesci.org</a>.</p></div>`;
 const ATTRIBUTION_WITH_LINK_CUES = ATTRIBUTION.replaceAll('<a ', '<a style="text-decoration:underline;text-underline-offset:2px" ');
 
 const escapeHtml = (value) => String(value)
@@ -133,7 +164,7 @@ if (fs.existsSync(changelogPath)) {
   }
 }
 
-const RECORDS = `<div class="footer-records" aria-label="Permanent Protocol LOC-1 records"><p class="footer-records-label">Permanent research records</p><ul><li><a class="record-badge" href="https://osf.io/5b6mj/overview" rel="noopener" title="Official, live Protocol LOC-1 preregistration on the Open Science Framework"><span class="record-badge-key">OSF · LIVE</span><span class="record-badge-val">Official Protocol LOC-1 preregistration</span></a></li><li><a class="record-badge" href="https://doi.org/10.5281/zenodo.23583932" rel="noopener" title="Archived technical whitepaper at Zenodo"><span class="record-badge-key">DOI</span><span class="record-badge-val">10.5281/zenodo.23583932 · Archived whitepaper</span></a></li></ul></div>`;
+const RECORDS = `<div class="footer-records" aria-label="Permanent Protocol LOC-1 records"><p class="footer-records-label">Permanent research records</p><ul><li><a class="record-badge" href="https://osf.io/5b6mj/overview" rel="noopener" title="Official, live Protocol LOC-1 preregistration on the Open Science Framework"><span class="record-badge-key">OSF · LIVE</span><span class="record-badge-val">Official Protocol LOC-1 preregistration</span></a></li><li><a class="record-badge" href="https://doi.org/10.5281/zenodo.23583932" rel="noopener" title="Archived technical whitepaper v1.0 at Zenodo (superseded by v2.0 on spheredesci.org)"><span class="record-badge-key">DOI</span><span class="record-badge-val">10.5281/zenodo.23583932 · Archived whitepaper</span></a></li></ul></div>`;
 
 function injectFooter(html) {
   return html.replace(/<footer\b[\s\S]*?<\/footer>/, (footer) => {

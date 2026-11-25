@@ -864,37 +864,43 @@ function rssFeed(records) {
 <rss version="2.0"><channel><title>Project S.P.H.E.R.E. Research</title><link>${SITE}/research/</link><description>Proposal-stage research and methods from Project S.P.H.E.R.E. Hypotheses are not findings.</description><language>en</language><lastBuildDate>${new Date(`${TODAY}T00:00:00Z`).toUTCString()}</lastBuildDate>${items}</channel></rss>\n`;
 }
 
-function updateSitemap(urls) {
+function updateSitemap(urls, dateByUrl = new Map()) {
   return readFile(path.join(ROOT, "sitemap.xml"), "utf8").then(async (current) => {
     const allowed = new Set(urls.map((url) => absolute(url)));
     const prefixes = ["/research/", "/knowledge/", "/glossary/"];
-    const pruned = [];
-    const entries = [...current.matchAll(/<url>[\s\S]*?<\/url>/g)].map((match) => {
-      let entry = match[0];
-      const loc = decodeHtml(entry.match(/<loc>([\s\S]*?)<\/loc>/)?.[1] || "");
-      if (prefixes.some((prefix) => loc.startsWith(`${SITE}${prefix}`)) && !allowed.has(loc)) { pruned.push(entry); return null; }
+    const dropExact = new Set([`${SITE}/projects/`]);
+    const known = new Set();
+    let updated = current.replace(/<url>[\s\S]*?<\/url>[ \t]*\r?\n?/g, (full) => {
+      const loc = decodeHtml(full.match(/<loc>([\s\S]*?)<\/loc>/)?.[1] || "");
+      if (dropExact.has(loc)) return "";
+      if (prefixes.some((prefix) => loc.startsWith(`${SITE}${prefix}`)) && !allowed.has(loc)) return "";
+      known.add(loc);
       if (allowed.has(loc)) {
-        entry = /<lastmod>[\s\S]*?<\/lastmod>/.test(entry)
-          ? entry.replace(/<lastmod>[\s\S]*?<\/lastmod>/, `<lastmod>${TODAY}</lastmod>`)
-          : entry.replace("</url>", `<lastmod>${TODAY}</lastmod></url>`);
+        const targetDate = dateByUrl.get(loc) || TODAY;
+        if (/<lastmod>[\s\S]*?<\/lastmod>/.test(full)) {
+          const existing = full.match(/<lastmod>([\s\S]*?)<\/lastmod>/)?.[1]?.trim() || "";
+          if (targetDate > existing) {
+            return full.replace(/<lastmod>[\s\S]*?<\/lastmod>/, `<lastmod>${targetDate}</lastmod>`);
+          }
+          return full;
+        }
+        return full.replace("</url>", `<lastmod>${targetDate}</lastmod></url>`);
       }
-      return entry;
-    }).filter(Boolean);
-    const known = new Set(entries.map((entry) => decodeHtml(entry.match(/<loc>([\s\S]*?)<\/loc>/)?.[1] || "")));
-    const additions = urls.filter((url) => !known.has(absolute(url))).map((url) => `<url><loc>${xml(absolute(url))}</loc><lastmod>${TODAY}</lastmod></url>`);
-    const closing = current.lastIndexOf("</urlset>");
-    if (closing < 0) throw new Error("sitemap.xml does not contain a closing </urlset>.");
-    // Drop pages that are no longer published (for example noindex taxonomy pages); every other entry stays untouched.
-    let kept = current;
-    for (const entry of pruned) {
-      const start = kept.indexOf(entry);
-      let stop = start + entry.length;
-      if (kept[stop] === "\r") stop++;
-      if (kept[stop] === "\n") stop++;
-      kept = kept.slice(0, start) + kept.slice(stop);
-    }
-    const end = kept.lastIndexOf("</urlset>");
-    await writeFile(path.join(ROOT, "sitemap.xml"), `${kept.slice(0, end)}${additions.join("\n")}${kept.slice(end)}`);
+      return full;
+    });
+    const additions = urls
+      .filter((url) => !known.has(absolute(url)))
+      .map((url) => {
+        const abs = absolute(url);
+        const date = dateByUrl.get(abs) || TODAY;
+        return `<url><loc>${xml(abs)}</loc><lastmod>${date}</lastmod></url>`;
+      });
+    const end = updated.lastIndexOf("</urlset>");
+    if (end < 0) throw new Error("sitemap.xml does not contain a closing </urlset>.");
+    const prefix = updated.slice(0, end);
+    const suffix = updated.slice(end);
+    const joiner = additions.length ? `${prefix.endsWith("\n") ? "" : "\n"}${additions.join("\n")}\n` : "";
+    await writeFile(path.join(ROOT, "sitemap.xml"), `${prefix}${joiner}${suffix}`);
   });
 }
 
@@ -1075,14 +1081,21 @@ await writeFile(path.join(ROOT, "assets", "publication-search.json"), safeJson(a
 }))));
 await writeFile(path.join(ROOT, "rss.xml"), rssFeed(researchRecords));
 await updateLegacyPages(legacy, allSearchRecords);
+const sitemapDates = new Map([
+  ...allSearchRecords.map((record) => [absolute(record.url), record.updated]),
+  [absolute("/research/"), TODAY],
+  [absolute("/knowledge/"), TODAY],
+  [absolute("/glossary/"), TODAY],
+  [absolute("/search/"), TODAY],
+]);
 await updateSitemap([
-  "/", "/updates/", "/changelog/", "/privacy/",
+  "/", "/updates/", "/changelog/", "/privacy/", "/search/",
   "/research/",
   ...researchContent.map((record) => record.url),
   ...legacy.map((record) => record.url),
   ...knowledgeContent.map((record) => record.url),
   ...glossaryRecords.map((record) => record.url),
   "/knowledge/", "/glossary/",
-]);
+], sitemapDates);
 
 console.log(`Built publication: ${researchRecords.length} research pages, ${knowledgeRecords.length} knowledge pages, ${glossaryRecords.length} glossary terms, ${categoryRoutes.size} categories, ${tagRoutes.size} tags, ${authorProfiles.length} authors.`);

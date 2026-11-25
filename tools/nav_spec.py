@@ -28,7 +28,7 @@ NAV_SECTIONS = [
                 "key": "whitepaper",
                 "href": "/whitepaper/",
                 "label": "Whitepaper",
-                "desc": "Archived technical paper (Zenodo DOI)",
+                "desc": "Controlled v2.0 spec & Zenodo archive",
                 "icon": "ni-whitepaper",
             },
             {
@@ -110,7 +110,7 @@ NAV_SECTIONS = [
                 "key": "transparency",
                 "href": "/transparency/",
                 "label": "Budget & transparency",
-                "desc": "Three-phase funding plan & controls",
+                "desc": "Readiness budget, funding & controls",
                 "icon": "ni-transparency",
             },
             {
@@ -351,10 +351,10 @@ def render_nav(current: str | None = None, include_skip: bool = True) -> str:
 
 FOOTER_HTML = '''<footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
 <div><p class="footer-name">Project S.P.H.E.R.E.</p><p>Spatial Positioning Harmonic Empirical Resonance Experiment</p>
-<p>Independent, open experimental research.<br>Proposal stage. No measurement results yet.</p><p>Founded by <a href="https://michaelpgoodman.com/">Michael P. Goodman</a></p></div>
-<div><h3>Experiment &amp; Library</h3><a href="/protocol/">Protocol LOC-1</a><a href="/whitepaper/">Whitepaper</a><a href="/resources/">Resources &amp; hardware</a><a href="/vl/">Visual Lab (SPHEREVL)</a><a href="/research/">Research journal</a><a href="/knowledge/">Knowledge base</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a></div>
+<p>Staged, open experimental research program.<br>Protocol LOC-1 registered on OSF; pre-results.</p><p>Operated by SPHERE Research, LLC &middot; Founded by <a href="https://michaelpgoodman.com/">Michael P. Goodman</a></p></div>
+<div><h3>Experiment &amp; Library</h3><a href="/protocol/">Protocol LOC-1</a><a href="/whitepaper/">Whitepaper (v2.0)</a><a href="/resources/">Resources &amp; hardware</a><a href="/vl/">Visual Lab (SPHEREVL)</a><a href="/research/">Research journal</a><a href="/knowledge/">Knowledge base</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a></div>
 <div><h3>Governance</h3><a href="/about/">About S.P.H.E.R.E.</a><a href="/transparency/">Budget &amp; transparency</a><a href="/charter/">Research charter</a><a href="/updates/">Project updates</a><a href="/changelog/">Site changelog</a><a href="/faq/">Questions &amp; answers</a><a href="/privacy/">Privacy notice</a><a href="https://github.com/cssofny2/spheredesci.org">GitHub repository</a></div>
 <div><h3>Community</h3><a href="/collaborate/">Collaborate</a><a href="/vote/">Community votes</a><a href="/calendar/">Calendar</a><a href="/newsletter/">Newsletter</a><a href="/directory/">Directory</a><a href="/careers/">Careers</a><a href="/links/">Links &amp; profiles</a><a href="/search/">Search archive</a></div>
-</div><p>Hypotheses are not findings. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
-<p>Research records: <a href="https://osf.io/5b6mj/overview">Protocol LOC-1 preregistration (OSF)</a> &middot; <a href="https://doi.org/10.5281/zenodo.23583932">Whitepaper (Zenodo DOI 10.5281/zenodo.23583932)</a>.</p>
-<p>&copy; 2026 Project S.P.H.E.R.E. Research-page text is offered under CC BY 4.0; third-party materials retain their own terms.</p></div></footer>'''
+</div><p>Hypotheses are not findings. A position-associated residual is not a mechanism, and resonance is not energy generation. Contributions do not purchase equity, tokens, royalties, or a financial return.</p>
+<p>Research records: <a href="https://osf.io/5b6mj/overview">Protocol LOC-1 preregistration (OSF)</a> &middot; <a href="https://doi.org/10.5281/zenodo.23583932">Whitepaper v1.0 archive (Zenodo DOI 10.5281/zenodo.23583932)</a>.</p>
+<p>&copy; 2026 SPHERE Research, LLC. Research-page text is offered under CC BY 4.0; software and third-party materials retain their respective licenses.</p></div></footer>'''

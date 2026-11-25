@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from nav_spec import nav_key_for_relpath, render_nav  # noqa: E402
 
-SKIP_DIRS = {"node_modules", ".git", ".github", ".wrangler", "tools", "data", "content", "worker", "migrations"}
+SKIP_DIRS = {"node_modules", ".git", ".github", ".wrangler", "tools", "data", "content", "worker", "migrations", "docs"}
 SKIP_FILES = {"panton.html"}
 NAV_RE = re.compile(r'<nav class="site-nav"[\s\S]*?</nav>')
 
@@ -24,7 +24,7 @@ def main() -> int:
     updated = 0
     for path in sorted(ROOT.rglob("*.html")):
         rel = path.relative_to(ROOT)
-        if any(part in SKIP_DIRS for part in rel.parts) or rel.name in SKIP_FILES:
+        if any(part in SKIP_DIRS for part in rel.parts) or rel.name in SKIP_FILES or rel.parts[:2] == ("projects", "panton"):
             continue
         html = path.read_text(encoding="utf-8")
         if '<nav class="site-nav"' not in html:

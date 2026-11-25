@@ -138,10 +138,10 @@ def process(route, cfg, check):
 
 def ensure_analytics(check):
     changed = 0
-    skip = {"node_modules", "data", "worker", "tools", "content", "migrations", "admin", "analytics"}
+    skip = {"node_modules", "data", "worker", "tools", "content", "migrations", "admin", "analytics", "docs"}
     for path in sorted(ROOT.rglob("*.html")):
         rel = path.relative_to(ROOT)
-        if rel.parts[0].startswith(".") or rel.parts[0] in skip or rel.name == "panton.html":
+        if rel.parts[0].startswith(".") or rel.parts[0] in skip or rel.name == "panton.html" or rel.parts[:2] == ("projects", "panton"):
             continue
         page = path.read_text(encoding="utf-8")
         if "/assets/analytics.js" in page or "</head>" not in page:

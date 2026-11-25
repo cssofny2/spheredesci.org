@@ -15,17 +15,27 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://spheredesci.org"
-SKIP_DIRS = {"node_modules", "data", "worker", "tools", "content", "migrations", "admin"}
+SKIP_DIRS = {"node_modules", "data", "worker", "tools", "content", "migrations", "admin", "docs"}
+
+_META = json.loads((ROOT / "data" / "program-metadata.json").read_text(encoding="utf-8"))
+_PROFILES = json.loads((ROOT / "data" / "entity-profiles.json").read_text(encoding="utf-8"))
+_ORG_SAME_AS = sorted({
+    u for k in ("github", "orcid", "registries", "social")
+    for u in _PROFILES.get(k, [])
+    if isinstance(u, str) and u.startswith("https://")
+})
 
 ORG = {
-    "@type": "Organization",
+    "@type": ["Organization", "ResearchOrganization"],
     "@id": SITE + "/#organization",
-    "name": "Project S.P.H.E.R.E.",
-    "alternateName": "Spatial Positioning Harmonic Empirical Resonance Experiment",
+    "name": _META["programName"],
+    "alternateName": _META["fullName"],
+    "legalName": _META["legalEntity"]["name"],
     "url": SITE + "/",
     "logo": {"@type": "ImageObject", "url": SITE + "/assets/brand/sphere-icon-512.png", "width": 512, "height": 512},
-    "email": "contact@spheredesci.org",
-    "sameAs": ["https://github.com/cssofny2/spheredesci.org"],
+    "email": _META["contactEmail"],
+    "description": _META["positioning"]["program"],
+    "sameAs": _ORG_SAME_AS,
 }
 SEARCH = {
     "@type": "SearchAction",
@@ -34,8 +44,6 @@ SEARCH = {
 }
 # Published Protocol LOC-1 OSF preregistration and Zenodo whitepaper DOI.
 RECORDS = ["https://osf.io/5b6mj/overview", "https://doi.org/10.5281/zenodo.23583932"]
-# Founder and associated sites are separate entities, so they must not appear in Organization.sameAs.
-NOT_SAME_AS = {"https://michaelpgoodman.com/", "https://fieldsofgreenrochester.com/"}
 LD_RE = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.S)
 
 
@@ -46,19 +54,15 @@ def patch_graph(data):
     before = json.dumps(data, sort_keys=True)
     site = next((n for n in graph if n.get("@id") == SITE + "/#website"), None)
     if site is None:
-        site = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Project S.P.H.E.R.E."}
+        site = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": _META["programName"]}
         graph.insert(0, site)
     org = next((n for n in graph if n.get("@id") == ORG["@id"]), None)
     if org is None:
         graph.insert(graph.index(site), json.loads(json.dumps(ORG)))
     else:
         for key, value in ORG.items():
-            if key == "sameAs":
-                merged = set(org.get(key, [])) | set(value)
-                org[key] = sorted(merged - NOT_SAME_AS)
-            else:
-                org[key] = value
-    site["sameAs"] = sorted(set(site.get("sameAs", [])) - set(RECORDS))
+            org[key] = list(value) if isinstance(value, list) else value
+    site.pop("sameAs", None)
     site["citation"] = list(RECORDS)
     site["publisher"] = {"@id": ORG["@id"]}
     site["inLanguage"] = "en"
@@ -113,7 +117,7 @@ def main():
     changed = []
     for path in sorted(ROOT.rglob("*.html")):
         rel = path.relative_to(ROOT)
-        if rel.parts[0].startswith(".") or rel.parts[0] in SKIP_DIRS or rel.name == "panton.html":
+        if rel.parts[0].startswith(".") or rel.parts[0] in SKIP_DIRS or rel.name == "panton.html" or rel.parts[:2] == ("projects", "panton"):
             continue
         if process(path):
             changed.append(str(rel))
