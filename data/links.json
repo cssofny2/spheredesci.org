@@ -1,23 +1,29 @@
 {
-  "updated": "2026-10-09",
+  "updated": "2026-11-24",
   "note": "Entries without a \"url\" are skipped by tools/build-directory.py. Add the URL and rerun the tool to publish an entry.",
   "groups": [
     {
       "id": "project",
-      "title": "Project S.P.H.E.R.E.",
-      "intro": "Primary project channels.",
+      "title": "Project S.P.H.E.R.E. Official Channels & Research Records",
+      "intro": "Primary project channels and permanent scientific records operated by SPHERE Research, LLC.",
       "items": [
-        {"name": "Website", "url": "https://spheredesci.org/", "desc": "Research pages, the registered protocol and project updates.", "internal": true},
-        {"name": "GitHub", "url": "https://github.com/cssofny2/spheredesci.org", "desc": "Public source repository and change history for this website. Issues are public."},
-        {"name": "Email", "url": "mailto:contact@spheredesci.org", "label": "contact@spheredesci.org", "desc": "General inquiries, review offers and privacy requests."},
-        {"name": "Newsletter", "url": "/newsletter/", "desc": "Subscribe, opt out, and read every issue.", "internal": true},
-        {"name": "Calendar", "url": "/calendar/", "desc": "Upcoming events and dates.", "internal": true}
+        {"name": "Website", "url": "https://spheredesci.org/", "desc": "Public research portal, registered LOC-1 overview, Whitepaper v2.0, and project updates.", "internal": true},
+        {"name": "Technical Whitepaper (v2.0)", "url": "/whitepaper/", "desc": "Controlled versioned specification (SPHERE-WP-001 v2.0; pre-results).", "internal": true},
+        {"name": "Protocol LOC-1 Preregistration (OSF)", "url": "https://osf.io/5b6mj/overview", "desc": "Immutable registered Phase 1 study plan on the Open Science Framework."},
+        {"name": "Zenodo Whitepaper Archive (v1.0)", "url": "https://doi.org/10.5281/zenodo.23583932", "desc": "Permanent archive of Version 1.0 (DOI 10.5281/zenodo.23583932); Version 2.0 deposit pending."},
+        {"name": "SPHEREVL Visual Lab Overview", "url": "/vl/", "desc": "Level 0 educational simulation overview (not physical measurements or scientific validation).", "internal": true},
+        {"name": "SPHEREVL Live Simulator", "url": "https://lab.spheredesci.org", "desc": "Interactive Control Room educational simulation (Level 0; not measured evidence)."},
+        {"name": "GitHub Website Repository", "url": "https://github.com/cssofny2/spheredesci.org", "desc": "Public source repository, build verification scripts, and change history for spheredesci.org."},
+        {"name": "GitHub Control Room Repository", "url": "https://github.com/cssofny2/sphere-control-room-v2", "desc": "Source repository for the SPHEREVL educational simulator."},
+        {"name": "Email & Corrections", "url": "mailto:contact@spheredesci.org", "label": "contact@spheredesci.org", "desc": "General inquiries, independent technical review offers, corrections, and privacy requests."},
+        {"name": "Newsletter", "url": "/newsletter/", "desc": "Subscribe, opt out, and read every periodic dispatch.", "internal": true},
+        {"name": "Calendar", "url": "/calendar/", "desc": "Upcoming project and open-science events.", "internal": true}
       ]
     },
     {
       "id": "social",
       "title": "Social media profiles",
-      "intro": "Official profiles. Posts are not research findings.",
+      "intro": "Official profiles once verified. Social posts are not scientific findings or protocol amendments.",
       "items": [
         {"name": "LinkedIn company page", "url": "", "desc": ""},
         {"name": "YouTube", "url": "", "desc": ""},
@@ -29,22 +35,17 @@
     },
     {
       "id": "related",
-      "title": "Founder and related business pages",
-      "intro": "Operated separately from Project S.P.H.E.R.E. A listing here is not an endorsement, partnership or statement of shared ownership.",
+      "title": "Founder profile (operated separately)",
+      "intro": "Operated independently of SPHERE Research, LLC and Project S.P.H.E.R.E. Listed solely for founder transparency and conflict-of-interest disclosure; commercial services do not constitute scientific evidence or endorsement.",
       "items": [
-        {"name": "Michael P. Goodman — IT Infrastructure, Sovereign AI & Managed Services", "url": "https://michaelpgoodman.com/", "desc": "Founder's personal and professional website."},
-        {"name": "Sovereign IT & AI Architecture Services", "url": "https://michaelpgoodman.com/services/", "desc": "Founder's separate IT infrastructure and managed services practice."},
-        {"name": "Project S.P.H.E.R.E. Sovereign AI Reference Build (Case Study)", "url": "https://michaelpgoodman.com/projects/sphere-desci-ai-infrastructure", "desc": "Case study of the local AI infrastructure behind this project's tooling."},
-        {"name": "SPHERE Virtual Lab Engineering Architecture", "url": "https://michaelpgoodman.com/projects/sphere-virtual-lab", "desc": "Engineering architecture notes for the SPHEREVL educational simulation."},
-        {"name": "Michael P. Goodman Executive Biography & Credentials", "url": "https://michaelpgoodman.com/biography/", "desc": "Founder's professional biography and credentials."},
-        {"name": "Better Business Bureau (BBB) profile", "url": "", "desc": ""},
-        {"name": "Brilliant Repairs", "url": "", "desc": ""}
+        {"name": "Michael P. Goodman — ORCID", "url": "https://orcid.org/0009-0008-3796-5857", "desc": "Persistent researcher identifier for Michael P. Goodman (SPHERE Research, LLC)."},
+        {"name": "Michael P. Goodman — Personal Website", "url": "https://michaelpgoodman.com/", "desc": "Founder's separate personal site and independent IT/AI consulting practice (not part of S.P.H.E.R.E. research)."}
       ]
     },
     {
       "id": "documents",
       "title": "Documents",
-      "intro": "Agreements and forms.",
+      "intro": "Governance and operational agreements once formally adopted.",
       "items": [
         {"name": "Confidentiality agreement", "url": "", "desc": ""}
       ]

@@ -1,0 +1,150 @@
+{
+  "$schema_note": "Canonical single source of truth for Project S.P.H.E.R.E. program identity, scientific positioning, document identifiers, reconciled budget staging, and entity-separation metadata. Excluded from public static assets via .assetsignore.",
+  "programName": "Project S.P.H.E.R.E.",
+  "fullName": "Spatial Positioning Harmonic Empirical Resonance Experiment",
+  "labBrand": "SPHEREVL",
+  "domain": "https://spheredesci.org",
+  "labUrl": "https://lab.spheredesci.org",
+  "contactEmail": "contact@spheredesci.org",
+  "legalEntity": {
+    "name": "SPHERE Research, LLC",
+    "jurisdiction": "Delaware, USA",
+    "formationDate": "2026-10-23",
+    "location": {
+      "locality": "Rochester",
+      "region": "NY",
+      "country": "US"
+    },
+    "principal": {
+      "name": "Michael P. Goodman",
+      "role": "Founder and Sole Managing Member",
+      "orcid": "https://orcid.org/0009-0008-3796-5857",
+      "personalSite": "https://michaelpgoodman.com/",
+      "github": "https://github.com/cssofny2"
+    },
+    "recordsNote": "Corporate formation documents and tax identification numbers are maintained privately by SPHERE Research, LLC pending public agency-certified verification; no EIN or unverified state file number is published on the website."
+  },
+  "status": {
+    "stage": "Proposal, readiness, and pre-confirmatory qualification stage",
+    "shortStatus": "Protocol LOC-1 registered on OSF; pre-results; pre-funding",
+    "hasMeasurements": false,
+    "hasResults": false,
+    "hasActiveFundraising": false,
+    "hasTokenOrDao": false
+  },
+  "positioning": {
+    "program": "Project S.P.H.E.R.E. is a staged experimental research program designed to subject unconventional or source-inspired hypotheses to conventional scientific measurement, metrology, uncertainty analysis, adversarial controls, preregistration, reproducible analysis, fresh confirmation, and independent replication. The program does not assume that its motivating hypotheses are correct.",
+    "loc1": "LOC-1 is a theory-neutral differential mechanical-resonance experiment testing for a reproducible position-associated residual under controlled conditions. A detected residual would constitute an observation requiring further investigation rather than evidence of a specific mechanism.",
+    "antB01": "ANT-B-01 is a passive electromagnetic resonator experiment designed to characterize the behavior of concentric conductive shells and structured internal geometry against conventional electromagnetic models, matched controls, calibrated network measurements, thermal measurements, and complete energy accounting.",
+    "shortDisclaimer": "Hypotheses are not findings. Project S.P.H.E.R.E. has no experimental measurements or results yet. A position-associated residual is not a mechanism, and resonance or stored energy is not energy generation.",
+    "spherevlNotice": "SPHEREVL (Control Room) is a Level 0 educational simulation, not physical measurements or scientific validation.",
+    "fundingNotice": "Contributions do not purchase equity, tokens, royalties, or a financial return. No DAO, token sale, or IP-NFT commitment exists.",
+    "entitySeparation": "Operated by SPHERE Research, LLC (Rochester, NY). Michael P. Goodman's separate portfolio and IT/AI consulting services at michaelpgoodman.com and any unrelated hosted business pages are independent of Project S.P.H.E.R.E. and do not constitute scientific evidence or endorsement."
+  },
+  "records": {
+    "osfLoc1": {
+      "label": "Protocol LOC-1 Preregistration (OSF)",
+      "url": "https://osf.io/5b6mj/overview",
+      "status": "Registered and live (immutable governing baseline; pre-results)",
+      "date": "2026-10-23"
+    },
+    "zenodoWhitepaperV1": {
+      "label": "Archived Technical Whitepaper v1.0 (Zenodo)",
+      "doi": "10.5281/zenodo.23583932",
+      "url": "https://doi.org/10.5281/zenodo.23583932",
+      "version": "1.0",
+      "date": "2026-10-22",
+      "status": "Superseded by Version 2.0 on spheredesci.org; Zenodo v2.0 deposit pending manual release"
+    },
+    "repository": {
+      "url": "https://github.com/cssofny2/spheredesci.org",
+      "controlRoomRepo": "https://github.com/cssofny2/sphere-control-room-v2"
+    }
+  },
+  "whitepaper": {
+    "documentId": "SPHERE-WP-001",
+    "title": "Project S.P.H.E.R.E. Whitepaper: Open Resonance Metrology, Experimental Controls, and Accountable Research Infrastructure",
+    "shortTitle": "Project S.P.H.E.R.E. Technical Whitepaper (v2.0)",
+    "version": "2.0",
+    "date": "2026-11-24",
+    "status": "Controlled versioned specification — pre-results; proposal and readiness stage",
+    "canonicalUrl": "https://spheredesci.org/whitepaper/",
+    "markdownUrl": "/assets/whitepaper/SPHERE-WP-001-v2.0.md",
+    "supersedes": [
+      "Version 1.0 (2026-10-22; archived at Zenodo DOI 10.5281/zenodo.23583932)",
+      "Version 1.6 unpublished internal compilation (2026-10-30)"
+    ],
+    "priorArchiveDoi": "10.5281/zenodo.23583932",
+    "v2DoiStatus": "Pending manual Zenodo new-version deposit upon release approval"
+  },
+  "motivatingExperimentBase": {
+    "source": "Bashar material presented by Darryl Anka (source-inspired hypothesis only; not established physics and no implied endorsement)",
+    "table": "Ultra-flat table, 6 to 10 feet long (1.83 to 3.05 m)",
+    "artifact": "Very thin hollow copper sphere, 3 to 4 inches in diameter (76.2 to 101.6 mm), as round as practicable",
+    "coreTest": "Excite mechanical vibrations at Position A, measure resonant frequency with high precision, relocate to Position B, repeat measurement, and evaluate the differential frequency contrast.",
+    "outOfScopeSpeculation": "Claims regarding acoustic/EM bombardment causing rolling or instantaneous relocation, charting a universal vibrational matrix/C-chart, or electromagnetic-gravitational bubbles are explicitly excluded from Phase 1 LOC-1 and treated as untested speculative conjecture."
+  },
+  "budget": {
+    "asOf": "2026-11-24",
+    "currency": "USD",
+    "fundsRaised": 0,
+    "activeReadiness": {
+      "label": "Active Readiness Scope (Stage 0 / Pre-Confirmatory Qualification)",
+      "immediateAsk": 10000,
+      "stagedTarget": 50000,
+      "reserve": 2000,
+      "notes": "Non-equity, non-token planning ceiling covering technical feasibility, statistical/uncertainty review, independent external review, facility access scoping, legal/accounting compliance, documentation, and a 20% ($2,000) reserve. Excludes founder salary and historical reimbursement."
+    },
+    "historicalPlanningTiers": [
+      {
+        "tier": "Phase 1 Founding Pilot (Historical Planning Scenario)",
+        "range": "$27,053 Lean / $86,151 Standard",
+        "notes": "Rented or partner-lab optical access, enclosures, independent review, blinded pilot, and open reporting. Excludes salaried staff and dedicated lab rent."
+      },
+      {
+        "tier": "Contingent Laboratory MVP (Historical Planning Scenario)",
+        "range": "$350,000–$520,000 (or $450,000–$1.2M Phase 2 dedicated-lab estimate)",
+        "notes": "Refurbished/leased diagnostics or dedicated facility expansion; contingent on verified readiness and Phase 1 qualification outcomes."
+      },
+      {
+        "tier": "Contingent Turnkey Facility (Historical Planning Scenario)",
+        "range": "$969,000–$1,732,000 itemized (up to ~$2.1M historical cumulative 3-phase ceiling)",
+        "notes": "Dedicated shielded/thermal facility, new diagnostics, integration, and first-year specialist personnel. Planning estimate only; not an active campaign target."
+      }
+    ],
+    "supersededModels": [
+      "The earlier exploratory $400,000 launch / $179,600 Year-1 salaried staffing model on /careers/ is explicitly superseded for Phase 1 and retained only as a contingent future-stage organizational illustration."
+    ]
+  },
+  "licensing": {
+    "websiteCode": "MIT",
+    "researchSoftwareDefault": "Apache-2.0",
+    "documentationAndReports": "CC BY 4.0",
+    "datasets": "CC BY 4.0 / CC0 1.0",
+    "openHardware": "CERN-OHL-P-2.0",
+    "marksAndThirdParty": "Project marks, domain names, and identified third-party assets retain their respective rights; subject to legal review."
+  },
+  "tracks": {
+    "phase1": {
+      "id": "LOC-1",
+      "status": "Registered and live on OSF (immutable baseline); pre-results",
+      "amendmentDraft": "Draft Amendment LOC-1A (proposed pre-confirmatory metrology/statistical refinement; NOT yet submitted to OSF)"
+    },
+    "phase2": {
+      "id": "Phase 2 Extensions",
+      "status": "Draft / Proposed — not part of registered LOC-1",
+      "includes": [
+        "6–10 ft precision bench & 3–4 in macroscopic sphere comparison (if not adopted via LOC-1A)",
+        "Synchronized four-object measurement array with rotating assignments and 4-layer timing",
+        "Closed-loop site-environment record-and-replay",
+        "MOD-1 modal reconstruction and A1–B–A2 excitation-off verification",
+        "Appendix K celestial-motion reference-frame metadata tracking",
+        "Multi-site independent replication"
+      ]
+    },
+    "independentTrack": {
+      "id": "ANT-B-01",
+      "status": "Draft / Proposed / Unregistered — scientifically and inferentially independent from LOC-1"
+    }
+  }
+}

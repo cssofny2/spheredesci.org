@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+message: "If you reference Project S.P.H.E.R.E., Protocol LOC-1, or the Version 2.0 Technical Whitepaper, please cite the relevant controlled record below."
+title: "Project S.P.H.E.R.E.: Open Resonance Metrology, Experimental Controls, and Accountable Research Infrastructure (Whitepaper v2.0 & Public Portal)"
+type: dataset
+version: "2.0"
+date-released: "2026-11-24"
+url: "https://spheredesci.org/whitepaper/"
+repository-code: "https://github.com/cssofny2/spheredesci.org"
+license: CC-BY-4.0
+authors:
+  - family-names: "Goodman"
+    given-names: "Michael P."
+    affiliation: "SPHERE Research, LLC"
+    orcid: "https://orcid.org/0009-0008-3796-5857"
+abstract: >-
+  Project S.P.H.E.R.E. (Spatial Positioning Harmonic Empirical Resonance Experiment) is a
+  staged experimental research program designed to subject unconventional or source-inspired
+  hypotheses to conventional scientific measurement, metrology, uncertainty analysis,
+  adversarial controls, preregistration, reproducible analysis, fresh confirmation, and
+  independent replication. Version 2.0 supersedes Version 1.0 (Zenodo DOI
+  10.5281/zenodo.23583932) while retaining the immutable OSF Protocol LOC-1 registration
+  (https://osf.io/5b6mj/overview) as the governing Phase 1 baseline. Pre-results; no
+  experimental measurements or findings are reported.
+keywords:
+  - "Open Science"
+  - "Precision Metrology"
+  - "Mechanical Resonance"
+  - "Laser Doppler Vibrometry"
+  - "Uncertainty Quantification"
+  - "Preregistration"
+  - "Protocol LOC-1"
+  - "ANT-B-01"
+  - "SPHEREVL"
+identifiers:
+  - type: url
+    value: "https://osf.io/5b6mj/overview"
+    description: "Immutable registered Phase 1 Protocol LOC-1 preregistration on OSF"
+  - type: doi
+    value: "10.5281/zenodo.23583932"
+    description: "Archived Version 1.0 technical whitepaper on Zenodo (superseded by Version 2.0; Version 2.0 Zenodo deposit pending)"
+  - type: url
+    value: "https://spheredesci.org/whitepaper/"
+    description: "Canonical HTML edition of SPHERE-WP-001 Version 2.0"
+references:
+  - type: report
+    title: "Protocol LOC-1: Registered Study Plan (OSF)"
+    url: "https://osf.io/5b6mj/overview"
+    year: 2026
+    authors:
+      - family-names: "Goodman"
+        given-names: "Michael P."
+        affiliation: "SPHERE Research, LLC"
+  - type: report
+    title: "Project S.P.H.E.R.E. Technical Whitepaper (Version 1.0, archived)"
+    doi: "10.5281/zenodo.23583932"
+    year: 2026
+    authors:
+      - family-names: "Goodman"
+        given-names: "Michael P."
+        affiliation: "SPHERE Research, LLC"

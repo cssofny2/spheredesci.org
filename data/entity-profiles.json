@@ -1,7 +1,7 @@
 {
-  "_note": "Authoritative entity profiles for Organization/WebSite sameAs. Add only real, verifiable https URLs; ORCID iDs (https://orcid.org/0000-0000-0000-0000) and registry nodes go in their lists once they exist.",
-  "github": ["https://github.com/cssofny2", "https://github.com/cssofny2/spheredesci.org"],
+  "_note": "Authoritative entity profiles for Organization/WebSite sameAs. Only verified, public organizational profiles are listed here. Personal sites, commercial services, and unverified social handles are excluded from Organization.sameAs.",
+  "github": ["https://github.com/cssofny2/spheredesci.org"],
   "orcid": [],
-  "registries": [],
-  "social": ["https://x.com/spheredesci"]
+  "registries": ["https://osf.io/5b6mj/overview", "https://doi.org/10.5281/zenodo.23583932"],
+  "social": []
 }

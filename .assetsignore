@@ -9,6 +9,8 @@ wrangler.toml
 .assetsignore
 .zenodo.json
 .gitignore
+CITATION.cff
+docs
 README.md
 LICENSE
 tools
@@ -23,7 +25,6 @@ panton.html
 worker
 migrations
 package.json
-package-lock.json
 package-lock.json
 PRODUCT.md
 RESEARCH_PLATFORM.md

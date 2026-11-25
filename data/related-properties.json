@@ -1,7 +1,24 @@
 {
-  "whitepaper": { "title": "Project S.P.H.E.R.E. whitepaper (draft)", "url": "/whitepaper/", "description": "The registered protocol and plan behind the research notes. Proposal stage; no results." },
+  "whitepaper": {
+    "title": "Project S.P.H.E.R.E. Technical Whitepaper (Version 2.0)",
+    "url": "/whitepaper/",
+    "description": "Controlled versioned metrology, uncertainty, controls, and governance specification (pre-results; does not silently amend registered Protocol LOC-1)."
+  },
   "properties": [
-    { "title": "michaelpgoodman.com", "url": "https://michaelpgoodman.com/", "description": "Associated property: the project founder's personal site." },
-    { "title": "fieldsofgreenrochester.com", "url": "https://fieldsofgreenrochester.com/", "description": "Associated property: Fields of Green Rochester." }
+    {
+      "title": "Protocol LOC-1 Preregistration (OSF)",
+      "url": "https://osf.io/5b6mj/overview",
+      "description": "Immutable registered Phase 1 study plan on the Open Science Framework."
+    },
+    {
+      "title": "Zenodo Archive (v1.0 DOI 10.5281/zenodo.23583932)",
+      "url": "https://doi.org/10.5281/zenodo.23583932",
+      "description": "Archived Version 1.0 whitepaper record (superseded by Version 2.0 on spheredesci.org)."
+    },
+    {
+      "title": "michaelpgoodman.com",
+      "url": "https://michaelpgoodman.com/",
+      "description": "Operated separately: founder's personal site (independent of Project S.P.H.E.R.E. scientific evidence)."
+    }
   ]
 }

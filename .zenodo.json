@@ -1,7 +1,9 @@
 {
-  "title": "Project S.P.H.E.R.E. & Protocol LOC-1: Open-Source Acoustic Metrology Portal and Specifications",
+  "title": "Project S.P.H.E.R.E. Public Research Portal, Technical Specifications, and Whitepaper v2.0",
+  "description": "Source repository for spheredesci.org, including SPHERE-WP-001 Version 2.0 (Open Resonance Metrology, Experimental Controls, and Accountable Research Infrastructure), documentation for registered Protocol LOC-1 (OSF: https://osf.io/5b6mj/overview), proposed Phase 2 extensions, and independent track ANT-B-01. Project S.P.H.E.R.E. is at the pre-results readiness and qualification stage; hypotheses are not established conclusions.",
   "upload_type": "software",
   "license": "MIT",
+  "version": "2.0.0",
   "communities": [
     {
       "identifier": "spheredesci"
@@ -15,18 +17,20 @@
     }
   ],
   "keywords": [
+    "Open Science",
     "Decentralized Science (DeSci)",
     "Precision Metrology",
-    "Acoustic Resonance",
+    "Mechanical Resonance",
     "Laser Doppler Vibrometry (LDV)",
     "Vector Network Analyzer (VNA)",
-    "Equivalence Testing (TOST)",
+    "Uncertainty Quantification (GUM)",
     "Protocol LOC-1",
+    "ANT-B-01",
     "SPHEREVL"
   ],
   "related_identifiers": [
     {
-      "identifier": "https://spheredesci.org",
+      "identifier": "https://spheredesci.org/",
       "relation": "isSupplementTo",
       "scheme": "url"
     },
@@ -34,6 +38,16 @@
       "identifier": "https://spheredesci.org/whitepaper/",
       "relation": "isDocumentedBy",
       "scheme": "url"
+    },
+    {
+      "identifier": "https://osf.io/5b6mj/overview",
+      "relation": "references",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.23583932",
+      "relation": "references",
+      "scheme": "doi"
     },
     {
       "identifier": "https://spheredesci.org/vl/",
