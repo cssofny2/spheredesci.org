@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" role="img" aria-labelledby="sg-title sg-desc">
+  <title id="sg-title">Four-Stage Experimental Separation and Mandatory Requalification Triggers</title>
+  <desc id="sg-desc">Diagram separating four non-overlapping experimental stages — Stage 1 Qualification and Calibration, Stage 2 Pilot and Feasibility, Stage 3 Preregistered Confirmatory Campaign, and Stage 4 Fresh Confirmation and Independent Replication — plus ten mandatory triggers requiring full requalification.</desc>
+  <defs>
+    <marker id="sga" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M1 1 L9 5 L1 9 z" fill="#e49b73"/>
+    </marker>
+    <style>
+      .bg { fill: #070b12; }
+      .box { fill: #0d1522; stroke: #2b3f5a; stroke-width: 1.5; }
+      .box-gate { fill: #191310; stroke: #c86b3c; stroke-width: 1.8; }
+      .box-trig { fill: #14101a; stroke: #a855f7; stroke-width: 1.5; }
+      .t-title { font: 700 18px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-sub { font: 500 12px system-ui, -apple-system, sans-serif; fill: #94a3b8; }
+      .t-tag { font: 700 11px ui-monospace, monospace; fill: #22d3ee; }
+      .t-h { font: 700 13px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-b { font: 500 11px system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .t-warn { font: 700 11.5px ui-monospace, monospace; fill: #fbbf24; }
+      @media print {
+        .bg { fill: #ffffff; }
+        .box, .box-gate, .box-trig { fill: #f8fafc; stroke: #334155; }
+        .t-title, .t-h { fill: #0f172a; }
+        .t-sub, .t-b { fill: #334155; }
+        .t-tag { fill: #0369a1; }
+        .t-warn { fill: #92400e; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="470" rx="12"/>
+  <text x="28" y="34" class="t-title">Figure 4 · Four-Stage Experimental Separation &amp; Requalification Triggers</text>
+  <text x="28" y="53" class="t-sub">Strict firewall: Qualification and pilot data tune methods and characterize noise; they are NEVER pooled into confirmatory hypothesis tests.</text>
+
+  <!-- 4 Stages -->
+  <rect class="box" x="28" y="78" width="212" height="176" rx="8"/>
+  <text x="42" y="99" class="t-tag">STAGE 1 · QUALIFICATION</text>
+  <text x="42" y="119" class="t-h">Instrument &amp; Modal Cal</text>
+  <text x="42" y="140" class="t-b">• FEM &amp; modal survey</text>
+  <text x="42" y="156" class="t-b">• Artifact quadratic T(f) fit</text>
+  <text x="42" y="172" class="t-b">• Allan deviation &amp; settling</text>
+  <text x="42" y="188" class="t-b">• Synthetic pipeline recovery</text>
+  <text x="42" y="204" class="t-b">• Quantify all 34 GUM terms</text>
+  <text x="42" y="226" class="t-warn">NEVER confirmatory data</text>
+  <text x="42" y="242" class="t-sub">Sets empirical limits</text>
+
+  <line x1="240" y1="166" x2="262" y2="166" stroke="#e49b73" stroke-width="2" marker-end="url(#sga)"/>
+
+  <rect class="box" x="264" y="78" width="212" height="176" rx="8"/>
+  <text x="278" y="99" class="t-tag">STAGE 2 · PILOT</text>
+  <text x="278" y="119" class="t-h">End-to-End Dry Run</text>
+  <text x="278" y="140" class="t-b">• Blinded swap rehearsal</text>
+  <text x="278" y="156" class="t-b">• Control-matrix stress test</text>
+  <text x="278" y="172" class="t-b">• Placement variance estimate</text>
+  <text x="278" y="188" class="t-b">• Sample-size &amp; SESOI lock</text>
+  <text x="278" y="204" class="t-b">• Freeze 17-item manifest</text>
+  <text x="278" y="226" class="t-warn">ZERO pooling with Stage 3</text>
+  <text x="278" y="242" class="t-sub">Independent review gate</text>
+
+  <line x1="476" y1="166" x2="498" y2="166" stroke="#e49b73" stroke-width="2" marker-end="url(#sga)"/>
+
+  <rect class="box-gate" x="500" y="78" width="212" height="176" rx="8"/>
+  <text x="514" y="99" class="t-tag">STAGE 3 · CONFIRMATION</text>
+  <text x="514" y="119" class="t-h">Locked Blinded Campaign</text>
+  <text x="514" y="140" class="t-b">• Registered OSF / LOC-1A</text>
+  <text x="514" y="156" class="t-b">• Frozen code &amp; estimator</text>
+  <text x="514" y="172" class="t-b">• Randomized A↔B blocks</text>
+  <text x="514" y="188" class="t-b">• All 17 controls active</text>
+  <text x="514" y="204" class="t-b">• Unblind only post-commit</text>
+  <text x="514" y="226" class="t-warn">Publish null or residual</text>
+  <text x="514" y="242" class="t-sub">No post-hoc threshold edits</text>
+
+  <line x1="712" y1="166" x2="734" y2="166" stroke="#e49b73" stroke-width="2" marker-end="url(#sga)"/>
+
+  <rect class="box" x="736" y="78" width="196" height="176" rx="8"/>
+  <text x="750" y="99" class="t-tag">STAGE 4 · REPLICATION</text>
+  <text x="750" y="119" class="t-h">Fresh &amp; Independent</text>
+  <text x="750" y="140" class="t-b">• Artifact challenge battery</text>
+  <text x="750" y="156" class="t-b">• Fresh confirmation run</text>
+  <text x="750" y="172" class="t-b">• Independent lab team</text>
+  <text x="750" y="188" class="t-b">• Independent apparatus</text>
+  <text x="750" y="204" class="t-b">• Independent code audit</text>
+  <text x="750" y="226" class="t-warn">Prerequisite for any claim</text>
+  <text x="750" y="242" class="t-sub">Open data + full code</text>
+
+  <!-- 10 Mandatory Requalification Triggers -->
+  <rect class="box-trig" x="28" y="276" width="904" height="174" rx="8"/>
+  <text x="44" y="299" class="t-h">Ten Mandatory Requalification Triggers (Any Trigger Halts Confirmation &amp; Returns Campaign to Stage 1)</text>
+  <text x="44" y="322" class="t-b"><tspan fill="#e49b73" font-weight="700">1.</tspan> Sphere replacement, surface cleaning, oxidation change, or handling impact</text>
+  <text x="44" y="344" class="t-b"><tspan fill="#e49b73" font-weight="700">2.</tspan> Kinematic mount, cradle, optical path, or chamber re-assembly</text>
+  <text x="44" y="366" class="t-b"><tspan fill="#e49b73" font-weight="700">3.</tspan> Laser vibrometer, digitizer, VNA, or excitation transducer swap / repair</text>
+  <text x="44" y="388" class="t-b"><tspan fill="#e49b73" font-weight="700">4.</tspan> Clock reference, 1 PPS distribution, or trigger-path modification</text>
+  <text x="44" y="410" class="t-b"><tspan fill="#e49b73" font-weight="700">5.</tspan> Chamber gas composition change or vacuum leak / seal break</text>
+
+  <text x="498" y="322" class="t-b"><tspan fill="#e49b73" font-weight="700">6.</tspan> Firmware, DSP, or analysis-estimator version change</text>
+  <text x="498" y="344" class="t-b"><tspan fill="#e49b73" font-weight="700">7.</tspan> Environmental excursion beyond locked temperature/vibration bounds</text>
+  <text x="498" y="366" class="t-b"><tspan fill="#e49b73" font-weight="700">8.</tspan> Failure of any scheduled positive-control or null-sham check</text>
+  <text x="498" y="388" class="t-b"><tspan fill="#e49b73" font-weight="700">9.</tspan> Unexplained baseline drift exceeding Allan-deviation stability envelope</text>
+  <text x="498" y="410" class="t-b"><tspan fill="#e49b73" font-weight="700">10.</tspan> Loss of blinding integrity or broken SHA-256 chain of custody</text>
+  <text x="44" y="436" class="t-sub">All aborted/invalidated runs are archived permanently with reason codes and reported alongside valid runs (zero selective omission).</text>
+</svg>

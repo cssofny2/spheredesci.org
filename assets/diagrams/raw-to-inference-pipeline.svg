@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" role="img" aria-labelledby="pipe-title pipe-desc">
+  <title id="pipe-title">Eight-Stage Raw Acquisition to Pre-Registered Statistical Classification Pipeline</title>
+  <desc id="pipe-desc">Eight-stage deterministic data analysis pipeline from Stage 1 Raw time-series and FRF capture with SHA-256 hashing, Stage 2 Traceable clock and thermal calibration, Stage 3 Mode qualification via MAC and locked estimator, Stage 4 Placement-level frequency summary avoiding pseudoreplication, Stage 5 Paired block contrast with drift and thermal nuisance adjustment, Stage 6 JCGM GUM plus Monte Carlo uncertainty propagation, Stage 7 Blinded pre-registered TOST and difference test, to Stage 8 Four-outcome classification without mechanism claims.</desc>
+  <defs>
+    <marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M1 1 L9 5 L1 9 z" fill="#22d3ee"/>
+    </marker>
+    <style>
+      .bg { fill: #070b12; }
+      .card { fill: #0d1522; stroke: #2b3f5a; stroke-width: 1.5; }
+      .card-hi { fill: #0f1d2e; stroke: #22d3ee; stroke-width: 1.8; }
+      .card-cu { fill: #191310; stroke: #c86b3c; stroke-width: 1.8; }
+      .t-title { font: 700 18px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-sub { font: 500 12px system-ui, -apple-system, sans-serif; fill: #94a3b8; }
+      .t-num { font: 700 11px ui-monospace, monospace; fill: #22d3ee; }
+      .t-num-cu { font: 700 11px ui-monospace, monospace; fill: #e49b73; }
+      .t-h { font: 700 12.5px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-b { font: 500 11px system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      @media print {
+        .bg { fill: #ffffff; }
+        .card, .card-hi, .card-cu { fill: #f8fafc; stroke: #334155; }
+        .t-title, .t-h { fill: #0f172a; }
+        .t-sub, .t-b { fill: #334155; }
+        .t-num { fill: #0369a1; }
+        .t-num-cu { fill: #9a3412; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="440" rx="12"/>
+  <text x="28" y="34" class="t-title">Figure 3 · Eight-Stage Deterministic Raw-to-Inference Analysis Pipeline</text>
+  <text x="28" y="53" class="t-sub">All code, estimator parameters, QC gates, and nuisance models are frozen under version control before blinded confirmatory labels are decoded.</text>
+
+  <!-- Row 1: Stages 1-4 -->
+  <rect class="card" x="28" y="80" width="206" height="122" rx="8"/>
+  <text x="42" y="100" class="t-num">STAGE 1 · CAPTURE</text>
+  <text x="42" y="120" class="t-h">Raw Acquisition &amp; Hash</text>
+  <text x="42" y="140" class="t-b">• Optical LDV waveforms</text>
+  <text x="42" y="156" class="t-b">• Co-located T, P, B, accel</text>
+  <text x="42" y="172" class="t-b">• ISO 8601 + 4-layer sync</text>
+  <text x="42" y="188" class="t-b">• Immediate SHA-256 manifest</text>
+
+  <line x1="234" y1="141" x2="258" y2="141" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <rect class="card" x="260" y="80" width="206" height="122" rx="8"/>
+  <text x="274" y="100" class="t-num">STAGE 2 · CALIBRATE</text>
+  <text x="274" y="120" class="t-h">Traceable Calibration</text>
+  <text x="274" y="140" class="t-b">• Clock offset &amp; skew correction</text>
+  <text x="274" y="156" class="t-b">• Sensor calibration curves</text>
+  <text x="274" y="172" class="t-b">• Pre-locked settling-gate QC</text>
+  <text x="274" y="188" class="t-b">• Hardware/channel health check</text>
+
+  <line x1="466" y1="141" x2="490" y2="141" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <rect class="card-hi" x="492" y="80" width="206" height="122" rx="8"/>
+  <text x="506" y="100" class="t-num">STAGE 3 · MODE LOCK</text>
+  <text x="506" y="120" class="t-h">Mode ID &amp; Locked Fit</text>
+  <text x="506" y="140" class="t-b">• MAC ≥ locked threshold</text>
+  <text x="506" y="156" class="t-b">• Single frozen estimator</text>
+  <text x="506" y="172" class="t-b">• Cross-check ±10 Hz method bias</text>
+  <text x="506" y="188" class="t-b">• Reject split / mis-tracked modes</text>
+
+  <line x1="698" y1="141" x2="722" y2="141" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <rect class="card-cu" x="724" y="80" width="208" height="122" rx="8"/>
+  <text x="738" y="100" class="t-num-cu">STAGE 4 · UNIT OF ANALYSIS</text>
+  <text x="738" y="120" class="t-h">Placement Aggregation</text>
+  <text x="738" y="140" class="t-b">• One placement = independent</text>
+  <text x="738" y="156" class="t-b">  reseat + settle cycle (28 fields)</text>
+  <text x="738" y="172" class="t-b">• Repeat sweeps collapsed</text>
+  <text x="738" y="188" class="t-b">• Prevents pseudoreplication</text>
+
+  <!-- Connector Stage 4 down to Stage 5 -->
+  <path d="M 828 202 L 828 228 L 131 228 L 131 250" fill="none" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <!-- Row 2: Stages 5-8 -->
+  <rect class="card" x="28" y="252" width="206" height="122" rx="8"/>
+  <text x="42" y="272" class="t-num">STAGE 5 · CONTRAST</text>
+  <text x="42" y="292" class="t-h">Block &amp; Nuisance Model</text>
+  <text x="42" y="312" class="t-b">• Paired A↔B station contrasts</text>
+  <text x="42" y="328" class="t-b">• Artifact-specific quadratic T fit</text>
+  <text x="42" y="344" class="t-b">• Drift, gas-density &amp; seat terms</text>
+  <text x="42" y="360" class="t-b">• Compute θ̂ = (μ̂_A − μ̂_B)/μ̂_B</text>
+
+  <line x1="234" y1="313" x2="258" y2="313" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <rect class="card" x="260" y="252" width="206" height="122" rx="8"/>
+  <text x="274" y="272" class="t-num">STAGE 6 · UNCERTAINTY</text>
+  <text x="274" y="292" class="t-h">GUM + Monte Carlo</text>
+  <text x="274" y="312" class="t-b">• JCGM 100 / 101 / 102 budget</text>
+  <text x="274" y="328" class="t-b">• Type A + B with covariances</text>
+  <text x="274" y="344" class="t-b">• Allan deviation drift floor</text>
+  <text x="274" y="360" class="t-b">• Anti-double-counting audit</text>
+
+  <line x1="466" y1="313" x2="490" y2="313" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <rect class="card-hi" x="492" y="252" width="206" height="122" rx="8"/>
+  <text x="506" y="272" class="t-num">STAGE 7 · BLIND TEST</text>
+  <text x="506" y="292" class="t-h">Pre-Registered Inference</text>
+  <text x="506" y="312" class="t-b">• Run frozen script on blinded</text>
+  <text x="506" y="328" class="t-b">  position labels + 17 controls</text>
+  <text x="506" y="344" class="t-b">• Difference test + TOST (SESOI)</text>
+  <text x="506" y="360" class="t-b">• Unblind only after commit hash</text>
+
+  <line x1="698" y1="313" x2="722" y2="313" stroke="#22d3ee" stroke-width="2" marker-end="url(#pa)"/>
+
+  <rect class="card-cu" x="724" y="252" width="208" height="122" rx="8"/>
+  <text x="738" y="272" class="t-num-cu">STAGE 8 · CLASSIFY</text>
+  <text x="738" y="292" class="t-h">4-Outcome Classification</text>
+  <text x="738" y="312" class="t-b">1. Equivalent within ±Δ_eq</text>
+  <text x="738" y="328" class="t-b">2. Reproducible residual (audit)</text>
+  <text x="738" y="344" class="t-b">3. Inconclusive / underpowered</text>
+  <text x="738" y="360" class="t-b">4. Invalid (control/QC failure)</text>
+
+  <rect class="card" x="28" y="390" width="904" height="34" rx="6"/>
+  <text x="480" y="411" text-anchor="middle" class="t-sub">Guardrail: Outcome 2 ("Reproducible position-associated residual") triggers artifact challenge, fresh confirmation, and independent replication — never a mechanism claim.</text>
+</svg>

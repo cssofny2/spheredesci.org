@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-labelledby="hier-title hier-desc">
+  <title id="hier-title">Project S.P.H.E.R.E. Seven-Tier Document and Evidence Authority Hierarchy</title>
+  <desc id="hier-desc">Seven-tier precedence stack showing how conflicts between documents are resolved: Tier 1 Immutable OSF LOC-1 preregistration, Tier 2 Dated pre-confirmatory amendments filed before data inspection, Tier 3 Controlled Versioned Whitepaper v2.0, Tier 4 Qualification and technical supplements, Tier 5 Website research and educational articles, Tier 6 FAQ, glossary, transcripts, and social copy, and Tier 7 Third-party AI reviews which are never authoritative.</desc>
+  <defs>
+    <style>
+      .bg { fill: #070b12; }
+      .t-title { font: 700 18px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-sub { font: 500 12px system-ui, -apple-system, sans-serif; fill: #94a3b8; }
+      .t-tier { font: 700 12px ui-monospace, monospace; fill: #070b12; }
+      .t-name { font: 700 13.5px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-desc { font: 500 11.5px system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .t-rule { font: 600 11px ui-monospace, monospace; fill: #e49b73; }
+      .box { fill: #0d1522; stroke: #2b3f5a; stroke-width: 1.5; }
+      .box-top { fill: #102030; stroke: #22d3ee; stroke-width: 2; }
+      .box-warn { fill: #1c1412; stroke: #ef4444; stroke-width: 1.5; stroke-dasharray: 5 3; }
+      @media print {
+        .bg { fill: #ffffff; }
+        .box, .box-top { fill: #f8fafc; stroke: #334155; }
+        .box-warn { fill: #fef2f2; stroke: #b91c1c; }
+        .t-title, .t-name { fill: #0f172a; }
+        .t-sub, .t-desc { fill: #334155; }
+        .t-rule { fill: #9a3412; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="520" rx="12"/>
+  <text x="28" y="34" class="t-title">Figure 2 · Seven-Tier Document &amp; Evidence Precedence Hierarchy</text>
+  <text x="28" y="53" class="t-sub">When sources conflict, higher tiers govern. Lower tiers may summarize or propose amendments but never silently override higher-tier records.</text>
+
+  <!-- Tier 1 -->
+  <rect class="box-top" x="28" y="72" width="904" height="54" rx="8"/>
+  <rect fill="#22d3ee" x="40" y="84" width="76" height="30" rx="6"/>
+  <text x="78" y="103" text-anchor="middle" class="t-tier">TIER 1</text>
+  <text x="132" y="95" class="t-name">Immutable Registered LOC-1 Protocol &amp; OSF Snapshot (osf.io/5b6mj/overview)</text>
+  <text x="132" y="114" class="t-desc">Binding confirmatory baseline. Never silently edited, overwritten, or backdated; governs Phase 1 confirmatory claims.</text>
+
+  <!-- Tier 2 -->
+  <rect class="box" x="28" y="134" width="904" height="52" rx="8"/>
+  <rect fill="#34d399" x="40" y="145" width="76" height="30" rx="6"/>
+  <text x="78" y="164" text-anchor="middle" class="t-tier">TIER 2</text>
+  <text x="132" y="156" class="t-name">Explicit Dated Protocol Amendments Filed Before Confirmatory Data Inspection</text>
+  <text x="132" y="174" class="t-desc">e.g., Draft Amendment LOC-1A (currently DRAFT — not yet submitted to OSF; takes effect only if registered before unblinding).</text>
+
+  <!-- Tier 3 -->
+  <rect class="box" x="28" y="194" width="904" height="52" rx="8"/>
+  <rect fill="#e49b73" x="40" y="205" width="76" height="30" rx="6"/>
+  <text x="78" y="224" text-anchor="middle" class="t-tier">TIER 3</text>
+  <text x="132" y="216" class="t-name">Current Controlled Versioned Whitepaper (SPHERE-WP-001 v2.0, 2026-11-24)</text>
+  <text x="132" y="234" class="t-desc">Supersedes Zenodo v1.0 (DOI 10.5281/zenodo.23583932) and internal v1.6. Explicitly flags every proposed delta vs. Tier 1.</text>
+
+  <!-- Tier 4 -->
+  <rect class="box" x="28" y="254" width="904" height="52" rx="8"/>
+  <rect fill="#93c5fd" x="40" y="265" width="76" height="30" rx="6"/>
+  <text x="78" y="284" text-anchor="middle" class="t-tier">TIER 4</text>
+  <text x="132" y="276" class="t-name">Qualification Reports, Uncertainty Budgets &amp; Technical Supplements</text>
+  <text x="132" y="294" class="t-desc">Empirical noise-floor, thermal calibration, MAC, and Allan-deviation records generated prior to confirmatory freeze.</text>
+
+  <!-- Tier 5 -->
+  <rect class="box" x="28" y="314" width="904" height="52" rx="8"/>
+  <rect fill="#cbd5e1" x="40" y="325" width="76" height="30" rx="6"/>
+  <text x="78" y="344" text-anchor="middle" class="t-tier">TIER 5</text>
+  <text x="132" y="336" class="t-name">Website Research Articles, Knowledge Base &amp; Learn Guides (/research/, /knowledge/, /learn/)</text>
+  <text x="132" y="354" class="t-desc">Educational and methodological exposition; Phase 2 articles (record-replay, 4-object array) do NOT amend registered LOC-1.</text>
+
+  <!-- Tier 6 -->
+  <rect class="box" x="28" y="374" width="904" height="52" rx="8"/>
+  <rect fill="#94a3b8" x="40" y="385" width="76" height="30" rx="6"/>
+  <text x="78" y="404" text-anchor="middle" class="t-tier">TIER 6</text>
+  <text x="132" y="396" class="t-name">FAQs, Glossary, Video Transcripts, Visual Lab (SPHEREVL L0) &amp; Promotional Metadata</text>
+  <text x="132" y="414" class="t-desc">Must stay synchronized with Tiers 1–3; never introduce stronger claims than the governing whitepaper or OSF protocol.</text>
+
+  <!-- Tier 7 -->
+  <rect class="box-warn" x="28" y="436" width="904" height="64" rx="8"/>
+  <rect fill="#f87171" x="40" y="452" width="76" height="30" rx="6"/>
+  <text x="78" y="471" text-anchor="middle" class="t-tier">TIER 7</text>
+  <text x="132" y="458" class="t-name">Third-Party AI Reviews &amp; Local LLM Outputs — NEVER AUTHORITATIVE</text>
+  <text x="132" y="476" class="t-desc">Used only as editorial checklists or critique prompts. Every factual scientific, legal, regulatory, financial, or standards claim</text>
+  <text x="132" y="491" class="t-rule">MUST be independently verified against a primary or authoritative standard before publication.</text>
+</svg>

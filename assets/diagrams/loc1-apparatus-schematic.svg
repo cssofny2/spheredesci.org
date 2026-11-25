@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="loc1-title loc1-desc">
+  <title id="loc1-title">Proposed Phase 1 LOC-1 Differential Mechanical-Resonance Apparatus Schematic</title>
+  <desc id="loc1-desc">Conceptual architecture of the proposed Phase 1 LOC-1 enclosed differential resonator chamber (0.40 m separation between Stations A and B, thermally regulated optical bench, non-contact optical laser readout, environmental telemetry, and 4-layer timing discipline), contrasted with the motivating 6 to 10 foot table and 3 to 4 inch thin hollow copper sphere hypothesis base. Proposed schematic, not built hardware.</desc>
+  <defs>
+    <marker id="arr-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arr-k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9 z" fill="#e49b73"/>
+    </marker>
+    <radialGradient id="cu-sphere" cx="38%" cy="34%" r="65%">
+      <stop offset="0%" stop-color="#f5c6a5"/>
+      <stop offset="55%" stop-color="#c86b3c"/>
+      <stop offset="100%" stop-color="#6b3218"/>
+    </radialGradient>
+    <style>
+      .bg { fill: #070b12; }
+      .panel { fill: #0d1522; stroke: #26364d; stroke-width: 1.5; }
+      .chamber { fill: #0a101b; stroke: #3b5272; stroke-width: 2; stroke-dasharray: 6 4; }
+      .bench { fill: #162234; stroke: #476284; stroke-width: 1.5; }
+      .t-title { font: 700 18px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-sub { font: 500 12px system-ui, -apple-system, sans-serif; fill: #94a3b8; }
+      .t-badge { font: 700 11px ui-monospace, monospace; fill: #fbbf24; letter-spacing: 0.06em; }
+      .t-head { font: 700 13px system-ui, -apple-system, sans-serif; fill: #e2e8f0; }
+      .t-body { font: 500 11.5px system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .t-mono { font: 600 11px ui-monospace, monospace; fill: #22d3ee; }
+      .t-cu { font: 600 11px ui-monospace, monospace; fill: #e49b73; }
+      .pill { fill: #1e293b; stroke: #fbbf24; stroke-width: 1.2; }
+      @media print {
+        .bg { fill: #ffffff; }
+        .panel, .chamber { fill: #f8fafc; stroke: #475569; }
+        .bench { fill: #e2e8f0; stroke: #334155; }
+        .t-title, .t-head { fill: #0f172a; }
+        .t-sub, .t-body { fill: #334155; }
+        .t-mono { fill: #0369a1; }
+        .t-cu { fill: #9a3412; }
+        .t-badge { fill: #92400e; }
+        .pill { fill: #fef3c7; stroke: #b45309; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="540" rx="12"/>
+  <text x="28" y="34" class="t-title">Figure 1 · Proposed Phase 1 LOC-1 Differential Resonance Architecture</text>
+  <text x="28" y="53" class="t-sub">Same-enclosure swapped-station comparison testing for a reproducible position-associated frequency residual under bounded thermal &amp; timing controls</text>
+  <rect class="pill" x="676" y="16" width="256" height="26" rx="13"/>
+  <text x="804" y="33" text-anchor="middle" class="t-badge">PROPOSED — NOT BUILT HARDWARE</text>
+
+  <!-- Main Environmental Enclosure -->
+  <rect class="chamber" x="28" y="76" width="600" height="310" rx="10"/>
+  <text x="44" y="98" class="t-head">Thermally Regulated Acoustic/EM-Shielded Enclosure (Controlled Gas or Vacuum Mode)</text>
+  <text x="44" y="114" class="t-sub">Bounded stability envelope; temperature, pressure, magnetic field &amp; floor vibration logged concurrently</text>
+
+  <!-- Vibration-Isolated Optical Bench -->
+  <rect class="bench" x="56" y="294" width="544" height="34" rx="5"/>
+  <text x="328" y="315" text-anchor="middle" class="t-body">Vibration-Isolated Flat Optical Breadboard / Table — Kinematic Station Indexing</text>
+  <rect fill="#26364d" x="94" y="328" width="26" height="28" rx="3"/>
+  <rect fill="#26364d" x="536" y="328" width="26" height="28" rx="3"/>
+  <text x="328" y="352" text-anchor="middle" class="t-sub">Pneumatic / Elastomeric Isolators + Reference Seismometer</text>
+
+  <!-- Station A -->
+  <rect class="panel" x="112" y="264" width="132" height="30" rx="4"/>
+  <text x="178" y="283" text-anchor="middle" class="t-cu">STATION A (Kinematic)</text>
+  <circle cx="178" cy="222" r="32" fill="url(#cu-sphere)" stroke="#f5c6a5" stroke-width="1.5"/>
+  <circle cx="178" cy="222" r="24" fill="none" stroke="#070b12" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
+  <text x="178" y="226" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" font-weight="700" fill="#070b12">Artifact 1</text>
+
+  <!-- Station B -->
+  <rect class="panel" x="412" y="264" width="132" height="30" rx="4"/>
+  <text x="478" y="283" text-anchor="middle" class="t-cu">STATION B (Kinematic)</text>
+  <circle cx="478" cy="222" r="32" fill="url(#cu-sphere)" stroke="#f5c6a5" stroke-width="1.5"/>
+  <circle cx="478" cy="222" r="24" fill="none" stroke="#070b12" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
+  <text x="478" y="226" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" font-weight="700" fill="#070b12">Artifact 2</text>
+
+  <!-- Separation & Swap Arrow -->
+  <line x1="224" y1="222" x2="432" y2="222" stroke="#e49b73" stroke-width="1.8" marker-start="url(#arr-k)" marker-end="url(#arr-k)"/>
+  <rect fill="#0d1522" stroke="#c86b3c" x="266" y="206" width="124" height="32" rx="5"/>
+  <text x="328" y="220" text-anchor="middle" class="t-cu">0.40 m baseline</text>
+  <text x="328" y="233" text-anchor="middle" class="t-sub">Randomized A↔B swap</text>
+
+  <!-- Optical LDV Readout Heads -->
+  <rect class="panel" x="114" y="130" width="128" height="36" rx="5"/>
+  <text x="178" y="146" text-anchor="middle" class="t-mono">Optical LDV Ch. 1</text>
+  <text x="178" y="160" text-anchor="middle" class="t-sub">Non-contact readout</text>
+  <line x1="178" y1="166" x2="178" y2="188" stroke="#22d3ee" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#arr-c)"/>
+
+  <rect class="panel" x="414" y="130" width="128" height="36" rx="5"/>
+  <text x="478" y="146" text-anchor="middle" class="t-mono">Optical LDV Ch. 2</text>
+  <text x="478" y="160" text-anchor="middle" class="t-sub">Non-contact readout</text>
+  <line x1="478" y1="166" x2="478" y2="188" stroke="#22d3ee" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#arr-c)"/>
+
+  <!-- Co-located Telemetry -->
+  <rect class="panel" x="256" y="130" width="144" height="54" rx="5"/>
+  <text x="328" y="146" text-anchor="middle" class="t-head">Co-Located Telemetry</text>
+  <text x="328" y="161" text-anchor="middle" class="t-body">Calibrated RTDs / ΔT</text>
+  <text x="328" y="175" text-anchor="middle" class="t-body">Pressure · B-field · Accel</text>
+
+  <!-- Right Column: 4-Layer Timing & Blinding -->
+  <rect class="panel" x="652" y="76" width="280" height="148" rx="8"/>
+  <text x="668" y="98" class="t-head">4-Layer Timing &amp; Synchronization</text>
+  <text x="668" y="117" class="t-mono">1. 10 MHz Freq Ref (Rb / GNSSDO)</text>
+  <text x="668" y="134" class="t-mono">2. 1 PPS / PTP Epoch Alignment</text>
+  <text x="668" y="151" class="t-mono">3. Simultaneous Hardware Trigger</text>
+  <text x="668" y="168" class="t-mono">4. Common Sample-Clock + Skew Cal</text>
+  <text x="668" y="191" class="t-sub">Note: Shared 10 MHz alone does NOT</text>
+  <text x="668" y="206" class="t-sub">guarantee epoch or phase alignment.</text>
+
+  <!-- Diagnostic VNA + Excitation -->
+  <rect class="panel" x="652" y="238" width="280" height="148" rx="8"/>
+  <text x="668" y="260" class="t-head">Excitation, Acquisition &amp; Blinding</text>
+  <text x="668" y="280" class="t-body">• Non-contact EMAT / piezo chirp drive</text>
+  <text x="668" y="297" class="t-body">• Primary: Optical mechanical FRF / ring-down</text>
+  <text x="668" y="314" class="t-body">• Diagnostic only: VNA EM coupling check</text>
+  <text x="668" y="331" class="t-body">• Deterministic locked estimator (MAC ≥ thresh)</text>
+  <text x="668" y="348" class="t-body">• Blinded A/B labels; SHA-256 raw archive</text>
+  <text x="668" y="370" class="t-cu">Primary estimand: θ = (μ_A − μ_B) / μ_B</text>
+
+  <!-- Connectors from right boxes into chamber -->
+  <line x1="652" y1="148" x2="628" y2="148" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arr-c)"/>
+  <line x1="652" y1="305" x2="628" y2="305" stroke="#e49b73" stroke-width="1.8" marker-end="url(#arr-k)"/>
+
+  <!-- Bottom Box: Motivating Base vs Registered LOC-1 Reconciliation -->
+  <rect class="panel" x="28" y="404" width="904" height="114" rx="8"/>
+  <text x="44" y="426" class="t-head">Explicit Geometry Reconciliation: Motivating Hypothesis Base vs. Registered OSF LOC-1 Baseline</text>
+  <text x="44" y="446" class="t-body"><tspan font-weight="700" fill="#e49b73">Motivating Source Base (Bashar concept):</tspan> Ultra-flat 6–10 ft (1.83–3.05 m) table; very thin hollow copper sphere 3–4 in (76.2–101.6 mm) OD → breathing mode ~20–28 kHz</text>
+  <text x="44" y="464" class="t-body">(low-kHz flexural modes). Speculative follow-on claims (rolling/teleportation via frequency bombardment, universal C-chart, ship bubbles) are OUT OF SCOPE of Phase 1.</text>
+  <text x="44" y="484" class="t-body"><tspan font-weight="700" fill="#22d3ee">Registered OSF LOC-1 Baseline (osf.io/5b6mj):</tspan> Compact 0.40 m enclosed separation; 99.999% Cu hollow sphere (&gt;230 kHz hypothesis-inherited band → ~9.2 mm OD, 0.3 mm wall).</text>
+  <text x="44" y="502" class="t-sub">230 kHz is NOT a recognized physical threshold. Final test geometry, mode family, and separation are TBD by FEM + qualification (governed via Draft Amendment LOC-1A if changed).</text>
+</svg>

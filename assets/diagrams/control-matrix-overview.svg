@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510" role="img" aria-labelledby="cm-title cm-desc">
+  <title id="cm-title">Adversarial Control Matrix Overview Across 17 Scheduled Controls</title>
+  <desc id="cm-desc">Structured overview of all 17 adversarial controls grouped into five confound families — Geometric and Mechanical, Thermal and Gas Coupling, Electromagnetic and Timing, Analytical and Modal, and Procedural and Blinding — with their binding failure actions.</desc>
+  <defs>
+    <style>
+      .bg { fill: #070b12; }
+      .grp { fill: #0d1522; stroke: #2b3f5a; stroke-width: 1.5; }
+      .act { fill: #191310; stroke: #c86b3c; stroke-width: 1.6; }
+      .t-title { font: 700 18px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-sub { font: 500 12px system-ui, -apple-system, sans-serif; fill: #94a3b8; }
+      .t-tag { font: 700 11px ui-monospace, monospace; fill: #22d3ee; }
+      .t-tag-cu { font: 700 11px ui-monospace, monospace; fill: #e49b73; }
+      .t-h { font: 700 13px system-ui, -apple-system, sans-serif; fill: #f1f5f9; }
+      .t-b { font: 500 11px system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      @media print {
+        .bg { fill: #ffffff; }
+        .grp, .act { fill: #f8fafc; stroke: #334155; }
+        .t-title, .t-h { fill: #0f172a; }
+        .t-sub, .t-b { fill: #334155; }
+        .t-tag { fill: #0369a1; }
+        .t-tag-cu { fill: #9a3412; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="510" rx="12"/>
+  <text x="28" y="34" class="t-title">Figure 5 · Adversarial Control Matrix (17 Pre-Scheduled Controls)</text>
+  <text x="28" y="53" class="t-sub">Every confound family is actively challenged before and during confirmatory runs. Numeric acceptance thresholds are locked during Stage 1 Qualification (TBD).</text>
+
+  <!-- Family 1 -->
+  <rect class="grp" x="28" y="74" width="292" height="172" rx="8"/>
+  <text x="42" y="95" class="t-tag">FAMILY 1 · GEOMETRIC &amp; MECHANICAL</text>
+  <text x="42" y="114" class="t-h">Mounting, Rotation &amp; Swap (C1–C4)</text>
+  <text x="42" y="135" class="t-b">• C1 Same-station lift-and-reseat repeatability</text>
+  <text x="42" y="153" class="t-b">• C2 Azimuthal / polar sphere rotation test</text>
+  <text x="42" y="171" class="t-b">• C3 Artifact A↔B physical swap (cancels</text>
+  <text x="42" y="185" class="t-b">     manufacturing asymmetry)</text>
+  <text x="42" y="203" class="t-b">• C4 Cradle / kinematic mount interchange</text>
+  <text x="42" y="229" class="t-tag-cu">Action: Halt &amp; remediate seating bias</text>
+
+  <!-- Family 2 -->
+  <rect class="grp" x="334" y="74" width="292" height="172" rx="8"/>
+  <text x="348" y="95" class="t-tag">FAMILY 2 · THERMAL &amp; GAS</text>
+  <text x="348" y="114" class="t-h">Gradient, Drift &amp; Acoustic Load (C5–C8)</text>
+  <text x="348" y="135" class="t-b">• C5 Deliberate ΔT injection positive control</text>
+  <text x="348" y="153" class="t-b">     (verifies known ~10⁻⁴ K⁻¹ thermal slope)</text>
+  <text x="348" y="171" class="t-b">• C6 Station A vs. B spatial ΔT mapping</text>
+  <text x="348" y="189" class="t-b">• C7 Pressure / gas-coupling sweep check</text>
+  <text x="348" y="207" class="t-b">• C8 Laser optical heating power sweep</text>
+  <text x="348" y="229" class="t-tag-cu">Action: Exclude block / expand thermal u_B</text>
+
+  <!-- Family 3 -->
+  <rect class="grp" x="640" y="74" width="292" height="172" rx="8"/>
+  <text x="654" y="95" class="t-tag">FAMILY 3 · INSTRUMENT &amp; TIMING</text>
+  <text x="654" y="114" class="t-h">Channels, EM &amp; Synchronization (C9–C12)</text>
+  <text x="654" y="135" class="t-b">• C9 LDV / digitizer channel-swap control</text>
+  <text x="654" y="153" class="t-b">• C10 Common-signal splitter zero-skew test</text>
+  <text x="654" y="171" class="t-b">• C11 Excitation drive amplitude / nonlinearity</text>
+  <text x="654" y="189" class="t-b">• C12 Ambient magnetic &amp; RF pickup sweep</text>
+  <text x="654" y="207" class="t-b">     (plus VNA diagnostic cross-check)</text>
+  <text x="654" y="229" class="t-tag-cu">Action: Disqualify run; recalibrate chain</text>
+
+  <!-- Family 4 -->
+  <rect class="grp" x="28" y="262" width="444" height="146" rx="8"/>
+  <text x="42" y="283" class="t-tag">FAMILY 4 · MODAL &amp; ANALYTICAL</text>
+  <text x="42" y="302" class="t-h">Mode Identity, Synthetic Injection &amp; Estimator Lock (C13–C15)</text>
+  <text x="42" y="323" class="t-b">• C13 Modal Assurance Criterion (MAC) &amp; degenerate-mode splitting monitor</text>
+  <text x="42" y="341" class="t-b">• C14 Synthetic frequency-shift injection test (recovers known ppb offsets cleanly)</text>
+  <text x="42" y="359" class="t-b">• C15 Secondary estimator cross-check (flags ≥ locked sensitivity discrepancy;</text>
+  <text x="42" y="374" class="t-b">     guards against ~10 Hz method-dependent modal identification shifts)</text>
+  <text x="42" y="396" class="t-tag-cu">Action: Reject mis-identified placement; never switch primary estimator post-hoc</text>
+
+  <!-- Family 5 -->
+  <rect class="grp" x="488" y="262" width="444" height="146" rx="8"/>
+  <text x="502" y="283" class="t-tag">FAMILY 5 · PROCEDURAL, REFERENCE &amp; BLINDING</text>
+  <text x="502" y="302" class="t-h">Sham Handling, Reference Artifact &amp; Key Integrity (C16–C17)</text>
+  <text x="502" y="323" class="t-b">• C16 Sham-move / zero-displacement negative control (same handling, same seat;</text>
+  <text x="502" y="338" class="t-b">     must yield null within repeatability floor)</text>
+  <text x="502" y="356" class="t-b">• C17 Inert control artifact / blind-label integrity + SHA-256 custody audit</text>
+  <text x="502" y="374" class="t-b">     (verifies zero unblinding leakage before frozen analysis commit)</text>
+  <text x="502" y="396" class="t-tag-cu">Action: Classify campaign Outcome 4 (Invalid); mandatory requalification</text>
+
+  <!-- Binding Failure Policy Bar -->
+  <rect class="act" x="28" y="424" width="904" height="68" rx="8"/>
+  <text x="44" y="446" class="t-h">Binding Pre-Registered Failure Rule (No Post-Hoc Excusal)</text>
+  <text x="44" y="465" class="t-b">If any positive control fails to detect a known injected shift, or any negative/sham/swap control exhibits an unmodeled offset exceeding its qualification-locked limit,</text>
+  <text x="44" y="481" class="t-b">the affected confirmatory block is automatically classified Outcome 4 (Invalid) prior to unblinding. All failed controls are published in full with raw data.</text>
+</svg>
