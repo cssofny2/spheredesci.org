@@ -24,7 +24,6 @@ worker
 migrations
 package.json
 package-lock.json
-package-lock.json
 PRODUCT.md
 RESEARCH_PLATFORM.md
 CONTENT_GUIDE.md

@@ -58,8 +58,8 @@ function navForUrl(routeUrl = "") {
     : "";
   if (!sectionKey) return baseNavigation;
   return baseNavigation
-    .replace('data-section="library"', 'data-section="library" data-active="true"')
-    .replaceAll(`href="/${sectionKey}/"`, `href="/${sectionKey}/" aria-current="page"`);
+    .replace('data-section="library" data-tone="cyan"', 'data-section="library" data-tone="cyan" data-active="true"')
+    .replace(new RegExp(`(<a\\b[^>]*\\bhref="/${sectionKey}/"[^>]*)>`, "g"), '$1 aria-current="page">');
 }
 const footer = footerMatch[0];
 
@@ -894,7 +894,8 @@ function updateSitemap(urls) {
       kept = kept.slice(0, start) + kept.slice(stop);
     }
     const end = kept.lastIndexOf("</urlset>");
-    await writeFile(path.join(ROOT, "sitemap.xml"), `${kept.slice(0, end)}${additions.join("\n")}${kept.slice(end)}`);
+    const inserted = additions.length ? `${additions.join("\n")}\n` : "";
+    await writeFile(path.join(ROOT, "sitemap.xml"), `${kept.slice(0, end)}${inserted}${kept.slice(end)}`);
   });
 }
 
@@ -987,18 +988,21 @@ if (!researchIndex.includes(markerStart)) {
   researchIndex = researchIndex.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, `$1\n${markerStart}${markerEnd}`);
 }
 researchIndex = researchIndex.replace(/<!-- PUBLICATION_CATALOG_START -->[\s\S]*?<!-- PUBLICATION_CATALOG_END -->/, `${markerStart}${catalog}${markerEnd}`);
-researchIndex = researchIndex.replace(/<meta property="article:modified_time"[^>]*>/i, `<meta property="article:modified_time" content="${TODAY}">`);
+const latestResearchDate = researchRecords.map((record) => record.updated).filter(Boolean).sort().at(-1);
+const existingModified = researchIndex.match(/<meta property="article:modified_time" content="(\d{4}-\d{2}-\d{2})"/i)?.[1];
+const researchUpdated = [latestResearchDate, existingModified].filter(Boolean).sort().at(-1) || TODAY;
+researchIndex = researchIndex.replace(/<meta property="article:modified_time"[^>]*>/i, `<meta property="article:modified_time" content="${researchUpdated}">`);
 researchIndex = researchIndex.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i, (_, content) => {
   const schema = JSON.parse(content);
   const webpage = schema["@graph"]?.find((item) => item["@type"] === "WebPage");
-  if (webpage) webpage.dateModified = TODAY;
+  if (webpage) webpage.dateModified = researchUpdated;
   return `<script type="application/ld+json">${toJsonLd(schema)}</script>`;
 });
-const updatedDate = dateLabel(TODAY);
+const updatedDate = dateLabel(researchUpdated);
 if (/Updated <time datetime="[^"]+">[\s\S]*?<\/time>/.test(researchIndex)) {
-  researchIndex = researchIndex.replace(/Updated <time datetime="[^"]+">[\s\S]*?<\/time>/, `Updated <time datetime="${TODAY}">${updatedDate}</time>`);
+  researchIndex = researchIndex.replace(/Updated <time datetime="[^"]+">[\s\S]*?<\/time>/, `Updated <time datetime="${researchUpdated}">${updatedDate}</time>`);
 } else {
-  researchIndex = researchIndex.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, (meta) => meta.replace("</p>", ` · Updated <time datetime="${TODAY}">${updatedDate}</time></p>`));
+  researchIndex = researchIndex.replace(/(<p class="page-meta">[\s\S]*?<\/p>)/i, (meta) => meta.replace("</p>", ` · Updated <time datetime="${researchUpdated}">${updatedDate}</time></p>`));
 }
 if (!researchIndex.includes("/assets/publication.css")) researchIndex = researchIndex.replace("</head>", '<link href="/assets/publication.css" rel="stylesheet"></head>');
 // Self-hosted fonts (declared in site.css) replace the render-delaying Google Fonts request.
@@ -1007,7 +1011,7 @@ if (!researchIndex.includes("/assets/fonts/inter-latin.woff2")) researchIndex = 
 if (!researchIndex.includes('src="/assets/publication-search.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/publication-search.js" defer></script><script src="/assets/analytics.js" defer></script></head>');
 if (!researchIndex.includes('src="/assets/content-discovery.js"')) researchIndex = researchIndex.replace("</head>", '<script src="/assets/content-discovery.js" defer></script></head>');
 if (!researchIndex.includes('type="application/rss+xml"')) researchIndex = researchIndex.replace("</head>", `<link rel="alternate" type="application/rss+xml" title="Project S.P.H.E.R.E. Research" href="${SITE}/rss.xml"></head>`);
-await writeFile(researchFile, researchIndex.replace(/\r\n|\n/g, "\r\n"));
+await writeFile(researchFile, researchIndex.replace(/\r\n/g, "\n"));
 
 const categoryRoutes = new Map();
 for (const record of researchRecords) {

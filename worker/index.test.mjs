@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import worker, { LAB_TARGET, isLabHostname, readLimitedText, redactAnalyticsQuery } from "./index.js";
+import worker, { LAB_TARGET, isLabHostname, isSameOrigin, readLimitedText, redactAnalyticsQuery } from "./index.js";
 
 test("isLabHostname recognizes lab subdomains case-insensitively", () => {
   assert.equal(isLabHostname("lab.spheredesci.org"), true);
@@ -60,5 +60,31 @@ test("readLimitedText rejects oversized request streams before buffering them", 
     body: "x".repeat(2049),
   });
   await assert.rejects(readLimitedText(request, 2048), /Request is too large/);
+});
+
+test("isSameOrigin rejects malformed and null origins without throwing", () => {
+  assert.equal(isSameOrigin(null, "https://spheredesci.org/api/analytics/event"), true);
+  assert.equal(isSameOrigin("https://spheredesci.org", "https://spheredesci.org/api/analytics/event"), true);
+  assert.equal(isSameOrigin("https://attacker.example", "https://spheredesci.org/api/analytics/event"), false);
+  assert.equal(isSameOrigin("null", "https://spheredesci.org/api/analytics/event"), false);
+  assert.equal(isSameOrigin("not a url", "https://spheredesci.org/api/analytics/event"), false);
+});
+
+test("analytics and vote endpoints return 403 instead of 500 on malformed Origin headers", async () => {
+  for (const origin of ["null", "not-a-valid-origin"]) {
+    const analyticsRes = await worker.fetch(new Request("https://spheredesci.org/api/analytics/event", {
+      method: "POST",
+      headers: { origin, "content-type": "application/json" },
+      body: JSON.stringify({ type: "page-view", path: "/research/" }),
+    }), { ANALYTICS_ENABLED: "true" });
+    assert.equal(analyticsRes.status, 403);
+
+    const voteRes = await worker.fetch(new Request("https://spheredesci.org/api/vote/logo-concepts/ballot", {
+      method: "POST",
+      headers: { origin, "content-type": "application/json" },
+      body: JSON.stringify({ item: "lc-01", v: 1, r: 8 }),
+    }), {});
+    assert.equal(voteRes.status, 403);
+  }
 });
 
