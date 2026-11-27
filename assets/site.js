@@ -83,7 +83,8 @@
           link.setAttribute('aria-current', 'location');
           if (rail && rail.scrollWidth > rail.clientWidth) {
             const targetLeft = link.offsetLeft - (rail.clientWidth - link.offsetWidth) / 2;
-            rail.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+            const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            rail.scrollTo({ left: Math.max(0, targetLeft), behavior: reduced ? 'auto' : 'smooth' });
           }
         } else {
           link.removeAttribute('aria-current');
